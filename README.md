@@ -14,6 +14,7 @@ All personal branches **must** follow this format:
 ```
 <surname>-<feature>
 ```
+> **Please follow appropriate commit messages**
 
 ### Main Branch Protection
 - **Only the PM merges into the `main` branch**
