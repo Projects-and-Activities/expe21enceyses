@@ -2,6 +2,11 @@
 
 ## Developers — Eyes Here 🚨
 
+### File Route 
+`api` - backend files
+
+`app` - frontend files
+
 
 ### Branch Naming Convention
 All personal branches **must** follow this format:
