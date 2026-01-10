@@ -1,10 +1,9 @@
 # expe21enceyses
 
-## 🚨 Developers — Eyes Here 🚨
+## Developers — Eyes Here 🚨
 
-The rules below are **not optional** and exist to keep the project stable and traceable.
 
-### 🌿 Branch Naming Convention
+### Branch Naming Convention
 All personal branches **must** follow this format:
 
 ```
@@ -23,6 +22,7 @@ All personal branches **must** follow this format:
 2. Open a Pull Request **to the staging branch**
    - Frontend → `app-stg`
    - Backend → `api-stg`
-3. After validation and approval from the TL, the PM will merge staging into `main`
+3. After validation and approval from the TL, TL will merge to staging.
+4. After the validation from the SCRUM, PM will merge to `main`.
 
 > **No PRs should target `main` directly**
