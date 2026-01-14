@@ -17,7 +17,7 @@
 
 ## Checklist (PLEASE CHECK OFF APPLICABLE ITEMS)
 
-- [ ] For all changes, the changes locally have been tested locally and work as expected
+- [ ] For all changes, the changes have been tested locally and work as expected
 - [ ] For all changes, the code builds without errors or warnings
 - [ ] For all changes, code follows our patterns and best practices
 - [ ] For all changes, any comments are accurate to the code
