@@ -1,34 +1,38 @@
-# expe21enceyses
+# sv
 
-## Developers — Eyes Here 🚨
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-### File Route 
-`api` - backend files
+## Creating a project
 
-`app` - frontend files
+If you're seeing this, you've probably already done this step. Congrats!
 
+```sh
+# create a new project in the current directory
+npx sv create
 
-### Branch Naming Convention
-All personal branches **must** follow this format:
-
+# create a new project in my-app
+npx sv create my-app
 ```
-<surname>-<feature>
+
+## Developing
+
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```sh
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
 ```
-> **Please follow appropriate commit messages**
 
-### Main Branch Protection
-- **Only the PM merges into the `main` branch**
-- Direct commits to `main` are not allowed
-- All changes must go through the defined PR flow
+## Building
 
----
+To create a production version of your app:
 
-### Pull Request & Merge Flow
-1. Create your feature branch from the appropriate base
-2. Open a Pull Request **to the staging branch**
-   - Frontend → `app-stg`
-   - Backend → `api-stg`
-3. After validation and approval from the TL, TL will merge to staging.
-4. After the validation from the SCRUM, PM will merge to `main`.
+```sh
+npm run build
+```
 
-> **No PRs should target `main` directly**
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
