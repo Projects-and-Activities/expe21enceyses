@@ -14,10 +14,12 @@
 		"@tailwindcss/vite": "^4.1.17",
 		"@toolwind/anchors": "^1.0.10",
 		"@types/node": "^22",
+		"@types/three": "^0.182.0",
 		"bits-ui": "^2.14.4",
 		"clsx": "^2.1.1",
 		"eslint": "^9.39.1",
 		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-import": "^2.32.0",
 		"eslint-plugin-svelte": "^3.13.1",
 		"globals": "^16.5.0",
 		"prettier": "^3.7.4",
@@ -46,8 +48,11 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"liquid-glass-svelte": "^1.2.0"
+		"@threlte/core": "^8.3.1",
+		"@threlte/extras": "^9.7.1",
+		"liquid-glass-svelte": "^1.2.0",
 		"mode-watcher": "^1.1.0",
-		"svelte-motion": "^0.12.2"
+		"svelte-motion": "^0.12.2",
+		"three": "^0.182.0"
 	}
 }

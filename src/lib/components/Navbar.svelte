@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import logo from '$lib/assets/logo.png';
-	import { page } from '$app/stores';
 	import { LiquidGlass } from 'liquid-glass-svelte';
+
+	import { page } from '$app/stores';
+	import logo from '$lib/assets/logo.png';
+	import { Button } from '$lib/components/ui/button';
 	import * as NavigationMenu from '$lib/components/ui/navigation-menu';
 
 	// Navigation items

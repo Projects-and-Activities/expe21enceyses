@@ -1,9 +1,11 @@
 <script lang="ts">
-	import AnnotatedBorderedContainer from '$lib/components/AnnotatedBorderedContainer.svelte';
-	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
-	import { draw } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
+	import { draw } from 'svelte/transition';
+
+	import AnnotatedBorderedContainer from '$lib/components/AnnotatedBorderedContainer.svelte';
+	import AsciiLogo from '$lib/components/ascii-logo/AsciiLogo.svelte';
 	import ProgramSection from '$lib/components/ProgramSection.svelte';
+	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 
 	let showUnderline = $state(false);
 
@@ -135,21 +137,24 @@
 			</ScrollReveal>
 			<ScrollReveal delay="200ms">
 				<p>
-					Learn directly from industry professionals and alumni about careers, technologies, and
-					building impact in the 21st century.
+					Learn directly from industry professionals and alumni about careers,
+					technologies, and building impact in the 21st century.
 				</p>
 			</ScrollReveal>
 
 			<div class="flex gap-4">
 				<ScrollReveal delay="400ms" class="border-r pr-4">
 					<p>
-						Design and develop AI‑driven solutions for Philippine communities through a bracketed
-						hackathon.
+						Design and develop AI‑driven solutions for Philippine communities through a
+						bracketed hackathon.
 					</p>
 				</ScrollReveal>
 
 				<ScrollReveal delay="500ms">
-					<p>Explore internships, OJT placements, and entry‑level roles with partner companies.</p>
+					<p>
+						Explore internships, OJT placements, and entry‑level roles with partner
+						companies.
+					</p>
 				</ScrollReveal>
 			</div>
 		</div>
@@ -167,8 +172,8 @@
 
 			<ScrollReveal delay="300ms">
 				<p>
-					the Young Software Engineers' Society (YSES) has been at the forefront of promoting
-					software engineering and <span class="font-bold text-primary">
+					the Young Software Engineers' Society (YSES) has been at the forefront of
+					promoting software engineering and <span class="font-bold text-primary">
 						bridging the gap between the academe and the industry.
 					</span>
 				</p>
@@ -179,14 +184,17 @@
 					<span class="font-bold text-primary">
 						EXPE21ENCE YSES: Bridging Future Software Engineers of the 21st Century
 					</span>
-					continues this mission by equipping students with the skills, network, and experience they need
-					to become holistic software engineers in a rapidly evolving digital world.
+					continues this mission by equipping students with the skills, network, and experience
+					they need to become holistic software engineers in a rapidly evolving digital world.
 				</p>
 			</ScrollReveal>
 		</div>
 
-		<!-- TODO: place logo here -->
-		<div class="aspect-square size-full bg-muted"></div>
+		<div class="aspect-square size-full">
+			<ScrollReveal delay="500ms" class="h-full">
+				<AsciiLogo />
+			</ScrollReveal>
+		</div>
 	</section>
 
 	<section class="flex flex-col *:text-6xl">
