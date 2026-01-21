@@ -6,7 +6,12 @@
 	type Props = {
 		class?: string;
 		annotation: string;
-		annotationAlign: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'bottom-center';
+		annotationAlign:
+			| 'top-left'
+			| 'top-right'
+			| 'bottom-left'
+			| 'bottom-right'
+			| 'bottom-center';
 		color: 'primary' | 'accent' | 'red' | 'green';
 		size: 'xs' | 'sm';
 		children: Snippet;

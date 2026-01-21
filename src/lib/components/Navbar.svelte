@@ -38,8 +38,13 @@
 				sheenWidth: '2rem'
 			}}
 		>
-			<div class="!absolute !inset-0 z-10 flex !h-full w-full items-center justify-between px-8">
-				<a href="/" class="flex items-center transition-transform duration-300 hover:scale-105">
+			<div
+				class="!absolute !inset-0 z-10 flex !h-full w-full items-center justify-between px-8"
+			>
+				<a
+					href="/"
+					class="flex items-center transition-transform duration-300 hover:scale-105"
+				>
 					<img src={logo} alt="E21 Logo" class="h-[1.875rem] w-auto object-contain" />
 				</a>
 
@@ -71,7 +76,8 @@
 												>
 												<a
 													href="/events/pf-jf"
-													class="text-2xl font-light transition-colors hover:text-primary">PF/JF</a
+													class="text-2xl font-light transition-colors hover:text-primary"
+													>PF/JF</a
 												>
 												<a
 													href="/events/company-talks"

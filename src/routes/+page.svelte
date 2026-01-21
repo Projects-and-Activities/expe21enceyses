@@ -34,17 +34,17 @@
 		{
 			title: 'The Hackfest',
 			subtitle: 'Engineer solutions that move communities forward.',
-			bg: 'bg-neutral-100 dark:bg-neutral-900'
+			bg: 'bg-neutral-200 dark:bg-neutral-800'
 		},
 		{
 			title: 'Practicum/Job Fair',
 			subtitle: 'Land opportunities where your career begins.',
-			bg: 'bg-neutral-200 dark:bg-neutral-800'
+			bg: 'bg-neutral-100 dark:bg-neutral-900'
 		},
 		{
 			title: 'Company Talks',
 			subtitle: 'Unlock what it takes to thrive in tech.',
-			bg: 'bg-neutral-300 dark:bg-neutral-700'
+			bg: 'bg-neutral-50 dark:bg-neutral-950 dark:brightness-80'
 		}
 	];
 </script>
@@ -69,7 +69,7 @@
 			annotationAlign="bottom-center"
 			color="primary"
 			size="sm"
-			class="z-50 w-fit text-center anchor/bridge-anchor not-lg:border-none not-lg:[&_#annotation]:hidden"
+			class="z-10 w-fit text-center anchor/bridge-anchor not-lg:border-none not-lg:[&_#annotation]:hidden"
 		>
 			<div class="font-light md:text-xl lg:hidden">XX/2026 - XX/2026</div>
 			<h1
@@ -103,7 +103,7 @@
 			>
 			<ScrollReveal
 				delay="800ms"
-				class="absolute top-1/2 -right-52 z-50 hidden max-w-50 translate-y-8 text-left leading-tight text-balance not-lg:hidden! supports-[not(anchor)]:block"
+				class="absolute top-1/2 -right-52 z-10 hidden max-w-50 translate-y-8 text-left leading-tight text-balance not-lg:hidden! supports-[not(anchor)]:block"
 			>
 				<p>Bridging Future Software Engineers of the 21st Century</p>
 			</ScrollReveal>
@@ -116,7 +116,7 @@
 			<p>Bridging Future Software Engineers of the 21st Century</p>
 		</ScrollReveal>
 
-		<div class="right-0 -bottom-40 ml-auto anchor/bottom-hand lg:absolute">
+		<div class="right-0 -bottom-36 ml-auto anchor/bottom-hand lg:absolute">
 			<AnnotatedBorderedContainer
 				annotation="INDUSTRY"
 				annotationAlign="top-right"
@@ -197,7 +197,7 @@
 		</div>
 	</section>
 
-	<section class="flex flex-col *:text-6xl">
+	<section class="flex flex-col *:text-6xl md:pb-32">
 		<ScrollReveal delay="200ms">
 			<div>
 				Experience the <span class="relative inline-block" use:viewportTrigger>
@@ -220,7 +220,6 @@
 				</span>,
 			</div>
 		</ScrollReveal>
-
 		<ScrollReveal delay="300ms" class="ml-auto w-fit">
 			<div>
 				built for and by <span class="font-bold text-primary">you.</span>

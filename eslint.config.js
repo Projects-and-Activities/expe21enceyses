@@ -31,7 +31,15 @@ export default defineConfig(
 			'import/order': [
 				'error',
 				{
-					groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object'],
+					groups: [
+						'builtin',
+						'external',
+						'internal',
+						'parent',
+						'sibling',
+						'index',
+						'object'
+					],
 					'newlines-between': 'always',
 					alphabetize: { order: 'asc', caseInsensitive: true }
 				}
