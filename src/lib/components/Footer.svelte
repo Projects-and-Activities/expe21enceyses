@@ -7,15 +7,32 @@
 	import YouTube from './icons/YouTube.svelte';
 </script>
 
-<footer class="bg-card px-16 py-8">
-	<div class="flex place-items-center gap-4">
-		<enhanced:img src="../../../static/images/colored-logo.png" />
-		<div>
-			<h3>Young Software Engineers' Society</h3>
-			<div>University of the Philippines Los Baños</div>
+<footer class="p-8 not-lg:px-0">
+	<div class="container mx-auto flex flex-col place-items-center gap-4 md:flex-row">
+		<enhanced:img
+			src="../../../static/images/colored-logo.png"
+			class="block size-16 dark:hidden"
+			loading="lazy"
+			decoding="async"
+			alt="Logo"
+		/>
+
+		<enhanced:img
+			src="../../../static/images/colored-logo-inverted.png"
+			class="hidden size-16 dark:block"
+			loading="lazy"
+			decoding="async"
+			alt="Logo"
+		/>
+
+		<div class="not-md:text-center">
+			<h3 class="text-lg">Young Software Engineers' Society</h3>
+			<div class="text-sm">University of the Philippines Los Baños</div>
 		</div>
-		<div class="ml-auto w-fit">
-			<div class="flex gap-1">
+		<div
+			class="flex w-fit flex-col-reverse not-md:place-items-center not-md:gap-y-12 md:ml-auto"
+		>
+			<div class="flex gap-1 not-md:scale-120">
 				<LinkedIn />
 				<Github />
 				<Facebook />
