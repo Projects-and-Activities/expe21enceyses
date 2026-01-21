@@ -4,8 +4,8 @@ import { enhancedImages } from '@sveltejs/enhanced-img';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [enhancedImages(), sveltekit(), tailwindcss()],
-	ssr: {
-		noExternal: ['griddy-icons']
-	}
+    plugins: [tailwindcss(), sveltekit()],
+    ssr: {
+        noExternal: ['liquid-glass-svelte', 'bits-ui', 'griddy-icons']
+    }
 });
