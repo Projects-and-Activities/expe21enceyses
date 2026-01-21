@@ -8,13 +8,14 @@
 	export let waveTrigger = 0;
 
 	const gltf = useGltf('/3D_logo.glb');
-	let rotation = 0;
 
 	const uniforms = {
 		uTime: { value: 0 }
 	};
 
 	useTask(() => {
+		if (waveTrigger === 0) return;
+
 		const timeSinceClick = (Date.now() - waveTrigger) / 1000;
 
 		// Run wave for 10 seconds
@@ -22,6 +23,7 @@
 			uniforms.uTime.value = timeSinceClick;
 		} else {
 			uniforms.uTime.value = 0;
+			waveTrigger = 0;
 		}
 	});
 
@@ -95,5 +97,5 @@
 </script>
 
 {#if $gltf}
-	<T is={$gltf.scene} rotation.x={Math.PI / 4} rotation.y={rotation} position={[0, 0, 0]} />
+	<T is={$gltf.scene} rotation.x={Math.PI / 4} position={[0, 0, 0]} />
 {/if}

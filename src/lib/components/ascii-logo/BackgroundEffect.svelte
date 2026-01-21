@@ -1,13 +1,9 @@
 <script lang="ts">
 	import { Text } from '@threlte/extras';
 
-	import { SCENE_COLOR } from './constants';
+	import { CHAR_COUNT, CHARS, SCENE_COLOR } from './constants';
 
-	const chars = ['π', '0', '1', '404', 'NULL', '{', '}', '≠'];
-
-	//NOTE: reduced count for performance
-	const count = 100;
-	const particles = Array.from({ length: count }).map(() => {
+	const particles = Array.from({ length: CHAR_COUNT }).map(() => {
 		return {
 			position: [
 				(Math.random() - 0.5) * 80,
@@ -15,7 +11,7 @@
 				(Math.random() - 0.5) * 40
 			] as [number, number, number],
 
-			char: chars[Math.floor(Math.random() * chars.length)],
+			char: CHARS[Math.floor(Math.random() * CHARS.length)],
 			scale: 0.5 + Math.random() * 0.5,
 			opacity: 0.4 + Math.random() * 0.5
 		};

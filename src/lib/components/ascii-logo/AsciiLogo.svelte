@@ -46,6 +46,6 @@
 		<T.DirectionalLight position={[-5, 0, -5]} intensity={5.0} />
 
 		<BackgroundEffect />
-		<LogoScene {waveTrigger} />
+		<LogoScene bind:waveTrigger />
 	</Canvas>
 </div>
