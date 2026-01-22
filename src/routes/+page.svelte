@@ -38,7 +38,7 @@
 		},
 		{
 			title: 'Practicum/Job Fair',
-			subtitle: 'Land opportunities where your career begins.',
+			subtitle: 'Land the opportunities that launch your career.',
 			bg: 'bg-neutral-100 dark:bg-neutral-900'
 		},
 		{
