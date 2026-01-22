@@ -227,7 +227,7 @@
 		</ScrollReveal>
 	</section>
 
-	<div class="w-full px-0!">
+	<div class="w-full space-y-100 px-0!">
 		{#each programSections as section, i (section.title)}
 			<ProgramSection
 				title={section.title}
