@@ -89,7 +89,7 @@
 							size="xs"
 						>
 							<enhanced:img
-								src="../../static/images/logo.png"
+								src="$images/logo.png"
 								alt=""
 								class="aspect-square size-16 p-1 lg:size-24"
 							/>

@@ -10,7 +10,7 @@
 <footer class="p-8 not-lg:px-0">
 	<div class="container mx-auto flex flex-col place-items-center gap-4 md:flex-row">
 		<enhanced:img
-			src="../../../static/images/colored-logo.png"
+			src="$images/colored-logo.png"
 			class="block size-16 dark:hidden"
 			loading="lazy"
 			decoding="async"
@@ -18,7 +18,7 @@
 		/>
 
 		<enhanced:img
-			src="../../../static/images/colored-logo-inverted.png"
+			src="$images/colored-logo-inverted.png"
 			class="hidden size-16 dark:block"
 			loading="lazy"
 			decoding="async"
