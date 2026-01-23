@@ -1,6 +1,9 @@
 {
 	"name": "expe21ence",
 	"version": "0.0.1",
+	"engines": {
+        "node": ">=22"
+    },
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",
 		"@eslint/js": "^9.39.1",
