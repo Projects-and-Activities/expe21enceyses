@@ -14,7 +14,10 @@ jobs:
     if: |
       github.event.pull_request.merged == true && 
       github.event.pull_request.head.ref != 'app-stg' && 
-      github.event.pull_request.head.ref != 'api-stg'
+      github.event.pull_request.head.ref != 'api-stg' &&
+      github.event.pull_request.head.ref != 'main' &&
+      github.event.pull_request.head.ref != 'master'
+      
     steps:
       - name: Delete branch
         uses: actions/github-script@v6
