@@ -25,16 +25,18 @@
 	let glassOptions = $derived(
 		isDark
 			? ({
-					mainBlur: '0.28rem',
-					mainBackgroundColor: 'rgba(0, 0, 0, 0.2)',
-					edgeBlur: '0.8rem',
-					edgeBackgroundColor: 'rgba(255, 255, 255, 0.2)',
-					edgeWidth: '0.5rem',
+					// for dark mode play around with this until we get the desired effect
+					mainBlur: '0.4rem',
+					mainBackgroundColor: 'rgba(0, 0, 0, 0.1)',
+					edgeBlur: '0.5rem',
+					edgeBackgroundColor: 'rgba(100, 100, 100, 0.5)',
+					edgeWidth: '0.01rem',
 					sheenBlur: '5rem',
-					sheenBackgroundColor: 'rgba(255, 255, 255, 0.05)',
-					sheenWidth: '0.5rem'
+					sheenBackgroundColor: 'rgba(100, 100, 100, 0.05)',
+					sheenWidth: '0.01rem'
 				} as const)
 			: ({
+					// light mode
 					mainBlur: '0.1rem',
 					mainBackgroundColor: 'rgba(255, 255, 255, 0.4)',
 					edgeBlur: '0.1rem',
@@ -42,7 +44,7 @@
 					edgeWidth: '0.5rem',
 					sheenBlur: '5rem',
 					sheenBackgroundColor: 'rgba(255, 255, 255, 0.5)',
-					sheenWidth: '2rem'
+					sheenWidth: '1.5rem'
 				} as const)
 	);
 
@@ -71,18 +73,19 @@
 						href="/"
 						class="flex items-center transition-transform duration-300 hover:scale-105"
 					>
-						<!-- Light mode logo -->
-						<img
-							src={logo}
-							alt="E21 Logo"
-							class="h-[1.875rem] w-auto object-contain dark:hidden"
-						/>
-						<!-- Dark mode logo -->
-						<img
-							src={logoDark}
-							alt="E21 Logo"
-							class="hidden h-[1.875rem] w-auto object-contain dark:block"
-						/>
+						{#if isDark}
+							<img
+								src={logoDark}
+								alt="E21 Logo"
+								class="h-[1.875rem] w-auto object-contain"
+							/>
+						{:else}
+							<img
+								src={logo}
+								alt="E21 Logo"
+								class="h-[1.875rem] w-auto object-contain"
+							/>
+						{/if}
 					</a>
 
 					<div class="flex items-center gap-2.5">
