@@ -17,14 +17,88 @@ jobs:
       github.event.pull_request.head.ref != 'api-stg' &&
       github.event.pull_request.head.ref != 'main' &&
       github.event.pull_request.head.ref != 'master'
-      
+
     steps:
-      - name: Delete branch
-        uses: actions/github-script@v6
+      - name: Log Workflow Context
+        uses: actions/github-script@v7
         with:
           script: |
-            github.rest.git.deleteRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: `heads/${context.payload.pull_request.head.ref}`
-            })
+            console.log('🔍 Workflow Context Information:');
+            console.log(`Repository: ${context.repo.owner}/${context.repo.repo}`);
+            console.log(`PR Number: #${context.payload.pull_request.number}`);
+            console.log(`PR Title: "${context.payload.pull_request.title}"`);
+            console.log(`Branch to delete: ${context.payload.pull_request.head.ref}`);
+            console.log(`Base branch: ${context.payload.pull_request.base.ref}`);
+            console.log(`PR Author: ${context.payload.pull_request.user.login}`);
+            console.log(`Merged by: ${context.payload.pull_request.merged_by?.login || 'Unknown'}`);
+            console.log(`Merged at: ${context.payload.pull_request.merged_at}`);
+
+      - name: Delete branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branchName = context.payload.pull_request.head.ref;
+            
+            try {
+              console.log('🗑️ Starting branch deletion process...');
+              console.log(`Target branch: ${branchName}`);
+              
+              // Check if branch exists before deletion
+              console.log('Verifying branch exists...');
+              try {
+                await github.rest.git.getRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: `heads/${branchName}`
+                });
+                console.log('✅ Branch exists and is ready for deletion');
+              } catch (error) {
+                if (error.status === 404) {
+                  console.log('ℹ️ Branch already deleted or does not exist');
+                  return;
+                }
+                throw error;
+              }
+              
+              // Perform the deletion
+              console.log(`🔄 Attempting to delete branch: ${branchName}`);
+              const response = await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${branchName}`
+              });
+              
+              console.log(`✅ Branch '${branchName}' successfully deleted`);
+              console.log(`Response status: ${response.status}`);
+              
+              // Add a comment to the PR
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: `🗑️ Branch \`${branchName}\` has been automatically deleted after merge.`
+              });
+              
+              console.log('✅ Added cleanup notification comment to PR');
+              
+            } catch (error) {
+              console.error('❌ Error during branch deletion:');
+              console.error(`Error message: ${error.message}`);
+              console.error(`Error status: ${error.status || 'Unknown'}`);
+              console.error(`Error response: ${JSON.stringify(error.response?.data || {}, null, 2)}`);
+              
+              // Don't fail the workflow for deletion errors
+              console.log('⚠️ Continuing workflow despite deletion error...');
+            }
+
+      - name: Workflow Summary
+        uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+            const branchName = context.payload.pull_request.head.ref;
+            console.log('📋 Workflow Summary:');
+            console.log(`Branch processed: ${branchName}`);
+            console.log(`Job status: ${job.status || 'completed'}`);
+            console.log(`Timestamp: ${new Date().toISOString()}`);
+            console.log('✅ PR Branch Deletion workflow completed');
