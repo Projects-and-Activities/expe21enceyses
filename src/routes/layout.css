@@ -180,3 +180,24 @@
 .register-btn:hover::after {
 	opacity: 1;
 }
+
+@keyframes subtle-twinkle {
+		0%,
+		100% {
+			filter: brightness(1);
+			transform: scale(1);
+		}
+		50% {
+			/* This creates the pulse/glow */
+			filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+			transform: scale(1.05);
+		}
+	}
+
+	.star-anim {
+		animation-name: subtle-twinkle;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+		/* Important: Helps rendering performance */
+		transform: translate3d(0, 0, 0);
+	}
