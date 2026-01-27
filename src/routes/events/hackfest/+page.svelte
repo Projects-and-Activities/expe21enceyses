@@ -10,12 +10,14 @@
 	import { LiquidGlass } from 'liquid-glass-svelte';
 	import { type Component } from 'svelte';
 
+	import { viewport } from '$lib/actions/viewport';
 	import HackfestRegisterScene from '$lib/components/3d-ascii/sections/HackfestRegisterScene.svelte';
 	import HackfestScene from '$lib/components/3d-ascii/sections/HackfestScene.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 
 	let selectedHackfest = $state<'junior' | 'senior'>('junior');
+	let isSceneVisible = $state(false);
 
 	const GLASS_OPTIONS = {
 		mainBlur: '0.28rem',
@@ -164,17 +166,25 @@
 		{@render star('top-1/2 -right-28 w-28 -rotate-0 blur-sm opacity-35 dark:opacity-70')}
 
 		<ScrollReveal delay="100ms">
-			<LiquidGlass class="mx-auto rounded-3xl p-8" options={GLASS_OPTIONS}>
-				<div class="mb-4 text-xl font-semibold text-primary">Overview</div>
-				<p class="leading-relaxed text-foreground/90">
-					<span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span> is a bracketed
-					hackathon for high school and college students to ideate, design, and build AI‑driven
-					software that addresses real issues faced by Philippine communities and helps make
-					them more sustainable, inclusive, and resilient—focusing on livable cities and communities,
-					from climate resilience and public health to quality education, inclusive livelihoods,
-					and good governance.
-				</p>
-			</LiquidGlass>
+			<div
+				class="mx-auto rounded-[1.5625rem] p-px shadow-xl"
+				style="background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%);"
+			>
+				<LiquidGlass
+					class="relative block h-full w-full !overflow-visible rounded-[1.5rem] p-8"
+					options={GLASS_OPTIONS}
+				>
+					<div class="mb-4 text-xl font-semibold text-primary">Overview</div>
+					<p class="leading-relaxed text-foreground/90">
+						<span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span> is a bracketed
+						hackathon for high school and college students to ideate, design, and build AI‑driven
+						software that addresses real issues faced by Philippine communities and helps
+						make them more sustainable, inclusive, and resilient—focusing on livable cities
+						and communities, from climate resilience and public health to quality education,
+						inclusive livelihoods, and good governance.
+					</p>
+				</LiquidGlass>
+			</div>
 		</ScrollReveal>
 	</section>
 
@@ -270,9 +280,19 @@
 		</ScrollReveal>
 
 		<div class="flex flex-col gap-5 md:flex-row">
-			<ScrollReveal delay="200ms" class="w-full shrink-0 md:w-[360px]">
-				<HackfestRegisterScene />
-			</ScrollReveal>
+			<div
+				class="h-[300px] w-full shrink-0 md:w-[360px]"
+				use:viewport={{
+					onEnter: () => (isSceneVisible = true),
+					threshold: 0.2
+				}}
+			>
+				{#if isSceneVisible}
+					<ScrollReveal delay="200ms" class="h-full w-full">
+						<HackfestRegisterScene />
+					</ScrollReveal>
+				{/if}
+			</div>
 
 			<div class="place-items-center">
 				<div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-8">
@@ -384,13 +404,21 @@
 	</button>
 {/snippet}
 {#snippet details(Icon: Component, title: string, description: string)}
-	<LiquidGlass class="mx-auto h-full rounded-3xl p-10" options={GLASS_OPTIONS}>
-		<div class="place-items-center">
-			<Icon />
-			<article class="mt-5">
-				<span class="font-semibold">{title}</span>
-				<p>{description}</p>
-			</article>
-		</div>
-	</LiquidGlass>
+	<div
+		class="mx-auto h-full rounded-[1.5625rem] p-px shadow-xl"
+		style="background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%);"
+	>
+		<LiquidGlass
+			class="relative block h-full w-full !overflow-visible rounded-[1.5rem] p-10"
+			options={GLASS_OPTIONS}
+		>
+			<div class="place-items-center">
+				<Icon />
+				<article class="mt-5">
+					<span class="font-semibold">{title}</span>
+					<p>{description}</p>
+				</article>
+			</div>
+		</LiquidGlass>
+	</div>
 {/snippet}
