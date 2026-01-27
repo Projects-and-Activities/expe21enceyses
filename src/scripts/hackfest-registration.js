@@ -12,7 +12,7 @@
 
 function doGet() {
   try {
-    var spreadSheet = SpreadsheetApp.openById('');
+    var spreadSheet = SpreadsheetApp.openById(''); // Spreadsheet ID here
     var regSheet = spreadSheet.getSheets()[1];
 
     var cellAddress = "B1";
@@ -70,7 +70,7 @@ function doPost(e) {
     const emailSignature = `
       <div style="font-family: 'Times New Roman', serif; color: rgb(65, 65, 65); max-width: 500px;">
         <div style="border-bottom: 1px solid rgb(65,65,65); padding-bottom: 4px;">
-          <span style="color: rgb(64,158,255); font-size: 12px; font-weight: bold;">Jed Alain & Cazhia Reese Llava</span><br>
+          <span style="color: rgb(64,158,255); font-size: 12px; font-weight: bold;">Justin Dayne Bryant Peña & Yuuri Nonaka</span><br>
           <span style="font-size: 12px; font-style: italic;">Programs Committee Heads | </span>
           <a href="mailto:prog@yses.org" style="color: rgb(64,158,255); font-weight: bold;">prog@yses.org</a>
         </div>
@@ -112,18 +112,18 @@ function doPost(e) {
 
     MailApp.sendEmail({
       to: formData.email,
-      name: "P20JECT YSES Programs Committee",
-      subject: "Confirmation: Team Registration for P20JECT YSES: Junior HackFest",
+      name: "EXPE21ENCE YSES Programs Committee",
+      subject: "Confirmation: Team Registration for EXPE21ENCE YSES: The HackFest",
       htmlBody: `
       
         <div style="text-align: center; margin-bottom: 20px;">
           <img src="${bannerUrl}" alt="Event Banner" width="100%" style="max-width: 600px; border-radius: 10px;">
         </div>
-        <p>Congratulations on successfully registering your team for <strong>P20JECT YSES: Junior HackFest!</strong></p>
-        <p>We’re excited to have you on board for this action-packed coding adventure where creativity meets technology. Get ready to collaborate, innovate, and bring your ideas to life as you tackle real-world challenges head-on!</p>
+        <p>Congratulations on successfully registering your team for <strong>EXPE21ENCE YSES: The HackFest!</strong></p>
+        <p>We're excited to have you on board for this action-packed coding adventure where creativity meets technology. Get ready to collaborate, innovate, and bring your ideas to life as you tackle real-world challenges head-on!</p>
         <p>A confirmation email with all the important event details, submission guidelines, and schedules will be sent to you shortly.</p>
         <p>If you have any questions or need assistance, feel free to contact us at <a href="mailto:prog@yses.org">prog@yses.org</a>. We're here to support you throughout your HackFest journey!</p>
-        <p><strong>Let’s code the future together! 💻🚀</strong></p>
+        <p><strong>Let's code the future together! 💻🚀</strong></p>
         <p><strong>See you soon,</strong><br></p>
         ${emailSignature}
       `
