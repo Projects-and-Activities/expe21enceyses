@@ -3,8 +3,9 @@
 	import { cubicOut } from 'svelte/easing';
 	import { draw } from 'svelte/transition';
 
+	import { viewport } from '$lib/actions/viewport';
+	import LogoScene from '$lib/components/3d-ascii/sections/LogoScene.svelte';
 	import AnnotatedBorderedContainer from '$lib/components/AnnotatedBorderedContainer.svelte';
-	import AsciiLogo from '$lib/components/ascii-logo/AsciiLogo.svelte';
 	import ProgramSection from '$lib/components/ProgramSection.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 
@@ -49,25 +50,6 @@
             force3D: true
         }, 0.86);
     });
-
-	function viewportTrigger(node: HTMLElement) {
-		const observer = new IntersectionObserver((entries) => {
-			if (entries[0].isIntersecting) {
-				setTimeout(() => {
-					showUnderline = true;
-				}, 700);
-				observer.disconnect();
-			}
-		});
-
-		observer.observe(node);
-
-		return {
-			destroy() {
-				observer.disconnect();
-			}
-		};
-	}
 
 	const STACK_OFFSET = 80;
 
@@ -275,7 +257,7 @@
 
 		<div class="aspect-square size-full">
 			<ScrollReveal delay="500ms" class="h-full">
-				<AsciiLogo />
+				<LogoScene />
 			</ScrollReveal>
 		</div>
 	</section>
@@ -283,7 +265,13 @@
 	<section class="flex flex-col *:text-6xl md:pb-32">
 		<ScrollReveal delay="200ms">
 			<div>
-				Experience the <span class="relative inline-block" use:viewportTrigger>
+				Experience the <span
+					class="relative inline-block"
+					use:viewport={{
+						onEnter: () => (showUnderline = true),
+						delay: 700
+					}}
+				>
 					future
 					{#if showUnderline}
 						<svg

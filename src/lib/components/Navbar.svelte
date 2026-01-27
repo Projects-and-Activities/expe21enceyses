@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { mode } from 'mode-watcher';
+
 	import DesktopNavbar from './DesktopNavbar.svelte';
 	import MobileNavbar from './MobileNavbar.svelte';
 
