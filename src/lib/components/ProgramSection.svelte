@@ -27,10 +27,10 @@
 				EXPE21ENCE YSES:
 			</ScrollReveal>
 			<ScrollReveal delay="400ms">
-				<h2 class="text-6xl">{title}</h2>
+				<h2 class="text-5xl md:text-6xl">{title}</h2>
 			</ScrollReveal>
 			<ScrollReveal delay="200ms">
-				<p class="mt-4 md:hidden">{subtitle}</p>
+				<p class="mt-4 not-md:text-sm md:hidden">{subtitle}</p>
 			</ScrollReveal>
 		</div>
 		<Button class="rounded-full p-8 px-16" size="lg">Explore</Button>

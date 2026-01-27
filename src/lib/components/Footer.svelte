@@ -7,7 +7,7 @@
 	import YouTube from './icons/YouTube.svelte';
 </script>
 
-<footer class="p-8 not-lg:px-0">
+<footer class="p-8 not-xs:pb-16 not-lg:px-0">
 	<div class="container mx-auto flex flex-col place-items-center gap-4 md:flex-row">
 		<enhanced:img
 			src="$images/colored-logo.png"
