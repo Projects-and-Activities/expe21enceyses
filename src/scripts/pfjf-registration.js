@@ -9,13 +9,13 @@ function doPost(e) {
     var selectedOption = "Internship";
 
     var emailBody = `
-      <p>Thank you for confirming your participation in <strong>P20JECT YSES: PF/JF</strong>! We’re excited to have you on board as we connect aspiring software engineers—and participants from all backgrounds—with internship and job opportunities. This event is a fantastic chance to network, gain practical experience, and explore career paths that can kick-start your professional journey.</p>
+      <p>Thank you for confirming your participation in <strong>EXPE21ENCE YSES: PF/JF</strong>! We're excited to have you on board as we connect aspiring software engineers—and participants from all backgrounds—with internship and job opportunities. This event is a fantastic chance to network, gain practical experience, and explore career paths that can kick-start your professional journey.</p>
 
       <p>Because there will be <strong>on-site interviews</strong> at the event, <strong>please come in formal attire (e.g., corporate or business wear)</strong>. Stay tuned for future announcements and reminders regarding event details, schedules, and other important updates via email.</p>
 
-      <p>If you have any questions or need assistance, feel free to contact us at <a href="mailto:prog@yses.org">prog@yses.org</a>. We’re here to support you throughout the PF/JF process!</p>
+      <p>If you have any questions or need assistance, feel free to contact us at <a href="mailto:prog@yses.org">prog@yses.org</a>. We're here to support you throughout the PF/JF process!</p>
 
-      <p>Let’s shape the future together!</p>
+      <p>Let's shape the future together!</p>
 
       <p><strong>See you soon,</strong><br></p>
       `
@@ -35,7 +35,7 @@ function doPost(e) {
 
       <div style="font-family: 'Times New Roman', serif; color: rgb(65, 65, 65); max-width: 500px;">
         <div style="border-bottom: 1px solid rgb(65,65,65); padding-bottom: 4px;">
-          <span style="color: rgb(64,158,255); font-size: 12px; font-weight: bold;">Jed Alain & Cazhia Reese Llava</span><br>
+          <span style="color: rgb(64,158,255); font-size: 12px; font-weight: bold;">Justin Dayne Bryant Peña & Yuuri Nonaka</span><br>
           <span style="font-size: 12px; font-style: italic;">Programs Committee Heads | </span>
           <a href="mailto:prog@yses.org" style="color: rgb(64,158,255); font-weight: bold;">prog@yses.org</a>
         </div>
@@ -77,8 +77,8 @@ function doPost(e) {
 
     MailApp.sendEmail({
       to: formData.email,
-      name: "P20JECT YSES Programs Committee",
-      subject: 'Confirmation: Participation in P20JECT YSES: PF/JF',
+      name: "EXPE21ENCE YSES Programs Committee",
+      subject: 'Confirmation: Participation in EXPE21ENCE YSES: PF/JF',
       htmlBody: `
       
       <div style="text-align: center; margin-bottom: 20px;">
