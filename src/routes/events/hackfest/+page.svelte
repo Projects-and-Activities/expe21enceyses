@@ -345,25 +345,44 @@
 		</span>
 
 		<svg
-			class="absolute top-full left-0 mt-2 h-1.5 w-full overflow-visible"
+			class="absolute top-full left-0 mt-2 h-6 w-full overflow-visible"
 			viewBox="0 0 100 4"
 			preserveAspectRatio="none"
 		>
-			<path d="M0,2 L100,2" stroke="#1f2937" stroke-width="4" fill="none" />
+			<path
+				d="M0,2 L100,2"
+				stroke="#1f2937"
+				stroke-width="1"
+				fill="none"
+				class="opacity-30 dark:opacity-100"
+			/>
+
 			<path
 				d="M0,2 L100,2"
 				class="origin-center transition-transform duration-300 ease-out {selectedHackfest ===
 				id
 					? 'scale-x-100'
-					: 'scale-x-0'} dark:drop-shadow-[0_0_10px_#7F52BB]"
+					: 'scale-x-0'}
+				translate-y-[4px] opacity-60 blur-[4px]
+				dark:opacity-80"
 				stroke="#7F52BB"
-				stroke-width="4"
+				stroke-width="1"
+				fill="none"
+			/>
+
+			<path
+				d="M0,2 L100,2"
+				class="origin-center transition-transform duration-300 ease-out {selectedHackfest ===
+				id
+					? 'scale-x-100'
+					: 'scale-x-0'}"
+				stroke="#7F52BB"
+				stroke-width="1"
 				fill="none"
 			/>
 		</svg>
 	</button>
 {/snippet}
-
 {#snippet details(Icon: Component, title: string, description: string)}
 	<LiquidGlass class="mx-auto h-full rounded-3xl p-10" options={GLASS_OPTIONS}>
 		<div class="place-items-center">
