@@ -16,8 +16,8 @@
 			};
 		}
 		return {
-			laptopPos: [0.5, -0.5, 1],
-			starsPos: [0.5, 0.4, 1.7],
+			laptopPos: [0.2, -0.5, 2],
+			starsPos: [0.3, 0.4, 2.6],
 			scale: 1
 		};
 	});
