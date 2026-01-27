@@ -1,6 +1,7 @@
+// @ts-nocheck
 function doPost(e) {
   try {
-    var spreadSheet = SpreadsheetApp.openById('1_PZhGW7s8r4VaoxAlhZVLvRPu5e9vI6zOn9Yw4ITCzQ');
+    var spreadSheet = SpreadsheetApp.openById(''); // Spreadsheet ID here
     var regSheet = spreadSheet.getSheets()[2];
 
     var formData = JSON.parse(e.postData.contents);
@@ -26,7 +27,7 @@ function doPost(e) {
 
     regSheet.appendRow([formData.fName, formData.lName, formData.email, selectedOption]);
 
-    var bannerUrl = "https://drive.google.com/uc?export=view&id=1itBkBE-OYjkxJWLQ1kjUAseuGc2shVbA"
+    var bannerUrl = "" // Direct link to the banner image (sample: https://drive.google.com/uc?export=view&id=1itBkBE-OYjkxJWLQ1kjUAseuGc2shVbA)
 
 
     const emailSignature = `
