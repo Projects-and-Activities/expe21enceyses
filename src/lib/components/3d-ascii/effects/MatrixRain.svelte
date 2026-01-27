@@ -63,7 +63,6 @@
 	const streams = Array.from({ length: COLUMN_COUNT }).map(() => {
 		const x = (Math.random() - 0.5) * AREA_WIDTH;
 
-		// 2. PUSH IT BACK (Was -5 to -20, now -15 to -30)
 		// This keeps it strictly in the background
 		const z = -15 - Math.random() * 15;
 		const startY = 30 + Math.random() * 40;
@@ -72,7 +71,6 @@
 			x,
 			z,
 			y: startY,
-			// 3. SLOW IT DOWN (Was 0.3, now 0.15)
 			// Makes it feel ambient rather than aggressive
 			speed: 0.15 + Math.random() * 0.1,
 			fontSize: 1 + Math.random() * 1.5,
