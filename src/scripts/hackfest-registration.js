@@ -1,7 +1,7 @@
 // @ts-nocheck
 function doGet() {
   try {
-    var spreadSheet = SpreadsheetApp.openById('1_PZhGW7s8r4VaoxAlhZVLvRPu5e9vI6zOn9Yw4ITCzQ');
+    var spreadSheet = SpreadsheetApp.openById('');
     var regSheet = spreadSheet.getSheets()[1];
 
     var cellAddress = "B1";
@@ -20,7 +20,7 @@ function doGet() {
 
 function doPost(e) {
   try {
-    var spreadSheet = SpreadsheetApp.openById('1_PZhGW7s8r4VaoxAlhZVLvRPu5e9vI6zOn9Yw4ITCzQ');
+    var spreadSheet = SpreadsheetApp.openById('');
     var regSheet = spreadSheet.getSheets()[1];
 
     var formData = JSON.parse(e.postData.contents);
@@ -28,12 +28,12 @@ function doPost(e) {
     // file handling 1jMVDV63GYApAn_zoXCPSokagxgjVktmS
     var decodedRequirementsFile = Utilities.base64Decode(formData.requirements);
     var reqBlob = Utilities.newBlob(decodedRequirementsFile, formData.requirementsFileType, formData.teamName + "_Requirements");
-    var savedRequirements = DriveApp.getFolderById('1jMVDV63GYApAn_zoXCPSokagxgjVktmS').createFile(reqBlob);
+    var savedRequirements = DriveApp.getFolderById('').createFile(reqBlob);
     var reqUrl = savedRequirements.getUrl(); 
 
     var decodedPaymentFile = Utilities.base64Decode(formData.payment);
     var paymentBlob = Utilities.newBlob(decodedPaymentFile, formData.paymentFileType, formData.teamName + "_ProofOfPayment");
-    var savedPayment = DriveApp.getFolderById('1jMVDV63GYApAn_zoXCPSokagxgjVktmS').createFile(paymentBlob);
+    var savedPayment = DriveApp.getFolderById('').createFile(paymentBlob);
     var paymentUrl = savedPayment.getUrl();  
 
     var contactNumber = "'" + formData.contactNumber; 
@@ -54,7 +54,7 @@ function doPost(e) {
       paymentUrl
     ]);
 
-    var bannerUrl = "https://drive.google.com/uc?export=view&id=1itBkBE-OYjkxJWLQ1kjUAseuGc2shVbA"
+    var bannerUrl = "" // Direct link to the banner image (sample: https://drive.google.com/uc?export=view&id=1itBkBE-OYjkxJWLQ1kjUAseuGc2shVbA)
     
     const emailSignature = `
       <div style="font-family: 'Times New Roman', serif; color: rgb(65, 65, 65); max-width: 500px;">
