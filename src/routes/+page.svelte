@@ -2,8 +2,8 @@
 	import { cubicOut } from 'svelte/easing';
 	import { draw } from 'svelte/transition';
 
+	import LogoScene from '$lib/components/3d-ascii/sections/LogoScene.svelte';
 	import AnnotatedBorderedContainer from '$lib/components/AnnotatedBorderedContainer.svelte';
-	import AsciiLogo from '$lib/components/ascii-logo/AsciiLogo.svelte';
 	import ProgramSection from '$lib/components/ProgramSection.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 
@@ -192,7 +192,7 @@
 
 		<div class="aspect-square size-full">
 			<ScrollReveal delay="500ms" class="h-full">
-				<AsciiLogo />
+				<LogoScene />
 			</ScrollReveal>
 		</div>
 	</section>
