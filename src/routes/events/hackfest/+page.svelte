@@ -8,6 +8,7 @@
 	import SquarePen from '@lucide/svelte/icons/square-pen';
 	import Users from '@lucide/svelte/icons/users';
 	import { LiquidGlass } from 'liquid-glass-svelte';
+	import { mode } from 'mode-watcher';
 	import { type Component } from 'svelte';
 
 	import { viewport } from '$lib/actions/viewport';
@@ -19,16 +20,37 @@
 	let selectedHackfest = $state<'junior' | 'senior'>('junior');
 	let isSceneVisible = $state(false);
 
-	const GLASS_OPTIONS = {
-		mainBlur: '0.28rem',
-		mainBackgroundColor: 'rgba(255, 255, 255, 0.4)',
-		edgeBlur: '0.8rem',
-		edgeBackgroundColor: 'rgba(255, 255, 255, 0.8)',
-		edgeWidth: '0.5rem',
-		sheenBlur: '5rem',
-		sheenBackgroundColor: 'rgba(255, 255, 255, 0.5)',
-		sheenWidth: '2rem'
-	} as const;
+	let isDark = $derived(mode.current === 'dark');
+
+	const BORDER_GRADIENT = $derived(
+		isDark
+			? 'linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 100%)'
+			: 'linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%)'
+	);
+
+	const GLASS_OPTIONS = $derived(
+		isDark
+			? ({
+					mainBlur: '0.4rem',
+					mainBackgroundColor: 'rgba(0, 0, 0, 0.1)',
+					edgeBlur: '0.5rem',
+					edgeBackgroundColor: 'rgba(100, 100, 100, 0.5)',
+					edgeWidth: '0.01rem',
+					sheenBlur: '5rem',
+					sheenBackgroundColor: 'rgba(100, 100, 100, 0.05)',
+					sheenWidth: '0.01rem'
+				} as const)
+			: ({
+					mainBlur: '0.1rem',
+					mainBackgroundColor: 'rgba(255, 255, 255, 0.4)',
+					edgeBlur: '0.1rem',
+					edgeBackgroundColor: 'rgba(255, 255, 255, 0.8)',
+					edgeWidth: '0.5rem',
+					sheenBlur: '5rem',
+					sheenBackgroundColor: 'rgba(255, 255, 255, 0.5)',
+					sheenWidth: '1.5rem'
+				} as const)
+	);
 
 	const content = {
 		junior: {
@@ -168,7 +190,7 @@
 		<ScrollReveal delay="100ms">
 			<div
 				class="mx-auto rounded-[1.5625rem] p-px shadow-xl"
-				style="background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%);"
+				style={`background: ${BORDER_GRADIENT}`}
 			>
 				<LiquidGlass
 					class="relative block h-full w-full !overflow-visible rounded-[1.5rem] p-8"
@@ -406,7 +428,7 @@
 {#snippet details(Icon: Component, title: string, description: string)}
 	<div
 		class="mx-auto h-full rounded-[1.5625rem] p-px shadow-xl"
-		style="background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%);"
+		style={`background: ${BORDER_GRADIENT}`}
 	>
 		<LiquidGlass
 			class="relative block h-full w-full !overflow-visible rounded-[1.5rem] p-10"
