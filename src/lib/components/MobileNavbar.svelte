@@ -1,0 +1,224 @@
+<script lang="ts">
+	import { LiquidGlass } from 'liquid-glass-svelte';
+	import { Menu, X as XIcon } from '@lucide/svelte';
+	import { page } from '$app/stores';
+	import logo from '$lib/assets/logo.png';
+	import logoDark from '$lib/assets/logoDark.png';
+	import { Button } from '$lib/components/ui/button';
+	import * as Sheet from '$lib/components/ui/sheet';
+	import Facebook from '$lib/components/icons/Facebook.svelte';
+	import Github from '$lib/components/icons/Github.svelte';
+	import Instagram from '$lib/components/icons/Instagram.svelte';
+	import LinkedIn from '$lib/components/icons/LinkedIn.svelte';
+	import TwitterX from '$lib/components/icons/X.svelte';
+	import YouTube from '$lib/components/icons/YouTube.svelte';
+
+	interface NavItem {
+		label: string;
+		href: string;
+	}
+
+	interface Props {
+		navItems: NavItem[];
+		eventItems: NavItem[];
+		isDark: boolean;
+		glassOptions: any;
+		borderGradient: string;
+		isActive: (href: string, currentPath: string) => boolean;
+	}
+
+	let { navItems, eventItems, isDark, glassOptions, borderGradient, isActive }: Props = $props();
+
+	// Mobile menu state
+	let mobileMenuOpen = $state(false);
+</script>
+
+<!-- Mobile Navbar -->
+<nav
+	class="fixed top-3 left-1/2 z-50 box-border w-full max-w-[calc(100%-1.5rem)] -translate-x-1/2 sm:top-4 sm:max-w-[calc(100%-2rem)] md:hidden"
+>
+	<div
+		class="relative w-full rounded-[1.5rem] p-px shadow-xl"
+		style="background: {borderGradient};"
+	>
+		{#key isDark}
+			<LiquidGlass
+				class="relative block h-[3.5rem] w-full !overflow-visible rounded-[1.25rem] sm:h-[4rem] sm:rounded-[1.5rem]"
+				options={glassOptions}
+			>
+				<div class="!absolute !inset-0 z-10 flex !h-full w-full items-center px-3 sm:px-4">
+					<!-- Hamburger Menu Button -->
+					<Sheet.Root bind:open={mobileMenuOpen}>
+						<Sheet.Trigger>
+							<button
+								class="mr-2 flex h-11 min-h-[2.75rem] w-11 min-w-[2.75rem] items-center justify-center rounded-lg text-foreground transition-colors hover:bg-muted/50 sm:mr-3"
+								aria-label="Open menu"
+							>
+								<Menu class="h-6 w-6" />
+							</button>
+						</Sheet.Trigger>
+
+						<!-- Logo -->
+						<a href="/" class="flex items-center">
+							{#if isDark}
+								<img
+									src={logoDark}
+									alt="E21 Logo"
+									class="h-[1.5rem] w-auto object-contain sm:h-[1.875rem]"
+								/>
+							{:else}
+								<img
+									src={logo}
+									alt="E21 Logo"
+									class="h-[1.5rem] w-auto object-contain sm:h-[1.875rem]"
+								/>
+							{/if}
+						</a>
+
+						<Sheet.Portal>
+							<Sheet.Overlay class="!bg-black/20 backdrop-blur-sm" />
+							<Sheet.Content
+								side="right"
+								class="!w-full !max-w-full !border-none !bg-transparent p-0 sm:!max-w-full"
+							>
+								{#key isDark}
+									<LiquidGlass
+										class="flex h-full w-full flex-col rounded-none"
+										options={glassOptions}
+									>
+										<div class="flex h-full flex-col p-4 sm:p-6">
+											<!-- Header with logo and close button -->
+											<div class="flex items-center justify-between">
+												<a
+													href="/"
+													onclick={() => (mobileMenuOpen = false)}
+												>
+													{#if isDark}
+														<img
+															src={logoDark}
+															alt="E21 Logo"
+															class="h-10 w-auto object-contain"
+														/>
+													{:else}
+														<img
+															src={logo}
+															alt="E21 Logo"
+															class="h-10 w-auto object-contain"
+														/>
+													{/if}
+												</a>
+												<Sheet.Close>
+													<button
+														class="flex h-10 w-10 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-muted/50"
+														aria-label="Close menu"
+													>
+														<XIcon class="h-6 w-6" />
+													</button>
+												</Sheet.Close>
+											</div>
+
+											<!-- Navigation Links -->
+											<nav class="mt-12 flex flex-col gap-2">
+												<!-- Home -->
+												<a
+													href="/"
+													onclick={() => (mobileMenuOpen = false)}
+													class="font-['Lexend'] text-xl font-medium transition-colors hover:text-primary
+													       {isActive('/', $page.url.pathname) ? 'text-primary' : 'text-foreground'}"
+												>
+													Home
+												</a>
+
+												<!-- Events -->
+												<div class="flex flex-col">
+													<span
+														class="font-['Lexend'] text-xl font-medium
+														       {isActive('/events', $page.url.pathname) ? 'text-primary' : 'text-foreground'}"
+													>
+														Events
+													</span>
+													<!-- Event Sub-items -->
+													<div class="mt-4 ml-4 flex flex-col gap-4">
+														{#each eventItems as event}
+															<a
+																href={event.href}
+																onclick={() =>
+																	(mobileMenuOpen = false)}
+																class="font-['Lexend'] font-light transition-colors hover:text-primary
+																       {isActive(event.href, $page.url.pathname) ? 'text-primary' : 'text-foreground'}"
+															>
+																{event.label}
+															</a>
+														{/each}
+													</div>
+												</div>
+											</nav>
+
+											<!-- Register Button -->
+											<div class="mt-8">
+												<div
+													class="w-fit rounded-[3.75rem] p-[0.125rem]"
+													style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
+												>
+													<Button
+														variant="gradient"
+														size="register"
+														class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
+														onclick={() => {
+															console.log('Register clicked');
+															mobileMenuOpen = false;
+														}}
+													>
+														<span class="relative z-10">Register</span>
+													</Button>
+												</div>
+											</div>
+
+											<!-- Spacer -->
+											<div class="flex-1"></div>
+
+											<!-- Footer with YSES logo and social icons -->
+											<div class="mt-auto pb-4 sm:pb-6">
+												<div class="flex items-center gap-3">
+													<enhanced:img
+														src="$images/colored-logo.png"
+														class="block size-14 dark:hidden"
+														alt="YSES Logo"
+													/>
+													<enhanced:img
+														src="$images/colored-logo-inverted.png"
+														class="hidden size-14 dark:block"
+														alt="YSES Logo"
+													/>
+													<div>
+														<div
+															class="font-['Lexend'] text-sm font-medium"
+														>
+															Young Software Engineers' Society
+														</div>
+														<div class="text-xs text-muted-foreground">
+															University of the Philippines Los Baños
+														</div>
+													</div>
+												</div>
+												<!-- Social Icons -->
+												<div class="mt-4 flex gap-2">
+													<LinkedIn />
+													<Github />
+													<Facebook />
+													<TwitterX />
+													<YouTube />
+													<Instagram />
+												</div>
+											</div>
+										</div>
+									</LiquidGlass>
+								{/key}
+							</Sheet.Content>
+						</Sheet.Portal>
+					</Sheet.Root>
+				</div>
+			</LiquidGlass>
+		{/key}
+	</div>
+</nav>

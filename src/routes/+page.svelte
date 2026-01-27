@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { gsap } from 'gsap';
 	import { cubicOut } from 'svelte/easing';
 	import { draw } from 'svelte/transition';
 
@@ -9,6 +10,46 @@
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 
 	let showUnderline = $state(false);
+
+	let curtainContainer: HTMLDivElement;
+	let leftHand: HTMLImageElement;
+	let rightHand: HTMLImageElement;
+
+	$effect(() => {
+		if (!curtainContainer) return;
+
+        const tl = gsap.timeline();
+        const bars = curtainContainer.children;
+
+        // Slide bars
+        tl.to(bars, {
+            y: '-1%',
+            duration: 0.06,
+            ease: "none"
+        }, 0.5);
+
+        tl.to(bars, {
+            y: '-100%',
+            duration: (i) => 0.7 + (i * 0.06), 
+            ease: "power2.in", 
+            stagger: 0
+        });
+
+        // Hands
+        tl.from(leftHand, {
+            x: -200,
+            duration: 2,
+            ease: "power4.out",
+            force3D: true
+        }, 0.86);
+
+        tl.from(rightHand, {
+            x: 200,
+            duration: 2,
+            ease: "power4.out",
+            force3D: true
+        }, 0.86);
+    });
 
 	const STACK_OFFSET = 80;
 
@@ -31,6 +72,18 @@
 	];
 </script>
 
+<div
+	bind:this={curtainContainer}
+	class="fixed inset-0 z-[9999] flex pointer-events-none"
+>
+    <div class="flex-[0.16] bg-neutral-900 border-r border-neutral-800"></div>
+	<div class="flex-1 bg-neutral-900 border-r border-neutral-800"></div>
+	<div class="flex-1 bg-neutral-900 border-r border-neutral-800"></div>
+	<div class="flex-1 bg-neutral-900 border-r border-neutral-800"></div>
+	<div class="flex-1 bg-neutral-900 border-r border-neutral-800"></div>
+	<div class="flex-[0.16] bg-neutral-900 border-r border-neutral-800"></div>
+</div>
+
 <main class="space-y-36 not-lg:*:px-4 [&>section]:container [&>section]:mx-auto">
 	<section
 		class="flex max-w-none! flex-col place-content-center place-items-center gap-4 lg:mt-60 lg:grid"
@@ -42,8 +95,23 @@
 				color="red"
 				size="xs"
 			>
-				<img src="https://placehold.co/610x343" alt="" />
+				<div class="aspect-[610/343] w-[610px] max-w-full"></div>
 			</AnnotatedBorderedContainer>
+			<img
+				bind:this={leftHand}
+				src="/images/hand_transparent_left.png"
+				alt="Left Hand"
+				class="
+					absolute
+					-w-[520px]
+					-left-[80px]
+					top-[22%]
+					-translate-y-1/2
+					-rotate-[15deg]
+					z-10
+					pointer-events-none
+				"
+			/>
 		</div>
 
 		<AnnotatedBorderedContainer
@@ -98,15 +166,30 @@
 			<p>Bridging Future Software Engineers of the 21st Century</p>
 		</ScrollReveal>
 
-		<div class="right-0 -bottom-36 ml-auto anchor/bottom-hand lg:absolute">
+		<div class="right-0 -bottom-36 ml-auto anchor/bottom-hand lg:absolute relative overflow-hidden">
 			<AnnotatedBorderedContainer
 				annotation="INDUSTRY"
 				annotationAlign="top-right"
 				color="green"
 				size="xs"
 			>
-				<img src="https://placehold.co/555x453" alt="" />
+				<div class="aspect-[555/453] w-[555px] max-w-full"></div>
 			</AnnotatedBorderedContainer>
+			<img
+				bind:this={rightHand}
+				src="/images/hand_transparent_right.png"
+				alt="Right Hand"
+				class="
+					absolute
+					w-[520px]
+					-right-[40px]
+					top-[55%]
+					-translate-y-1/2
+					-rotate-[7deg]
+					z-20
+					pointer-events-none
+				"
+			/>
 		</div>
 	</section>
 
