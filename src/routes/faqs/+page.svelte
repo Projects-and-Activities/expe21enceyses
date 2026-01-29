@@ -74,6 +74,19 @@
 
 	const ACCORDION_SHADOW = '0 0 2px rgba(201, 182, 230, 0.3)';
 
+	// Hover state (lighter/more visible)
+	const ACCORDION_BG_GRADIENT_HOVER =
+		'linear-gradient(180deg, rgba(127, 82, 187, 0.16) 0%, rgba(255, 255, 255, 0.04) 50%, rgba(127, 82, 187, 0.16) 100%)';
+
+	// Active/Open state (most visible)
+	const ACCORDION_BG_GRADIENT_ACTIVE =
+		'linear-gradient(180deg, rgba(127, 82, 187, 0.16) 0%, rgba(222, 162, 255, 0.08) 50%, rgba(127, 82, 187, 0.16) 100%)';
+
+	const ACCORDION_BORDER_GRADIENT_ACTIVE =
+		'linear-gradient(180deg, rgba(73, 73, 73, 0.5) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(73, 73, 73, 0.4) 100%)';
+
+	const ACCORDION_SHADOW_ACTIVE = '0 0 4px rgba(201, 182, 230, 0.5)';
+
 	const GLASS_OPTIONS = $derived(
 		isDark
 			? ({
@@ -248,14 +261,31 @@
 		<Accordion.Root type="single" bind:value={openValue} class="flex flex-col gap-4">
 			{#each faqs as faq, i (faq.id)}
 				{@const isOpen = openValue === faq.id}
-				<Accordion.Item value={faq.id} class="border-0">
+				<Accordion.Item value={faq.id} class="group border-0">
 					<div
-						class="relative overflow-hidden rounded-2xl p-px"
-						style="background: {ACCORDION_BG_GRADIENT}; box-shadow: {ACCORDION_SHADOW};"
+						role="group"
+						class="relative overflow-hidden rounded-2xl p-px transition-all duration-200"
+						style="background: {isOpen
+							? ACCORDION_BG_GRADIENT_ACTIVE
+							: ACCORDION_BG_GRADIENT}; box-shadow: {isOpen
+							? ACCORDION_SHADOW_ACTIVE
+							: ACCORDION_SHADOW};"
+						onmouseenter={(e) => {
+							if (!isOpen) {
+								e.currentTarget.style.background = ACCORDION_BG_GRADIENT_HOVER;
+							}
+						}}
+						onmouseleave={(e) => {
+							if (!isOpen) {
+								e.currentTarget.style.background = ACCORDION_BG_GRADIENT;
+							}
+						}}
 					>
 						<div
 							class="pointer-events-none absolute inset-px z-10 rounded-[calc(1rem-1px)] opacity-30"
-							style="background: {ACCORDION_BORDER_GRADIENT};"
+							style="background: {isOpen
+								? ACCORDION_BORDER_GRADIENT_ACTIVE
+								: ACCORDION_BORDER_GRADIENT};"
 						></div>
 						<LiquidGlass
 							class="relative block h-full w-full !overflow-visible rounded-2xl"
