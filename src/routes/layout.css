@@ -185,19 +185,111 @@
 		0%,
 		100% {
 			filter: brightness(1);
-			transform: scale(1);
+			transform: translateY(0px) scale(1);
 		}
 		50% {
-			/* This creates the pulse/glow */
 			filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
-			transform: scale(1.05);
+			transform: translateY(-30px) scale(1.05);
 		}
 	}
+
 
 	.star-anim {
 		animation-name: subtle-twinkle;
 		animation-iteration-count: infinite;
 		animation-timing-function: ease-in-out;
-		/* Important: Helps rendering performance */
 		transform: translate3d(0, 0, 0);
+	}
+
+	.stars-layer-1,
+	.stars-layer-2,
+	.stars-layer-3 {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		background: transparent;
+		will-change: transform;
+	}
+
+	.stars-layer-1 {
+		box-shadow: 
+			1200px 400px var(--foreground), 800px 1600px var(--foreground), 400px 900px var(--foreground),
+			1600px 1200px var(--foreground), 200px 300px var(--foreground), 1800px 600px var(--foreground),
+			1400px 1800px var(--foreground), 600px 1400px var(--foreground), 1000px 200px var(--foreground),
+			300px 1700px var(--foreground), 1700px 1000px var(--foreground), 500px 500px var(--foreground),
+			900px 1300px var(--foreground), 1300px 700px var(--foreground), 100px 1100px var(--foreground),
+			1500px 100px var(--foreground), 700px 1900px var(--foreground), 1900px 400px var(--foreground),
+			1100px 800px var(--foreground), 400px 1500px var(--foreground);
+		width: 2px;
+		height: 2px;
+		animation: parallax-1 200s linear infinite;
+		opacity: 0.8;
+	}
+
+	.stars-layer-2 {
+		box-shadow: 
+			700px 800px var(--foreground), 1300px 400px var(--foreground), 200px 1200px var(--foreground),
+			1800px 1600px var(--foreground), 500px 600px var(--foreground), 1100px 1400px var(--foreground),
+			1600px 200px var(--foreground), 300px 1800px var(--foreground), 900px 1000px var(--foreground),
+			1400px 1200px var(--foreground), 600px 400px var(--foreground), 1000px 1600px var(--foreground),
+			1700px 900px var(--foreground), 100px 700px var(--foreground), 1500px 1500px var(--foreground),
+			800px 100px var(--foreground), 400px 1300px var(--foreground), 1200px 500px var(--foreground),
+			1900px 1100px var(--foreground), 200px 1900px var(--foreground);
+		width: 3px;
+		height: 3px;
+		animation: parallax-2 150s linear infinite;
+		opacity: 0.9;
+	}
+
+	.stars-layer-3 {
+		box-shadow: 
+			1100px 600px var(--foreground), 500px 1400px var(--foreground), 1700px 1000px var(--foreground),
+			300px 200px var(--foreground), 1500px 1800px var(--foreground), 900px 800px var(--foreground),
+			100px 1600px var(--foreground), 1300px 300px var(--foreground), 600px 1100px var(--foreground),
+			1800px 700px var(--foreground), 400px 1500px var(--foreground), 1200px 1300px var(--foreground),
+			800px 400px var(--foreground), 1600px 1600px var(--foreground), 200px 900px var(--foreground),
+			1400px 100px var(--foreground), 700px 1700px var(--foreground), 1000px 500px var(--foreground),
+			1900px 1200px var(--foreground), 300px 1000px var(--foreground);
+		width: 4px;
+		height: 4px;
+		animation: parallax-3 100s linear infinite;
+		opacity: 1.0;
+	}
+
+	@keyframes parallax-1 {
+		from {
+			transform: translateY(0px);
+		}
+		to {
+			transform: translateY(-2000px);
+		}
+	}
+
+	@keyframes parallax-2 {
+		from {
+			transform: translateY(0px);
+		}
+		to {
+			transform: translateY(-2000px);
+		}
+	}
+
+	@keyframes parallax-3 {
+		from {
+			transform: translateY(0px);
+		}
+		to {
+			transform: translateY(-2000px);
+		}
+	}
+
+	@keyframes spark-burst {
+		0% {
+			transform: translate(-50%, -50%) scale(1);
+			opacity: 1;
+		}
+		100% {
+			transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0);
+			opacity: 0;
+		}
 	}
