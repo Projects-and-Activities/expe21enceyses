@@ -6,12 +6,7 @@
 	type Props = {
 		class?: string;
 		annotation: string;
-		annotationAlign:
-			| 'top-left'
-			| 'top-right'
-			| 'bottom-left'
-			| 'bottom-right'
-			| 'bottom-center';
+		annotationAlign: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'bottom-center';
 		color: 'primary' | 'accent' | 'red' | 'green';
 		size: 'xs' | 'sm';
 		children: Snippet;
@@ -71,7 +66,7 @@
 	<div
 		id="annotation"
 		class={cn(
-			'absolute px-2 py-0.5 font-mono tracking-tight text-white uppercase',
+			'absolute px-2 py-0.5 font-mono text-xs tracking-tight text-white uppercase',
 			backgroundStyle[color].split(' ')[0],
 			alignStyle,
 			sizeStyle[size]

@@ -12,10 +12,10 @@
 	import { type Component } from 'svelte';
 
 	import { viewport } from '$lib/actions/viewport';
-	import starImage from '$lib/assets/star.png';
 	import HackfestRegisterScene from '$lib/components/3d-ascii/sections/HackfestRegisterScene.svelte';
 	import HackfestScene from '$lib/components/3d-ascii/sections/HackfestScene.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+	import Star from '$lib/components/Star.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 
 	let selectedHackfest = $state<'junior' | 'senior'>('junior');
@@ -165,8 +165,7 @@
 
 	<ScrollReveal delay="650ms">
 		<button
-			onclick={() =>
-				document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })}
+			onclick={() => document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })}
 			class="mt-20 animate-bounce cursor-pointer transition-transform hover:translate-y-1"
 			aria-label="Scroll to next section"
 		>
@@ -179,11 +178,11 @@
 	id="overview"
 	class="relative flex scroll-mt-36 flex-col gap-4 text-center md:scroll-mt-64 lg:mt-[20rem]"
 >
-	{@render star('bottom-12 -left-40 w-30 rotate-40 blur-[1px] opacity-20 dark:opacity-40')}
-	{@render star('-bottom-30 -left-16 w-62 rotate-10 opacity-40 dark:opacity-80')}
-	{@render star('top-50 -left-30 w-20 -rotate-50 blur-[4px] opacity-30 dark:opacity-60')}
-	{@render star('-top-8 -right-40 w-28 rotate-12 opacity-50 dark:opacity-90')}
-	{@render star('top-1/2 -right-28 w-28 -rotate-0 blur-sm opacity-35 dark:opacity-70')}
+	<Star class="bottom-12 -left-40 w-30 rotate-40 opacity-20 blur-[1px] dark:opacity-40" />
+	<Star class="-bottom-30 -left-16 w-62 rotate-10 opacity-40 dark:opacity-80" />
+	<Star class="top-50 -left-30 w-20 -rotate-50 opacity-30 blur-[4px] dark:opacity-60" />
+	<Star class="-top-8 -right-40 w-28 rotate-12 opacity-50 dark:opacity-90" />
+	<Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
 
 	<ScrollReveal delay="100ms">
 		<div
@@ -196,12 +195,11 @@
 			>
 				<div class="mb-4 text-xl font-semibold text-primary">Overview</div>
 				<p class="leading-relaxed text-foreground/90">
-					<span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span> is a bracketed
-					hackathon for high school and college students to ideate, design, and build AI‑driven
-					software that addresses real issues faced by Philippine communities and helps make
-					them more sustainable, inclusive, and resilient—focusing on livable cities and communities,
-					from climate resilience and public health to quality education, inclusive livelihoods,
-					and good governance.
+					<span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span> is a bracketed hackathon
+					for high school and college students to ideate, design, and build AI‑driven software that addresses
+					real issues faced by Philippine communities and helps make them more sustainable, inclusive,
+					and resilient—focusing on livable cities and communities, from climate resilience and public
+					health to quality education, inclusive livelihoods, and good governance.
 				</p>
 			</LiquidGlass>
 		</div>
@@ -209,7 +207,7 @@
 </section>
 
 <section class="relative flex flex-col items-center gap-10 text-center">
-	{@render star('top-50 -left-54 w-30 -rotate-50 blur-[4px] opacity-30 dark:opacity-60')}
+	<Star class="top-50 -left-54 w-30 -rotate-50 opacity-30 blur-[4px] dark:opacity-60" />
 
 	<ScrollReveal delay="200ms">
 		<div class="flex flex-col gap-12">
@@ -222,9 +220,7 @@
 
 			<div class="h-72 place-content-center md:h-30">
 				<span class="font-bold">
-					{selectedHackfest === 'junior'
-						? content.junior.highlight
-						: content.senior.highlight}
+					{selectedHackfest === 'junior' ? content.junior.highlight : content.senior.highlight}
 				</span>
 				{selectedHackfest === 'junior' ? content.junior.text : content.senior.text}
 			</div>
@@ -232,15 +228,15 @@
 	</ScrollReveal>
 
 	<div class="relative">
-		{@render star(
-			'-top-8 -right-10 w-40 lg:-right-50 lg:w-76 rotate-12 opacity-50 dark:opacity-90 hidden lg:block'
-		)}
-		{@render star(
-			'-top-20 -right-28 w-28 -rotate-0 blur-sm opacity-35 dark:opacity-70 hidden md:block'
-		)}
-		{@render star(
-			'top-50 -right-50 w-28 -rotate-0 blur-[1px] opacity-35 dark:opacity-70 hidden md:block'
-		)}
+		<Star
+			class="-top-8 -right-10 hidden w-40 rotate-12 opacity-50 lg:-right-50 lg:block lg:w-76 dark:opacity-90"
+		/>
+		<Star
+			class="-top-20 -right-28 hidden w-28 -rotate-0 opacity-35 blur-sm md:block dark:opacity-70"
+		/>
+		<Star
+			class="top-50 -right-50 hidden w-28 -rotate-0 opacity-35 blur-[1px] md:block dark:opacity-70"
+		/>
 
 		<ScrollReveal delay="200ms">
 			<span class="text-3xl">Key Details</span>
@@ -258,16 +254,16 @@
 </section>
 
 <section class="relative">
-	{@render star('bottom-12 -left-40 w-62 rotate-40 opacity-20 dark:opacity-40')}
-	{@render star('-bottom-30 -left-46 w-32 rotate-10 blur-[6px] opacity-40 dark:opacity-80')}
+	<Star class="bottom-12 -left-40 w-62 rotate-40 opacity-20 dark:opacity-40" />
+	<Star class="-bottom-30 -left-46 w-32 rotate-10 opacity-40 blur-[6px] dark:opacity-80" />
 
 	<ScrollReveal delay="200ms" class="flex flex-col items-center gap-5">
 		<div class="text-3xl font-semibold">Guidelines</div>
 		<p class="text-center leading-relaxed text-foreground/90">
-			Before joining, please review our guidelines to ensure a smooth and successful
-			experience at EXPE21ENCE YSES: The HackFest. These guidelines cover everything you need
-			to know about registration, participation requirements, and the overall process for our
-			event. Click the button below to open the full document.
+			Before joining, please review our guidelines to ensure a smooth and successful experience at
+			EXPE21ENCE YSES: The HackFest. These guidelines cover everything you need to know about
+			registration, participation requirements, and the overall process for our event. Click the
+			button below to open the full document.
 		</p>
 
 		<div
@@ -287,8 +283,8 @@
 </section>
 
 <section class="relative flex flex-col items-center gap-5">
-	{@render star('-top-8 -right-40 w-28 rotate-12 opacity-50 dark:opacity-90')}
-	{@render star('top-1/2 -right-28 w-28 -rotate-0 blur-sm opacity-35 dark:opacity-70')}
+	<Star class="-top-8 -right-40 w-28 rotate-12 opacity-50 dark:opacity-90" />
+	<Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
 
 	<ScrollReveal delay="50ms">
 		<div class="text-center text-3xl font-semibold">Register for The Hackfest</div>
@@ -353,20 +349,6 @@
 	</div>
 </section>
 
-{#snippet star(className: string)}
-	{@const duration = (3 + Math.random() * 4).toFixed(2) + 's'}
-	{@const delay = (Math.random() * -5).toFixed(2) + 's'}
-
-	<div class="pointer-events-none absolute -z-10 select-none {className}">
-		<img
-			src={starImage}
-			alt=""
-			style="animation-duration: {duration}; animation-delay: {delay};"
-			class="star-anim block h-full w-full object-contain"
-		/>
-	</div>
-{/snippet}
-
 {#snippet hackfestTab(id: 'junior' | 'senior', label: string)}
 	<button
 		class="relative transition-colors duration-300 {selectedHackfest === id
@@ -375,8 +357,7 @@
 		onclick={() => (selectedHackfest = id)}
 	>
 		<span
-			class="block transition-all duration-300 not-lg:text-3xl lg:inline {selectedHackfest ===
-			id
+			class="block transition-all duration-300 not-lg:text-3xl lg:inline {selectedHackfest === id
 				? 'dark:drop-shadow-[0_0_15px_rgba(127,82,187,0.9)]'
 				: ''}"
 		>
@@ -398,8 +379,7 @@
 
 			<path
 				d="M0,2 L100,2"
-				class="origin-center transition-transform duration-300 ease-out {selectedHackfest ===
-				id
+				class="origin-center transition-transform duration-300 ease-out {selectedHackfest === id
 					? 'scale-x-100'
 					: 'scale-x-0'}
 				translate-y-[4px] opacity-60 blur-[4px]
@@ -411,8 +391,7 @@
 
 			<path
 				d="M0,2 L100,2"
-				class="origin-center transition-transform duration-300 ease-out {selectedHackfest ===
-				id
+				class="origin-center transition-transform duration-300 ease-out {selectedHackfest === id
 					? 'scale-x-100'
 					: 'scale-x-0'}"
 				stroke="#7F52BB"

@@ -16,8 +16,7 @@
 				secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-xs',
 				ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
 				link: 'text-primary underline-offset-4 hover:underline',
-				gradient:
-					'text-primary-foreground transition-all duration-300 ease-out font-normal text-center'
+				gradient: 'text-white font-normal text-center'
 			},
 			size: {
 				default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -27,8 +26,7 @@
 				'icon-sm': 'size-8',
 				'icon-lg': 'size-10',
 				xl: 'px-8 py-2 rounded-[25px] font-light text-lg h-11',
-				register:
-					'box-border flex flex-col justify-center items-center w-[142px] h-[45px] py-[23px] px-[80px] gap-[10px] rounded-[60px]'
+				register: 'box-border flex flex-col justify-center items-center w-25 h-8 rounded-2xl'
 			}
 		},
 		defaultVariants: {

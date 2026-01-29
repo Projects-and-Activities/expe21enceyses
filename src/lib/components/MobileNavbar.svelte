@@ -1,17 +1,20 @@
 <script lang="ts">
-	import { LiquidGlass } from 'liquid-glass-svelte';
 	import { Menu, X as XIcon } from '@lucide/svelte';
+	import { LiquidGlass } from 'liquid-glass-svelte';
+
 	import { page } from '$app/stores';
+	import invertedLogo from '$lib/assets/colored-logo-inverted.png?enhanced';
+	import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
 	import logo from '$lib/assets/logo.png';
 	import logoDark from '$lib/assets/logoDark.png';
-	import { Button } from '$lib/components/ui/button';
-	import * as Sheet from '$lib/components/ui/sheet';
 	import Facebook from '$lib/components/icons/Facebook.svelte';
 	import Github from '$lib/components/icons/Github.svelte';
 	import Instagram from '$lib/components/icons/Instagram.svelte';
 	import LinkedIn from '$lib/components/icons/LinkedIn.svelte';
 	import TwitterX from '$lib/components/icons/X.svelte';
 	import YouTube from '$lib/components/icons/YouTube.svelte';
+	import { Button } from '$lib/components/ui/button';
+	import * as Sheet from '$lib/components/ui/sheet';
 
 	interface NavItem {
 		label: string;
@@ -19,7 +22,6 @@
 	}
 
 	interface Props {
-		navItems: NavItem[];
 		eventItems: NavItem[];
 		isDark: boolean;
 		glassOptions: any;
@@ -27,7 +29,7 @@
 		isActive: (href: string, currentPath: string) => boolean;
 	}
 
-	let { navItems, eventItems, isDark, glassOptions, borderGradient, isActive }: Props = $props();
+	let { eventItems, isDark, glassOptions, borderGradient, isActive }: Props = $props();
 
 	// Mobile menu state
 	let mobileMenuOpen = $state(false);
@@ -35,10 +37,10 @@
 
 <!-- Mobile Navbar -->
 <nav
-	class="fixed top-3 left-1/2 z-50 box-border w-full max-w-[calc(100%-1.5rem)] -translate-x-1/2 sm:top-4 sm:max-w-[calc(100%-2rem)] md:hidden"
+	class="fixed top-4 right-0 left-0 z-50 mx-auto w-full px-4 xs:max-w-[calc(100%-1.5rem)] sm:top-4 sm:max-w-[calc(100%-2rem)] sm:px-0 md:hidden"
 >
 	<div
-		class="relative w-full rounded-[1.5rem] p-px shadow-xl"
+		class="relative w-full rounded-2xl p-px shadow-xl outline"
 		style="background: {borderGradient};"
 	>
 		{#key isDark}
@@ -61,13 +63,13 @@
 						<!-- Logo -->
 						<a href="/" class="flex items-center">
 							{#if isDark}
-								<img
+								<enhanced:img
 									src={logoDark}
 									alt="E21 Logo"
 									class="h-[1.5rem] w-auto object-contain sm:h-[1.875rem]"
 								/>
 							{:else}
-								<img
+								<enhanced:img
 									src={logo}
 									alt="E21 Logo"
 									class="h-[1.5rem] w-auto object-contain sm:h-[1.875rem]"
@@ -89,18 +91,15 @@
 										<div class="flex h-full flex-col p-4 sm:p-6">
 											<!-- Header with logo and close button -->
 											<div class="flex items-center justify-between">
-												<a
-													href="/"
-													onclick={() => (mobileMenuOpen = false)}
-												>
+												<a href="/" onclick={() => (mobileMenuOpen = false)}>
 													{#if isDark}
-														<img
+														<enhanced:img
 															src={logoDark}
 															alt="E21 Logo"
 															class="h-10 w-auto object-contain"
 														/>
 													{:else}
-														<img
+														<enhanced:img
 															src={logo}
 															alt="E21 Logo"
 															class="h-10 w-auto object-contain"
@@ -142,8 +141,7 @@
 														{#each eventItems as event}
 															<a
 																href={event.href}
-																onclick={() =>
-																	(mobileMenuOpen = false)}
+																onclick={() => (mobileMenuOpen = false)}
 																class="font-['Lexend'] font-light transition-colors hover:text-primary
 																       {isActive(event.href, $page.url.pathname) ? 'text-primary' : 'text-foreground'}"
 															>
@@ -181,19 +179,22 @@
 											<div class="mt-auto pb-4 sm:pb-6">
 												<div class="flex items-center gap-3">
 													<enhanced:img
-														src="$images/colored-logo.png"
-														class="block size-14 dark:hidden"
-														alt="YSES Logo"
+														src={coloredLogo}
+														class="block size-16 dark:hidden"
+														loading="lazy"
+														decoding="async"
+														alt="Logo"
 													/>
+
 													<enhanced:img
-														src="$images/colored-logo-inverted.png"
-														class="hidden size-14 dark:block"
-														alt="YSES Logo"
+														src={invertedLogo}
+														class="hidden size-16 dark:block"
+														loading="lazy"
+														decoding="async"
+														alt="Logo"
 													/>
 													<div>
-														<div
-															class="font-['Lexend'] text-sm font-medium"
-														>
+														<div class="font-['Lexend'] text-sm font-medium">
 															Young Software Engineers' Society
 														</div>
 														<div class="text-xs text-muted-foreground">

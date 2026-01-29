@@ -29,25 +29,25 @@
 		isDark
 			? ({
 					// for dark mode play around with this until we get the desired effect
-					mainBlur: '0.4rem',
-					mainBackgroundColor: 'rgba(0, 0, 0, 0.1)',
-					edgeBlur: '0.5rem',
-					edgeBackgroundColor: 'rgba(100, 100, 100, 0.5)',
+					mainBlur: '0.5rem',
+					mainBackgroundColor: 'rgba(250, 250, 250, 0.0)',
+					edgeBlur: '1rem',
+					edgeBackgroundColor: 'rgba(100, 100, 100, 0.0)',
 					edgeWidth: '0.01rem',
-					sheenBlur: '5rem',
+					sheenBlur: '4rem',
 					sheenBackgroundColor: 'rgba(100, 100, 100, 0.05)',
-					sheenWidth: '0.01rem'
+					sheenWidth: '1rem'
 				} as const)
 			: ({
 					// light mode
-					mainBlur: '0.1rem',
-					mainBackgroundColor: 'rgba(255, 255, 255, 0.4)',
-					edgeBlur: '0.1rem',
-					edgeBackgroundColor: 'rgba(255, 255, 255, 0.8)',
-					edgeWidth: '0.5rem',
-					sheenBlur: '5rem',
-					sheenBackgroundColor: 'rgba(255, 255, 255, 0.5)',
-					sheenWidth: '1.5rem'
+					mainBlur: '0.5rem',
+					mainBackgroundColor: 'rgba(255, 255, 255, 0.2)',
+					edgeBlur: '0.5rem',
+					edgeBackgroundColor: 'rgba(100, 100, 100, 0.0)',
+					edgeWidth: '0.01rem',
+					sheenBlur: '4rem',
+					sheenBackgroundColor: 'rgba(100, 100, 100, 0.05)',
+					sheenWidth: '1rem'
 				} as const)
 	);
 

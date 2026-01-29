@@ -12,13 +12,18 @@
 		class?: string;
 	} & HTMLAttributes<HTMLElement>;
 
-	let { title, subtitle, class: className, ...rest }: Props = $props();
+	let { title, subtitle, class: className, children, ...rest }: Props = $props();
 </script>
 
-<section class={cn('sticky  flex  flex-col justify-between bg-white p-8', className)} {...rest}>
+<section class={cn('sticky  flex  flex-col justify-between  p-8', className)} {...rest}>
 	<ScrollReveal delay="200ms">
 		<p class="hidden text-xl md:block">{subtitle}</p>
 	</ScrollReveal>
+
+	<div class="grid flex-1 place-content-center">
+		{@render children?.()}
+	</div>
+
 	<div
 		class="flex w-full flex-col place-items-center gap-y-8 text-center md:flex-row md:place-items-end md:justify-between md:text-left"
 	>
@@ -33,6 +38,13 @@
 				<p class="mt-4 not-md:text-sm md:hidden">{subtitle}</p>
 			</ScrollReveal>
 		</div>
-		<Button class="rounded-full p-8 px-16" size="lg">Explore</Button>
+		<Button
+			variant="gradient"
+			size="register"
+			class="register-btn relative isolate overflow-hidden rounded-4xl  bg-transparent! px-18 py-6 shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)] lg:px-20 lg:py-8"
+			onclick={() => console.log('Register clicked')}
+		>
+			<span class="relative z-10">Explore</span>
+		</Button>
 	</div>
 </section>
