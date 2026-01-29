@@ -137,7 +137,8 @@
 		}
 	];
 
-	let openValues = $state<string[]>(['faq-1']);
+	// Track which FAQ is open (single type)
+	let openValue = $state<string>('faq-1');
 </script>
 
 <svelte:window onmousemove={handleMouseMove} onclick={handleClick} />
@@ -245,9 +246,9 @@
 		'top-16 -left-40 w-90 rotate-20 blur-[0px] opacity-50 dark:opacity-70 hidden lg:block'
 	)}
 	<ScrollReveal delay="300ms">
-		<Accordion.Root type="multiple" bind:value={openValues} class="flex flex-col gap-4">
+		<Accordion.Root type="single" bind:value={openValue} class="flex flex-col gap-4">
 			{#each faqs as faq, i (faq.id)}
-				{@const isOpen = openValues.includes(faq.id)}
+				{@const isOpen = openValue === faq.id}
 				<Accordion.Item value={faq.id} class="border-0">
 					<div
 						class="relative overflow-hidden rounded-2xl p-px"
@@ -262,7 +263,7 @@
 							options={GLASS_OPTIONS}
 						>
 							<Accordion.Trigger
-								class="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-sm font-medium text-foreground transition-colors hover:no-underline md:text-base [&>svg]:hidden"
+								class="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-lg font-medium text-foreground transition-colors hover:no-underline md:text-xl [&>svg]:hidden"
 							>
 								<span class="flex-1">{faq.question}</span>
 								<span
