@@ -137,8 +137,7 @@
 		}
 	];
 
-	// Track which FAQ is open (single type)
-	let openValue = $state<string>('faq-1');
+	let openValue = $state<string | undefined>(undefined);
 </script>
 
 <svelte:window onmousemove={handleMouseMove} onclick={handleClick} />
