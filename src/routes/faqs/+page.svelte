@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { mode } from 'mode-watcher';
-	import { Spring } from 'svelte/motion';
 	import Plus from '@lucide/svelte/icons/plus';
 	import X from '@lucide/svelte/icons/x';
+	import { mode } from 'mode-watcher';
+	import { Spring } from 'svelte/motion';
 
 	import starImage from '$lib/assets/star.png';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
