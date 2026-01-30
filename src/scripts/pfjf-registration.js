@@ -1,4 +1,15 @@
 // @ts-nocheck
+
+/*
+  IMPORTANT NOTE:
+  This script is specifically designed for Google Apps Script environment.
+  It handles HTTP GET and POST requests to manage PF/JF registrations.
+  This script uploaded in the repository is for version control and documentation purposes only.
+  To modify this script, access the Google Apps Script and make changes there directly. 
+  Any changes made here will not affect the live environment.
+  But always update this file to keep it in sync with the live version after making changes in the Google Apps Script.
+*/
+
 function doPost(e) {
   try {
     var spreadSheet = SpreadsheetApp.openById(''); // Spreadsheet ID here
