@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { mode } from 'mode-watcher';
-	import { LiquidGlass } from 'liquid-glass-svelte';
 	import { Spring } from 'svelte/motion';
 	import Plus from '@lucide/svelte/icons/plus';
 	import X from '@lucide/svelte/icons/x';
@@ -64,7 +63,7 @@
 	}
 
 	const ACCORDION_BG_GRADIENT =
-		'linear-gradient(180deg, rgba(127, 82, 187, 0.08) 0%, rgba(222, 162, 255, 0.02) 50%, rgba(127, 82, 187, 0.08) 100%)';
+		'linear-gradient(180deg, rgba(245, 243, 250, 0.08) 0%, rgba(250, 248, 253, 0.04) 50%, rgba(245, 243, 250, 0.08) 100%)';
 
 	const ACCORDION_BORDER_GRADIENT = $derived(
 		isDark
@@ -72,44 +71,20 @@
 			: 'linear-gradient(180deg, rgba(73, 73, 73, 0.1) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(73, 73, 73, 0.1) 100%)'
 	);
 
-	const ACCORDION_SHADOW = '0 0 2px rgba(201, 182, 230, 0.3)';
+	const ACCORDION_SHADOW = '0 0 2px rgba(245, 243, 250, 0.3)';
 
 	// Hover state (lighter/more visible)
 	const ACCORDION_BG_GRADIENT_HOVER =
-		'linear-gradient(180deg, rgba(127, 82, 187, 0.16) 0%, rgba(255, 255, 255, 0.04) 50%, rgba(127, 82, 187, 0.16) 100%)';
+		'linear-gradient(180deg, rgba(245, 243, 250, 0.12) 0%, rgba(250, 248, 253, 0.06) 50%, rgba(245, 243, 250, 0.12) 100%)';
 
 	// Active/Open state (most visible)
 	const ACCORDION_BG_GRADIENT_ACTIVE =
-		'linear-gradient(180deg, rgba(127, 82, 187, 0.16) 0%, rgba(222, 162, 255, 0.08) 50%, rgba(127, 82, 187, 0.16) 100%)';
+		'linear-gradient(180deg, rgba(245, 243, 250, 0.16) 0%, rgba(250, 248, 253, 0.08) 50%, rgba(245, 243, 250, 0.16) 100%)';
 
 	const ACCORDION_BORDER_GRADIENT_ACTIVE =
 		'linear-gradient(180deg, rgba(73, 73, 73, 0.5) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(73, 73, 73, 0.4) 100%)';
 
-	const ACCORDION_SHADOW_ACTIVE = '0 0 4px rgba(201, 182, 230, 0.5)';
-
-	const GLASS_OPTIONS = $derived(
-		isDark
-			? ({
-					mainBlur: '1rem',
-					mainBackgroundColor: 'rgba(0, 0, 0, 0)',
-					edgeBlur: '0.1rem',
-					edgeBackgroundColor: 'rgba(255, 255, 255, 0.01)',
-					edgeWidth: '0.1rem',
-					sheenBlur: '0.5rem',
-					sheenBackgroundColor: 'rgba(255, 255, 255, 0.02)',
-					sheenWidth: '0.3rem'
-				} as const)
-			: ({
-					mainBlur: '0.2rem',
-					mainBackgroundColor: 'rgba(255, 255, 255, 0.02)',
-					edgeBlur: '0.1rem',
-					edgeBackgroundColor: 'rgba(255, 255, 255, 0.05)',
-					edgeWidth: '0.1rem',
-					sheenBlur: '0.5rem',
-					sheenBackgroundColor: 'rgba(255, 255, 255, 0.08)',
-					sheenWidth: '0.3rem'
-				} as const)
-	);
+	const ACCORDION_SHADOW_ACTIVE = '0 0 4px rgba(245, 243, 250, 0.4)';
 
 	// template lng yung laman neto will change it later
 	const faqs = [
@@ -287,9 +262,8 @@
 								? ACCORDION_BORDER_GRADIENT_ACTIVE
 								: ACCORDION_BORDER_GRADIENT};"
 						></div>
-						<LiquidGlass
-							class="relative block h-full w-full !overflow-visible rounded-2xl"
-							options={GLASS_OPTIONS}
+						<div
+							class="relative block h-full w-full overflow-visible rounded-2xl bg-background/40 backdrop-blur-sm"
 						>
 							<Accordion.Trigger
 								class="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-lg font-medium text-foreground transition-colors hover:no-underline md:text-xl [&>svg]:hidden"
@@ -313,7 +287,7 @@
 									{faq.answer}
 								</div>
 							</Accordion.Content>
-						</LiquidGlass>
+						</div>
 					</div>
 				</Accordion.Item>
 			{/each}
