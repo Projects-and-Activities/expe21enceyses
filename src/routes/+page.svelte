@@ -102,12 +102,12 @@
 </script>
 
 <div bind:this={curtainContainer} class="pointer-events-none fixed inset-0 z-9999 flex">
-	<!-- <div class="flex-[0.16] border-r border-neutral-800 bg-neutral-900"></div> -->
-	<!-- <div class="flex-1 border-r border-neutral-800 bg-neutral-900"></div> -->
-	<!-- <div class="flex-1 border-r border-neutral-800 bg-neutral-900"></div> -->
-	<!-- <div class="flex-1 border-r border-neutral-800 bg-neutral-900"></div> -->
-	<!-- <div class="flex-1 border-r border-neutral-800 bg-neutral-900"></div> -->
-	<!-- <div class="flex-[0.16] border-r border-neutral-800 bg-neutral-900"></div> -->
+	<div class="flex-[0.16] border-r border-neutral-800 bg-neutral-900"></div>
+	<div class="flex-1 border-r border-neutral-800 bg-neutral-900"></div>
+	<div class="flex-1 border-r border-neutral-800 bg-neutral-900"></div>
+	<div class="flex-1 border-r border-neutral-800 bg-neutral-900"></div>
+	<div class="flex-1 border-r border-neutral-800 bg-neutral-900"></div>
+	<div class="flex-[0.16] border-r border-neutral-800 bg-neutral-900"></div>
 </div>
 
 <div class="pointer-events-none fixed inset-0 -z-10 h-screen overflow-hidden">
