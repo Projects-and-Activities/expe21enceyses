@@ -127,7 +127,7 @@ function doPost(e) {
           </p>
 
           <p>
-            Thank you for registering for <strong>EXPE21ENCE YSES: The HackFest!</strong> Your team’s application for the <strong>Senior HackFest bracket</strong> has been successfully received.
+            Thank you for registering for <strong>EXPE21ENCE YSES: The HackFest!</strong> Your team's application for the <strong>Senior HackFest bracket</strong> has been successfully received.
           </p>
 
           <p>
@@ -149,7 +149,7 @@ function doPost(e) {
             See you at EXPE21ENCE YSES: The HackFest!
           </p>
 
-          <p>Best regards,<br> The EXPE21ENCE YSES Team</p>
+          <p>Best regards,<br>The EXPE21ENCE YSES Team</p>
         ${emailSignature}
       `
     });

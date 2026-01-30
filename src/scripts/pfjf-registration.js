@@ -20,15 +20,27 @@ function doPost(e) {
     var selectedOption = "Internship";
 
     var emailBody = `
-      <p>Thank you for confirming your participation in <strong>EXPE21ENCE YSES: PF/JF</strong>! We're excited to have you on board as we connect aspiring software engineers—and participants from all backgrounds—with internship and job opportunities. This event is a fantastic chance to network, gain practical experience, and explore career paths that can kick-start your professional journey.</p>
+      <p>
+       Thank you for signing up as a participant for <strong>EXPE21ENCE YSES: PF/JF!</strong> Your registration has been received.
+      </p>
 
-      <p>Because there will be <strong>on-site interviews</strong> at the event, <strong>please come in formal attire (e.g., corporate or business wear)</strong>. Stay tuned for future announcements and reminders regarding event details, schedules, and other important updates via email.</p>
+      <p>
+        We're excited to have you on board as we connect aspiring software engineers—and participants from all backgrounds—with internship and job opportunities. This event is a fantastic chance to network, gain practical experience, and explore career paths that can kick-start your professional journey.
+      </p>
 
-      <p>If you have any questions or need assistance, feel free to contact us at <a href="mailto:prog@yses.org">prog@yses.org</a>. We're here to support you throughout the PF/JF process!</p>
+      <p> 
+        Because there will be <strong>on-site interviews</strong> at the event, <strong>please come in formal attire</strong> (e.g., corporate or business wear). Stay tuned for future announcements and reminders regarding event details, schedules, and other important updates via email.
+      </p>
 
-      <p>Let's shape the future together!</p>
+      <p>
+        If you have any questions or need assistance, feel free to contact us at <a href="mailto:prog@yses.org">prog@yses.org</a>. We're here to support you throughout the PF/JF process!
+      </p>
 
-      <p><strong>See you soon,</strong><br></p>
+      <p>
+        Let's shape the future together!
+      </p>
+
+      <p>See you soon,<br>The EXPE21ENCE YSES Team</p>
       `
 
 
@@ -96,7 +108,7 @@ function doPost(e) {
         <img src="${bannerUrl}" alt="Event Banner" width="100%" style="max-width: 600px; border-radius: 10px;">
       </div>
       
-      <p>Good day, Mr. // Ms. // Mx. ${formData.fName} ${formData.lName}!</p>
+      <p>Hello, Mr. // Ms. // Mx. ${formData.fName} ${formData.lName}, </p>
 
       ${emailBody}
       
