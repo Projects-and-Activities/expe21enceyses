@@ -5,12 +5,15 @@
 	import LinkedIn from './icons/LinkedIn.svelte';
 	import X from './icons/X.svelte';
 	import YouTube from './icons/YouTube.svelte';
+
+	import invertedLogo from '$lib/assets/colored-logo-inverted.png?enhanced';
+	import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
 </script>
 
-<footer class="p-8 not-lg:px-0">
+<footer class="bg-background p-8 not-xs:pb-16 not-lg:px-0">
 	<div class="container mx-auto flex flex-col place-items-center gap-4 md:flex-row">
 		<enhanced:img
-			src="$images/colored-logo.png"
+			src={coloredLogo}
 			class="block size-16 dark:hidden"
 			loading="lazy"
 			decoding="async"
@@ -18,7 +21,7 @@
 		/>
 
 		<enhanced:img
-			src="$images/colored-logo-inverted.png"
+			src={invertedLogo}
 			class="hidden size-16 dark:block"
 			loading="lazy"
 			decoding="async"
@@ -29,9 +32,7 @@
 			<h3 class="text-lg">Young Software Engineers' Society</h3>
 			<div class="text-sm">University of the Philippines Los Baños</div>
 		</div>
-		<div
-			class="flex w-fit flex-col-reverse not-md:place-items-center not-md:gap-y-12 md:ml-auto"
-		>
+		<div class="flex w-fit flex-col-reverse not-md:place-items-center not-md:gap-y-12 md:ml-auto">
 			<div class="flex gap-1 not-md:scale-120">
 				<LinkedIn />
 				<Github />

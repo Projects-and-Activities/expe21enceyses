@@ -5,7 +5,7 @@
 	import { cn, type WithElementRef } from '$lib/utils.js';
 
 	export const buttonVariants = tv({
-		base: "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+		base: "cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 		variants: {
 			variant: {
 				default: 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs',
@@ -16,8 +16,7 @@
 				secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-xs',
 				ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
 				link: 'text-primary underline-offset-4 hover:underline',
-				gradient:
-					"text-primary-foreground transition-all duration-300 ease-out font-['Lexend'] font-normal text-[1.25rem] leading-[1.5625rem] text-center"
+				gradient: 'text-white font-normal text-center'
 			},
 			size: {
 				default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -27,8 +26,7 @@
 				'icon-sm': 'size-8',
 				'icon-lg': 'size-10',
 				xl: 'px-8 py-2 rounded-[25px] font-light text-lg h-11',
-				register:
-					'box-border flex flex-col justify-center items-center w-[142px] h-[45px] py-[23px] px-[80px] gap-[10px] rounded-[60px]'
+				register: 'box-border flex flex-col justify-center items-center w-25 h-8 rounded-2xl'
 			}
 		},
 		defaultVariants: {
