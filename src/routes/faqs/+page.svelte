@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Plus from '@lucide/svelte/icons/plus';
-	import X from '@lucide/svelte/icons/x';
 	import { mode } from 'mode-watcher';
 	import { Spring } from 'svelte/motion';
 
 	import starImage from '$lib/assets/star.png';
+	import GlassCard from '$lib/components/GlassCard.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 	import * as Accordion from '$lib/components/ui/accordion';
 
@@ -61,30 +61,6 @@
 			}, 800);
 		}
 	}
-
-	const ACCORDION_BG_GRADIENT =
-		'linear-gradient(180deg, rgba(245, 243, 250, 0.08) 0%, rgba(250, 248, 253, 0.04) 50%, rgba(245, 243, 250, 0.08) 100%)';
-
-	const ACCORDION_BORDER_GRADIENT = $derived(
-		isDark
-			? 'linear-gradient(180deg, rgba(73, 73, 73, 0.15) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(73, 73, 73, 0.15) 100%)'
-			: 'linear-gradient(180deg, rgba(73, 73, 73, 0.1) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(73, 73, 73, 0.1) 100%)'
-	);
-
-	const ACCORDION_SHADOW = '0 0 2px rgba(245, 243, 250, 0.3)';
-
-	// Hover state (lighter/more visible)
-	const ACCORDION_BG_GRADIENT_HOVER =
-		'linear-gradient(180deg, rgba(245, 243, 250, 0.12) 0%, rgba(250, 248, 253, 0.06) 50%, rgba(245, 243, 250, 0.12) 100%)';
-
-	// Active/Open state (most visible)
-	const ACCORDION_BG_GRADIENT_ACTIVE =
-		'linear-gradient(180deg, rgba(245, 243, 250, 0.16) 0%, rgba(250, 248, 253, 0.08) 50%, rgba(245, 243, 250, 0.16) 100%)';
-
-	const ACCORDION_BORDER_GRADIENT_ACTIVE =
-		'linear-gradient(180deg, rgba(73, 73, 73, 0.5) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(73, 73, 73, 0.4) 100%)';
-
-	const ACCORDION_SHADOW_ACTIVE = '0 0 4px rgba(245, 243, 250, 0.4)';
 
 	// template lng yung laman neto will change it later
 	const faqs = [
@@ -234,49 +210,36 @@
 	)}
 	<ScrollReveal delay="300ms">
 		<Accordion.Root type="single" bind:value={openValue} class="flex flex-col gap-4">
-			{#each faqs as faq, i (faq.id)}
+			{#each faqs as faq (faq.id)}
 				{@const isOpen = openValue === faq.id}
-				<Accordion.Item value={faq.id} class="group border-0">
-					<div
-						role="group"
-						class="relative overflow-hidden rounded-2xl p-px transition-all duration-200"
-						style="background: {isOpen
-							? ACCORDION_BG_GRADIENT_ACTIVE
-							: ACCORDION_BG_GRADIENT}; box-shadow: {isOpen
-							? ACCORDION_SHADOW_ACTIVE
-							: ACCORDION_SHADOW};"
-						onmouseenter={(e) => {
-							if (!isOpen) {
-								e.currentTarget.style.background = ACCORDION_BG_GRADIENT_HOVER;
-							}
-						}}
-						onmouseleave={(e) => {
-							if (!isOpen) {
-								e.currentTarget.style.background = ACCORDION_BG_GRADIENT;
-							}
-						}}
+				<Accordion.Item value={faq.id} class="border-b-0">
+					<GlassCard
+						class="group relative overflow-hidden rounded-2xl  border-2 transition-all duration-300
+						{isOpen
+							? 'border-purple-500/50 bg-muted/40 !shadow-[0_0_20px_rgba(127,82,187,0.15)]'
+							: 'border-border/50 bg-background/40 hover:border-purple-500/30 hover:!bg-muted/20 hover:!shadow-lg hover:!shadow-purple-500/5'} 
+						"
 					>
 						<div
-							class="pointer-events-none absolute inset-px z-10 rounded-[calc(1rem-1px)] opacity-30"
-							style="background: {isOpen
-								? ACCORDION_BORDER_GRADIENT_ACTIVE
-								: ACCORDION_BORDER_GRADIENT};"
+							class="absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+							style="background: radial-gradient(circle at center, var(--primary) 0%, transparent 70%); filter: blur(40px); opacity: 0.1;"
 						></div>
 						<div
 							class="relative block h-full w-full overflow-visible rounded-2xl bg-background/40 backdrop-blur-sm"
 						>
 							<Accordion.Trigger
-								class="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-lg font-medium text-foreground transition-colors hover:no-underline md:text-xl [&>svg]:hidden"
+								class="flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left text-lg font-medium text-foreground transition-colors hover:no-underline md:text-xl [&>svg]:hidden"
 							>
 								<span class="flex-1">{faq.question}</span>
+
 								<span
-									class="flex size-6 shrink-0 items-center justify-center text-muted-foreground"
+									class="flex size-8 shrink-0 items-center justify-center rounded-full bg-background/50 text-muted-foreground transition-colors group-hover:bg-purple-500/10 group-hover:text-purple-500"
 								>
-									{#if isOpen}
-										<X class="size-4" />
-									{:else}
-										<Plus class="size-4" />
-									{/if}
+									<Plus
+										class="size-5 transition-transform duration-200 ease-[cubic-bezier(0.87,0,0.13,1)] {isOpen
+											? '-rotate-45 text-purple-500'
+											: 'rotate-0'}"
+									/>
 								</span>
 							</Accordion.Trigger>
 
@@ -288,7 +251,7 @@
 								</div>
 							</Accordion.Content>
 						</div>
-					</div>
+					</GlassCard>
 				</Accordion.Item>
 			{/each}
 		</Accordion.Root>

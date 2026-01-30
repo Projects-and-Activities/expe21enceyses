@@ -13,6 +13,7 @@
 	import pfjfImg from '$lib/assets/pfjf.png?enhanced';
 	import LogoScene from '$lib/components/3d-ascii/sections/LogoScene.svelte';
 	import AnnotatedBorderedContainer from '$lib/components/AnnotatedBorderedContainer.svelte';
+	import GlassCard from '$lib/components/GlassCard.svelte';
 	import ProgramSection from '$lib/components/ProgramSection.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 	import Star from '$lib/components/Star.svelte';
@@ -177,7 +178,11 @@
 							color="primary"
 							size="xs"
 						>
-							<enhanced:img src={logoImg} alt="" class="aspect-square size-16 p-1 lg:size-24" />
+							<enhanced:img
+								src={logoImg}
+								alt=""
+								class="aspect-square size-16 p-1 lg:size-24"
+							/>
 						</AnnotatedBorderedContainer>
 					</div>
 				</ScrollReveal>
@@ -237,21 +242,24 @@
 			</ScrollReveal>
 			<ScrollReveal delay="200ms">
 				<p>
-					Learn directly from industry professionals and alumni about careers, technologies, and
-					building impact in the 21st century.
+					Learn directly from industry professionals and alumni about careers,
+					technologies, and building impact in the 21st century.
 				</p>
 			</ScrollReveal>
 
 			<div class="flex gap-4">
 				<ScrollReveal delay="400ms" class="border-r pr-4">
 					<p>
-						Design and develop AI‑driven solutions for Philippine communities through a bracketed
-						hackathon.
+						Design and develop AI‑driven solutions for Philippine communities through a
+						bracketed hackathon.
 					</p>
 				</ScrollReveal>
 
 				<ScrollReveal delay="500ms">
-					<p>Explore internships, OJT placements, and entry‑level roles with partner companies.</p>
+					<p>
+						Explore internships, OJT placements, and entry‑level roles with partner
+						companies.
+					</p>
 				</ScrollReveal>
 			</div>
 		</div>
@@ -277,12 +285,11 @@
 
 		<Star class="-right-18 -bottom-8 z-auto! w-35 -rotate-15" />
 		<Star class="right-8 -bottom-12 z-auto! w-15 rotate-50" />
-		<div
-			class="relative z-50 grid place-content-center gap-20 bg-background/40 px-16 py-12 backdrop-blur-xs lg:grid-cols-2 lg:justify-between"
-			style="box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25) inset; overflow: hidden; border-radius: 20px; outline: 0.5px #494949 solid; outline-offset: -1px;"
+		<GlassCard
+			class="relative z-50 grid place-content-center gap-20 px-16 py-12 lg:grid-cols-2 lg:justify-between"
 		>
 			<div
-				class="my-auto flex h-fit flex-col gap-6 text-wrap not-lg:place-items-center xl:px-16 [&_p]:text-justify [&_p]:font-light md:[&_p]:text-lg"
+				class="z-0 my-auto flex h-fit flex-col gap-6 text-wrap not-lg:place-items-center xl:px-16 [&_p]:text-justify [&_p]:font-light md:[&_p]:text-lg"
 			>
 				<ScrollReveal delay="200ms" class="mb-4 text-6xl">
 					<h2>
@@ -292,8 +299,8 @@
 
 				<ScrollReveal delay="300ms">
 					<p>
-						the Young Software Engineers' Society (YSES) has been at the forefront of promoting
-						software engineering and <span class="font-bold text-primary">
+						the Young Software Engineers' Society (YSES) has been at the forefront of
+						promoting software engineering and <span class="font-bold text-primary">
 							bridging the gap between the academe and the industry.
 						</span>
 					</p>
@@ -304,8 +311,9 @@
 						<span class="font-bold text-primary">
 							EXPE21ENCE YSES: Bridging Future Software Engineers of the 21st Century
 						</span>
-						continues this mission by equipping students with the skills, network, and experience they
-						need to become holistic software engineers in a rapidly evolving digital world.
+						continues this mission by equipping students with the skills, network, and experience
+						they need to become holistic software engineers in a rapidly evolving digital
+						world.
 					</p>
 				</ScrollReveal>
 			</div>
@@ -315,7 +323,7 @@
 					<LogoScene />
 				</ScrollReveal>
 			</div>
-		</div>
+		</GlassCard>
 	</section>
 
 	<section class="flex flex-col *:text-5xl xs:*:text-6xl md:pb-24">

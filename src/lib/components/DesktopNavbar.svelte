@@ -26,7 +26,7 @@
 
 <!-- Desktop Navbar -->
 <nav
-	class="fixed top-4 left-1/2 z-50 box-border hidden w-full max-w-[75rem] -translate-x-1/2 px-4 md:block md:px-5 lg:px-8"
+	class="fixed top-4 left-1/2 z-100 box-border hidden w-full max-w-[75rem] -translate-x-1/2 px-4 md:block md:px-5 lg:px-8"
 >
 	<div class="relative w-full rounded-2xl outline" style="background: {borderGradient};">
 		{#key isDark}
@@ -37,7 +37,10 @@
 				<div
 					class="!absolute !inset-0 z-10 flex !h-full w-full items-center justify-between px-4 md:px-6 lg:px-8"
 				>
-					<a href="/" class="flex items-center transition-transform duration-300 hover:scale-105">
+					<a
+						href="/"
+						class="flex items-center transition-transform duration-300 hover:scale-105"
+					>
 						{#if isDark}
 							<enhanced:img
 								src={logoDark}
@@ -45,7 +48,11 @@
 								class="h-[1.875rem] w-auto object-contain"
 							/>
 						{:else}
-							<enhanced:img src={logo} alt="E21 Logo" class="h-[1.875rem] w-auto object-contain" />
+							<enhanced:img
+								src={logo}
+								alt="E21 Logo"
+								class="h-[1.875rem] w-auto object-contain"
+							/>
 						{/if}
 					</a>
 
