@@ -110,6 +110,8 @@ function doPost(e) {
       </div>
     `;
 
+
+    // TODO: Create if else for different brackets (Junior/Senior)
     MailApp.sendEmail({
       to: formData.email,
       name: "EXPE21ENCE YSES Programs Committee",
@@ -119,12 +121,35 @@ function doPost(e) {
         <div style="text-align: center; margin-bottom: 20px;">
           <img src="${bannerUrl}" alt="Event Banner" width="100%" style="max-width: 600px; border-radius: 10px;">
         </div>
-        <p>Congratulations on successfully registering your team for <strong>EXPE21ENCE YSES: The HackFest!</strong></p>
-        <p>We're excited to have you on board for this action-packed coding adventure where creativity meets technology. Get ready to collaborate, innovate, and bring your ideas to life as you tackle real-world challenges head-on!</p>
-        <p>A confirmation email with all the important event details, submission guidelines, and schedules will be sent to you shortly.</p>
-        <p>If you have any questions or need assistance, feel free to contact us at <a href="mailto:prog@yses.org">prog@yses.org</a>. We're here to support you throughout your HackFest journey!</p>
-        <p><strong>Let's code the future together! 💻🚀</strong></p>
-        <p><strong>See you soon,</strong><br></p>
+
+          <p>
+            Hi ${formData.teamName},
+          </p>
+
+          <p>
+            Thank you for registering for <strong>EXPE21ENCE YSES: The HackFest!</strong> Your team's application for the <strong>Senior HackFest bracket</strong> has been successfully received.
+          </p>
+
+          <p>
+            Over the next few days, the Programs Committee will review your details and verify your requirements. Once confirmed, you will receive another email with all the important event details, submission guidelines, and schedules.
+          </p>
+
+          <p>In the meantime, you may already:</p>
+            <ul>
+              <li><p>Review the event mechanics and judging criteria in the program manual</p></li>
+              <li><p>Start exploring problems in your community that you want to solve</p></li>
+              <li><p>Coordinate with your teammates about availability during key event dates</p></li>
+            </ul>
+
+          <p> 
+            If you have any questions or need assistance, contact us at <a href="mailto:prog@yses.org">prog@yses.org</a>. 
+          </p>
+
+          <p>
+            See you at EXPE21ENCE YSES: The HackFest!
+          </p>
+
+          <p>Best regards,<br>The EXPE21ENCE YSES Team</p>
         ${emailSignature}
       `
     });
