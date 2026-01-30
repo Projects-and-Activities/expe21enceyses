@@ -8,12 +8,13 @@
 
 	import invertedLogo from '$lib/assets/colored-logo-inverted.png?enhanced';
 	import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
+	import { CLOUDINARY_IMAGES } from '$lib/cloudinary/constants';
 </script>
 
 <footer class="bg-background p-8 not-xs:pb-16 not-lg:px-0">
 	<div class="container mx-auto flex flex-col place-items-center gap-4 md:flex-row">
 		<enhanced:img
-			src={coloredLogo}
+			src={CLOUDINARY_IMAGES.coloredLogo ? CLOUDINARY_IMAGES.coloredLogo : coloredLogo}
 			class="block size-16 dark:hidden"
 			loading="lazy"
 			decoding="async"
@@ -21,7 +22,7 @@
 		/>
 
 		<enhanced:img
-			src={invertedLogo}
+			src={CLOUDINARY_IMAGES.coloredLogoInverted ? CLOUDINARY_IMAGES.coloredLogoInverted : invertedLogo}
 			class="hidden size-16 dark:block"
 			loading="lazy"
 			decoding="async"

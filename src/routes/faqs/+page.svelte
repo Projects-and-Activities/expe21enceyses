@@ -7,6 +7,7 @@
 	import starImage from '$lib/assets/star.png';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 	import * as Accordion from '$lib/components/ui/accordion';
+	import { CLOUDINARY_IMAGES } from '$lib/cloudinary/constants';
 
 	let isDark = $derived(mode.current === 'dark');
 
@@ -326,7 +327,7 @@
 
 	<div class="pointer-events-none absolute -z-10 select-none {className}">
 		<img
-			src={starImage}
+			src={CLOUDINARY_IMAGES.star ? CLOUDINARY_IMAGES.star : starImage}
 			alt=""
 			style="animation-duration: {duration}; animation-delay: {delay};"
 			class="star-anim block h-full w-full object-contain"

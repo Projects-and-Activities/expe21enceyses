@@ -1,5 +1,6 @@
 <script lang="ts">
 	import starImage from '$lib/assets/star.png';
+	import { CLOUDINARY_IMAGES } from '$lib/cloudinary/constants';
 
 	type Props = {
 		class?: string;
@@ -13,7 +14,7 @@
 
 <div class="pointer-events-none absolute -z-10 select-none {className}">
 	<enhanced:img
-		src={starImage}
+		src={CLOUDINARY_IMAGES.star ? CLOUDINARY_IMAGES.star : starImage}
 		alt=""
 		style="animation-duration: {duration}; animation-delay: {delay};"
 		class="star-anim block h-full w-full object-contain"

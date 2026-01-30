@@ -6,6 +6,7 @@
 	import logoDark from '$lib/assets/logoDark.png';
 	import { Button } from '$lib/components/ui/button';
 	import * as NavigationMenu from '$lib/components/ui/navigation-menu';
+	import { CLOUDINARY_IMAGES } from '$lib/cloudinary/constants';
 
 	interface NavItem {
 		label: string;
@@ -40,12 +41,12 @@
 					<a href="/" class="flex items-center transition-transform duration-300 hover:scale-105">
 						{#if isDark}
 							<enhanced:img
-								src={logoDark}
+								src={CLOUDINARY_IMAGES.logoDark ? CLOUDINARY_IMAGES.logoDark : logoDark}
 								alt="E21 Logo"
 								class="h-[1.875rem] w-auto object-contain"
 							/>
 						{:else}
-							<enhanced:img src={logo} alt="E21 Logo" class="h-[1.875rem] w-auto object-contain" />
+							<enhanced:img src={CLOUDINARY_IMAGES.logo ? CLOUDINARY_IMAGES.logo : logo} alt="E21 Logo" class="h-[1.875rem] w-auto object-contain" />
 						{/if}
 					</a>
 

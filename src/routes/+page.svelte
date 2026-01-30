@@ -16,7 +16,8 @@
 	import ProgramSection from '$lib/components/ProgramSection.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 	import Star from '$lib/components/Star.svelte';
-
+	import { CLOUDINARY_IMAGES } from '$lib/cloudinary/constants';
+	
 	let showUnderline = $state(false);
 
 	let curtainContainer: HTMLDivElement;
@@ -78,19 +79,19 @@
 			title: 'The Hackfest',
 			subtitle: 'Engineer solutions that move communities forward.',
 			bg: 'bg-neutral-200 dark:bg-neutral-800/40 backdrop-blur-sm',
-			img: hackfestImg
+			img: CLOUDINARY_IMAGES.hackfest ? CLOUDINARY_IMAGES.hackfest : hackfestImg
 		},
 		{
 			title: 'Practicum/Job Fair',
 			subtitle: 'Land the opportunities that launch your career.',
 			bg: 'bg-neutral-100 dark:bg-neutral-900/80 backdrop-blur-sm',
-			img: pfjfImg
+			img: CLOUDINARY_IMAGES.pfjf ? CLOUDINARY_IMAGES.pfjf : pfjfImg
 		},
 		{
 			title: 'Company Talks',
 			subtitle: 'Unlock what it takes to thrive in tech.',
 			bg: 'bg-neutral-50 dark:bg-neutral-950/90 dark:brightness-80 backdrop-blur-sm',
-			img: ctalksImg
+			img: CLOUDINARY_IMAGES.ctalks ? CLOUDINARY_IMAGES.ctalks : ctalksImg
 		},
 		{
 			title: '',
@@ -136,7 +137,7 @@
 				<div class="h-70 w-[calc(100dvw-0.25rem)] max-w-dvw sm:aspect-610/343 sm:w-132">
 					<enhanced:img
 						bind:this={leftHand}
-						src={leftHandImg}
+						src={CLOUDINARY_IMAGES.handTransparentLeft ? CLOUDINARY_IMAGES.handTransparentLeft : leftHandImg}
 						alt="Left Hand"
 						class="
 					pointer-events-none
@@ -177,7 +178,7 @@
 							color="primary"
 							size="xs"
 						>
-							<enhanced:img src={logoImg} alt="" class="aspect-square size-16 p-1 lg:size-24" />
+							<enhanced:img src={CLOUDINARY_IMAGES.logo ? CLOUDINARY_IMAGES.logo : logoImg} alt="" class="aspect-square size-16 p-1 lg:size-24" />
 						</AnnotatedBorderedContainer>
 					</div>
 				</ScrollReveal>
@@ -211,7 +212,7 @@
 				<div class="h-100 w-[calc(100dvw-0.25rem)] max-w-full sm:aspect-555/453 sm:w-132">
 					<enhanced:img
 						bind:this={rightHand}
-						src={rightHandImg}
+						src={CLOUDINARY_IMAGES.handTransparentRight ? CLOUDINARY_IMAGES.handTransparentRight : rightHandImg}
 						alt="Right Hand"
 						class="
 					pointer-events-none

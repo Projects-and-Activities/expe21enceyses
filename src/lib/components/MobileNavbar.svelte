@@ -15,6 +15,7 @@
 	import YouTube from '$lib/components/icons/YouTube.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as Sheet from '$lib/components/ui/sheet';
+	import { CLOUDINARY_IMAGES } from '$lib/cloudinary/constants';
 
 	interface NavItem {
 		label: string;
@@ -64,13 +65,13 @@
 						<a href="/" class="flex items-center">
 							{#if isDark}
 								<enhanced:img
-									src={logoDark}
+									src={CLOUDINARY_IMAGES.logoDark ? CLOUDINARY_IMAGES.logoDark : logoDark}
 									alt="E21 Logo"
 									class="h-[1.5rem] w-auto object-contain sm:h-[1.875rem]"
 								/>
 							{:else}
 								<enhanced:img
-									src={logo}
+									src={CLOUDINARY_IMAGES.logo ? CLOUDINARY_IMAGES.logo : logo}
 									alt="E21 Logo"
 									class="h-[1.5rem] w-auto object-contain sm:h-[1.875rem]"
 								/>
@@ -94,13 +95,13 @@
 												<a href="/" onclick={() => (mobileMenuOpen = false)}>
 													{#if isDark}
 														<enhanced:img
-															src={logoDark}
+															src={CLOUDINARY_IMAGES.logoDark ? CLOUDINARY_IMAGES.logoDark : logoDark}
 															alt="E21 Logo"
 															class="h-10 w-auto object-contain"
 														/>
 													{:else}
 														<enhanced:img
-															src={logo}
+															src={CLOUDINARY_IMAGES.logo ? CLOUDINARY_IMAGES.logo : logo}
 															alt="E21 Logo"
 															class="h-10 w-auto object-contain"
 														/>
@@ -179,7 +180,7 @@
 											<div class="mt-auto pb-4 sm:pb-6">
 												<div class="flex items-center gap-3">
 													<enhanced:img
-														src={coloredLogo}
+														src={CLOUDINARY_IMAGES.coloredLogo ? CLOUDINARY_IMAGES.coloredLogo : coloredLogo}
 														class="block size-16 dark:hidden"
 														loading="lazy"
 														decoding="async"
@@ -187,7 +188,7 @@
 													/>
 
 													<enhanced:img
-														src={invertedLogo}
+														src={CLOUDINARY_IMAGES.coloredLogoInverted ? CLOUDINARY_IMAGES.coloredLogoInverted : invertedLogo}
 														class="hidden size-16 dark:block"
 														loading="lazy"
 														decoding="async"
