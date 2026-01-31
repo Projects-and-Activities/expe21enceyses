@@ -2,7 +2,7 @@
 	import Plus from '@lucide/svelte/icons/plus';
 	import { mode } from 'mode-watcher';
 	import { Spring } from 'svelte/motion';
-
+	import { onMount } from 'svelte';
 	import starImage from '$lib/assets/star.png';
 	import GlassCard from '$lib/components/GlassCard.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
@@ -32,35 +32,6 @@
 
 	let sparks = $state<Spark[]>([]);
 	let sparkId = 0;
-
-	function handleClick(e: MouseEvent) {
-		const count = 8;
-		const colors = isDark
-			? ['#ffffff', '#e0b0ff', '#b379ff']
-			: ['#7f52bb', '#b379ff', '#494949'];
-
-		for (let i = 0; i < count; i++) {
-			const id = sparkId++;
-			const angle = Math.random() * Math.PI * 2;
-			const velocity = 30 + Math.random() * 50;
-
-			const spark: Spark = {
-				id,
-				x: e.clientX,
-				y: e.clientY,
-				tx: Math.cos(angle) * velocity,
-				ty: Math.sin(angle) * velocity,
-				scale: 0.5 + Math.random(),
-				color: colors[Math.floor(Math.random() * colors.length)]
-			};
-
-			sparks.push(spark);
-
-			setTimeout(() => {
-				sparks = sparks.filter((s) => s.id !== id);
-			}, 800);
-		}
-	}
 
 	// template lng yung laman neto will change it later
 	const faqs = [
@@ -102,6 +73,121 @@
 	];
 
 	let openValue = $state<string | undefined>(undefined);
+
+	let hoveredCard = $state<string | null>(null);
+	let tiltX = $state(0);
+	let tiltY = $state(0);
+
+	function handleCardHover(e: MouseEvent, cardId: string, isLeaving = false) {
+		if (isLeaving) {
+			hoveredCard = null;
+			tiltX = 0;
+			tiltY = 0;
+			return;
+		}
+
+		hoveredCard = cardId;
+		const card = e.currentTarget as HTMLElement;
+		const rect = card.getBoundingClientRect();
+		const x = e.clientX - rect.left;
+		const y = e.clientY - rect.top;
+
+		const centerX = rect.width / 2;
+		const centerY = rect.height / 2;
+		tiltX = ((y - centerY) / centerY) * -2;
+		tiltY = ((x - centerX) / centerX) * 2;
+	}
+
+	type ShootingStar = {
+		id: number;
+		x: number;
+		y: number;
+		duration: number;
+	};
+
+	let shootingStars = $state<ShootingStar[]>([]);
+	let shootingStarId = 0;
+
+	function spawnShootingStar() {
+		const id = shootingStarId++;
+		const star: ShootingStar = {
+			id,
+			x: Math.random() * 20, //spawn
+			y: -20 + Math.random() * 50, // spread -10% to 40% from top
+			duration: 4 + Math.random() * 2
+		};
+
+		shootingStars.push(star);
+
+		setTimeout(
+			() => {
+				shootingStars = shootingStars.filter((s) => s.id !== id);
+			},
+			star.duration * 1000 + 500
+		);
+	}
+
+	type Particle = {
+		id: number;
+		x: number;
+		y: number;
+		size: number;
+		duration: number;
+		delay: number;
+	};
+
+	let particles = $state<Particle[]>([]);
+
+	onMount(() => {
+		const particleCount = 8;
+		for (let i = 0; i < particleCount; i++) {
+			particles.push({
+				id: i,
+				x: Math.random() * 100,
+				y: Math.random() * 100,
+				size: 3 + Math.random() * 4,
+				duration: 8 + Math.random() * 8,
+				delay: Math.random() * 5
+			});
+		}
+		// spawn every 1.5 sec
+		const shootingStarInterval = setInterval(() => {
+			spawnShootingStar();
+		}, 1500);
+
+		return () => {
+			clearInterval(shootingStarInterval);
+		};
+	});
+
+	function handleClick(e: MouseEvent) {
+		const count = 8;
+		const colors = isDark
+			? ['#ffffff', '#e0b0ff', '#b379ff']
+			: ['#7f52bb', '#b379ff', '#494949'];
+
+		for (let i = 0; i < count; i++) {
+			const id = sparkId++;
+			const angle = Math.random() * Math.PI * 2;
+			const velocity = 30 + Math.random() * 50;
+
+			const spark: Spark = {
+				id,
+				x: e.clientX,
+				y: e.clientY,
+				tx: Math.cos(angle) * velocity,
+				ty: Math.sin(angle) * velocity,
+				scale: 0.5 + Math.random(),
+				color: colors[Math.floor(Math.random() * colors.length)]
+			};
+
+			sparks.push(spark);
+
+			setTimeout(() => {
+				sparks = sparks.filter((s) => s.id !== id);
+			}, 800);
+		}
+	}
 </script>
 
 <svelte:window onmousemove={handleMouseMove} onclick={handleClick} />
@@ -120,6 +206,35 @@
 				--tx: {spark.tx}px;
 				--ty: {spark.ty}px;
 				animation: spark-burst 0.8s ease-out forwards;
+			"
+		></div>
+	{/each}
+</div>
+
+<div class="pointer-events-none fixed inset-0 -z-5 overflow-hidden">
+	{#each shootingStars as star (star.id)}
+		<div
+			class="shooting-star absolute"
+			style="
+				left: {star.x}%;
+				top: {star.y}%;
+				--duration: {star.duration}s;
+			"
+		></div>
+	{/each}
+</div>
+
+<div class="pointer-events-none fixed inset-0 -z-15 overflow-hidden">
+	{#each particles as particle (particle.id)}
+		<div
+			class="float-particle absolute rounded-full bg-purple-400/20 blur-sm"
+			style="
+				left: {particle.x}%;
+				top: {particle.y}%;
+				width: {particle.size}px;
+				height: {particle.size}px;
+				--duration: {particle.duration}s;
+				--delay: {particle.delay}s;
 			"
 		></div>
 	{/each}
@@ -155,13 +270,13 @@
 <!-- bg gradient-->
 <div class="pointer-events-none fixed inset-0 -z-10 h-screen overflow-hidden">
 	<div
-		class="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[100px]"
+		class="blob-morph-1 absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[100px]"
 	></div>
 	<div
-		class="absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
+		class="blob-morph-2 absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
 	></div>
 	<div
-		class="absolute top-1/2 left-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-400/10 blur-[100px]"
+		class="blob-morph-3 absolute top-1/2 left-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-400/10 blur-[100px]"
 	></div>
 </div>
 
@@ -208,17 +323,25 @@
 	{@render star(
 		'top-16 -left-40 w-90 rotate-20 blur-[0px] opacity-50 dark:opacity-70 hidden lg:block'
 	)}
-	<ScrollReveal delay="300ms">
-		<Accordion.Root type="single" bind:value={openValue} class="flex flex-col gap-4">
-			{#each faqs as faq (faq.id)}
-				{@const isOpen = openValue === faq.id}
+	<Accordion.Root type="single" bind:value={openValue} class="flex flex-col gap-4">
+		{#each faqs as faq, i (faq.id)}
+			{@const isOpen = openValue === faq.id}
+			<ScrollReveal delay="{300 + i * 80}ms">
 				<Accordion.Item value={faq.id} class="border-b-0">
 					<GlassCard
-						class="group relative overflow-hidden rounded-2xl  border-2 transition-all duration-300
+						class="group relative overflow-hidden rounded-2xl border-2 transition-all duration-300
 						{isOpen
 							? 'border-purple-500/50 bg-muted/40 !shadow-[0_0_20px_rgba(127,82,187,0.15)]'
 							: 'border-border/50 bg-background/40 hover:border-purple-500/30 hover:!bg-muted/20 hover:!shadow-lg hover:!shadow-purple-500/5'} 
 						"
+						style="
+							transform: {hoveredCard === faq.id
+							? `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`
+							: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)'};
+							transition: transform 0.2s ease-out;
+						"
+						onmousemove={(e: MouseEvent) => handleCardHover(e, faq.id)}
+						onmouseleave={(e: MouseEvent) => handleCardHover(e, faq.id, true)}
 					>
 						<div
 							class="absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -230,7 +353,17 @@
 							<Accordion.Trigger
 								class="flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left text-lg font-medium text-foreground transition-colors hover:no-underline md:text-xl [&>svg]:hidden"
 							>
-								<span class="flex-1">{faq.question}</span>
+								<div class="flex flex-1 items-center gap-3 md:gap-4">
+									<span
+										class="font-mono text-sm font-bold text-purple-500/60 transition-all duration-300 group-hover:text-purple-500 md:text-base"
+										style="
+											animation: slide-in 0.4s ease-out {300 + i * 80}ms both;
+										"
+									>
+										{String(i + 1).padStart(2, '0')}
+									</span>
+									<span class="flex-1">{faq.question}</span>
+								</div>
 
 								<span
 									class="flex size-8 shrink-0 items-center justify-center rounded-full bg-background/50 text-muted-foreground transition-colors group-hover:bg-purple-500/10 group-hover:text-purple-500"
@@ -246,16 +379,16 @@
 							<Accordion.Content
 								class="overflow-hidden px-5 text-sm text-muted-foreground md:text-base"
 							>
-								<div class="pb-4">
+								<div class="pb-4 pl-0 md:pl-11">
 									{faq.answer}
 								</div>
 							</Accordion.Content>
 						</div>
 					</GlassCard>
 				</Accordion.Item>
-			{/each}
-		</Accordion.Root>
-	</ScrollReveal>
+			</ScrollReveal>
+		{/each}
+	</Accordion.Root>
 </section>
 
 <section class="relative mx-auto mt-16 max-w-3xl px-4 pb-16 lg:mt-20 lg:px-0">

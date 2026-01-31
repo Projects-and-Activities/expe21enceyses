@@ -340,3 +340,125 @@
 		opacity: 0;
 	}
 }
+
+/* FAQ Page Animations */
+@keyframes slide-in {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Gradient blob morphing animation */
+@keyframes blob-morph {
+	0%, 100% {
+		transform: translate(0, 0) scale(1);
+		border-radius: 50%;
+	}
+	25% {
+		transform: translate(10%, -10%) scale(1.15);
+		border-radius: 40% 60% 70% 30%;
+	}
+	50% {
+		transform: translate(-10%, 10%) scale(0.85);
+		border-radius: 60% 40% 30% 70%;
+	}
+	75% {
+		transform: translate(8%, 12%) scale(1.1);
+		border-radius: 30% 70% 60% 40%;
+	}
+}
+
+/* Blob morph classes with different timings */
+.blob-morph-1 {
+	animation: blob-morph 10s ease-in-out infinite;
+}
+
+.blob-morph-2 {
+	animation: blob-morph 12s ease-in-out infinite;
+	animation-delay: -4s;
+}
+
+.blob-morph-3 {
+	animation: blob-morph 8s ease-in-out infinite;
+	animation-delay: -2s;
+}
+
+@keyframes float-particle {
+	0%,
+	100% {
+		transform: translate(0, 0);
+	}
+	25% {
+		transform: translate(20px, -30px);
+	}
+	50% {
+		transform: translate(-10px, -60px);
+	}
+	75% {
+		transform: translate(-20px, -30px);
+	}
+}
+
+@keyframes shooting-star-move {
+	0% {
+		transform: translate(0, 0) rotate(45deg);
+		opacity: 0;
+	}
+	10% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 0.8;
+	}
+	100% {
+		transform: translate(700px, 700px) rotate(45deg);
+		opacity: 0;
+	}
+}
+
+/* Shooting star styles */
+.shooting-star {
+	width: 100px;
+	height: 2px;
+	background: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(200, 180, 255, 0.3) 10%,
+		rgba(255, 255, 255, 0.8) 70%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	border-radius: 2px;
+	transform: rotate(45deg);
+	transform-origin: right center;
+	box-shadow:
+		0 0 4px rgba(255, 255, 255, 0.5),
+		0 0 8px rgba(200, 150, 255, 0.3);
+	filter: blur(1.5px);
+	animation: shooting-star-move var(--duration, 2s) linear forwards;
+}
+
+.shooting-star::after {
+	content: '';
+	position: absolute;
+	right: -3px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 5px;
+	height: 5px;
+	background: white;
+	border-radius: 50%;
+	box-shadow:
+		0 0 6px 2px rgba(255, 255, 255, 1),
+		0 0 12px 4px rgba(200, 150, 255, 0.8);
+}
+
+/* Floating particle animation class */
+.float-particle {
+	animation: float-particle var(--duration, 10s) ease-in-out infinite;
+	animation-delay: var(--delay, 0s);
+}
