@@ -7,51 +7,18 @@
 	import Search from '@lucide/svelte/icons/search';
 	import SquarePen from '@lucide/svelte/icons/square-pen';
 	import Users from '@lucide/svelte/icons/users';
-	import { LiquidGlass } from 'liquid-glass-svelte';
-	import { mode } from 'mode-watcher';
 	import { type Component } from 'svelte';
 
 	import { viewport } from '$lib/actions/viewport';
 	import HackfestRegisterScene from '$lib/components/3d-ascii/sections/HackfestRegisterScene.svelte';
 	import HackfestScene from '$lib/components/3d-ascii/sections/HackfestScene.svelte';
+	import GlassCard from '$lib/components/GlassCard.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 	import Star from '$lib/components/Star.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 
 	let selectedHackfest = $state<'junior' | 'senior'>('junior');
 	let isSceneVisible = $state(false);
-
-	let isDark = $derived(mode.current === 'dark');
-
-	const BORDER_GRADIENT = $derived(
-		isDark
-			? 'linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 100%)'
-			: 'linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%)'
-	);
-
-	const GLASS_OPTIONS = $derived(
-		isDark
-			? ({
-					mainBlur: '0.4rem',
-					mainBackgroundColor: 'rgba(0, 0, 0, 0.1)',
-					edgeBlur: '0.5rem',
-					edgeBackgroundColor: 'rgba(100, 100, 100, 0.5)',
-					edgeWidth: '0.01rem',
-					sheenBlur: '5rem',
-					sheenBackgroundColor: 'rgba(100, 100, 100, 0.05)',
-					sheenWidth: '0.01rem'
-				} as const)
-			: ({
-					mainBlur: '0.1rem',
-					mainBackgroundColor: 'rgba(255, 255, 255, 0.4)',
-					edgeBlur: '0.1rem',
-					edgeBackgroundColor: 'rgba(255, 255, 255, 0.8)',
-					edgeWidth: '0.5rem',
-					sheenBlur: '5rem',
-					sheenBackgroundColor: 'rgba(255, 255, 255, 0.5)',
-					sheenWidth: '1.5rem'
-				} as const)
-	);
 
 	const content = {
 		junior: {
@@ -60,21 +27,32 @@
 		},
 		senior: {
 			highlight: 'Senior HackFest',
-			text: 'Senior HackFest challenges college students to engineer full software solutions—web or mobile—that leverage AI and open‑source practices to respond to the needs of Philippine communities. Participants will experience the full software development lifecycle, from ideation and UI/UX design to implementation, deployment, and pitching projects that contribute to more sustainable, inclusive, and resilient local communities.'
+			text: 'challenges college students to engineer full software solutions—web or mobile—that leverage AI and open‑source practices to respond to the needs of Philippine communities. Participants will experience the full software development lifecycle, from ideation and UI/UX design to implementation, deployment, and pitching projects that contribute to more sustainable, inclusive, and resilient local communities.'
 		}
 	};
 
-	const keyDetails = [
+	type HackfestDetail = {
+		icon: Component;
+		title: string;
+		description: string | { junior: string; senior: string };
+	};
+
+	const keyDetails: HackfestDetail[] = [
 		{
 			icon: Users,
 			title: 'Who can join',
-			description:
-				'Grade 7–12 students, teams of 3–4 from the same school and 1 team coach (maximum of 3 per school)'
+			description: {
+				junior: 'Grade 7–12 students, teams of 3–4 from the same school and 1 team coach (maximum of 3 per school)',
+				senior: 'College students, teams of 3–4 members'
+			}
 		},
 		{
 			icon: Monitor,
 			title: 'Platform',
-			description: 'FlutterFlow'
+			description: {
+				junior: 'FlutterFlow',
+				senior: 'Any technology stack'
+			}
 		},
 		{
 			icon: Search,
@@ -93,8 +71,10 @@
 		{
 			Icon: SquarePen,
 			title: 'Register',
-			description:
-				'Go to [link] and under the Hackfest registration page, choose “Junior Hackfest” to begin your registration.'
+			description: {
+				junior: 'Go to [link] and under the Hackfest registration page, choose “Junior Hackfest” to begin your registration.',
+				senior: 'Go to [link] and under the Hackfest registration page, choose “Senior Hackfest” to begin your registration.'
+			}
 		},
 		{
 			Icon: CloudUpload,
@@ -165,7 +145,8 @@
 
 	<ScrollReveal delay="650ms">
 		<button
-			onclick={() => document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })}
+			onclick={() =>
+				document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })}
 			class="mt-20 animate-bounce cursor-pointer transition-transform hover:translate-y-1"
 			aria-label="Scroll to next section"
 		>
@@ -185,24 +166,18 @@
 	<Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
 
 	<ScrollReveal delay="100ms">
-		<div
-			class="mx-auto rounded-[1.5625rem] p-px shadow-xl"
-			style={`background: ${BORDER_GRADIENT}`}
+		<GlassCard
+			class="hackfest-card border-2 border-border/50 p-10 transition-all duration-300 ease-in-out hover:border-purple-500/50"
 		>
-			<LiquidGlass
-				class="relative block h-full w-full !overflow-visible rounded-[1.5rem] p-8"
-				options={GLASS_OPTIONS}
-			>
-				<div class="mb-4 text-xl font-semibold text-primary">Overview</div>
-				<p class="leading-relaxed text-foreground/90">
-					<span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span> is a bracketed hackathon
-					for high school and college students to ideate, design, and build AI‑driven software that addresses
-					real issues faced by Philippine communities and helps make them more sustainable, inclusive,
-					and resilient—focusing on livable cities and communities, from climate resilience and public
-					health to quality education, inclusive livelihoods, and good governance.
-				</p>
-			</LiquidGlass>
-		</div>
+			<div class="mb-4 text-center text-2xl font-semibold text-primary">Overview</div>
+			<p class="text-center leading-relaxed text-foreground/90">
+				<span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span> is a bracketed hackathon
+				for high school and college students to ideate, design, and build AI‑driven software that
+				addresses real issues faced by Philippine communities and helps make them more sustainable,
+				inclusive, and resilient—focusing on livable cities and communities, from climate resilience
+				and public health to quality education, inclusive livelihoods, and good governance.
+			</p>
+		</GlassCard>
 	</ScrollReveal>
 </section>
 
@@ -220,7 +195,9 @@
 
 			<div class="h-72 place-content-center md:h-30">
 				<span class="font-bold">
-					{selectedHackfest === 'junior' ? content.junior.highlight : content.senior.highlight}
+					{selectedHackfest === 'junior'
+						? content.junior.highlight
+						: content.senior.highlight}
 				</span>
 				{selectedHackfest === 'junior' ? content.junior.text : content.senior.text}
 			</div>
@@ -245,8 +222,12 @@
 		<div class="mt-6 grid grid-cols-1 grid-rows-4 gap-5 md:grid-cols-2 md:grid-rows-2">
 			{#each keyDetails as keyDetail, i (keyDetail.title)}
 				{@const { icon, title, description } = keyDetail}
+
+				{@const displayDescription =
+					typeof description === 'string' ? description : description[selectedHackfest]}
+
 				<ScrollReveal delay={`${200 + i * 50}ms`}>
-					{@render details(icon, title, description)}
+					{@render details(icon, title, displayDescription)}
 				</ScrollReveal>
 			{/each}
 		</div>
@@ -260,10 +241,10 @@
 	<ScrollReveal delay="200ms" class="flex flex-col items-center gap-5">
 		<div class="text-3xl font-semibold">Guidelines</div>
 		<p class="text-center leading-relaxed text-foreground/90">
-			Before joining, please review our guidelines to ensure a smooth and successful experience at
-			EXPE21ENCE YSES: The HackFest. These guidelines cover everything you need to know about
-			registration, participation requirements, and the overall process for our event. Click the
-			button below to open the full document.
+			Before joining, please review our guidelines to ensure a smooth and successful
+			experience at EXPE21ENCE YSES: The HackFest. These guidelines cover everything you need
+			to know about registration, participation requirements, and the overall process for our
+			event. Click the button below to open the full document.
 		</p>
 
 		<div
@@ -314,6 +295,12 @@
 			<div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-8">
 				{#each registrationSteps as step, i (step.title)}
 					{@const { Icon, title, description } = step}
+
+					{@const displayDescription =
+						typeof description === 'string'
+							? description
+							: description[selectedHackfest]}
+
 					<ScrollReveal delay={`${300 + i * 50}ms`} class="place-self-center">
 						<div class="pt-1 text-primary">
 							<Icon class="size-8" />
@@ -323,7 +310,7 @@
 						<div class="flex flex-col gap-1">
 							<span class="text-lg font-bold">{title}</span>
 							<p class="text-justify leading-relaxed text-muted-foreground">
-								{description}
+								{displayDescription}
 							</p>
 						</div>
 					</ScrollReveal>
@@ -357,7 +344,8 @@
 		onclick={() => (selectedHackfest = id)}
 	>
 		<span
-			class="block transition-all duration-300 not-lg:text-3xl lg:inline {selectedHackfest === id
+			class="block transition-all duration-300 not-lg:text-3xl lg:inline {selectedHackfest ===
+			id
 				? 'dark:drop-shadow-[0_0_15px_rgba(127,82,187,0.9)]'
 				: ''}"
 		>
@@ -379,7 +367,8 @@
 
 			<path
 				d="M0,2 L100,2"
-				class="origin-center transition-transform duration-300 ease-out {selectedHackfest === id
+				class="origin-center transition-transform duration-300 ease-out {selectedHackfest ===
+				id
 					? 'scale-x-100'
 					: 'scale-x-0'}
 				translate-y-[4px] opacity-60 blur-[4px]
@@ -391,7 +380,8 @@
 
 			<path
 				d="M0,2 L100,2"
-				class="origin-center transition-transform duration-300 ease-out {selectedHackfest === id
+				class="origin-center transition-transform duration-300 ease-out {selectedHackfest ===
+				id
 					? 'scale-x-100'
 					: 'scale-x-0'}"
 				stroke="#7F52BB"
@@ -401,22 +391,29 @@
 		</svg>
 	</button>
 {/snippet}
+
 {#snippet details(Icon: Component, title: string, description: string)}
-	<div
-		class="mx-auto h-full rounded-[1.5625rem] p-px shadow-xl"
-		style={`background: ${BORDER_GRADIENT}`}
+	<GlassCard
+		class="hackfest-card flex h-full flex-col items-center gap-4 border-2 border-border/50 p-14 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-purple-500/50"
 	>
-		<LiquidGlass
-			class="relative block h-full w-full !overflow-visible rounded-[1.5rem] p-10"
-			options={GLASS_OPTIONS}
-		>
-			<div class="place-items-center">
-				<Icon />
-				<article class="mt-5">
-					<span class="font-semibold">{title}</span>
-					<p>{description}</p>
-				</article>
-			</div>
-		</LiquidGlass>
-	</div>
+		<div class="">
+			<Icon class="size-7" />
+		</div>
+
+		<article class="space-y-2 text-center">
+			<h3 class="text-xl font-semibold tracking-tight">{title}</h3>
+			<p class="leading-relaxed text-muted-foreground">
+				{description}
+			</p>
+		</article>
+	</GlassCard>
 {/snippet}
+
+<style>
+	:global(.hackfest-card:hover) {
+		box-shadow:
+			0px 2px 10px rgba(0, 0, 0, 0.25) inset,
+			0 30px 40px -10px rgba(127, 82, 187, 0.15),
+			0 12px 15px -8px rgba(0, 0, 0, 0.2) !important;
+	}
+</style>

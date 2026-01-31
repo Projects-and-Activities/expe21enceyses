@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ChevronsDown } from '@lucide/svelte';
 	import { gsap } from 'gsap';
+	import { onMount } from 'svelte';
 	import { cubicOut } from 'svelte/easing';
 	import { draw } from 'svelte/transition';
 
@@ -13,6 +14,7 @@
 	import pfjfImg from '$lib/assets/pfjf.png?enhanced';
 	import LogoScene from '$lib/components/3d-ascii/sections/LogoScene.svelte';
 	import AnnotatedBorderedContainer from '$lib/components/AnnotatedBorderedContainer.svelte';
+	import GlassCard from '$lib/components/GlassCard.svelte';
 	import ProgramSection from '$lib/components/ProgramSection.svelte';
 	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
 	import Star from '$lib/components/Star.svelte';
@@ -24,7 +26,7 @@
 	let leftHand: HTMLImageElement;
 	let rightHand: HTMLImageElement;
 
-	$effect(() => {
+	onMount(() => {
 		if (!curtainContainer) return;
 
 		const tl = gsap.timeline();
@@ -72,25 +74,23 @@
 		);
 	});
 
-	const STACK_OFFSET = 40;
-
 	const programSections = [
 		{
 			title: 'The Hackfest',
 			subtitle: 'Engineer solutions that move communities forward.',
-			bg: 'bg-neutral-200 dark:bg-neutral-800/40 backdrop-blur-sm',
+			bg: 'bg-primary/5 dark:bg-primary/15 backdrop-blur-sm',
 			img: CLOUDINARY_IMAGES.hackfest ? CLOUDINARY_IMAGES.hackfest : hackfestImg
 		},
 		{
 			title: 'Practicum/Job Fair',
 			subtitle: 'Land the opportunities that launch your career.',
-			bg: 'bg-neutral-100 dark:bg-neutral-900/80 backdrop-blur-sm',
+			bg: 'bg-neutral-50/80 dark:bg-primary/10 backdrop-blur-md',
 			img: CLOUDINARY_IMAGES.pfjf ? CLOUDINARY_IMAGES.pfjf : pfjfImg
 		},
 		{
 			title: 'Company Talks',
 			subtitle: 'Unlock what it takes to thrive in tech.',
-			bg: 'bg-neutral-50 dark:bg-neutral-950/90 dark:brightness-80 backdrop-blur-sm',
+			bg: 'bg-neutral-50/90 dark:bg-primary/5  backdrop-blur-lg',
 			img: CLOUDINARY_IMAGES.ctalks ? CLOUDINARY_IMAGES.ctalks : ctalksImg
 		},
 		{
@@ -134,10 +134,11 @@
 				color="red"
 				size="xs"
 			>
-				<div class="h-70 w-[calc(100dvw-0.25rem)] max-w-dvw sm:aspect-610/343 sm:w-132">
+				<div class="aspect-610/343 h-70 w-auto max-w-[calc(100dvw-0.25rem)] sm:w-132">
 					<enhanced:img
 						bind:this={leftHand}
 						src={CLOUDINARY_IMAGES.handTransparentLeft ? CLOUDINARY_IMAGES.handTransparentLeft : leftHandImg}
+						fetchpriority="high"
 						alt="Left Hand"
 						class="
 					pointer-events-none
@@ -163,13 +164,13 @@
 		>
 			<div class="font-light md:hidden md:text-xl">XX/2026 - XX/2026</div>
 			<h1
-				class="grid place-content-center text-center font-serif tracking-tight *:leading-12 xs:*:leading-20 lg:p-4"
+				class="z-50 grid place-content-center text-center font-serif tracking-tight opacity-80 *:leading-12 xs:*:leading-20 lg:p-4"
 			>
-				<ScrollReveal>
-					<div>EXPE21ENCE</div>
+				<ScrollReveal delay="1000ms">
+					<div>Expe21ence</div>
 				</ScrollReveal>
 
-				<ScrollReveal delay="200ms" class="mx-auto">
+				<ScrollReveal delay="1200ms" class="mx-auto">
 					<div class="mx-auto flex place-items-center gap-1">
 						YSES
 						<AnnotatedBorderedContainer
@@ -178,17 +179,21 @@
 							color="primary"
 							size="xs"
 						>
-							<enhanced:img src={CLOUDINARY_IMAGES.logo ? CLOUDINARY_IMAGES.logo : logoImg} alt="" class="aspect-square size-16 p-1 lg:size-24" />
+							<enhanced:img
+								src={CLOUDINARY_IMAGES.logo ? CLOUDINARY_IMAGES.logo : logoImg}
+								alt=""
+								class="aspect-square size-16 p-1 lg:size-24"
+							/>
 						</AnnotatedBorderedContainer>
 					</div>
 				</ScrollReveal>
 			</h1>
 
-			<ScrollReveal delay="600ms" class="absolute -top-6 right-0 hidden  text-sm lg:block"
+			<ScrollReveal delay="1600ms" class="absolute -top-6 right-0 hidden  text-sm lg:block"
 				>est. 2005</ScrollReveal
 			>
 			<ScrollReveal
-				delay="800ms"
+				delay="1800ms"
 				class="absolute top-18 -right-52 z-10 hidden max-w-50 translate-y-8 text-left leading-tight text-balance not-md:hidden! supports-[not(anchor-name:--a)]:block"
 			>
 				<p>Bridging Future Software Engineers of the 21st Century</p>
@@ -196,8 +201,8 @@
 		</AnnotatedBorderedContainer>
 
 		<ScrollReveal
-			delay="800ms"
-			class="anchored-bottom-left/bottom-hand -top-anchor-center-10 left-anchor-right-2 z-50 max-w-50 leading-tight text-balance supports-[not(anchor-name:--a)]:hidden md:anchored-bottom-right/bridge-anchor md:top-anchor-center-0"
+			delay="1800ms"
+			class="anchored-bottom-left/bottom-hand -top-anchor-center-10 left-anchor-right-2 z-50 hidden max-w-50 leading-tight text-balance supports-[not(anchor-name:--a)]:hidden! md:anchored-bottom-right/bridge-anchor md:top-anchor-center-0 md:block"
 		>
 			<p>Bridging Future Software Engineers of the 21st Century</p>
 		</ScrollReveal>
@@ -209,10 +214,13 @@
 				color="green"
 				size="xs"
 			>
-				<div class="h-100 w-[calc(100dvw-0.25rem)] max-w-full sm:aspect-555/453 sm:w-132">
+				<div
+					class="aspect-610/343 h-70 w-auto max-w-[calc(100dvw-0.25rem)] sm:w-132 lg:h-100"
+				>
 					<enhanced:img
 						bind:this={rightHand}
 						src={CLOUDINARY_IMAGES.handTransparentRight ? CLOUDINARY_IMAGES.handTransparentRight : rightHandImg}
+						fetchpriority="high"
 						alt="Right Hand"
 						class="
 					pointer-events-none
@@ -238,21 +246,24 @@
 			</ScrollReveal>
 			<ScrollReveal delay="200ms">
 				<p>
-					Learn directly from industry professionals and alumni about careers, technologies, and
-					building impact in the 21st century.
+					Learn directly from industry professionals and alumni about careers,
+					technologies, and building impact in the 21st century.
 				</p>
 			</ScrollReveal>
 
 			<div class="flex gap-4">
 				<ScrollReveal delay="400ms" class="border-r pr-4">
 					<p>
-						Design and develop AI‑driven solutions for Philippine communities through a bracketed
-						hackathon.
+						Design and develop AI‑driven solutions for Philippine communities through a
+						bracketed hackathon.
 					</p>
 				</ScrollReveal>
 
 				<ScrollReveal delay="500ms">
-					<p>Explore internships, OJT placements, and entry‑level roles with partner companies.</p>
+					<p>
+						Explore internships, OJT placements, and entry‑level roles with partner
+						companies.
+					</p>
 				</ScrollReveal>
 			</div>
 		</div>
@@ -271,54 +282,58 @@
 		</ScrollReveal>
 	</section>
 
-	<section id="for-21" class="relative">
+	<div class="relative overflow-x-clip">
 		<Star class="-top-14 left-12 z-auto! w-30  rotate-50" />
 		<Star class="top-0 -left-24 z-auto! w-55  rotate-50" />
 		<Star class="top-42 -left-26 z-auto! w-30  rotate-50" />
 
 		<Star class="-right-18 -bottom-8 z-auto! w-35 -rotate-15" />
 		<Star class="right-8 -bottom-12 z-auto! w-15 rotate-50" />
-		<div
-			class="relative z-50 grid place-content-center gap-20 bg-background/40 px-16 py-12 backdrop-blur-xs lg:grid-cols-2 lg:justify-between"
-			style="box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25) inset; overflow: hidden; border-radius: 20px; outline: 0.5px #494949 solid; outline-offset: -1px;"
-		>
-			<div
-				class="my-auto flex h-fit flex-col gap-6 text-wrap not-lg:place-items-center xl:px-16 [&_p]:text-justify [&_p]:font-light md:[&_p]:text-lg"
+		<section id="for-21" class="relative container mx-auto px-4 not-md:overflow-x-clip">
+			<GlassCard
+				class="relative z-50 grid place-content-center gap-20 px-16 py-12 lg:grid-cols-2 lg:justify-between xl:py-24"
 			>
-				<ScrollReveal delay="200ms" class="mb-4 text-6xl">
-					<h2>
-						For <span class="font-bold text-primary">21 Years,</span>
-					</h2>
-				</ScrollReveal>
+				<div
+					class="z-0 my-auto flex h-fit flex-col gap-6 text-wrap not-lg:place-items-center xl:px-16 [&_p]:text-justify [&_p]:font-light md:[&_p]:text-lg"
+				>
+					<ScrollReveal delay="200ms" class="mb-4 text-6xl">
+						<h2 class="text-nowrap not-xs:text-center">
+							For <span class="font-bold text-primary">21 Years,</span>
+						</h2>
+					</ScrollReveal>
 
-				<ScrollReveal delay="300ms">
-					<p>
-						the Young Software Engineers' Society (YSES) has been at the forefront of promoting
-						software engineering and <span class="font-bold text-primary">
-							bridging the gap between the academe and the industry.
-						</span>
-					</p>
-				</ScrollReveal>
+					<ScrollReveal delay="300ms">
+						<p>
+							the Young Software Engineers' Society (YSES) has been at the forefront
+							of promoting software engineering and <span
+								class="font-bold text-primary"
+							>
+								bridging the gap between the academe and the industry.
+							</span>
+						</p>
+					</ScrollReveal>
 
-				<ScrollReveal delay="500ms">
-					<p>
-						<span class="font-bold text-primary">
-							EXPE21ENCE YSES: Bridging Future Software Engineers of the 21st Century
-						</span>
-						continues this mission by equipping students with the skills, network, and experience they
-						need to become holistic software engineers in a rapidly evolving digital world.
-					</p>
-				</ScrollReveal>
-			</div>
+					<ScrollReveal delay="500ms">
+						<p>
+							<span class="font-bold text-primary">
+								EXPE21ENCE YSES: Bridging Future Software Engineers of the 21st
+								Century
+							</span>
+							continues this mission by equipping students with the skills, network, and
+							experience they need to become holistic software engineers in a rapidly evolving
+							digital world.
+						</p>
+					</ScrollReveal>
+				</div>
 
-			<div class=" size-full">
-				<ScrollReveal delay="500ms" class="h-full">
-					<LogoScene />
-				</ScrollReveal>
-			</div>
-		</div>
-	</section>
-
+				<div class=" size-full">
+					<ScrollReveal delay="500ms" class="h-full min-h-64">
+						<LogoScene />
+					</ScrollReveal>
+				</div>
+			</GlassCard>
+		</section>
+	</div>
 	<section class="flex flex-col *:text-5xl xs:*:text-6xl md:pb-24">
 		<ScrollReveal delay="200ms">
 			<div>
@@ -360,14 +375,17 @@
 			<ProgramSection
 				title={section.title}
 				subtitle={section.subtitle}
-				class=" w-full rounded-t-4xl pb-20  xs:pb-12 {section.bg} mb-100 last:mb-0 last:*:hidden! nth-last-2:mb-0! xs:top-20! xs:h-[calc(100dvh-5rem)]!"
+				class=" w-full rounded-t-4xl pb-20   xs:pb-12 {section.bg}  top-20 mb-100 h-[calc(100dvh-5rem)] last:mb-0 last:*:hidden! nth-last-2:mb-0! xs:top-20! xs:h-[min(1104px,calc(100dvh-5rem))]!"
 				style="
 				z-index: {i};
-                top: {i * STACK_OFFSET}px; 
-                height: min(calc(100dvh - {i * STACK_OFFSET}px), 1104px);
             "
 			>
-				<enhanced:img src={section.img} class="size-100" width="600" height="600" />
+				<enhanced:img
+					src={section.img}
+					class="size-100 brightness-200"
+					width="600"
+					height="600"
+				/>
 			</ProgramSection>
 		{/each}
 	</div>
