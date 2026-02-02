@@ -5,7 +5,7 @@
 ## Context
 
 - What does this pull request do?
-- 
+-
 
 ## Updates
 
@@ -13,7 +13,7 @@
 - [ ] Backend Changes
 
 - List the updates you made to the codebase.
-- 
+-
 
 ## Checklist (PLEASE CHECK OFF APPLICABLE ITEMS)
 

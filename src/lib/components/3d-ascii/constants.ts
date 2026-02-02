@@ -3,6 +3,6 @@ export const HEAD_COLOR = '#E9D5FF';
 
 export const ASCII_CHARS = ' .:+*=%@#▓█';
 export const ASCII_OPTIONS = {
-	resolution: 0.28,
-	invert: false
+  resolution: 0.28,
+  invert: false
 };
