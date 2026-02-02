@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { LiquidGlass } from 'liquid-glass-svelte';
 
+	import ModeToggle from './ModeToggle.svelte';
+
 	import { page } from '$app/stores';
 	import logo from '$lib/assets/logo.png';
 	import logoDark from '$lib/assets/logoDark.png';
@@ -26,9 +28,9 @@
 
 <!-- Desktop Navbar -->
 <nav
-	class="fixed top-4 left-1/2 z-100 box-border hidden w-full max-w-[75rem] -translate-x-1/2 px-4 md:block md:px-5 lg:px-8"
+	class="fixed top-4 left-1/2 z-100 box-border hidden w-full max-w-300 -translate-x-1/2 place-items-center gap-2 px-4 md:flex md:px-5 lg:px-8"
 >
-	<div class="relative w-full rounded-2xl outline" style="background: {borderGradient};">
+	<div class="relative w-full flex-1 rounded-2xl outline" style="background: {borderGradient};">
 		{#key isDark}
 			<LiquidGlass
 				class="relative block h-14 w-full !overflow-visible rounded-sm"
@@ -124,4 +126,6 @@
 			</LiquidGlass>
 		{/key}
 	</div>
+
+	<ModeToggle {isDark} class="p-6 shadow-xl " />
 </nav>

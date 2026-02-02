@@ -290,7 +290,7 @@
 		<Star class="right-8 -bottom-12 z-auto! w-15 rotate-50" />
 		<section id="for-21" class="relative container mx-auto px-4 not-md:overflow-x-clip">
 			<GlassCard
-				class="relative z-50 grid place-content-center gap-20 px-16 py-12 lg:grid-cols-2 lg:justify-between xl:py-24"
+				class="relative z-20 grid place-content-center gap-20 px-16 py-12 lg:grid-cols-2 lg:justify-between xl:py-24"
 			>
 				<div
 					class="z-0 my-auto flex h-fit flex-col gap-6 text-wrap not-lg:place-items-center xl:px-16 [&_p]:text-justify [&_p]:font-light md:[&_p]:text-lg"

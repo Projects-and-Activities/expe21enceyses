@@ -2,6 +2,8 @@
 	import { Menu, X as XIcon } from '@lucide/svelte';
 	import { LiquidGlass } from 'liquid-glass-svelte';
 
+	import ModeToggle from './ModeToggle.svelte';
+
 	import { page } from '$app/stores';
 	import invertedLogo from '$lib/assets/colored-logo-inverted.png?enhanced';
 	import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
@@ -77,6 +79,8 @@
 							{/if}
 						</a>
 
+						<ModeToggle {isDark} variant="ghost" class="shadow-none ml-auto"  />
+
 						<Sheet.Portal>
 							<Sheet.Overlay class="!bg-black/20 backdrop-blur-sm" />
 							<Sheet.Content
@@ -91,7 +95,10 @@
 										<div class="flex h-full flex-col p-4 sm:p-6">
 											<!-- Header with logo and close button -->
 											<div class="flex items-center justify-between">
-												<a href="/" onclick={() => (mobileMenuOpen = false)}>
+												<a
+													href="/"
+													onclick={() => (mobileMenuOpen = false)}
+												>
 													{#if isDark}
 														<enhanced:img
 															src={logoDark}
@@ -141,7 +148,8 @@
 														{#each eventItems as event}
 															<a
 																href={event.href}
-																onclick={() => (mobileMenuOpen = false)}
+																onclick={() =>
+																	(mobileMenuOpen = false)}
 																class="font-['Lexend'] font-light transition-colors hover:text-primary
 																       {isActive(event.href, $page.url.pathname) ? 'text-primary' : 'text-foreground'}"
 															>
@@ -194,7 +202,9 @@
 														alt="Logo"
 													/>
 													<div>
-														<div class="font-['Lexend'] text-sm font-medium">
+														<div
+															class="font-['Lexend'] text-sm font-medium"
+														>
 															Young Software Engineers' Society
 														</div>
 														<div class="text-xs text-muted-foreground">

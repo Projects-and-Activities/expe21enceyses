@@ -61,4 +61,4 @@
 
 <DesktopNavbar {navItems} {eventItems} {isDark} {glassOptions} {borderGradient} {isActive} />
 
-<MobileNavbar {navItems} {eventItems} {isDark} {glassOptions} {borderGradient} {isActive} />
+<MobileNavbar {eventItems} {isDark} {glassOptions} {borderGradient} {isActive} />
