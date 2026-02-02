@@ -1,47 +1,28 @@
 <script lang="ts">
+  import UserInfo from '$lib/components/form/company-talks/UserInfo.svelte';
   import { FormProvider, RegistrationController, type StepItem } from '$lib/components/form/core';
-  import ContactDetails from '$lib/components/form/hackfest/ContactDetails.svelte';
   import HackfestSkeleton from '$lib/components/form/hackfest/HackfestSkeleton.svelte';
-  import Requirements from '$lib/components/form/hackfest/Requirements.svelte';
-  import Members from '$lib/components/form/hackfest/senior/Members.svelte';
-  import TeamInfo from '$lib/components/form/hackfest/senior/TeamInfo.svelte';
   import SuccessState from '$lib/components/form/SuccessState.svelte';
   import Star from '$lib/components/Star.svelte';
   import {
-    seniorHackfestRegistrationSchema,
-    type SeniorHackfestRegistration
-  } from '$lib/types/hackfest';
+    companyTalksRegistrationSchema,
+    type CompanyTalksRegistration
+  } from '$lib/types/company-talks.js';
 
   let { data } = $props();
 
-  const stepItems: StepItem<SeniorHackfestRegistration>[] = [
+  const stepItems: StepItem<CompanyTalksRegistration>[] = [
     {
-      label: 'Team Info',
-      component: TeamInfo,
-      keys: ['teamName']
-    },
-    {
-      label: 'Contact',
-      component: ContactDetails,
-      keys: ['contactNumber', 'email']
-    },
-    {
-      label: 'Members',
-      component: Members,
-      keys: ['members']
-    },
-    {
-      label: 'Requirements',
-      component: Requirements,
-      keys: ['requirementsZip', 'proofOfPayment'],
-      props: { variant: 'senior' }
+      label: '',
+      component: UserInfo,
+      keys: ['firstName', 'lastName', 'email']
     }
   ];
 
   const controller = new RegistrationController({
     getForm: () => data.form,
-    schema: seniorHackfestRegistrationSchema,
-    storageKey: 'senior-hackfest',
+    schema: companyTalksRegistrationSchema,
+    storageKey: 'company-talks',
     stepItems
   });
 </script>
@@ -67,6 +48,6 @@
   {/snippet}
 
   {#snippet success()}
-    <SuccessState currentEventId="senior-hackfest" />
+    <SuccessState currentEventId="company-talks" />
   {/snippet}
 </FormProvider>
