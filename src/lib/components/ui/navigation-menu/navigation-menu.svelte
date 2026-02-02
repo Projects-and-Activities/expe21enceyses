@@ -1,34 +1,34 @@
 <script lang="ts">
-	import { NavigationMenu as NavigationMenuPrimitive } from 'bits-ui';
+  import { NavigationMenu as NavigationMenuPrimitive } from 'bits-ui';
 
-	import NavigationMenuViewport from './navigation-menu-viewport.svelte';
+  import NavigationMenuViewport from './navigation-menu-viewport.svelte';
 
-	import { cn } from '$lib/utils.js';
+  import { cn } from '$lib/utils.js';
 
-	let {
-		ref = $bindable(null),
-		class: className,
-		viewport = true,
-		children,
-		...restProps
-	}: NavigationMenuPrimitive.RootProps & {
-		viewport?: boolean;
-	} = $props();
+  let {
+    ref = $bindable(null),
+    class: className,
+    viewport = true,
+    children,
+    ...restProps
+  }: NavigationMenuPrimitive.RootProps & {
+    viewport?: boolean;
+  } = $props();
 </script>
 
 <NavigationMenuPrimitive.Root
-	bind:ref
-	data-slot="navigation-menu"
-	data-viewport={viewport}
-	class={cn(
-		'group/navigation-menu relative flex max-w-max flex-1 items-center justify-center',
-		className
-	)}
-	{...restProps}
+  bind:ref
+  data-slot="navigation-menu"
+  data-viewport={viewport}
+  class={cn(
+    'group/navigation-menu relative flex max-w-max flex-1 items-center justify-center',
+    className
+  )}
+  {...restProps}
 >
-	{@render children?.()}
+  {@render children?.()}
 
-	{#if viewport}
-		<NavigationMenuViewport />
-	{/if}
+  {#if viewport}
+    <NavigationMenuViewport />
+  {/if}
 </NavigationMenuPrimitive.Root>
