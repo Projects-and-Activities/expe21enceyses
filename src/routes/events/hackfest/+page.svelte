@@ -165,7 +165,8 @@
 
 	<ScrollReveal delay="650ms">
 		<button
-			onclick={() => document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })}
+			onclick={() =>
+				document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })}
 			class="mt-20 animate-bounce cursor-pointer transition-transform hover:translate-y-1"
 			aria-label="Scroll to next section"
 		>
@@ -195,11 +196,12 @@
 			>
 				<div class="mb-4 text-xl font-semibold text-primary">Overview</div>
 				<p class="leading-relaxed text-foreground/90">
-					<span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span> is a bracketed hackathon
-					for high school and college students to ideate, design, and build AI‑driven software that addresses
-					real issues faced by Philippine communities and helps make them more sustainable, inclusive,
-					and resilient—focusing on livable cities and communities, from climate resilience and public
-					health to quality education, inclusive livelihoods, and good governance.
+					<span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span> is a bracketed
+					hackathon for high school and college students to ideate, design, and build AI‑driven
+					software that addresses real issues faced by Philippine communities and helps make
+					them more sustainable, inclusive, and resilient—focusing on livable cities and communities,
+					from climate resilience and public health to quality education, inclusive livelihoods,
+					and good governance.
 				</p>
 			</LiquidGlass>
 		</div>
@@ -220,7 +222,9 @@
 
 			<div class="h-72 place-content-center md:h-30">
 				<span class="font-bold">
-					{selectedHackfest === 'junior' ? content.junior.highlight : content.senior.highlight}
+					{selectedHackfest === 'junior'
+						? content.junior.highlight
+						: content.senior.highlight}
 				</span>
 				{selectedHackfest === 'junior' ? content.junior.text : content.senior.text}
 			</div>
@@ -260,10 +264,10 @@
 	<ScrollReveal delay="200ms" class="flex flex-col items-center gap-5">
 		<div class="text-3xl font-semibold">Guidelines</div>
 		<p class="text-center leading-relaxed text-foreground/90">
-			Before joining, please review our guidelines to ensure a smooth and successful experience at
-			EXPE21ENCE YSES: The HackFest. These guidelines cover everything you need to know about
-			registration, participation requirements, and the overall process for our event. Click the
-			button below to open the full document.
+			Before joining, please review our guidelines to ensure a smooth and successful
+			experience at EXPE21ENCE YSES: The HackFest. These guidelines cover everything you need
+			to know about registration, participation requirements, and the overall process for our
+			event. Click the button below to open the full document.
 		</p>
 
 		<div
@@ -357,7 +361,8 @@
 		onclick={() => (selectedHackfest = id)}
 	>
 		<span
-			class="block transition-all duration-300 not-lg:text-3xl lg:inline {selectedHackfest === id
+			class="block transition-all duration-300 not-lg:text-3xl lg:inline {selectedHackfest ===
+			id
 				? 'dark:drop-shadow-[0_0_15px_rgba(127,82,187,0.9)]'
 				: ''}"
 		>
@@ -379,7 +384,8 @@
 
 			<path
 				d="M0,2 L100,2"
-				class="origin-center transition-transform duration-300 ease-out {selectedHackfest === id
+				class="origin-center transition-transform duration-300 ease-out {selectedHackfest ===
+				id
 					? 'scale-x-100'
 					: 'scale-x-0'}
 				translate-y-[4px] opacity-60 blur-[4px]
@@ -391,7 +397,8 @@
 
 			<path
 				d="M0,2 L100,2"
-				class="origin-center transition-transform duration-300 ease-out {selectedHackfest === id
+				class="origin-center transition-transform duration-300 ease-out {selectedHackfest ===
+				id
 					? 'scale-x-100'
 					: 'scale-x-0'}"
 				stroke="#7F52BB"

@@ -13,7 +13,15 @@
 	import Star from '$lib/components/Star.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import CompanyTalksRegisterScene from '$lib/components/3d-ascii/sections/CompanyTalksRegisterScene.svelte';
-	import CompanyTalksScene from '$lib/components/3d-ascii/sections/CtalksScene.svelte';
+	import dane1 from '$lib/assets/dane1.JPG';
+	import dane2 from '$lib/assets/dane2.JPG';
+	import dane3 from '$lib/assets/dane3.JPG';
+
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		isSceneVisible = true;
+	});
 
 	// reactive states
 	let isSceneVisible = false;
@@ -32,50 +40,67 @@
 	// reactive dark mode
 	let isDark = mode.current === 'dark';
 
-	// define GLASS_OPTIONS as a let first, then update reactively
-	let GLASS_OPTIONS: GlassOptions = {
-		mainBlur: '0.4rem' as CSSLength,
-		mainBackgroundColor: 'rgba(0,0,0,0.1)',
-		edgeBlur: '0.5rem' as CSSLength,
-		edgeBackgroundColor: 'rgba(100,100,100,0.5)',
-		edgeWidth: '0.01rem' as CSSLength
-	};
+	let BORDER_GRADIENT = $derived(
+		isDark
+			? 'linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 10%, rgba(255,255,255,0.05) 100%)'
+			: 'linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 100%)'
+	);
 
-	// reactive update whenever dark mode changes
-	$: GLASS_OPTIONS = {
-		mainBlur: '0.4rem' as CSSLength,
-		mainBackgroundColor: isDark ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.4)',
-		edgeBlur: '0.5rem' as CSSLength,
-		edgeBackgroundColor: isDark ? 'rgba(100,100,100,0.5)' : 'rgba(255,255,255,0.8)',
-		edgeWidth: '0.01rem' as CSSLength
-	};
-
-	// Gradient border for key sections
-	$: BORDER_GRADIENT = isDark
-		? 'linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.05) 100%)'
-		: 'linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%)';
+	/* ============================
+   GLASS OPTIONS (FOR-21 STYLE)
+============================ */
+	let GLASS_OPTIONS = $derived(
+		isDark
+			? ({
+					// for dark mode play around with this until we get the desired effect
+					mainBlur: '0.1rem',
+					mainBackgroundColor: 'rgba(250, 250, 250, 0.0)',
+					edgeBlur: '1rem',
+					edgeBackgroundColor: 'rgba(150, 150, 150, 0.0)',
+					edgeWidth: '0.15rem',
+					sheenBlur: '4rem',
+					sheenBackgroundColor: 'rgba(100, 100, 100, 0.05)',
+					sheenWidth: '1rem'
+				} as const)
+			: ({
+					// light mode
+					mainBlur: '0.5rem',
+					mainBackgroundColor: 'rgba(255, 255, 255, 0.2)',
+					edgeBlur: '0.5rem',
+					edgeBackgroundColor: 'rgba(100, 100, 100, 0.0)',
+					edgeWidth: '0.01rem',
+					sheenBlur: '4rem',
+					sheenBackgroundColor: 'rgba(100, 100, 100, 0.05)',
+					sheenWidth: '1rem'
+				} as const)
+	);
 
 	// Content
 	const keyDetails = [
 		{
 			icon: Users,
-			description: 'High school and college students interested in tech careers'
+			description:
+				'Bridges academic learning with real-world industry practice through insights shared by professionals.'
 		},
 		{
 			icon: Mic,
-			description: 'Live company-led talks and Q&A sessions'
+			description:
+				'Understand industry expectations, essential skills, and professional readiness for early careers.'
 		},
 		{
 			icon: Monitor,
-			description: 'Software engineering, AI, startups, and industry careers'
+			description:
+				'Gain firsthand knowledge of roles, responsibilities, and realities of working in the tech industry.'
 		},
 		{
 			icon: MapPin,
-			description: 'University of the Philippines Los Baños'
+			description:
+				'Engage directly with company representatives through meaningful Q&A and open discussions.'
 		},
 		{
 			icon: Users,
-			description: 'Ideal for software engineering'
+			description:
+				'Understand how technology and AI are used in real-world and community-focused solutions.'
 		}
 	];
 
@@ -83,17 +108,43 @@
 		{
 			Icon: Bell,
 			title: 'Register',
-			description: 'Sign up through the official EXPE21ENCE YSES registration page.'
+			description: 'Go to [link] and choose "Company Talks" to begin your registration.'
 		},
 		{
 			Icon: Mic,
-			title: 'Attend the Talks',
-			description: 'Join live sessions led by industry professionals.'
+			title: 'Submit Your Details',
+			description:
+				'Fill out the form, upload the necessary requirements, and submit your application.'
 		},
 		{
-			Icon: Users,
-			title: 'Engage',
-			description: 'Participate in Q&A sessions and network with speakers.'
+			Icon: Bell,
+			title: 'Await Confirmation',
+			description:
+				'Once you have submitted your application, wait for a confirmation email to secure your entry.'
+		}
+	];
+
+	type Speaker = {
+		name: string;
+		company: string;
+		image: string;
+	};
+
+	const speakers: Speaker[] = [
+		{
+			name: 'Dane Garcia',
+			company: 'Google',
+			image: dane2
+		},
+		{
+			name: 'Henrich Miguel',
+			company: 'Microsoft',
+			image: dane1
+		},
+		{
+			name: 'Dane Henrich',
+			company: 'Startup PH',
+			image: dane3
 		}
 	];
 </script>
@@ -101,69 +152,114 @@
 <!-- =====================
      BACKGROUND GRADIENT CIRCLES
 ===================== -->
-<div class="pointer-events-none fixed inset-0 -z-10 h-screen overflow-hidden">
+
+<div class="pointer-events-none absolute inset-0 -z-10 h-screen">
 	<div
-		class="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
+		class="absolute top-[25%] -left-[20%] h-[40%] w-[30%] rounded-full mix-blend-multiply blur-[150px]"
+		style="background: linear-gradient(135deg, #7410FF, #55059B);"
+	></div>
+
+	<div
+		class="absolute -right-[20%] bottom-[10%] h-[40%] w-[30%] rounded-full mix-blend-multiply blur-[150px]"
+		style="background: linear-gradient(135deg, #7410FF, #55059B);"
+	></div>
+
+	<div
+		class="absolute right-[30%] -bottom-[20%] h-[100%] w-[35%] rounded-full opacity-60 mix-blend-overlay blur-[250px]"
+		style="background: linear-gradient(135deg, #AB3550 0%, #7410FF 100%);"
 	></div>
 	<div
-		class="absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
+		class="absolute -bottom-[430%] -left-[10%] h-[20%] w-[30%] rounded-full mix-blend-multiply blur-[200px]"
+		style="background: linear-gradient(135deg, #7410FF, #55059B);"
 	></div>
 	<div
-		class="absolute top-1/2 left-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-400/10 blur-[100px]"
+		class="absolute -bottom-[340%] -left-[10%] h-[40%] w-[40%] rounded-full opacity-60 mix-blend-overlay blur-[300px]"
+		style="background: linear-gradient(135deg, #AB3550 0%, #7410FF 100%);"
+	></div>
+	<div
+		class="absolute right-[10%] -bottom-[260%] h-[40%] w-[30%] rounded-full mix-blend-multiply blur-[250px]"
+		style="background: linear-gradient(135deg, #7410FF, #55059B);"
+	></div>
+	<div
+		class="absolute -right-[10%] -bottom-[200%] h-[70%] w-[40%] rounded-full opacity-60 mix-blend-overlay blur-[270px]"
+		style="background: linear-gradient(135deg, #AB3550 0%, #7410FF 100%);"
 	></div>
 </div>
 
-<!-- =====================
-     HERO SECTION
-===================== -->
-<section class="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
-	<div class="absolute inset-0 -z-10">
-		<CompanyTalksScene />
-	</div>
-
-	<div class="z-10 max-w-4xl space-y-6">
+<section
+	class="mt-50 flex max-w-none! flex-col place-content-center place-items-center gap-9 lg:mt-20 lg:grid lg:h-screen"
+>
+	<h1
+		class="grid place-content-center text-center font-[Lexend] font-semibold tracking-normal *:leading-12 xs:*:leading-18"
+	>
 		<ScrollReveal delay="300ms">
-			<div class="text-3xl font-semibold md:text-5xl">EXPE21ENCE YSES:</div>
+			<div class="text-3xl md:text-5xl">EXPE21ENCE YSES:</div>
 		</ScrollReveal>
-		<ScrollReveal delay="400ms">
-			<div class="text-5xl font-bold md:text-7xl">Company Talks</div>
+		<ScrollReveal delay="400ms" class="mx-auto">
+			<div class="text-5xl md:text-7xl">Company Talks</div>
 		</ScrollReveal>
-		<ScrollReveal delay="500ms">
-			<div class="text-xl">Learn directly from industry professionals</div>
-		</ScrollReveal>
+	</h1>
 
-		<ScrollReveal delay="600ms">
-			<Button variant="gradient" size="xl">Register Now</Button>
-		</ScrollReveal>
+	<ScrollReveal delay="500ms">
+		<div class="text-xl">Inside the Tech Industry — From the Professionals Themselves</div>
+	</ScrollReveal>
 
-		<ScrollReveal delay="650ms">
-			<button
-				onclick={() =>
-					document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })}
-				class="mt-20 animate-bounce"
+	<ScrollReveal delay="600ms">
+		<div
+			class="mt-2 ml-2 rounded-[3.75rem] p-[0.135rem]"
+			style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
+		>
+			<Button
+				variant="gradient"
+				size="xl"
+				class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
+				onclick={() => console.log('Register clicked')}
 			>
-				<ChevronsDown size={30} />
-			</button>
-		</ScrollReveal>
-	</div>
+				<span class="relative z-10">Register Now</span>
+			</Button>
+		</div>
+	</ScrollReveal>
+
+	<ScrollReveal delay="650ms">
+		<button
+			onclick={() =>
+				document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })}
+			class="mt-20 animate-bounce cursor-pointer transition-transform hover:translate-y-1"
+			aria-label="Scroll to next section"
+		>
+			<ChevronsDown size={30} />
+		</button>
+	</ScrollReveal>
 </section>
 
+<div class="pointer-events-none absolute inset-0 -z-10 h-screen">
+	<div
+		class="absolute top-[160%] -left-[0%] h-[40%] w-[30%] rounded-full mix-blend-multiply blur-[200px]"
+		style="background: linear-gradient(135deg, #7410FF, #55059B);"
+	></div>
+</div>
 <!-- =====================
      OVERVIEW
 ===================== -->
 <section
 	id="overview"
-	class="relative flex scroll-mt-36 flex-col gap-4 text-center md:scroll-mt-64 lg:mt-[20rem]"
+	class="relative flex scroll-mt-36 flex-col gap-4 text-center md:scroll-mt-64 lg:mt-[5rem]"
 >
+	<div
+		class="absolute top-[%] -left-[20%] h-[40%] w-[30%] rounded-full mix-blend-multiply blur-[100px]"
+		style="background: linear-gradient(135deg, #7410FF, #55059B);"
+	></div>
 	<Star
-		class="bottom-20 -left-30 h-[261px] w-[255px] rotate-44 opacity-20 blur-[1px] dark:opacity-40"
+		class="bottom-20 -left-30 h-[261px] w-[255px] rotate-44 opacity-40 blur-[1px] dark:opacity-70"
 	/>
 
-	<Star class="bottom-12 -left-40 w-22 rotate-250 opacity-20 blur-[1px] dark:opacity-40" />
-	<Star class="-bottom-30 -left-16 w-62 rotate-10 opacity-40 dark:opacity-80" />
-	<Star class="top-50 -left-30 w-20 -rotate-50 opacity-30 blur-[4px] dark:opacity-60" />
-	<Star class="-top-8 -right-40 w-28 rotate-12 opacity-50 dark:opacity-90" />
-	<Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
+	<Star class="bottom-16 -left-40 w-18 rotate-250 opacity-20 blur-[1px] dark:opacity-40" />
+	<Star class="-bottom-28 -left-40 w-50 rotate-10 opacity-40 dark:opacity-80" />
+	<Star class="top-64 left-5 w-20 rotate-250 opacity-40 blur-[1px] dark:opacity-60" />
+	<Star class="-top-26 -right-45 w-45 rotate-40 opacity-50 dark:opacity-60" />
+	<Star class="top-14 -right-27 w-20 rotate-250 opacity-20 blur-[1px] dark:opacity-40" />
+
+	<Star class="top-24 -right-45 w-80 rotate-44 opacity-40 dark:opacity-80" />
 	<ScrollReveal delay="100ms">
 		<div
 			class="mx-auto rounded-[1.5625rem] p-px shadow-xl"
@@ -172,6 +268,7 @@
 			<LiquidGlass
 				class="relative block h-full w-full !overflow-visible rounded-[1.5rem] p-8"
 				options={GLASS_OPTIONS}
+				style={`border: 1px solid ${isDark ? 'rgba(255,255,255,0.15)' : 'rgba(150,150,150,0.5)'};`}
 			>
 				<h2 class="mb-4 text-2xl font-semibold text-primary">Overview</h2>
 				<p class="leading-relaxed text-foreground/90">
@@ -186,30 +283,46 @@
 		</div>
 	</ScrollReveal>
 </section>
-<!-- =====================
-     INSIDE THE SESSIONS
-===================== -->
-<section class="mx-auto w-[996px]">
+
+<!-- ===================== INSIDE THE SESSIONS ===================== -->
+<section class="relative flex scroll-mt-20 flex-col gap-4 text-center md:scroll-mt-64 lg:mt-60">
+	<!-- Right Side Stars -->
+	<Star class="top-28 -right-40 w-20 rotate-250 opacity-15 blur-[1px] dark:opacity-40" />
+	<Star class="top-90 right-70 w-20 rotate-10 opacity-15 dark:opacity-40" />
+	<Star class="top-70 -right-55 w-60 rotate-30 opacity-30 dark:opacity-80" />
+	<Star class="-right-35 bottom-80 w-22 rotate-40 opacity-30 dark:opacity-60" />
+	<Star class="right-75 bottom-20 w-22 rotate-20 opacity-40 dark:opacity-60" />
+	<Star class="-right-10 bottom-30 w-22 rotate-250 opacity-40 dark:opacity-80" />
+
+	<!-- Left Side Stars -->
+	<Star class="top-77 -left-55 w-53 rotate-30 opacity-30 dark:opacity-80" />
+	<Star class="bottom-10 left-50 w-17 rotate-25 opacity-40 dark:opacity-60" />
+	<Star class="top-105 left-59 w-20 rotate-45 opacity-15 dark:opacity-60" />
+	<Star class="bottom-65 left-87 w-13 rotate-250 opacity-40 dark:opacity-80" />
+	<Star class="bottom-55 -left-40 w-17 rotate-250 opacity-40 dark:opacity-80" />
+
 	<!-- 3-COLUMN GRID -->
-	<div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:items-center">
+	<div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:pt-20">
 		<!-- LEFT COLUMN -->
-		<div class="mt-0 flex flex-col items-center gap-30 rounded-[1.5625rem] shadow-xl">
-			<div style={`background: ${BORDER_GRADIENT}`} class="rounded-[1.5625rem]">
+		<div class="flex flex-col items-center gap-50">
+			<div class="rounded-[1.5625rem]" style={`background: ${BORDER_GRADIENT}`}>
 				{@render detailCard(keyDetails[0])}
 			</div>
-			<div style={`background: ${BORDER_GRADIENT}`} class="rounded-[1.5625rem]">
+			<div class="rounded-[1.5625rem]" style={`background: ${BORDER_GRADIENT}`}>
 				{@render detailCard(keyDetails[2])}
 			</div>
 		</div>
 
 		<!-- CENTER COLUMN -->
-		<div
-			class="= flex flex-col items-center gap-20 rounded-[1.5625rem] p-px text-center shadow-xl"
-		>
+		<div class="flex flex-col items-center gap-20">
 			<!-- HEADER -->
 			<ScrollReveal>
-				<h2 class="text-3xl font-semibold text-white">Inside the Sessions</h2>
-				<p class="mt-2 text-sm text-white/80 italic">Where theory meets practice.</p>
+				<h2 class="text-3xl font-semibold text-slate-900 dark:text-white">
+					Inside the Sessions
+				</h2>
+				<p class="mt-2 text-sm text-slate-600 italic dark:text-white/80">
+					Where theory meets practice.
+				</p>
 			</ScrollReveal>
 
 			<!-- CENTER IMAGE -->
@@ -221,18 +334,162 @@
 			/>
 
 			<!-- CENTER CARD -->
-			<div style={`background: ${BORDER_GRADIENT}`} class="rounded-[1.5625rem]">
+			<div class="rounded-[1.5625rem]" style={`background: ${BORDER_GRADIENT}`}>
 				{@render detailCard(keyDetails[4])}
 			</div>
 		</div>
 
 		<!-- RIGHT COLUMN -->
-		<div class="mt-0 flex flex-col items-center gap-30 rounded-[1.5625rem] shadow-xl">
-			<div style={`background: ${BORDER_GRADIENT}`} class="rounded-[1.5625rem]">
+		<div class="flex flex-col items-center gap-50">
+			<div class="rounded-[1.5625rem]" style={`background: ${BORDER_GRADIENT}`}>
 				{@render detailCard(keyDetails[1])}
 			</div>
-			<div style={`background: ${BORDER_GRADIENT}`} class="rounded-[1.5625rem]">
+			<div class="rounded-[1.5625rem]" style={`background: ${BORDER_GRADIENT}`}>
 				{@render detailCard(keyDetails[3])}
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- =====================
+     SPEAKERS
+===================== -->
+<section class="relative mx-auto w-full px-6 py-12">
+	<!-- Decorative stars -->
+	<Star class="-right-50 -bottom-10 w-40 -rotate-1 opacity-20 dark:opacity-80" />
+	<Star class="top-0 -right-50 w-80 rotate-43 opacity-15 dark:opacity-70" />
+	<Star class="-right-25 bottom-44 w-24 rotate-250 opacity-20 dark:opacity-70" />
+	<Star class="top-10 -left-40 w-70 opacity-20 dark:opacity-80" />
+	<Star class="bottom-35 -left-40 w-30 rotate-210 opacity-20 dark:opacity-70" />
+	<Star class="-bottom-20 -left-24 w-50 rotate-50 opacity-20 dark:opacity-70" />
+
+	<ScrollReveal>
+		<!-- Header -->
+		<div class="mb-12 text-center">
+			<h2 class="text-4xl font-semibold text-slate-900 dark:text-white">Meet the Speakers</h2>
+			<p class="mt-2 text-sm text-slate-600 italic dark:text-white/80">
+				Insights from professionals working at the forefront of the tech industry.
+			</p>
+		</div></ScrollReveal
+	>
+
+	<!-- Glass Wrapper -->
+	<div class="flex justify-center">
+		<div
+			class="w-[1210px] rounded-[1.75rem] p-px
+			       shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
+			style={`background: ${BORDER_GRADIENT}`}
+		>
+			<LiquidGlass
+				class="relative rounded-[1.7rem]
+				       bg-white/70 p-10
+				       backdrop-blur-xl
+				       dark:bg-white/5"
+				options={GLASS_OPTIONS}
+				style={`border: 1px solid ${isDark ? 'rgba(255,255,255,0.15)' : 'rgba(150,150,150,0.5)'};`}
+			>
+				<!-- Speakers Grid -->
+				<div class="grid grid-cols-1 place-items-center gap-10 md:grid-cols-3">
+					{#each speakers as speaker}
+						<div class="group relative overflow-hidden">
+							<img
+								src={speaker.image}
+								alt={speaker.name}
+								class="mb-20 h-[244px] w-[244px]
+								       object-cover object-center
+								       transition-transform duration-500
+								       group-hover:scale-105"
+							/>
+
+							<!-- Bottom Overlay -->
+							<div
+								class="absolute inset-x-0 bottom-0
+								       py-3
+								       text-center"
+							>
+								<p class="text-sm font-semibold text-slate-900 dark:text-white">
+									{speaker.name}
+								</p>
+								<p class="text-xs text-slate-600 dark:text-white/80">
+									{speaker.company}
+								</p>
+							</div>
+						</div>
+					{/each}
+				</div>
+			</LiquidGlass>
+		</div>
+	</div>
+</section>
+
+<section class="relative flex h-[713px] w-[1184px] flex-col items-center">
+	<!-- Decorative Stars -->
+	<Star class="-top-8 -right-40 w-28 rotate-12 opacity-50 dark:opacity-90" />
+	<Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
+	<ScrollReveal
+		><div class="mb-12 text-center">
+			<h2 class="text-4xl font-semibold text-slate-900 dark:text-white">
+				Register for Company Talks
+			</h2>
+			<p class="mt-4 text-sm text-slate-600 italic dark:text-white/80">
+				Take your first step toward learning from industry professionals and gaining
+				real-world insights
+			</p>
+		</div></ScrollReveal
+	>
+
+	<!-- Main Flex Content -->
+	<div
+		class="mx-auto grid h-auto w-full max-w-[1184px] grid-cols-1 gap-8 md:grid-cols-[1fr_1fr] lg:h-[540px] lg:gap-12"
+	>
+		<!-- LEFT: 3D Scene -->
+		<div
+			class="flex h-[450px] w-full items-center justify-center md:h-full md:w-full"
+			use:viewport={{
+				onEnter: () => (isSceneVisible = true),
+				threshold: 0.2
+			}}
+		>
+			{#if isSceneVisible}
+				<ScrollReveal delay="200ms" class="h-full w-full">
+					<CompanyTalksRegisterScene />
+				</ScrollReveal>
+			{/if}
+		</div>
+
+		<!-- RIGHT: Registration Steps -->
+		<div class="flex flex-col md:p-0">
+			<div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-8">
+				{#each registrationSteps as step, i (step.title)}
+					{@const { Icon, title, description } = step}
+					<ScrollReveal delay={`${300 + i * 50}ms`} class="place-self-center">
+						<div class="pt-1 text-primary">
+							<Icon class="size-14" />
+						</div>
+					</ScrollReveal>
+					<ScrollReveal delay={`${300 + i * 50}ms`}>
+						<div class="flex flex-col gap-2">
+							<span class="text-xl font-bold md:text-xl">{title}</span>
+							<p class="text-justify text-lg leading-relaxed">
+								{description}
+							</p>
+						</div>
+					</ScrollReveal>
+				{/each}
+			</div>
+			<div class="flex justify-center">
+				<!-- Register Button -->
+				<ScrollReveal delay="500ms">
+					<div class=" rounded-[3.75rem] p-[0.125rem] md:mt-12">
+						<Button
+							variant="gradient"
+							size="register"
+							class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
+						>
+							<span class="relative z-10">Register</span>
+						</Button>
+					</div>
+				</ScrollReveal>
 			</div>
 		</div>
 	</div>
@@ -240,56 +497,21 @@
 
 {#snippet detailCard(detail)}
 	<LiquidGlass
-		class="relative h-[252px] w-[317px] !overflow-visible rounded-[28px] pt-10 pb-6 text-center"
+		class="relative h-[252px] w-[317px] !overflow-visible rounded-[28px] bg-white/30 pt-10 pb-6
+	       text-center shadow-lg
+	       backdrop-blur-xl dark:bg-white/10"
 		options={GLASS_OPTIONS}
+		style={`border: 1px solid ${isDark ? 'rgba(255,255,255,0.15)' : 'rgba(150,150,150,0.5)'};`}
 	>
-		<!-- Icon -->
-		<svelte:component this={detail.icon} class="mx-auto mb-6 h-[96px] w-[96px] text-primary" />
+		<!-- Icon (Svelte 5 safe) -->
+		<detail.icon class="mx-auto mb-6 h-[96px] w-[96px] text-primary" />
 
 		<!-- Text -->
-		<p class="mx-auto max-w-[260px] text-sm leading-relaxed text-white/90">
+		<p
+			class="mx-auto max-w-[260px] text-sm leading-relaxed
+		       text-slate-700 dark:text-white/90"
+		>
 			{detail.description}
 		</p>
 	</LiquidGlass>
 {/snippet}
-
-<!-- =====================
-     REGISTRATION STEPS
-===================== -->
-<section class="mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 py-20 text-center">
-	<ScrollReveal>
-		<h2 class="mb-12 text-3xl font-bold">How to Join</h2>
-	</ScrollReveal>
-
-	<div class="grid w-full gap-8 sm:grid-cols-2 lg:grid-cols-3">
-		{#each registrationSteps as step, i}
-			<ScrollReveal>
-				<div class="flex flex-col items-center space-y-4">
-					<div
-						class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border text-lg font-bold"
-					>
-						{i + 1}
-					</div>
-					<svelte:component this={step.Icon} class="mx-auto h-6 w-6 text-primary" />
-					<h3 class="font-semibold">{step.title}</h3>
-					<p class="text-sm text-muted-foreground">{step.description}</p>
-				</div>
-			</ScrollReveal>
-		{/each}
-	</div>
-
-	<ScrollReveal>
-		<div
-			class="mt-12 h-[300px]"
-			use:viewport={{ onEnter: () => (isSceneVisible = true), threshold: 0.2 }}
-		>
-			{#if isSceneVisible}
-				<CompanyTalksRegisterScene />
-			{/if}
-		</div>
-	</ScrollReveal>
-
-	<ScrollReveal delay="500ms">
-		<Button variant="gradient" size="register" class="mt-6">Register</Button>
-	</ScrollReveal>
-</section>
