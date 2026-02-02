@@ -10,7 +10,7 @@
 	import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
 </script>
 
-<footer class=" p-8 not-xs:pb-16 not-lg:px-0">
+<footer class="bg-background/10 p-8 backdrop-blur-md not-xs:pb-16 not-lg:px-0">
 	<div class="container mx-auto flex flex-col place-items-center gap-4 md:flex-row">
 		<enhanced:img
 			src={coloredLogo}

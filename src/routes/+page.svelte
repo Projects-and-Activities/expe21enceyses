@@ -115,7 +115,7 @@
 		class="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
 	></div>
 	<div
-		class="absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
+		class="absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full bg-sky-300/20 mix-blend-multiply blur-[120px]"
 	></div>
 	<div
 		class="absolute top-1/2 left-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-400/10 blur-[100px]"
