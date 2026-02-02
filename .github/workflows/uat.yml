@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -37,5 +37,5 @@ jobs:
         run: |
           DEPLOYMENT_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
           echo "Unique Deployment URL: $DEPLOYMENT_URL"
-          
+
           vercel alias set "$DEPLOYMENT_URL" uat-expe21ence-yses.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
