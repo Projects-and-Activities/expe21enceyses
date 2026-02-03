@@ -42,7 +42,7 @@
     const star: ShootingStar = {
       id,
       x: Math.random() * 20, //spawn
-      y: -20 + Math.random() * 50, // spread -10% to 40% from top
+      y: -20 + Math.random() * 70, // spread -10% to 70% from top
       duration: 4 + Math.random() * 2
     };
 
@@ -110,9 +110,7 @@
   ></div>
 </div>
 
-<!-- Main content -->
 <main class="relative flex min-h-screen flex-col items-center justify-center px-4">
-  <!-- Decorative stars -->
   {@render star(
     'top-[15%] left-[10%] w-20 rotate-12 blur-[2px] opacity-50 dark:opacity-70 hidden lg:block'
   )}
