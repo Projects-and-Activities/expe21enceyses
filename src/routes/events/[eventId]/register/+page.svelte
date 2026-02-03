@@ -1,27 +1,26 @@
 <script lang="ts">
-  import { FormProvider, RegistrationController, type StepItem } from '$lib/components/form/core';
-  import HackfestSkeleton from '$lib/components/form/hackfest/HackfestSkeleton.svelte';
-  import UserInfo from '$lib/components/form/pfjf/UserInfo.svelte';
+  import { page } from '$app/state';
+  import { FormProvider, RegistrationController } from '$lib/components/form/core';
+  import { EVENT_REGISTRY } from '$lib/components/form/core/config';
   import SuccessState from '$lib/components/form/SuccessState.svelte';
   import Star from '$lib/components/Star.svelte';
-  import { pfjfRegistrationSchema, type PfjfRegistration } from '$lib/types/pfjf';
 
   let { data } = $props();
 
-  const stepItems: StepItem<PfjfRegistration>[] = [
-    {
-      label: 'Team Info',
-      component: UserInfo,
-      keys: ['firstName', 'lastName', 'email', 'purposeOfRegistration']
-    }
-  ];
+  const eventId = $derived(page.params.eventId ?? '');
 
-  const controller = new RegistrationController({
-    getForm: () => data.form,
-    schema: pfjfRegistrationSchema,
-    storageKey: 'pfjf',
-    stepItems
-  });
+  const config = $derived(EVENT_REGISTRY[eventId]);
+
+  let controller = $derived(
+    config
+      ? new RegistrationController({
+          getForm: () => data.form,
+          schema: config.schema,
+          storageKey: eventId,
+          stepItems: config.steps
+        })
+      : null
+  );
 </script>
 
 <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none">
@@ -38,13 +37,15 @@
   <Star class="absolute top-2/3 right-1/4 w-8 -rotate-45 opacity-15 blur-[1px]" />
 </div>
 
-<FormProvider {controller} Skeleton={HackfestSkeleton}>
-  {#snippet children({ step })}
-    {@const activeItem = stepItems[step - 1]}
-    <activeItem.component {...activeItem.props} />
-  {/snippet}
+{#if controller && config}
+  <FormProvider {controller} Skeleton={config.skeleton}>
+    {#snippet children({ step })}
+      {@const activeItem = config.steps[step - 1]}
+      <activeItem.component {...activeItem.props} />
+    {/snippet}
 
-  {#snippet success()}
-    <SuccessState currentEventId="pfjf" />
-  {/snippet}
-</FormProvider>
+    {#snippet success()}
+      <SuccessState currentEventId={eventId} />
+    {/snippet}
+  </FormProvider>
+{/if}

@@ -10,8 +10,13 @@
 
   // Replace nalang icon with the actual asset
   const ALL_EVENTS = [
-    { id: 'pfjf', title: 'PF/JF', icon: Briefcase, link: '/register/pf-jf' },
-    { id: 'company-talks', title: 'Company Talks', icon: Mic, link: '/register/company-talks' }
+    { id: 'pfjf', title: 'PF/JF', icon: Briefcase, link: '/events/pfjf/register' },
+    {
+      id: 'company-talks',
+      title: 'Company Talks',
+      icon: Mic,
+      link: '/events/company-talks/register'
+    }
   ] as const;
 
   let { currentEventId } = $props<{ currentEventId: string }>();
@@ -98,14 +103,14 @@
           <div class="grid w-full grid-cols-2 gap-2">
             <Button
               class="w-full bg-purple-600 text-white shadow-lg shadow-purple-900/10 hover:bg-purple-700 dark:bg-purple-600/80 dark:shadow-purple-900/20 dark:hover:bg-purple-600"
-              onclick={() => goto('/register/junior-hackfest')}
+              onclick={() => goto('/events/junior-hackfest/register')}
             >
               Junior
             </Button>
             <Button
               variant="outline"
               class="w-full border-purple-200 text-purple-900 hover:bg-purple-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800"
-              onclick={() => goto('/register/senior-hackfest')}
+              onclick={() => goto('/events/senior-hackfest/register')}
             >
               Senior
             </Button>
