@@ -5,6 +5,7 @@
   import ArrowLeft from '@lucide/svelte/icons/arrow-left';
   import { onMount } from 'svelte';
   import starImage from '$lib/assets/star.png';
+  import { Button } from '$lib/components/ui/button';
 
   let isDark = $derived(mode.current === 'dark');
 
@@ -157,14 +158,16 @@
     </p>
   </div>
 
-  <a
+  <!-- Back to home button -->
+  <Button
     href="/"
-    class="group animate-fade-in mt-12 flex items-center gap-2 rounded-full border-2 border-purple-500/50 bg-purple-500/10 px-6 py-3 font-['Lexend'] text-sm font-medium text-purple-600 transition-all duration-300 hover:border-purple-500 hover:bg-purple-500/20 dark:text-purple-400"
+    variant="outline"
+    class="group animate-fade-in mt-12 rounded-full border-2 border-purple-500/50 bg-purple-500/10 px-6 py-3 font-['Lexend'] text-sm font-medium text-purple-600 transition-all duration-300 hover:border-purple-500 hover:bg-purple-500/20 dark:text-purple-400"
     style="animation-delay: 700ms;"
   >
     <ArrowLeft class="size-4 transition-transform duration-300 group-hover:-translate-x-1" />
     Back to Home
-  </a>
+  </Button>
 </main>
 
 {#snippet star(className: string)}
