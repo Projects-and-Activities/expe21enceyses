@@ -458,7 +458,6 @@
     0 0 12px 4px rgba(200, 150, 255, 0.8);
 }
 
-
 /* Floating particle animation class */
 .float-particle {
   animation: float-particle var(--duration, 10s) ease-in-out infinite;
