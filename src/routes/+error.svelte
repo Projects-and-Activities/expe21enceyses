@@ -183,3 +183,173 @@
     />
   </div>
 {/snippet}
+
+<style>
+  /* Floating animation for 404 text */
+  .floating-404 {
+    animation: float404 4s ease-in-out infinite;
+  }
+
+  @keyframes float404 {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  /* Fade In Up Animation */
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Glitch Effect */
+  .glitch {
+    position: relative;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+  }
+
+  .glitch::before {
+    color: #e0b0ff; /* Light purple shift */
+    z-index: -1;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    transform: translate(-3px, -3px);
+    animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+  }
+
+  .glitch::after {
+    color: #7f52bb; /* Darker purple shift */
+    z-index: -2;
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+    transform: translate(3px, 3px);
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+  }
+
+  @keyframes glitch-anim-1 {
+    0% {
+      clip-path: inset(20% 0 80% 0);
+      transform: translate(-3px, 2px);
+    }
+    20% {
+      clip-path: inset(60% 0 10% 0);
+      transform: translate(3px, -2px);
+    }
+    40% {
+      clip-path: inset(40% 0 50% 0);
+      transform: translate(-3px, 3px);
+    }
+    60% {
+      clip-path: inset(80% 0 5% 0);
+      transform: translate(3px, -3px);
+    }
+    80% {
+      clip-path: inset(10% 0 70% 0);
+      transform: translate(-2px, 3px);
+    }
+    100% {
+      clip-path: inset(30% 0 50% 0);
+      transform: translate(3px, -2px);
+    }
+  }
+
+  @keyframes glitch-anim-2 {
+    0% {
+      clip-path: inset(10% 0 60% 0);
+      transform: translate(3px, -2px);
+    }
+    20% {
+      clip-path: inset(80% 0 5% 0);
+      transform: translate(-2px, 3px);
+    }
+    40% {
+      clip-path: inset(30% 0 20% 0);
+      transform: translate(3px, -3px);
+    }
+    60% {
+      clip-path: inset(10% 0 80% 0);
+      transform: translate(-3px, 2px);
+    }
+    80% {
+      clip-path: inset(40% 0 10% 0);
+      transform: translate(3px, -2px);
+    }
+    100% {
+      clip-path: inset(50% 0 30% 0);
+      transform: translate(-2px, 2px);
+    }
+  }
+
+  /* Comet Animation */
+  .comet {
+    position: absolute;
+    width: 300px;
+    filter: blur(5px);
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(200, 180, 255, 0.5) 40%,
+      rgba(255, 255, 255, 0.9) 100%
+    );
+    border-radius: 9999px;
+    transform-origin: center;
+    animation-name: cometMove;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    z-index: -5;
+  }
+
+  .comet::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.6);
+  }
+
+  @keyframes cometMove {
+    0% {
+      transform: translate(0, 0) rotate(45deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(calc(100vw + 200px), calc(100vw + 200px)) rotate(45deg);
+      opacity: 0;
+    }
+  }
+</style>
