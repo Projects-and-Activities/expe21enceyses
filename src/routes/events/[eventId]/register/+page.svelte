@@ -11,16 +11,16 @@
 
   const config = $derived(EVENT_REGISTRY[eventId]);
 
-  let controller = $derived(
-    config
-      ? new RegistrationController({
-          getForm: () => data.form,
-          schema: config.schema,
-          storageKey: eventId,
-          stepItems: config.steps
-        })
-      : null
-  );
+  let controller = $derived.by(() => {
+    if (!config || !eventId) return null;
+
+    return new RegistrationController({
+      getForm: () => data.form,
+      schema: config.schema,
+      storageKey: eventId,
+      stepItems: config.steps
+    });
+  });
 </script>
 
 <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none">
@@ -37,15 +37,17 @@
   <Star class="absolute top-2/3 right-1/4 w-8 -rotate-45 opacity-15 blur-[1px]" />
 </div>
 
-{#if controller && config}
-  <FormProvider {controller} Skeleton={config.skeleton}>
-    {#snippet children({ step })}
-      {@const activeItem = config.steps[step - 1]}
-      <activeItem.component {...activeItem.props} />
-    {/snippet}
+{#key eventId}
+  {#if controller && config}
+    <FormProvider {controller} Skeleton={config.skeleton}>
+      {#snippet children({ step })}
+        {@const activeItem = config.steps[step - 1]}
+        <activeItem.component {...activeItem.props} />
+      {/snippet}
 
-    {#snippet success()}
-      <SuccessState currentEventId={eventId} />
-    {/snippet}
-  </FormProvider>
-{/if}
+      {#snippet success()}
+        <SuccessState currentEventId={eventId} />
+      {/snippet}
+    </FormProvider>
+  {/if}
+{/key}
