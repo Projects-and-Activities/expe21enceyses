@@ -1,9 +1,9 @@
 <script lang="ts">
-	let { children } = $props();
+  let { children } = $props();
 </script>
 
 <main
-	class="space-y-36 overflow-x-hidden not-lg:*:px-4 lg:px-50 [&>section]:container [&>section]:mx-auto"
+  class="space-y-36 overflow-x-hidden not-lg:*:px-4 lg:px-50 [&>section]:container [&>section]:mx-auto"
 >
-	{@render children()}
+  {@render children()}
 </main>
