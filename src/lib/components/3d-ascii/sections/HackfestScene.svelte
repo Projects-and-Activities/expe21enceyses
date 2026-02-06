@@ -13,9 +13,9 @@
   let config = $derived.by(() => {
     if (innerWidth < 768) {
       return {
-        laptopPos: [0.5, -0.5, -0.2],
-        starsPos: [0.5, -0.2, 0],
-        scale: 0.6
+        laptopPos: [0.3, 0, -0.57],
+        starsPos: [0.4, 0.8, -0.3],
+        scale: 0.8
       };
     }
     return {
@@ -40,7 +40,7 @@
   <Laptop
     position={config.laptopPos as [number, number, number]}
     rotation={[0.4, -0.3, 0]}
-    scale={1}
+    scale={config.scale}
   />
 
   <SimpleFloat speed={5} amplitude={0.2} enabled={true}>
