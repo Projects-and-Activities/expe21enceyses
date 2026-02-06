@@ -1,6 +1,7 @@
 <script lang="ts">
   import { ChevronsDown } from '@lucide/svelte';
   import { gsap } from 'gsap';
+  import { mode } from 'mode-watcher';
   import { onMount } from 'svelte';
   import { cubicOut } from 'svelte/easing';
   import { draw } from 'svelte/transition';
@@ -75,24 +76,28 @@
 
   const programSections = [
     {
+      id: 'hackfest',
       title: 'The Hackfest',
       subtitle: 'Engineer solutions that move communities forward.',
       bg: 'bg-primary/5 dark:bg-primary/15 backdrop-blur-sm',
       img: hackfestImg
     },
     {
+      id: 'pfjf',
       title: 'Practicum/Job Fair',
       subtitle: 'Land the opportunities that launch your career.',
-      bg: 'bg-neutral-50/80 dark:bg-primary/10 backdrop-blur-md',
+      bg: 'bg-neutral-100 dark:bg-primary/10 backdrop-blur-md',
       img: pfjfImg
     },
     {
+      id: 'ctalks',
       title: 'Company Talks',
       subtitle: 'Unlock what it takes to thrive in tech.',
-      bg: 'bg-neutral-50/90 dark:bg-primary/5  backdrop-blur-lg',
+      bg: 'bg-neutral-50 dark:bg-primary/5  backdrop-blur-lg',
       img: ctalksImg
     },
     {
+      id: '',
       title: '',
       subtitle: '',
       bg: '',
@@ -359,12 +364,11 @@
   <div class="w-full px-0!">
     {#each programSections as section, i (section.title)}
       <ProgramSection
+        id={section.id}
         title={section.title}
         subtitle={section.subtitle}
         class=" w-full rounded-t-4xl pb-20   xs:pb-12 {section.bg}  top-20 mb-100 h-[calc(100dvh-5rem)] last:mb-0 last:*:hidden! nth-last-2:mb-0! xs:top-20! xs:h-[min(1104px,calc(100dvh-5rem))]!"
-        style="
-				z-index: {i};
-            "
+        style="z-index: {i}; "
       >
         <enhanced:img src={section.img} class="size-100 brightness-200" width="600" height="600" />
       </ProgramSection>
