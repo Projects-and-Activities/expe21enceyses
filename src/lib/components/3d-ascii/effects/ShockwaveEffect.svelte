@@ -2,7 +2,8 @@
   import { useTask } from '@threlte/core';
   import { Mesh, MeshStandardMaterial, DoubleSide, type Object3D } from 'three';
 
-  import { SCENE_COLOR } from '../constants';
+  import { asciiState, resetAscii } from '../ascii.svelte';
+  import { ASCII_CHARS_FULL, SCENE_COLOR } from '../constants';
 
   let {
     object,
@@ -14,15 +15,23 @@
 
   const uniforms = { uTime: { value: 0 } };
 
+  export function fire() {
+    asciiState.currentChars = ASCII_CHARS_FULL;
+
+    trigger = Date.now();
+  }
+
   useTask(() => {
     if (trigger === 0) return;
     const timeSinceClick = (Date.now() - trigger) / 1000;
 
-    if (timeSinceClick >= 0 && timeSinceClick < 10) {
+    if (timeSinceClick >= 0 && timeSinceClick < 6) {
       uniforms.uTime.value = timeSinceClick;
     } else {
       uniforms.uTime.value = 0;
-      trigger = 0; // Reset trigger
+      trigger = 0;
+
+      resetAscii();
     }
   });
 
