@@ -329,13 +329,13 @@
 
       <ScrollReveal delay="500ms">
         <div
-          class="my-8 ml-2 rounded-[3.75rem] p-[0.125rem]"
+          class="my-12 w-fit rounded-[3.75rem] p-[0.125rem]"
           style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
         >
           <Button
             variant="gradient"
             size="xl"
-            class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
+            class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)] not-sm:w-full"
           >
             <span class="relative z-10">Register Now</span>
           </Button>
@@ -423,3 +423,4 @@
       0 12px 15px -8px rgba(0, 0, 0, 0.2) !important;
   }
 </style>
+
