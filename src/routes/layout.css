@@ -4,6 +4,8 @@
 
 @import '@toolwind/anchors';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: 'Master Modern';
   font-style: normal;
