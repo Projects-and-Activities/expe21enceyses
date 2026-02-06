@@ -79,7 +79,7 @@
               {/if}
             </a>
 
-            <ModeToggle {isDark} variant="ghost" class="ml-auto shadow-none" />
+            <ModeToggle variant="ghost" class="ml-auto shadow-none" />
 
             <Sheet.Portal>
               <Sheet.Overlay class="!bg-black/20 backdrop-blur-sm" />

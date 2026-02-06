@@ -8,18 +8,19 @@
   import ShockwaveEffect from '$lib/components/3d-ascii/effects/ShockwaveEffect.svelte';
   import Logo from '$lib/components/3d-ascii/models/Logo.svelte';
 
-  let waveTrigger = $state(0);
+  let shockwaveRef: ReturnType<typeof ShockwaveEffect> | undefined = $state();
+
   let logoRef: Group | undefined = $state();
 
   function triggerShockwave() {
-    waveTrigger = Date.now();
+    shockwaveRef?.fire();
   }
 </script>
 
 {#snippet registerLights()}
-  <T.AmbientLight intensity={0.5} />
-  <T.DirectionalLight position={[5, 5, 5]} intensity={1.2} />
-  <T.PointLight position={[-2, 1, 2]} intensity={0.8} color="#ffffff" distance={10} />
+  <T.AmbientLight intensity={1.5} />
+  <T.DirectionalLight position={[5, 10, 5]} intensity={0.5} />
+  <T.PointLight position={[-2, 1, 2]} intensity={0.5} color="#a020f0" distance={15} />
 {/snippet}
 
 <div
@@ -34,7 +35,7 @@
       <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1.5} />
     </T.PerspectiveCamera>
 
-    <ShockwaveEffect object={logoRef} bind:trigger={waveTrigger} />
+    <ShockwaveEffect bind:this={shockwaveRef} object={logoRef} />
 
     <FloatingParticles mode="static" count={200} />
 

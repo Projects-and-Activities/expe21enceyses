@@ -4,15 +4,17 @@
   import ScrollReveal from './ScrollReveal.svelte';
   import Button from './ui/button/button.svelte';
 
+  import { goto } from '$app/navigation';
   import { cn } from '$lib/utils';
 
   type Props = {
+    id: string;
     title: string;
     subtitle: string;
     class?: string;
   } & HTMLAttributes<HTMLElement>;
 
-  let { title, subtitle, class: className, children, ...rest }: Props = $props();
+  let { id, title, subtitle, class: className, children, ...rest }: Props = $props();
 </script>
 
 <section class={cn('sticky  flex  flex-col justify-between  p-8', className)} {...rest}>
@@ -39,14 +41,14 @@
       </ScrollReveal>
     </div>
     <div
-      class="mt-2 ml-2 rounded-[3.75rem] p-[0.135rem]"
+      class="z-50 mt-2 ml-2 rounded-[3.75rem] p-[0.135rem]"
       style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
     >
       <Button
         variant="gradient"
         size="xl"
         class="register-btn relative isolate overflow-hidden bg-transparent! shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
-        onclick={() => console.log('Register clicked')}
+        onclick={() => goto(`/events/${id}`)}
       >
         <span class="relative z-10">Explore</span>
       </Button>

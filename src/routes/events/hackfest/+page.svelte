@@ -1,7 +1,5 @@
 <script lang="ts">
   import {
-    // GraduationCap,
-    // School,
     Bell,
     ChevronsDown,
     CloudUpload,
@@ -13,19 +11,26 @@
   } from '@lucide/svelte';
   import { type Component } from 'svelte';
 
-  // import { goto } from '$app/navigation';
   import { viewport } from '$lib/actions/viewport';
+  import { asciiState } from '$lib/components/3d-ascii/ascii.svelte';
+  import { ASCII_CHARS_FULL, ASCII_CHARS_SAFE } from '$lib/components/3d-ascii/constants';
   import HackfestRegisterScene from '$lib/components/3d-ascii/sections/HackfestRegisterScene.svelte';
   import HackfestScene from '$lib/components/3d-ascii/sections/HackfestScene.svelte';
   import GlassCard from '$lib/components/GlassCard.svelte';
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import Star from '$lib/components/Star.svelte';
   import Button from '$lib/components/ui/button/button.svelte';
-  // import * as Dialog from '$lib/components/ui/dialog/index.js';
+
+  $effect(() => {
+    asciiState.currentChars = ASCII_CHARS_FULL;
+
+    return () => {
+      asciiState.currentChars = ASCII_CHARS_SAFE;
+    };
+  });
 
   let selectedHackfest = $state<'junior' | 'senior'>('junior');
   let isSceneVisible = $state(false);
-  // let isSelectionOpen = $state(false);
 
   const content = {
     junior: {
@@ -322,99 +327,15 @@
         {/each}
       </div>
 
-      <!-- Comment dialog for now as there could be a registration main hub  -->
       <ScrollReveal delay="500ms">
-        <!-- <Dialog.Root bind:open={isSelectionOpen}> -->
-        <!-- 	<Dialog.Trigger> -->
-        <!-- 		{#snippet child({ props })} -->
-        <!-- 			<div -->
-        <!-- 				class="my-8 ml-2 rounded-[3.75rem] p-[0.125rem]" -->
-        <!-- 				style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);" -->
-        <!-- 			> -->
-        <!-- 				<Button -->
-        <!-- 					{...props} -->
-        <!-- 					variant="gradient" -->
-        <!-- 					size="xl" -->
-        <!-- 					class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]" -->
-        <!-- 				> -->
-        <!-- 					<span class="relative z-10">Register Now</span> -->
-        <!-- 				</Button> -->
-        <!-- 			</div> -->
-        <!-- 		{/snippet} -->
-        <!-- 	</Dialog.Trigger> -->
-        <!---->
-        <!-- 	<Dialog.Content -->
-        <!-- 		class="border-zinc-800 bg-zinc-950/90 backdrop-blur-xl sm:max-w-2xl" -->
-        <!-- 	> -->
-        <!-- 		<Dialog.Header> -->
-        <!-- 			<Dialog.Title class="text-center text-2xl font-bold text-white" -->
-        <!-- 				>Choose your Category</Dialog.Title -->
-        <!-- 			> -->
-        <!-- 			<Dialog.Description class="text-center text-zinc-400"> -->
-        <!-- 				Select the Hackfest category that applies to your team. -->
-        <!-- 			</Dialog.Description> -->
-        <!-- 		</Dialog.Header> -->
-        <!---->
-        <!-- 		<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2"> -->
-        <!-- 			<button -->
-        <!-- 				onclick={() => { -->
-        <!-- 					isSelectionOpen = false; -->
-        <!-- 					goto('/register/junior-hackfest'); -->
-        <!-- 				}} -->
-        <!-- 				class="group relative flex flex-col items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-purple-500/50 hover:bg-zinc-900/80" -->
-        <!-- 			> -->
-        <!-- 				<div -->
-        <!-- 					class="rounded-full bg-purple-500/10 p-4 text-purple-400 transition-colors group-hover:bg-purple-500/20 group-hover:text-purple-300" -->
-        <!-- 				> -->
-        <!-- 					<School class="size-8" /> -->
-        <!-- 				</div> -->
-        <!-- 				<div class="text-center"> -->
-        <!-- 					<h3 -->
-        <!-- 						class="text-lg font-bold text-white group-hover:text-purple-200" -->
-        <!-- 					> -->
-        <!-- 						Junior Hackfest -->
-        <!-- 					</h3> -->
-        <!-- 					<p class="text-sm text-zinc-500 group-hover:text-zinc-400"> -->
-        <!-- 						For High School Students -->
-        <!-- 					</p> -->
-        <!-- 				</div> -->
-        <!-- 			</button> -->
-        <!---->
-        <!-- 			<button -->
-        <!-- 				onclick={() => { -->
-        <!-- 					isSelectionOpen = false; -->
-        <!-- 					goto('/register/senior-hackfest'); -->
-        <!-- 				}} -->
-        <!-- 				class="group relative flex flex-col items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-purple-500/50 hover:bg-zinc-900/80" -->
-        <!-- 			> -->
-        <!-- 				<div -->
-        <!-- 					class="rounded-full bg-purple-500/10 p-4 text-purple-400 transition-colors group-hover:bg-purple-500/20 group-hover:text-purple-300" -->
-        <!-- 				> -->
-        <!-- 					<GraduationCap class="size-8" /> -->
-        <!-- 				</div> -->
-        <!-- 				<div class="text-center"> -->
-        <!-- 					<h3 -->
-        <!-- 						class="text-lg font-bold text-white group-hover:text-purple-200" -->
-        <!-- 					> -->
-        <!-- 						Senior Hackfest -->
-        <!-- 					</h3> -->
-        <!-- 					<p class="text-sm text-zinc-500 group-hover:text-zinc-400"> -->
-        <!-- 						For College Students -->
-        <!-- 					</p> -->
-        <!-- 				</div> -->
-        <!-- 			</button> -->
-        <!-- 		</div> -->
-        <!-- 	</Dialog.Content> -->
-        <!-- </Dialog.Root> -->
-
         <div
-          class="my-8 ml-2 rounded-[3.75rem] p-[0.125rem]"
+          class="my-12 w-fit rounded-[3.75rem] p-[0.125rem]"
           style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
         >
           <Button
             variant="gradient"
             size="xl"
-            class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
+            class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)] not-sm:w-full"
           >
             <span class="relative z-10">Register Now</span>
           </Button>
@@ -503,3 +424,4 @@
       0 12px 15px -8px rgba(0, 0, 0, 0.2) !important;
   }
 </style>
+

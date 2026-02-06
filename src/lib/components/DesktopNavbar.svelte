@@ -120,5 +120,5 @@
     {/key}
   </div>
 
-  <ModeToggle {isDark} class="p-6 shadow-xl " />
+  <ModeToggle class="p-6 shadow-xl " />
 </nav>

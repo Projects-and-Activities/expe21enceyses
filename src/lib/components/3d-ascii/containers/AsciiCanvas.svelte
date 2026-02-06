@@ -1,9 +1,12 @@
 <script lang="ts">
   import { Canvas } from '@threlte/core';
-  import { AsciiRenderer } from '@threlte/extras';
   import type { Snippet } from 'svelte';
 
-  import { SCENE_COLOR, ASCII_CHARS, ASCII_OPTIONS } from '../constants';
+  import { SCENE_COLOR, ASCII_OPTIONS } from '../constants';
+
+  import DynamicAsciiRenderer from './DynamicAsciiRenderer.svelte';
+
+  import { asciiState } from '$lib/components/3d-ascii/ascii.svelte';
 
   let {
     fgColor = SCENE_COLOR,
@@ -22,7 +25,12 @@
 
 <div class="h-full w-full">
   <Canvas {dpr}>
-    <AsciiRenderer {fgColor} {bgColor} characters={ASCII_CHARS} options={ASCII_OPTIONS} />
+    <DynamicAsciiRenderer
+      {fgColor}
+      {bgColor}
+      characters={asciiState.currentChars}
+      options={ASCII_OPTIONS}
+    />
 
     {@render lights()}
     {@render children()}
