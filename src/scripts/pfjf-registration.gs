@@ -10,9 +10,11 @@
   But always update this file to keep it in sync with the live version after making changes in the Google Apps Script.
 */
 
+const SPREADSHEET_ID = "1HMNivR_CH2Sswrim-6onp1qp7BxMIzWkgb1Iz_ytq0s"
+
 function doPost(e) {
   try {
-    var spreadSheet = SpreadsheetApp.openById(''); // Spreadsheet ID here
+    var spreadSheet = SpreadsheetApp.openById(const SPREADSHEET_ID = "1HMNivR_CH2Sswrim-6onp1qp7BxMIzWkgb1Iz_ytq0s");
     var regSheet = spreadSheet.getSheets()[2];
 
     var formData = JSON.parse(e.postData.contents);
