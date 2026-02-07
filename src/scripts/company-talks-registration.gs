@@ -10,8 +10,10 @@
   But always update this file to keep it in sync with the live version after making changes in the Google Apps Script.
 */
 
+
 const SPREADSHEET_ID = "1HMNivR_CH2Sswrim-6onp1qp7BxMIzWkgb1Iz_ytq0s"
-const BANNER_URL = "https://drive.google.com/uc?export=view&id=1xwpVFAH-ctnILK-yKxreHoW-QY_UoQBo"
+const BANNER_URL = "https://drive.google.com/uc?export=view&id=1yi4HiRNAwh1bkEUcFC7D2GxB4n_qfR2c"
+const FOOTER_URL = "https://drive.google.com/uc?export=view&id=1r2iC2JoVid1ttVj0E-hKVAh96WA3r84N"
 
 function doPost(e) {
   try {
@@ -37,72 +39,30 @@ function doPost(e) {
         See you at CTalks!
       </p>
 
-      <p>Best,<br>The EXPE21ENCE YSES Team</p>
+      <p>Yours in experience,<br>The Young Software Engineers' Society, UPLB</p>
       `
 
     regSheet.appendRow([formData.firstName, formData.lastName, formData.email]);
 
-    const emailSignature = `
-      
-
-      <div style="font-family: 'Times New Roman', serif; color: rgb(65, 65, 65); max-width: 500px;">
-        <div style="border-bottom: 1px solid rgb(65,65,65); padding-bottom: 4px;">
-          <span style="color: rgb(64,158,255); font-size: 12px; font-weight: bold;">Justin Dayne Bryant Peña & Yuuri Nonaka</span><br>
-          <span style="font-size: 12px; font-style: italic;">Programs Committee Heads | </span>
-          <a href="mailto:prog@yses.org" style="color: rgb(64,158,255); font-weight: bold;">prog@yses.org</a>
-        </div>
-
-        <!-- Flexbox for inline logo and details -->
-        <div style="display: flex; align-items: center; margin-top: 10px;">
-          <!-- Logo -->
-          <a href="https://yses.org/" target="_blank" style="margin-right: 15px;">
-            <img src="https://res.cloudinary.com/drd1sbwh8/image/upload/v1702742150/wrapped.png" width="105" alt="YSES Logo" style="vertical-align: middle; border: 0px;">
-          </a>
-          
-          <!-- Text Details -->
-          <div>
-            <span style="color: rgb(64,158,255); font-size: 14px; font-weight: bold;">Young Software Engineers' Society</span>
-            <p style="font-size: 12px; margin: 2px 0;">Bridging the gap between the academe and the industry since 2005 / @YSES2005</p>
-            <a href="https://www.yses.org" target="_blank" style="color: rgb(64,158,255); font-weight: bold; text-decoration: none;">https://www.yses.org</a>
-            <!-- Social Media Links (Inline Icons) -->
-            <div style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
-              <a href="https://www.youtube.com/c/YoungSoftwareEngineersSociety" target="_blank">
-                <img src="https://cdn.gifo.wisestamp.com/s/yt/409eff/48/4/border.png" width="24" alt="YouTube">
-              </a>
-              <a href="https://www.facebook.com/YSES2005" target="_blank">
-                <img src="https://cdn.gifo.wisestamp.com/s/fb/409eff/48/4/border.png" width="24" alt="Facebook">
-              </a>
-              <a href="https://www.instagram.com/yses2005/" target="_blank">
-                <img src="https://cdn.gifo.wisestamp.com/s/inst/409eff/48/4/border.png" width="24" alt="Instagram">
-              </a>
-              <a href="https://www.linkedin.com/company/yses" target="_blank">
-                <img src="https://cdn.gifo.wisestamp.com/s/ld/409eff/48/4/border.png" width="24" alt="LinkedIn">
-              </a>
-              <a href="https://twitter.com/YSES2005" target="_blank">
-                <img src="https://cdn.gifo.wisestamp.com/s/tw/409eff/48/4/border.png" width="24" alt="Twitter">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
     MailApp.sendEmail({
       to: formData.email,
       name: "EXPE21ENCE YSES Programs Committee",
-      subject: 'Confirmation: Participation in EXPE21ENCE YSES: Company Talks',
+      subject: 'You’re Registered! EXPE21ENCE YSES: Company Talks',
       htmlBody: `
-      
-      <div style="text-align: center; margin-bottom: 20px;">
-        <img src="${BANNER_URL}" alt="Event Banner" width="100%" style="max-width: 600px; border-radius: 10px;">
-      </div>
-      
-      <p>Hi, Mr. // Ms. // Mx. ${formData.firstName} ${formData.lastName}, </p>
-
-      ${emailBody}
-      
-      ${emailSignature}
-    ` 
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; color: #333;">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img src="${BANNER_URL}" alt="Event Banner" width="100%" style="border-radius: 10px;">
+          </div>
+          
+          <p>Hi, Mr. / Ms. / Mx. ${formData.firstName} ${formData.lastName},</p>
+          
+          ${emailBody}
+          
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img src="${FOOTER_URL}" alt="Event Footer" width="100%" style="border-radius: 10px;">
+          </div>
+        </div>
+      `
     });
     return ContentService.createTextOutput(JSON.stringify({status: 'success'}))
       .setMimeType(ContentService.MimeType.JSON);
@@ -112,3 +72,4 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
+
