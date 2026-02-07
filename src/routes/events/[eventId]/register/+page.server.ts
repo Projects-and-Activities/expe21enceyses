@@ -1,17 +1,8 @@
 import { error, fail, type Actions } from '@sveltejs/kit';
 import { message, superValidate } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
-
 import type { PageServerLoad } from './$types';
-
 import { EVENT_REGISTRY } from '$lib/components/form/core/config';
-
-const EVENT_IDS = {
-  JUNIOR_HACKFEST: 'junior-hackfest',
-  SENIOR_HACKFEST: 'senior-hackfest',
-  PFJF: 'pfjf',
-  COMPANY_TALKS: 'company-talks',
-} as const;
 
 export const load: PageServerLoad = async ({ params }: { params: { eventId: string } }) => {
   const eventId = params.eventId;
@@ -31,7 +22,7 @@ export const actions: Actions = {
     const config = EVENT_REGISTRY[eventId];
 
     if (!config) {
-      error(404, 'Event not found');
+      throw error(404, 'Event not found');
     }
 
     const form = await superValidate(request, zod4(config.schema));
@@ -41,7 +32,6 @@ export const actions: Actions = {
     }
 
     try {
-      // Change nalang siguro yung api call if ano ang bet
       await config.submit(form.data);
 
       return message(form, 'Registration successful!');
