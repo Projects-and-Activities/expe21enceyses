@@ -1,0 +1,88 @@
+<script lang="ts">
+  import Star from '$lib/components/Star.svelte';
+  import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+  import Button from '$lib/components/ui/button/button.svelte';
+  import { viewport } from '$lib/actions/viewport';
+  import CompanyTalksRegisterScene from '$lib/components/3d-ascii/sections/CompanyTalksRegisterScene.svelte';
+
+  let { registrationSteps } = $props();
+  let isSceneVisible = $state(false);
+</script>
+
+<section class="relative mt-20 mb-10 flex w-full max-w-[1184px] flex-col items-center">
+  <Star class="absolute -right-40 bottom-20 w-28 rotate-12 opacity-50 dark:opacity-90" />
+  <Star class="absolute -right-14 bottom-10 w-15 -rotate-0 opacity-35 dark:opacity-70" />
+  <Star class="absolute bottom-40 -left-40 w-28 rotate-0 opacity-50 dark:opacity-90" />
+  <Star class="absolute bottom-30 -left-14 w-15 -rotate-0 opacity-35 dark:opacity-70" />
+
+  <ScrollReveal>
+    <div class="mb-12 text-center">
+      <h2 class="text-2xl leading-relaxed font-semibold lg:text-4xl">Register for Company Talks</h2>
+      <p class="mt-1 px-4 text-center text-sm leading-relaxed italic lg:mt-2 lg:text-lg">
+        Take your first step toward learning from industry professionals and gaining real-world
+        insights
+      </p>
+    </div>
+  </ScrollReveal>
+
+  <div
+    class="mx-auto mt-3 grid h-auto w-full max-w-[1184px] grid-cols-1 gap-8 md:grid-cols-[1fr_1fr] lg:h-[540px] lg:gap-12"
+  >
+    <div
+      class="order-1 flex h-[450px] w-full items-center justify-center md:h-full md:w-full"
+      use:viewport={{
+        onEnter: () => (isSceneVisible = true),
+        threshold: 0.2
+      }}
+    >
+      {#if isSceneVisible}
+        <ScrollReveal delay="200ms" class="h-full w-full">
+          <CompanyTalksRegisterScene />
+        </ScrollReveal>
+      {/if}
+    </div>
+
+    <div class="order-2 flex flex-col text-center md:p-0">
+      <div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-8 text-justify">
+        {#each registrationSteps as step, i (step.title)}
+          {@const { Icon, title, description } = step}
+
+          <ScrollReveal delay={`${300 + i * 50}ms`} class="place-self-center">
+            <div class="pt-1 text-primary">
+              <Icon class="size-14" />
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={`${300 + i * 50}ms`}>
+            <div class="flex flex-col gap-2">
+              <span class="text-xl font-bold md:text-xl">{title}</span>
+
+              <p class="text-justify text-lg leading-relaxed">
+                {description}
+              </p>
+            </div>
+          </ScrollReveal>
+        {/each}
+      </div>
+
+      <ScrollReveal delay="600ms">
+        <div class="relative z-10 mt-7 ml-2 flex justify-center">
+          <div
+            class="flex h-[58px] w-[230px] items-center justify-center rounded-[3.75rem] p-[0.135rem]"
+            style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
+          >
+            <Button
+              href="company-talks/register"
+              variant="gradient"
+              class="register-btn relative isolate h-[53px] w-[225px] overflow-hidden rounded-[3.75rem] !bg-transparent
+               p-[0.135rem]
+               shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
+            >
+              <span class="relative z-10 text-lg">Register</span>
+            </Button>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </div>
+</section>

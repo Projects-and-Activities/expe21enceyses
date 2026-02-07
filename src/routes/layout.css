@@ -166,6 +166,15 @@
   box-shadow: none !important;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+
 /* Register Button Gradient Transition (pseudo-elements only - base styles are inline Tailwind) */
 .register-btn::before {
   content: '';
