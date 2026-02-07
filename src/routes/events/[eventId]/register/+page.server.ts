@@ -34,8 +34,8 @@ export const actions: Actions = {
     }
 
     try {
-      await config.submit(form.data);
       await submitRegistration(eventId, form.data as RegistrationData);
+      
       return message(form, 'Registration successful!');
     } catch (e) {
       console.error(`Submission failed for ${eventId}:`, e);

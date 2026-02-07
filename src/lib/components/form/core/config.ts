@@ -28,8 +28,6 @@ export type EventConfig = {
   steps: StepItem<any>[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   skeleton: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  submit: (data: any) => Promise<void>;
 };
 
 export const EVENT_REGISTRY: Record<string, EventConfig> = {
@@ -59,9 +57,6 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
         props: { variant: 'junior' }
       }
     ],
-    submit: async (data) => {
-      console.log('Submit junior hackfest:', data);
-    }
   },
 
   'senior-hackfest': {
@@ -95,9 +90,6 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
         props: { variant: 'senior' }
       }
     ],
-    submit: async (data) => {
-      console.log('Submit senior hackfest:', data);
-    }
   },
 
   'company-talks': {
@@ -115,9 +107,6 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
         keys: ['firstName', 'lastName', 'email']
       }
     ],
-    submit: async (data) => {
-      console.log('Submit company talks:', data);
-    }
   },
 
   pfjf: {
@@ -135,8 +124,5 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
         keys: ['firstName', 'lastName', 'email', 'purposeOfRegistration']
       }
     ],
-    submit: async (data) => {
-      console.log('Submit pfjf:', data);
-    }
   }
 };
