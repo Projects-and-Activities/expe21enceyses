@@ -166,10 +166,8 @@
                             variant="gradient"
                             size="register"
                             class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
-                            onclick={() => {
-                              console.log('Register clicked');
-                              mobileMenuOpen = false;
-                            }}
+                            href="/register"
+                            onclick={() => (mobileMenuOpen = false)}
                           >
                             <span class="relative z-10">Register</span>
                           </Button>
