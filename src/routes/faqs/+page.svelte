@@ -33,49 +33,80 @@
   let sparks = $state<Spark[]>([]);
   let sparkId = 0;
 
-  // template lng yung laman neto will change it later
   const faqs = [
     {
       id: 'faq-1',
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+      question: 'What is EXPE21ENCE YSES?',
       answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut vestibulum elit. Sed accumsan, lectus ut consequat auctor, ligula metus consectetur diam, a mattis nisl erat in eros. Aliquam tincidunt ipsum diam. Sed sodales cursus nisi, ac fringilla velit sollicitudin eget. In in nisl suscipit, tristique justo vel, hendrerit sapien.'
+        'EXPE21ENCE YSES is YSES\' annual celebration marking our 21st year of bridging the gap between academe and industry. It\'s a series of events running from March 7-28, 2026, with the theme "Bridging Future Software Engineers of the 21st Century."'
     },
     {
       id: 'faq-2',
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+      question: 'What is YSES?',
       answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut vestibulum elit. Sed accumsan, lectus ut consequat auctor, ligula metus consectetur diam.'
+        "The Young Software Engineers' Society (YSES) is an academic organization based in the University of the Philippines Los Baños that promotes software engineering and prepares students for successful careers by bridging the gap between academe and industry, while nurturing future tech leaders who embody Leadership, Professionalism, and Excellence."
     },
     {
       id: 'faq-3',
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-      answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut vestibulum elit. Sed accumsan, lectus ut consequat auctor, ligula metus consectetur diam.'
+      question: 'What events are part of EXPE21ENCE YSES?',
+      intro: 'The celebration includes three main events:',
+      bullets: [
+        'The HackFest (March 7-28, 2026) — AI-driven hackathon for high school and college students',
+        'PF/JF (Practicum Fair/Job Fair) (March 19, 2026) — Career fair connecting students with companies',
+        'Company Talks (March 19, 2026) — Industry speakers sharing insights about tech careers'
+      ]
     },
     {
       id: 'faq-4',
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-      answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut vestibulum elit. Sed accumsan, lectus ut consequat auctor, ligula metus consectetur diam.'
+      question: 'Who can participate in EXPE21ENCE YSES events?',
+      intro: 'It depends on the event:',
+      bullets: [
+        'HackFest — High school students (Grades 7-12) and college students',
+        'PF/JF — Students looking for practicum opportunities or jobs',
+        'Company Talks — All students interested in the technology industry'
+      ]
     },
     {
       id: 'faq-5',
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
-      answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut vestibulum elit. Sed accumsan, lectus ut consequat auctor, ligula metus consectetur diam.'
+      question: 'Is there a registration fee?',
+      intro: 'Yes, but it varies by event:',
+      bullets: [
+        'HackFest — ₱350 per team (3-4 members)',
+        'PF/JF — Free (pre-registration encouraged)',
+        'Company Talks — Free (pre-registration encouraged)'
+      ]
     },
     {
       id: 'faq-6',
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+      question: 'Where can I register?',
       answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut vestibulum elit. Sed accumsan, lectus ut consequat auctor, ligula metus consectetur diam.'
+        'Registration will be available through the EXPE21ENCE YSES website, launching approximately one month before the events. Pre-registered participants will receive important updates for EXPE21ENCE YSES.'
     },
     {
       id: 'faq-7',
-      question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+      question: "I'm not from UP Los Baños. Can I still join?",
       answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut vestibulum elit. Sed accumsan, lectus ut consequat auctor, ligula metus consectetur diam.'
+        'Yes! EXPE21ENCE YSES events are open to students from all schools and universities across the Philippines.'
+    },
+    {
+      id: 'faq-8',
+      question: 'How do I stay updated?',
+      bullets: [
+        'Follow YSES on social media (Facebook, Instagram)',
+        'Pre-register to receive email updates',
+        'Check the EXPE21ENCE YSES website regularly'
+      ]
+    },
+    {
+      id: 'faq-9',
+      question: 'Who do I contact for questions?',
+      bullets: [
+        'Email: prog@yses.org',
+        'Contact Numbers: Justin Dayne Bryant Peña (+63 927 279 4988) or Yuuri Nonaka (+63 932 164 4789)',
+        'For HackFest questions — Email prog@yses.org with subject line starting with "HackFest:"',
+        'For PF/JF questions — Email prog@yses.org with subject line starting with "PF/JF:"',
+        'For Company Talks questions — Email prog@yses.org with subject line starting with "Company Talks:"'
+      ]
     }
   ];
 
@@ -383,7 +414,24 @@
                 class="overflow-hidden px-5 text-sm text-muted-foreground md:text-base"
               >
                 <div class="pb-4 pl-0 md:pl-11">
-                  {faq.answer}
+                  {#if faq.answer}
+                    {faq.answer}
+                  {:else}
+                    {#if faq.intro}
+                      <p class="mb-3">{faq.intro}</p>
+                    {/if}
+                    {#if faq.bullets}
+                      <ul class="list-none space-y-2">
+                        {#each faq.bullets as bullet}
+                          <li class="flex items-start gap-2">
+                            <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-purple-500"
+                            ></span>
+                            <span>{bullet}</span>
+                          </li>
+                        {/each}
+                      </ul>
+                    {/if}
+                  {/if}
                 </div>
               </Accordion.Content>
             </div>
