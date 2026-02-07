@@ -6,6 +6,13 @@ import type { PageServerLoad } from './$types';
 
 import { EVENT_REGISTRY } from '$lib/components/form/core/config';
 
+const EVENT_IDS = {
+  JUNIOR_HACKFEST: 'junior-hackfest',
+  SENIOR_HACKFEST: 'senior-hackfest',
+  PFJF: 'pfjf',
+  COMPANY_TALKS: 'company-talks',
+} as const;
+
 export const load: PageServerLoad = async ({ params }: { params: { eventId: string } }) => {
   const eventId = params.eventId;
   const config = EVENT_REGISTRY[eventId];
