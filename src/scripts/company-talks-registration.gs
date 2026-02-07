@@ -11,6 +11,7 @@
 */
 
 const SPREADSHEET_ID = "1HMNivR_CH2Sswrim-6onp1qp7BxMIzWkgb1Iz_ytq0s"
+const BANNER_URL = "https://drive.google.com/uc?export=view&id=1xwpVFAH-ctnILK-yKxreHoW-QY_UoQBo"
 
 function doPost(e) {
   try {
@@ -39,10 +40,7 @@ function doPost(e) {
       <p>Best,<br>The EXPE21ENCE YSES Team</p>
       `
 
-    regSheet.appendRow([formData.fName, formData.lName, formData.email, selectedOption]);
-
-    var bannerUrl = "" // Direct link to the banner image (sample: https://drive.google.com/uc?export=view&id=1itBkBE-OYjkxJWLQ1kjUAseuGc2shVbA)
-
+    regSheet.appendRow([formData.firstName, formData.lastName, formData.email]);
 
     const emailSignature = `
       
@@ -96,10 +94,10 @@ function doPost(e) {
       htmlBody: `
       
       <div style="text-align: center; margin-bottom: 20px;">
-        <img src="${bannerUrl}" alt="Event Banner" width="100%" style="max-width: 600px; border-radius: 10px;">
+        <img src="${BANNER_URL}" alt="Event Banner" width="100%" style="max-width: 600px; border-radius: 10px;">
       </div>
       
-      <p>Hi, Mr. // Ms. // Mx. ${formData.fName} ${formData.lName}, </p>
+      <p>Hi, Mr. // Ms. // Mx. ${formData.firstName} ${formData.lastName}, </p>
 
       ${emailBody}
       
