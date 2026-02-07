@@ -4,7 +4,7 @@ import {
 } from '$env/static/private';
 import { EVENT_IDS, type RegistrationData } from './registration.types';
 
-export async function companyTalksRegistration(eventId: string, data: RegistrationData) {
+export async function submitRegistration(eventId: string, data: RegistrationData) {
   let script
   switch (eventId) {
     case EVENT_IDS.COMPANY_TALKS:
