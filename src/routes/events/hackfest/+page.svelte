@@ -378,7 +378,6 @@
         class="origin-center transition-transform duration-300 ease-out {selectedHackfest === id
           ? 'scale-x-100'
           : 'scale-x-0'}
->>>>>>> app-stg
 				translate-y-[4px] opacity-60 blur-[4px]
 				dark:opacity-80"
         stroke="#7F52BB"
@@ -424,4 +423,3 @@
       0 12px 15px -8px rgba(0, 0, 0, 0.2) !important;
   }
 </style>
-
