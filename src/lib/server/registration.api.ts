@@ -2,7 +2,7 @@ import {
   GOOGLE_APPS_SCRIPT_URL_COMPANY_TALKS,
   GOOGLE_APPS_SCRIPT_URL_PFJF
 } from '$env/static/private';
-import { EVENT_IDS, type RegistrationData } from './registration.types';
+import { EVENT_IDS, type RegistrationData } from '../types/registration.types';
 
 export async function submitRegistration(eventId: string, data: RegistrationData) {
   let script

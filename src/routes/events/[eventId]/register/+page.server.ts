@@ -4,7 +4,7 @@ import { zod4 } from 'sveltekit-superforms/adapters';
 import type { PageServerLoad } from './$types';
 import { EVENT_REGISTRY } from '$lib/components/form/core/config';
 import { submitRegistration } from '$lib/server/registration.api';
-import type { RegistrationData } from '$lib/server/registration.types';
+import type { RegistrationData } from '$lib/types/registration.types';
 
 export const load: PageServerLoad = async ({ params }: { params: { eventId: string } }) => {
   const eventId = params.eventId;
@@ -35,7 +35,7 @@ export const actions: Actions = {
 
     try {
       await submitRegistration(eventId, form.data as RegistrationData);
-      
+
       return message(form, 'Registration successful!');
     } catch (e) {
       console.error(`Submission failed for ${eventId}:`, e);
