@@ -12,22 +12,22 @@
       id: 'pfjf',
       name: 'PF/JF',
       image: pfjfImage,
-      links: [{ label: 'Register', href: '/events/pfjf' }]
+      links: [{ label: 'Register', href: '/events/pfjf/register' }]
     },
     {
       id: 'hackfest',
       name: 'The HackFest',
       image: hackfestImage,
       links: [
-        { label: 'Junior Bracket', href: '/events/hackfest?bracket=junior' },
-        { label: 'Senior Bracket', href: '/events/hackfest?bracket=senior' }
+        { label: 'Junior Bracket', href: '/events/junior-hackfest/register' },
+        { label: 'Senior Bracket', href: '/events/senior-hackfest/register' }
       ]
     },
     {
       id: 'ctalks',
       name: 'Company Talks',
       image: ctalksImage,
-      links: [{ label: 'Register', href: '/events/company-talks' }]
+      links: [{ label: 'Register', href: '/events/company-talks/register' }]
     }
   ];
 </script>
