@@ -59,6 +59,7 @@
   "dependencies": {
     "@threlte/core": "^8.3.1",
     "@threlte/extras": "^9.7.1",
+    "cloudinary": "^2.9.0",
     "gsap": "^3.14.2",
     "liquid-glass-svelte": "^1.2.0",
     "mode-watcher": "^1.1.0",
