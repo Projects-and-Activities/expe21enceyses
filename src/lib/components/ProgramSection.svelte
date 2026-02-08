@@ -19,7 +19,7 @@
 
 <section class={cn('sticky  flex  flex-col justify-between  p-8', className)} {...rest}>
   <ScrollReveal delay="200ms">
-    <p class="hidden text-xl md:block">{subtitle}</p>
+    <p class="hidden text-2xl md:block">{subtitle}</p>
   </ScrollReveal>
 
   <div class="grid flex-1 place-content-center">
@@ -37,7 +37,7 @@
         <h3 class="text-3xl xs:text-5xl md:text-6xl">{title}</h3>
       </ScrollReveal>
       <ScrollReveal delay="200ms">
-        <p class="mt-4 text-balance not-md:text-sm md:hidden">{subtitle}</p>
+        <p class="not-md:text-md mt-4 text-balance md:hidden">{subtitle}</p>
       </ScrollReveal>
     </div>
     <div
