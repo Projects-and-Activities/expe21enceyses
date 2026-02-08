@@ -35,7 +35,7 @@
   const content = {
     junior: {
       highlight: 'Junior HackFest',
-      text: 'introduces high school students to software engineering by guiding them through the end‑to‑end design and development of FlutterFlow applications. Teams will identify community problems, translate them into user‑centered app ideas, and build working prototypes that responsibly integrate AI to support more sustainable, inclusive, and resilient local communities.'
+      text: 'introduces high school students to software engineering by guiding through the end‑to‑end design and development of FlutterFlow applications. Teams will identify community problems, translate them into user‑centered app ideas, and build working prototypes that responsibly integrate AI to support more sustainable, inclusive, and resilient local communities.'
     },
     senior: {
       highlight: 'Senior HackFest',
@@ -86,9 +86,9 @@
       title: 'Register',
       description: {
         junior:
-          'Go to [link] and under the Hackfest registration page, choose “Junior Hackfest” to begin your registration.',
+          'Go to <a href="/register" class="text-primary hover:underline">register</a> and under the Hackfest registration page, choose “Junior Hackfest” to begin your registration.',
         senior:
-          'Go to [link] and under the Hackfest registration page, choose “Senior Hackfest” to begin your registration.'
+          'Go to <a href="/register" class="text-primary hover:underline">register</a> and under the Hackfest registration page, choose “Senior Hackfest” to begin your registration.'
       }
     },
     {
@@ -320,7 +320,7 @@
             <div class="flex flex-col gap-1">
               <span class="text-lg font-bold">{title}</span>
               <p class="text-justify leading-relaxed text-muted-foreground">
-                {displayDescription}
+                {@html displayDescription}
               </p>
             </div>
           </ScrollReveal>
@@ -336,6 +336,7 @@
             variant="gradient"
             size="xl"
             class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)] not-sm:w-full"
+            href="/register"
           >
             <span class="relative z-10">Register Now</span>
           </Button>
