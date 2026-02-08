@@ -67,7 +67,7 @@
           </a>
         {/each}
       </div>
-      <div>info@yses.org / +63 932 796 3292</div>
+      <div>info@yses.org</div>
     </div>
   </div>
 </footer>
