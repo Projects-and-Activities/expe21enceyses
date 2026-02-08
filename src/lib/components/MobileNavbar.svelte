@@ -154,6 +154,16 @@
                             {/each}
                           </div>
                         </div>
+
+                        <a
+                          href="https://www.yses.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onclick={() => (mobileMenuOpen = false)}
+                          class="font-['Lexend'] text-xl font-medium text-foreground transition-colors hover:text-primary"
+                        >
+                          YSES Online
+                        </a>
                       </nav>
 
                       <!-- Register Button -->
