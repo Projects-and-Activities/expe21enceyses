@@ -55,7 +55,7 @@
       title: 'Who can join',
       description: {
         junior:
-          'Grade 7–12 students, teams of 3–4 from the same school and 1 team coach (maximum of 3 per school)',
+          'Maximum of three teams per school, with 3–4 students from Grades 7–12 and 1 team coach per team.',
         senior: 'College students, teams of 3–4 members'
       }
     },
@@ -63,7 +63,7 @@
       icon: Monitor,
       title: 'Platform',
       description: {
-        junior: 'FlutterFlow',
+        junior: 'MIT App Inventor',
         senior: 'Any technology stack'
       }
     },
@@ -76,7 +76,7 @@
       icon: MapPin,
       title: 'Format',
       description:
-        'Asynchronous proposal development + on-site showcase at the University of the Philippines Los Baños'
+        'Asynchronous proposal development and on-site showcase at the University of the Philippines Los Baños'
     }
   ];
 
