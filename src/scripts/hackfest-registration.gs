@@ -14,6 +14,23 @@ const SPREADSHEET_ID = "1HMNivR_CH2Sswrim-6onp1qp7BxMIzWkgb1Iz_ytq0s"
 const BANNER_URL = "https://drive.google.com/uc?export=view&id=1yi4HiRNAwh1bkEUcFC7D2GxB4n_qfR2c"
 const FOOTER_URL = "https://drive.google.com/uc?export=view&id=1r2iC2JoVid1ttVj0E-hKVAh96WA3r84N"
 
+const BRACKET_CONFIG = {
+  'junior': {
+    sheetIndex: 0,
+    requirementsDriveFolder: '1ZIcjdpjESa81kea1Fb-CHwoXRApjoFFw',
+    proofOfPaymentDriveFolder: '1baX0QzUepXUw7bgbmTD31niPQswNJvxy',
+    emailSubject: "You're In! EXPE21ENCE YSES: The HackFest - Junior Registration Confirmed",
+    categoryName: "Junior HackFest bracket"
+  },
+  'senior': {
+    sheetIndex: 1,
+    requirementsDriveFolder: '17lr3nZ5mHYgItHQb-YYPql8mj6x94N_v',
+    proofOfPaymentDriveFolder: '1Re2bT9lMPXuv--fj2tnuVsMsxox07sVH',
+    emailSubject: "You're In! EXPE21ENCE YSES: The HackFest - Senior Registration Confirmed", 
+    categoryName: "Senior HackFest bracket"
+  }
+};
+
 function doGet() {
   try {
     var spreadSheet = SpreadsheetApp.openById(SPREADSHEET_ID);
