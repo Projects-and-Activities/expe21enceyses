@@ -1,0 +1,49 @@
+<script lang="ts">
+  import { T } from '@threlte/core';
+
+  import Microphone from '../models/Microphone.svelte';
+  import Stars1 from '../models/Stars1.svelte';
+
+  import AsciiCanvas from '$lib/components/3d-ascii/containers/AsciiCanvas.svelte';
+
+  let innerWidth = $state(0);
+
+  // Layout Logic
+  let config = $derived.by(() => {
+    if (innerWidth < 768) {
+      return {
+        laptopPos: [0.6, -2.3, -0.2],
+        starsPos: [0.6, -2, 0],
+        scale: 0.8
+      };
+    }
+    return {
+      laptopPos: [0.7, -3.0, -0.8],
+      starsPos: [0.7, -3.8, -0.3],
+      scale: 1
+    };
+  });
+</script>
+
+<svelte:window bind:innerWidth />
+
+{#snippet heroLights()}
+  <T.AmbientLight intensity={0.4} />
+  <T.DirectionalLight position={[2, 10, 5]} intensity={1.5} castShadow />
+  <T.PointLight position={[0.5, 1, 4]} intensity={1} color="#FFEDCC" distance={10} />
+{/snippet}
+
+<AsciiCanvas fgColor="gray" lights={heroLights}>
+  <Microphone
+    position={config.laptopPos as [number, number, number]}
+    rotation={[0.4, -0.3, 0]}
+    scale={config.scale}
+  />
+
+  <Stars1
+    position={config.starsPos as [number, number, number]}
+    rotation={[0.3, -0.3, 0]}
+    scale={config.scale}
+    delay={3000}
+  />
+</AsciiCanvas>

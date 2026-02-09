@@ -1,10 +1,11 @@
 <script lang="ts">
   import { T } from '@threlte/core';
 
+  import BusinessCards from '../effects/BusinessCards.svelte';
+  import Microphone from '../models/Microphone.svelte';
+  import Stars1 from '../models/Stars1.svelte';
+
   import AsciiCanvas from '$lib/components/3d-ascii/containers/AsciiCanvas.svelte';
-  import MatrixRain from '$lib/components/3d-ascii/effects/MatrixRain.svelte';
-  import Laptop from '$lib/components/3d-ascii/models/Laptop.svelte';
-  import Stars from '$lib/components/3d-ascii/models/Stars.svelte';
   import SimpleFloat from '$lib/components/3d-ascii/rig/SimpleFloat.svelte';
 
   let innerWidth = $state(0);
@@ -13,14 +14,14 @@
   let config = $derived.by(() => {
     if (innerWidth < 768) {
       return {
-        laptopPos: [0.5, -0.5, -0.2],
-        starsPos: [0.5, -0.2, 0],
+        laptopPos: [0.5, -1.2, -0.2],
+        starsPos: [0.5, -1, 0],
         scale: 0.6
       };
     }
     return {
-      laptopPos: [0.5, -0.7, 1],
-      starsPos: [0.5, 0.3, 1.7],
+      laptopPos: [0.7, -3.4, -0.8],
+      starsPos: [0.7, -3.8, 0],
       scale: 1
     };
   });
@@ -35,20 +36,22 @@
 {/snippet}
 
 <AsciiCanvas lights={heroLights}>
-  <MatrixRain color="#7F52BB" />
-
-  <Laptop
-    position={config.laptopPos as [number, number, number]}
-    rotation={[0.4, -0.3, 0]}
-    scale={1}
-  />
+  <BusinessCards />
 
   <SimpleFloat speed={5} amplitude={0.2} enabled={true}>
-    <Stars
-      position={config.starsPos as [number, number, number]}
-      rotation={[0.3, -0.5, 0]}
+    <Microphone
+      position={config.laptopPos as [number, number, number]}
+      rotation={[0.4, -0.3, 0]}
       scale={config.scale}
-      delay={1000}
+    />
+  </SimpleFloat>
+
+  <SimpleFloat speed={5} amplitude={0.2} enabled={true}>
+    <Stars1
+      position={config.starsPos as [number, number, number]}
+      rotation={[0.3, -0.3, 0]}
+      scale={config.scale}
+      delay={3000}
     />
   </SimpleFloat>
 </AsciiCanvas>
