@@ -3,10 +3,17 @@
   import Button from '$lib/components/ui/button/button.svelte';
   import ChevronsDown from '@lucide/svelte/icons/chevrons-down';
   import microphone from '$lib/assets/ctalks.png';
+  import CompanyTalksScene from '$lib/components/3d-ascii/sections/CompanyTalksScene.svelte';
 
   let { event_title, tagline, register_route } = $props();
   const titleParts = $derived(event_title.split(':'));
 </script>
+
+<div
+  class="absolute inset-0 -z-10 h-screen w-full [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
+>
+  <CompanyTalksScene />
+</div>
 
 <section
   class="relative mt-50 flex flex-col place-content-center place-items-center gap-2 lg:mt-20 lg:h-screen lg:gap-9"
@@ -32,18 +39,6 @@
       {tagline}
     </div>
   </ScrollReveal>
-
-  <div
-    class="relative z-0 mt-6 flex justify-center [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] lg:pointer-events-none lg:absolute lg:inset-0 lg:-z-10 lg:mt-0"
-  >
-    <ScrollReveal>
-      <img
-        src={microphone}
-        alt="ctalks icon"
-        class="h-[214px] w-[214px] object-cover object-center opacity-40 lg:h-[522px] lg:w-[522px]"
-      />
-    </ScrollReveal>
-  </div>
 
   <ScrollReveal delay="600ms">
     <div

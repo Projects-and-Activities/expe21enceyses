@@ -1,12 +1,13 @@
 <script lang="ts">
   import { T } from '@threlte/core';
 
-  import BusinessCards from '../effects/BusinessCards.svelte';
-  import Microphone from '../models/Microphone.svelte';
-  import Stars1 from '../models/Stars1.svelte';
+  import Briefcase from '../models/Briefcase.svelte';
 
   import AsciiCanvas from '$lib/components/3d-ascii/containers/AsciiCanvas.svelte';
+  import MatrixRain from '$lib/components/3d-ascii/effects/MatrixRain.svelte';
+  import Stars from '$lib/components/3d-ascii/models/Stars.svelte';
   import SimpleFloat from '$lib/components/3d-ascii/rig/SimpleFloat.svelte';
+  import DataUplink from '../effects/DataUplink.svelte';
 
   let innerWidth = $state(0);
 
@@ -14,14 +15,14 @@
   let config = $derived.by(() => {
     if (innerWidth < 768) {
       return {
-        laptopPos: [0.5, -1.2, -0.2],
-        starsPos: [0.5, -1, 0],
-        scale: 0.6
+        laptopPos: [0.3, 0, -0.57],
+        starsPos: [0.4, 0.8, -0.3],
+        scale: 0.8
       };
     }
     return {
-      laptopPos: [0.7, -3.4, -0.8],
-      starsPos: [0.7, -3.8, 0],
+      laptopPos: [0.5, -3, -1],
+      starsPos: [0.5, 0.3, 1.7],
       scale: 1
     };
   });
@@ -31,27 +32,25 @@
 
 {#snippet heroLights()}
   <T.AmbientLight intensity={0.4} />
-  <T.DirectionalLight position={[2, 10, 5]} intensity={1.5} castShadow />
+  <T.DirectionalLight position={[2, 10, 5]} intensity={1} castShadow />
   <T.PointLight position={[0.5, 1, 4]} intensity={1} color="#FFEDCC" distance={10} />
 {/snippet}
 
 <AsciiCanvas lights={heroLights}>
-  <BusinessCards />
+  <DataUplink color="#7F52BB" />
+
+  <Briefcase
+    position={config.laptopPos as [number, number, number]}
+    rotation={[0.4, -0.3, 0]}
+    scale={config.scale}
+  />
 
   <SimpleFloat speed={5} amplitude={0.2} enabled={true}>
-    <Microphone
-      position={config.laptopPos as [number, number, number]}
-      rotation={[0.4, -0.3, 0]}
-      scale={config.scale}
-    />
-  </SimpleFloat>
-
-  <SimpleFloat speed={5} amplitude={0.2} enabled={true}>
-    <Stars1
+    <Stars
       position={config.starsPos as [number, number, number]}
-      rotation={[0.3, -0.3, 0]}
+      rotation={[0.3, -0.5, 0]}
       scale={config.scale}
-      delay={3000}
+      delay={2000}
     />
   </SimpleFloat>
 </AsciiCanvas>
