@@ -175,8 +175,12 @@
           {#if controller.step < controller.steps.length}
             <Button type="button" onclick={nextStep}>Next</Button>
           {:else}
-            <Button type="submit" disabled={$submitting} class="bg-purple-600 hover:bg-purple-700">
-              {$submitting ? 'Submitting...' : 'Submit Application'}
+            <Button
+              type="submit"
+              disabled={$submitting}
+              class="bg-purple-600/80 text-white hover:bg-purple-700/80"
+            >
+              {$submitting ? 'Submitting...' : 'Submit'}
             </Button>
           {/if}
         </div>

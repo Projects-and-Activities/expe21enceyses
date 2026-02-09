@@ -6,27 +6,51 @@
   import X from './icons/X.svelte';
   import YouTube from './icons/YouTube.svelte';
 
+  import { page } from '$app/state';
   import invertedLogo from '$lib/assets/colored-logo-inverted.png?enhanced';
   import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
+
+  const socials = [
+    { component: LinkedIn, href: 'https://www.linkedin.com/company/yses2005/', label: 'LinkedIn' },
+    { component: Github, href: 'https://github.com/yses2005', label: 'GitHub' },
+    { component: Facebook, href: 'https://www.facebook.com/YSES2005', label: 'Facebook' },
+    { component: X, href: 'https://x.com/yses2005', label: 'X' },
+    {
+      component: YouTube,
+      href: 'https://www.youtube.com/c/youngsoftwareengineerssociety',
+      label: 'YouTube'
+    },
+    { component: Instagram, href: 'https://www.instagram.com/yses2005', label: 'Instagram' }
+  ];
+
+  const darkBg = $derived(page.url.pathname === '/' ? 'dark:bg-primary/5' : 'bg-transparent');
 </script>
 
-<footer class="bg-background/10 p-8 backdrop-blur-md not-xs:pb-16 not-lg:px-0">
+<footer class="bg-neutral-50 p-8 backdrop-blur-lg not-xs:pb-16 not-lg:px-0 {darkBg}">
   <div class="container mx-auto flex flex-col place-items-center gap-4 md:flex-row">
-    <enhanced:img
-      src={coloredLogo}
-      class="block size-16 dark:hidden"
-      loading="lazy"
-      decoding="async"
-      alt="Logo"
-    />
+    <a
+      href="https://www.yses.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Visit YSES Online"
+      class="transition-transform hover:scale-105"
+    >
+      <enhanced:img
+        src={coloredLogo}
+        class="block size-16 dark:hidden"
+        loading="lazy"
+        decoding="async"
+        alt="YSES Logo"
+      />
 
-    <enhanced:img
-      src={invertedLogo}
-      class="hidden size-16 dark:block"
-      loading="lazy"
-      decoding="async"
-      alt="Logo"
-    />
+      <enhanced:img
+        src={invertedLogo}
+        class="hidden size-16 dark:block"
+        loading="lazy"
+        decoding="async"
+        alt="YSES Logo"
+      />
+    </a>
 
     <div class="not-md:text-center">
       <h3 class="text-lg">Young Software Engineers' Society</h3>
@@ -34,14 +58,19 @@
     </div>
     <div class="flex w-fit flex-col-reverse not-md:place-items-center not-md:gap-y-12 md:ml-auto">
       <div class="flex gap-1 not-md:scale-120">
-        <LinkedIn />
-        <Github />
-        <Facebook />
-        <X />
-        <YouTube />
-        <Instagram />
+        {#each socials as social (social.label)}
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+            class="transition-transform hover:scale-110"
+          >
+            <svelte:component this={social.component} />
+          </a>
+        {/each}
       </div>
-      <div>info@yses.org / +63 932 796 3292</div>
+      <div>info@yses.org</div>
     </div>
   </div>
 </footer>

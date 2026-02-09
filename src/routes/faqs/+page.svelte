@@ -102,7 +102,6 @@
       question: 'Who do I contact for questions?',
       bullets: [
         'Email: prog@yses.org',
-        'Contact Numbers: Justin Dayne Bryant Peña (+63 927 279 4988) or Yuuri Nonaka (+63 932 164 4789)',
         'For HackFest questions — Email prog@yses.org with subject line starting with "HackFest:"',
         'For PF/JF questions — Email prog@yses.org with subject line starting with "PF/JF:"',
         'For Company Talks questions — Email prog@yses.org with subject line starting with "Company Talks:"'
@@ -453,14 +452,8 @@
       <ul class="list-inside list-disc space-y-1">
         <li>
           Email: <a href="mailto:sample@email.com" class="text-primary hover:underline"
-            >sample@email.com</a
+            >prog@yses.org</a
           >
-        </li>
-        <li>
-          Contact Number:
-          <ul class="ml-6 list-inside list-disc">
-            <li>FirstName LastName: +639XXXXXXXXX</li>
-          </ul>
         </li>
       </ul>
     </div>

@@ -11,7 +11,8 @@
   import hackfestImg from '$lib/assets/hackfest.png?enhanced';
   import leftHandImg from '$lib/assets/hand_transparent_left.png?enhanced';
   import rightHandImg from '$lib/assets/hand_transparent_right.png?enhanced';
-  import logoImg from '$lib/assets/logo.png?enhanced';
+  import logoDarkImg from '$lib/assets/LogoDark.png?enhanced';
+  import logoLightImg from '$lib/assets/logoLight.png?enhanced';
   import pfjfImg from '$lib/assets/pfjf.png?enhanced';
   import LogoScene from '$lib/components/3d-ascii/sections/LogoScene.svelte';
   import AnnotatedBorderedContainer from '$lib/components/AnnotatedBorderedContainer.svelte';
@@ -83,14 +84,14 @@
       img: hackfestImg
     },
     {
-      id: 'pfjf',
+      id: 'pf-jf',
       title: 'Practicum/Job Fair',
       subtitle: 'Land the opportunities that launch your career.',
       bg: 'bg-neutral-100 dark:bg-primary/10 backdrop-blur-md',
       img: pfjfImg
     },
     {
-      id: 'ctalks',
+      id: 'company-talks',
       title: 'Company Talks',
       subtitle: 'Unlock what it takes to thrive in tech.',
       bg: 'bg-neutral-50 dark:bg-primary/5  backdrop-blur-lg',
@@ -160,7 +161,7 @@
     </div>
 
     <AnnotatedBorderedContainer
-      annotation="XX/2026 - XX/2026"
+      annotation="XX/2026"
       annotationAlign="bottom-center"
       color="primary"
       size="sm"
@@ -183,7 +184,19 @@
               color="primary"
               size="xs"
             >
-              <enhanced:img src={logoImg} alt="" class="aspect-square size-16 p-1 lg:size-24" />
+              {#if mode.current === 'dark'}
+                <enhanced:img
+                  src={logoDarkImg}
+                  alt="YSES Logo"
+                  class="aspect-square size-16 p-1 lg:size-24"
+                />
+              {:else}
+                <enhanced:img
+                  src={logoLightImg}
+                  alt="YSES Logo"
+                  class="aspect-square size-16 p-1 lg:size-24"
+                />
+              {/if}
             </AnnotatedBorderedContainer>
           </div>
         </ScrollReveal>
@@ -367,10 +380,15 @@
         id={section.id}
         title={section.title}
         subtitle={section.subtitle}
-        class=" w-full rounded-t-4xl pb-20   xs:pb-12 {section.bg}  top-20 mb-100 h-[calc(100dvh-5rem)] last:mb-0 last:*:hidden! nth-last-2:mb-0! xs:top-20! xs:h-[min(1104px,calc(100dvh-5rem))]!"
+        class=" w-full rounded-t-4xl pb-20   xs:pb-12 {section.bg}  top-20 mb-100 h-[calc(100dvh-5rem)] last:pointer-events-none! last:mb-0 last:*:hidden! nth-last-2:mb-0! xs:top-20! xs:h-[min(1104px,calc(100dvh-5rem))]!"
         style="z-index: {i}; "
       >
-        <enhanced:img src={section.img} class="size-100 brightness-200" width="600" height="600" />
+        <enhanced:img
+          src={section.img}
+          class="size-100 object-contain brightness-200"
+          width="600"
+          height="600"
+        />
       </ProgramSection>
     {/each}
   </div>

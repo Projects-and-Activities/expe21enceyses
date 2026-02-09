@@ -7,7 +7,7 @@
   import { page } from '$app/stores';
   import invertedLogo from '$lib/assets/colored-logo-inverted.png?enhanced';
   import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
-  import logo from '$lib/assets/logo.png';
+  import logo from '$lib/assets/logo21Light.png';
   import logoDark from '$lib/assets/logoDark.png';
   import Facebook from '$lib/components/icons/Facebook.svelte';
   import Github from '$lib/components/icons/Github.svelte';
@@ -154,6 +154,16 @@
                             {/each}
                           </div>
                         </div>
+
+                        <a
+                          href="https://www.yses.org/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onclick={() => (mobileMenuOpen = false)}
+                          class="font-['Lexend'] text-xl font-medium text-foreground transition-colors hover:text-primary"
+                        >
+                          YSES Online
+                        </a>
                       </nav>
 
                       <!-- Register Button -->
