@@ -35,7 +35,7 @@
   const content = {
     junior: {
       highlight: 'Junior HackFest',
-      text: 'introduces high school students to software engineering by guiding them through the end‑to‑end design and development of FlutterFlow applications. Teams will identify community problems, translate them into user‑centered app ideas, and build working prototypes that responsibly integrate AI to support more sustainable, inclusive, and resilient local communities.'
+      text: 'introduces high school students to software engineering by guiding through the end‑to‑end design and development of FlutterFlow applications. Teams will identify community problems, translate them into user‑centered app ideas, and build working prototypes that responsibly integrate AI to support more sustainable, inclusive, and resilient local communities.'
     },
     senior: {
       highlight: 'Senior HackFest',
@@ -55,7 +55,7 @@
       title: 'Who can join',
       description: {
         junior:
-          'Grade 7–12 students, teams of 3–4 from the same school and 1 team coach (maximum of 3 per school)',
+          'Maximum of three teams per school, with 3–4 students from Grades 7–12 and 1 team coach per team.',
         senior: 'College students, teams of 3–4 members'
       }
     },
@@ -63,7 +63,7 @@
       icon: Monitor,
       title: 'Platform',
       description: {
-        junior: 'FlutterFlow',
+        junior: 'MIT App Inventor',
         senior: 'Any technology stack'
       }
     },
@@ -76,7 +76,7 @@
       icon: MapPin,
       title: 'Format',
       description:
-        'Asynchronous proposal development + on-site showcase at the University of the Philippines Los Baños'
+        'Asynchronous proposal development and on-site showcase at the University of the Philippines Los Baños'
     }
   ];
 
@@ -86,9 +86,9 @@
       title: 'Register',
       description: {
         junior:
-          'Go to [link] and under the Hackfest registration page, choose “Junior Hackfest” to begin your registration.',
+          'Go to <a href="/register" class="text-primary hover:underline">register</a> and under the Hackfest registration page, choose “Junior Hackfest” to begin your registration.',
         senior:
-          'Go to [link] and under the Hackfest registration page, choose “Senior Hackfest” to begin your registration.'
+          'Go to <a href="/register" class="text-primary hover:underline">register</a> and under the Hackfest registration page, choose “Senior Hackfest” to begin your registration.'
       }
     },
     {
@@ -320,7 +320,7 @@
             <div class="flex flex-col gap-1">
               <span class="text-lg font-bold">{title}</span>
               <p class="text-justify leading-relaxed text-muted-foreground">
-                {displayDescription}
+                {@html displayDescription}
               </p>
             </div>
           </ScrollReveal>
@@ -329,13 +329,13 @@
 
       <ScrollReveal delay="500ms">
         <div
-          class="my-12 w-fit rounded-[3.75rem] p-[0.125rem]"
+          class="my-12 w-fit rounded-[3.75rem] p-[0.125rem] not-sm:mx-auto"
           style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
         >
           <Button
             variant="gradient"
             size="xl"
-            class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)] not-sm:w-full"
+            class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
           >
             <span class="relative z-10">Register Now</span>
           </Button>

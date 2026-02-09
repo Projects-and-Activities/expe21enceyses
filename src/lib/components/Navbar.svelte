@@ -7,7 +7,8 @@
   // Navigation items
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'Events', href: '/events' }
+    { label: 'Events', href: '/events' },
+    { label: 'YSES Online', href: 'https://www.yses.org/' }
   ];
 
   // Event sub-items

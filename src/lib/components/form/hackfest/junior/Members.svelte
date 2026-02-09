@@ -7,20 +7,18 @@
   import * as Form from '$lib/components/ui/form';
   import { Input } from '$lib/components/ui/input';
   import * as Select from '$lib/components/ui/select';
-  import type { SeniorHackfestRegistration } from '$lib/types/hackfest';
-
-  const form = useFormContext<SeniorHackfestRegistration>();
+  import type { JuniorHackfestRegistration } from '$lib/types/hackfest';
+  const form = useFormContext<JuniorHackfestRegistration>();
   const { form: formData } = form;
 
-  const YEAR_LEVELS = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year+'];
+  const YEAR_LEVELS = ['Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'];
 
   onMount(() => {
     if (!$formData.members || $formData.members.length === 0) {
       $formData.members = Array.from({ length: 3 }, () => ({
         name: '',
         email: '',
-        universityLevel: '',
-        schoolName: '',
+        gradeLevel: '',
         facebookLink: ''
       }));
     }
@@ -33,8 +31,7 @@
         {
           name: '',
           email: '',
-          universityLevel: '',
-          schoolName: '',
+          gradeLevel: '',
           facebookLink: ''
         }
       ];
@@ -102,18 +99,18 @@
               <Form.FieldErrors class="text-red-500" />
             </Form.Field>
 
-            <Form.Field {form} name="members[{i}].universityLevel">
+            <Form.Field {form} name="members[{i}].gradeLevel">
               <Form.Control>
                 {#snippet children({ props })}
-                  <Form.Label>Year Level</Form.Label>
+                  <Form.Label>Grade Level</Form.Label>
                   <Select.Root
                     type="single"
-                    bind:value={$formData.members[i].universityLevel}
+                    bind:value={$formData.members[i].gradeLevel}
                     name={props.name}
                   >
-                    <Select.Trigger {...props} class="bg-background dark:bg-zinc-950/50">
-                      {$formData.members[i].universityLevel
-                        ? $formData.members[i].universityLevel
+                    <Select.Trigger {...props} class="w-40 bg-background dark:bg-zinc-950/50">
+                      {$formData.members[i].gradeLevel
+                        ? $formData.members[i].gradeLevel
                         : 'Select level'}
                     </Select.Trigger>
                     <Select.Content>
@@ -127,21 +124,6 @@
               <Form.FieldErrors class="text-red-500" />
             </Form.Field>
           </div>
-
-          <Form.Field {form} name="members[{i}].schoolName">
-            <Form.Control>
-              {#snippet children({ props })}
-                <Form.Label>School Name</Form.Label>
-                <Input
-                  {...props}
-                  bind:value={$formData.members[i].schoolName}
-                  placeholder="e.g. University of the Philippines Los Baños"
-                  class="bg-background dark:bg-zinc-950/50"
-                />
-              {/snippet}
-            </Form.Control>
-            <Form.FieldErrors class="text-red-500" />
-          </Form.Field>
 
           <div class="grid grid-cols-2 gap-4">
             <Form.Field {form} name="members[{i}].email">
@@ -163,7 +145,7 @@
             <Form.Field {form} name="members[{i}].facebookLink">
               <Form.Control>
                 {#snippet children({ props })}
-                  <Form.Label>Facebook Profile</Form.Label>
+                  <Form.Label>Facebook Profile Link</Form.Label>
                   <Input
                     {...props}
                     bind:value={$formData.members[i].facebookLink}

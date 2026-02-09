@@ -5,6 +5,7 @@ import type { StepItem } from './controller.svelte';
 import CompanyUserInfo from '$lib/components/form/company-talks/UserInfo.svelte';
 import ContactDetails from '$lib/components/form/hackfest/ContactDetails.svelte';
 import HackfestSkeleton from '$lib/components/form/hackfest/HackfestSkeleton.svelte';
+import JuniorMembers from '$lib/components/form/hackfest/junior/Members.svelte';
 import JuniorTeamInfo from '$lib/components/form/hackfest/junior/TeamInfo.svelte';
 import Requirements from '$lib/components/form/hackfest/Requirements.svelte';
 import SeniorMembers from '$lib/components/form/hackfest/senior/Members.svelte';
@@ -45,12 +46,24 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
       {
         label: 'Team Info',
         component: JuniorTeamInfo,
-        keys: ['teamName', 'adviserName', 'schoolName', 'coachFirstName', 'coachLastName']
+        keys: [
+          'teamName',
+          'adviserName',
+          'schoolName',
+          'coachFirstName',
+          'coachLastName',
+          'coachFacebookLink'
+        ]
       },
       {
         label: 'Contact',
         component: ContactDetails,
         keys: ['contactNumber', 'email']
+      },
+      {
+        label: 'Members',
+        component: JuniorMembers,
+        keys: ['members']
       },
       {
         label: 'Requirements',
