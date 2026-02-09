@@ -52,20 +52,23 @@ function doGet() {
 
 function doPost(e) {
   try {
-    var spreadSheet = SpreadsheetApp.openById(SPREADSHEET_ID);
-    var regSheet = spreadSheet.getSheets()[1];
-
     var formData = JSON.parse(e.postData.contents);
+    var bracket = formData.bracket || 'senior'; 
+    var config = BRACKET_CONFIG[bracket];
 
-    // file handling 1jMVDV63GYApAn_zoXCPSokagxgjVktmS
+    if (!config) throw new Error('Invalid bracket specified');
+
+    var spreadSheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    var regSheet = spreadSheet.getSheets()[config.sheetIndex];
+
     var decodedRequirementsFile = Utilities.base64Decode(formData.requirements);
     var reqBlob = Utilities.newBlob(decodedRequirementsFile, formData.requirementsFileType, formData.teamName + "_Requirements");
-    var savedRequirements = DriveApp.getFolderById('').createFile(reqBlob);
+    var savedRequirements = DriveApp.getFolderById(config.requirementsDriveFolder).createFile(reqBlob);
     var reqUrl = savedRequirements.getUrl(); 
 
     var decodedPaymentFile = Utilities.base64Decode(formData.payment);
     var paymentBlob = Utilities.newBlob(decodedPaymentFile, formData.paymentFileType, formData.teamName + "_ProofOfPayment");
-    var savedPayment = DriveApp.getFolderById('').createFile(paymentBlob);
+    var savedPayment = DriveApp.getFolderById(config.proofOfPaymentDriveFolder).createFile(paymentBlob);
     var paymentUrl = savedPayment.getUrl();  
 
     var contactNumber = "'" + formData.contactNumber; 
@@ -86,11 +89,10 @@ function doPost(e) {
       paymentUrl
     ]);
 
-    // TODO: Create if else for different brackets (Junior/Senior)
     MailApp.sendEmail({
       to: formData.email,
       name: "EXPE21ENCE YSES Programs Committee",
-      subject: "You’re In! EXPE21ENCE YSES: The HackFest - Senior Registration Confirmed",
+      subject: config.emailSubject,
       htmlBody: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; color: #333;">
           <div style="text-align: center; margin-bottom: 20px;">
@@ -102,7 +104,7 @@ function doPost(e) {
             </p>
 
             <p>
-              Thank you for registering for <strong>EXPE21ENCE YSES: The HackFest!</strong> Your team's application for the <strong>Senior HackFest bracket</strong> has been successfully received.
+              Thank you for registering for <strong>EXPE21ENCE YSES: The HackFest!</strong> Your team's application for the <strong>${bracket.charAt(0).toUpperCase() + bracket.slice(1)} HackFest bracket</strong> has been successfully received.
             </p>
 
             <p>
