@@ -6,6 +6,7 @@
   import X from './icons/X.svelte';
   import YouTube from './icons/YouTube.svelte';
 
+  import { page } from '$app/state';
   import invertedLogo from '$lib/assets/colored-logo-inverted.png?enhanced';
   import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
 
@@ -21,9 +22,11 @@
     },
     { component: Instagram, href: 'https://www.instagram.com/yses2005', label: 'Instagram' }
   ];
+
+  const darkBg = $derived(page.url.pathname === '/' ? 'dark:bg-primary/5' : 'bg-transparent');
 </script>
 
-<footer class="bg-background/10 p-8 backdrop-blur-md not-xs:pb-16 not-lg:px-0">
+<footer class="bg-neutral-50 p-8 backdrop-blur-lg not-xs:pb-16 not-lg:px-0 {darkBg}">
   <div class="container mx-auto flex flex-col place-items-center gap-4 md:flex-row">
     <a
       href="https://www.yses.org/"
@@ -55,7 +58,7 @@
     </div>
     <div class="flex w-fit flex-col-reverse not-md:place-items-center not-md:gap-y-12 md:ml-auto">
       <div class="flex gap-1 not-md:scale-120">
-        {#each socials as social}
+        {#each socials as social (social.label)}
           <a
             href={social.href}
             target="_blank"
