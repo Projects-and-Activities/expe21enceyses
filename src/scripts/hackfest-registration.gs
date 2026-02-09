@@ -73,21 +73,37 @@ function doPost(e) {
 
     var contactNumber = "'" + formData.contactNumber; 
 
-    var membersData = formData.members
-      .filter(member => member.firstName && member.lastName)
-      .map(member => `${member.firstName} ${member.lastName} (${member.gradeLevel})`)
-      .join("\n");
+    let rowData = [
+      formData.teamName,
+      formData.email,
+      formData.contactNumber,
+    ]
 
-    regSheet.appendRow([
-      formData.teamName, 
-      formData.schoolName, 
-      formData.teamCoach, 
-      contactNumber, 
-      formData.email, 
-      membersData, 
-      reqUrl, 
-      paymentUrl
-    ]);
+    if (bracket === 'junior') {
+      let coachName = formData.coachFirstName + " " + formData.coachLastName;
+
+      rowData.push(
+        formData.schoolName, 
+        coachName, 
+        formData.coachFacebookLink
+      );
+
+      for (let i = 0; i < formData.members.length; i++) {
+        let member = formData.members[i];
+        let memberInfo = `${member.name}\n${member.email}\n${member.gradeLevel}\n${member.facebookLink}`;
+        rowData.push(memberInfo);
+      }
+
+    } else { // Senior bracket
+      for (let i = 0; i < formData.members.length; i++) {
+        let member = formData.members[i];
+        let memberInfo = `${member.name}\n${member.email}\n${member.schoolName}\n${member.universityLevel}\n${member.facebookLink}`;
+        rowData.push(memberInfo);
+      }
+    }
+
+    rowData.push(reqUrl, paymentUrl);
+    regSheet.appendRow(rowData);
 
     MailApp.sendEmail({
       to: formData.email,
@@ -96,7 +112,7 @@ function doPost(e) {
       htmlBody: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; color: #333;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="${bannerUrl}" alt="Event Banner" width="100%" style="max-width: 600px; border-radius: 10px;">
+            <img src="${BANNER_URL}" alt="Event Banner" width="100%" style="max-width: 600px; border-radius: 10px;">
           </div>
 
             <p>
