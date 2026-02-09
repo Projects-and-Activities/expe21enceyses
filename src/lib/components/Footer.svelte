@@ -66,11 +66,11 @@
             aria-label={social.label}
             class="transition-transform hover:scale-110"
           >
-            <svelte:component this={social.component} />
+            <social.component />
           </a>
         {/each}
       </div>
-      <div>info@yses.org</div>
+      <div>prog@yses.org</div>
     </div>
   </div>
 </footer>
