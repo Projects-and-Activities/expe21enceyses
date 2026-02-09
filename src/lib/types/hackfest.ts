@@ -2,10 +2,21 @@ import { z } from 'zod';
 
 import { emailSchema } from './common';
 
-// pabago nalang max file size if need be
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-const ACCEPTED_ZIP_TYPES = ['application/zip', 'application/x-zip-compressed'];
+const ACCEPTED_ZIP_TYPES = [
+  'application/zip',
+  'application/x-zip-compressed',
+  'application/octet-stream'
+];
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+
+const facebookLinkSchema = z
+  .string({ error: 'Facebook link is required' })
+  .min(2, 'Facebook link is required');
+
+const schoolNameSchema = z
+  .string({ error: 'School name is required' })
+  .min(2, 'School name is required');
 
 const mobileNumberSchema = z
   .string()
@@ -27,10 +38,19 @@ const proofFileSchema = z
     'Only .jpg, .png, or .pdf files are accepted'
   );
 
-export const seniorMemberSchema = z.object({
+export const juniorMemberSchema = z.object({
   name: z.string().min(2, 'Name is required'),
   email: emailSchema,
-  universityLevel: z.string().min(1, 'University level is required')
+  gradeLevel: z.string().min(1, 'Grade level is required'),
+  facebookLink: facebookLinkSchema
+});
+
+export const seniorMemberSchema = z.object({
+  name: z.string().min(2, 'Name is required'),
+  schoolName: schoolNameSchema,
+  email: emailSchema,
+  universityLevel: z.string().min(1, 'Year level is required'),
+  facebookLink: facebookLinkSchema
 });
 
 const commonHackfestSchema = z.object({
@@ -41,15 +61,26 @@ const commonHackfestSchema = z.object({
   proofOfPayment: proofFileSchema
 });
 
-export const juniorHackfestRegistrationSchema = commonHackfestSchema.extend({
-  adviserName: z.string().min(2, 'Coach name is required'),
-  schoolName: z.string().min(2, 'School name is required'),
+const coachDetailsSchema = z.object({
   coachFirstName: z.string().min(2, 'Coach first name is required'),
-  coachLastName: z.string().min(2, 'Coach last name is required')
+  coachLastName: z.string().min(2, 'Coach last name is required'),
+  coachFacebookLink: facebookLinkSchema
+});
+
+export const juniorHackfestRegistrationSchema = commonHackfestSchema.extend({
+  schoolName: schoolNameSchema,
+  ...coachDetailsSchema.shape,
+  members: z
+    .array(juniorMemberSchema)
+    .min(3, 'A minimum of 3 members is required.')
+    .max(4, 'A maximum of 4 members is allowed.')
 });
 
 export const seniorHackfestRegistrationSchema = commonHackfestSchema.extend({
-  members: z.array(seniorMemberSchema).min(1, 'At least one member is required')
+  members: z
+    .array(seniorMemberSchema)
+    .min(3, 'A minimum of 3 members is required.')
+    .max(4, 'A maximum of 4 members is allowed.')
 });
 
 export type JuniorHackfestRegistration = z.infer<typeof juniorHackfestRegistrationSchema>;

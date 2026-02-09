@@ -21,20 +21,6 @@
     <Form.FieldErrors />
   </Form.Field>
 
-  <Form.Field {form} name="adviserName">
-    <Form.Control>
-      {#snippet children({ props })}
-        <Form.Label>Coach Name</Form.Label>
-        <Input
-          {...props}
-          bind:value={$formData.adviserName}
-          placeholder="Full name of your coach"
-        />
-      {/snippet}
-    </Form.Control>
-    <Form.FieldErrors />
-  </Form.Field>
-
   <Form.Field {form} name="schoolName">
     <Form.Control>
       {#snippet children({ props })}
@@ -69,4 +55,18 @@
       <Form.FieldErrors />
     </Form.Field>
   </div>
+
+  <Form.Field {form} name="coachFacebookLink" class="mt-[21.8px]">
+    <Form.Control>
+      {#snippet children({ props })}
+        <Form.Label>Coach's Facebook Link</Form.Label>
+        <Input
+          {...props}
+          bind:value={$formData.coachFacebookLink}
+          placeholder="e.g. facebook.com/juan.delacruz"
+        />
+      {/snippet}
+    </Form.Control>
+    <Form.FieldErrors />
+  </Form.Field>
 </div>
