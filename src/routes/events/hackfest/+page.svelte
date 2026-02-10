@@ -7,7 +7,10 @@
     Monitor,
     Search,
     SquarePen,
-    Users
+    Users,
+    CircleStar,
+    Medal,
+    Trophy
   } from '@lucide/svelte';
   import { type Component } from 'svelte';
 
@@ -80,24 +83,59 @@
     }
   ];
 
-  const registrationSteps = [
+  const podium = [
     {
-      Icon: SquarePen,
-      title: 'Register',
-      description: {
-        junior:
-          'Go to <a href="/register" class="text-primary hover:underline">register</a> and under the Hackfest registration page, choose “Junior Hackfest” to begin your registration.',
-        senior:
-          'Go to <a href="/register" class="text-primary hover:underline">register</a> and under the Hackfest registration page, choose “Senior Hackfest” to begin your registration.'
-      }
+      rank: '1st Runner-Up',
+      amount: '₱XXXX',
+      Icon: Medal,
+      height: 'h-48 md:h-80',
+      cardStyle: 'bg-purple-900/70 dark:border-purple-500/50 text-white',
+      pillStyle: 'bg-white/10 text-white',
+      iconStyle: 'text-purple-300/20',
+      delay: '400ms',
+      order: 'order-1'
     },
     {
+      rank: 'Champion',
+      amount: '₱XXXX',
+      Icon: Trophy,
+      height: 'h-60 md:h-96',
+      cardStyle:
+        'bg-purple-600/60 dark:border-purple-400/50 shadow-[0_0_50px_-12px_rgba(147,51,234,0.5)] text-white',
+      pillStyle: 'dark:bg-white/20 text-white backdrop-blur-md',
+      iconStyle: 'text-purple-300/20',
+      delay: '600ms',
+      order: 'order-2',
+      isCenter: true
+    },
+    {
+      rank: '2nd Runner-Up',
+      amount: '₱XXXX',
+      Icon: CircleStar,
+      height: 'h-40 md:h-64',
+      cardStyle: 'bg-purple-900/50 dark:border-purple-500/30 text-white',
+      pillStyle: 'bg-white/10 text-white',
+      iconStyle: 'text-purple-300/20',
+      delay: '200ms',
+      order: 'order-3'
+    }
+  ];
+
+  const registrationSteps = [
+    {
+      id: 'register',
+      Icon: SquarePen,
+      title: 'Register'
+    },
+    {
+      id: 'submit',
       Icon: CloudUpload,
       title: 'Submit Your Details',
       description:
         'Fill out the form, upload the necessary requirements, pay the registration fee, and submit your application.'
     },
     {
+      id: 'await',
       Icon: Bell,
       title: 'Await Confirmation',
       description:
@@ -247,6 +285,61 @@
 </section>
 
 <section class="relative">
+  <Star class="top-60 -right-18 w-28 -rotate-0 opacity-35 dark:opacity-100" />
+  <Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
+  <Star class="top-1/2 -left-40 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
+  <Star class="top-0 -left-40 w-62 rotate-40 opacity-20 dark:opacity-100" />
+
+  <div class="container mx-auto px-4">
+    <ScrollReveal>
+      <h2 class="mb-12 text-center text-4xl font-semibold tracking-tight">Prizes</h2>
+    </ScrollReveal>
+
+    <div class="flex flex-row items-end justify-center gap-3 md:gap-8">
+      {#each podium as spot (spot.rank)}
+        <ScrollReveal
+          delay={spot.delay}
+          class="{spot.order} flex w-1/3 max-w-[280px] flex-col items-center"
+        >
+          <div class="mb-3 text-center md:mb-4">
+            <span class="block text-lg font-bold tracking-tight md:text-3xl">
+              {spot.amount}
+            </span>
+          </div>
+
+          <div
+            class="relative w-full rounded-2xl border shadow-lg backdrop-blur-md transition-all duration-500 hover:-translate-y-2 md:rounded-3xl {spot.height} {spot.cardStyle}"
+          >
+            <div
+              class="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/20 to-transparent md:rounded-3xl dark:from-white/10"
+            ></div>
+
+            <div class="absolute top-4 left-1/2 w-full -translate-x-1/2 px-2 text-center md:top-6">
+              <span
+                class="inline-block rounded-full px-2 py-1 text-[8px] font-semibold tracking-wider whitespace-nowrap md:px-4 md:py-1.5 md:text-base {spot.pillStyle}"
+              >
+                {spot.rank}
+              </span>
+            </div>
+
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-6 {spot.iconStyle}">
+              <spot.Icon class="size-8 md:size-12" />
+            </div>
+          </div>
+        </ScrollReveal>
+      {/each}
+    </div>
+
+    <ScrollReveal delay="800ms" class="mt-16 text-center md:mt-20">
+      <h3 class="mb-2 text-xl font-semibold md:text-2xl">Special Awards</h3>
+      <p class="text-sm text-purple-900/80 md:text-lg dark:text-purple-200/80">
+        Most Innovative Idea, Best Presentation, People's Choice
+      </p>
+    </ScrollReveal>
+  </div>
+</section>
+
+<section class="relative">
   <Star class="bottom-12 -left-40 w-62 rotate-40 opacity-20 dark:opacity-40" />
   <Star class="-bottom-30 -left-46 w-32 rotate-10 opacity-40 blur-[6px] dark:opacity-80" />
 
@@ -304,12 +397,9 @@
     </div>
 
     <div class="place-items-center">
-      <div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-8">
+      <div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-8 p-10 lg:p-0">
         {#each registrationSteps as step, i (step.title)}
-          {@const { Icon, title, description } = step}
-
-          {@const displayDescription =
-            typeof description === 'string' ? description : description[selectedHackfest]}
+          {@const { Icon, title } = step}
 
           <ScrollReveal delay={`${300 + i * 50}ms`} class="place-self-center">
             <div class="pt-1 text-primary">
@@ -320,7 +410,11 @@
             <div class="flex flex-col gap-1">
               <span class="text-lg font-bold">{title}</span>
               <p class="text-justify leading-relaxed text-muted-foreground">
-                {@html displayDescription}
+                {#if step.id === 'register'}
+                  {@render registerStepContent()}
+                {:else}
+                  {step.description}
+                {/if}
               </p>
             </div>
           </ScrollReveal>
@@ -413,6 +507,14 @@
       </p>
     </article>
   </GlassCard>
+{/snippet}
+
+{#snippet registerStepContent()}
+  Go to
+  <a href="/register" class="text-primary hover:underline">register</a>
+  and under the Hackfest registration page, choose “{selectedHackfest === 'junior'
+    ? 'Junior'
+    : 'Senior'} Hackfest” to begin your registration.
 {/snippet}
 
 <style>

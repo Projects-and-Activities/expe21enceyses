@@ -57,7 +57,7 @@
   class="mt-30 flex max-w-none! flex-col place-content-center place-items-center gap-9 md:mt-35 lg:grid lg:h-screen"
 >
   <div
-    class="absolute inset-0 -z-10 hidden h-screen w-full [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] md:block"
+    class="absolute inset-0 -z-10 h-screen w-full [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] md:block"
   >
     <PFJFScene />
   </div>
@@ -75,12 +75,6 @@
   <ScrollReveal delay="500ms">
     <div class="text-xl">Future-Ready. Industry-Bound</div>
   </ScrollReveal>
-
-  <div class="relative block h-[30vh] w-full overflow-hidden md:hidden">
-    <div class="absolute inset-0 -top-[40%] -bottom-[80%]">
-      <PFJFScene />
-    </div>
-  </div>
 
   <ScrollReveal delay="600ms">
     <div

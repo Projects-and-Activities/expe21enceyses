@@ -11,6 +11,7 @@
    * 2. Managing navigation (Back/Next)
    * 3. Auto-saving drafts to LocalStorage
    */
+  import { ChevronLeft, ChevronRight, LoaderCircle } from '@lucide/svelte';
   import { onMount, untrack, type Component, type Snippet } from 'svelte';
 
   import { setFormContext } from './context.ts';
@@ -163,26 +164,46 @@
           </div>
         {/key}
 
-        <div class="flex items-center justify-between pt-4">
-          <div
-            class="transition-opacity duration-200 {controller.step === 1
-              ? 'pointer-events-none opacity-0'
-              : 'opacity-100'}"
-          >
-            <Button type="button" variant="outline" onclick={prevStep}>Back</Button>
+        <div
+          class="mt-8 flex items-center justify-center gap-4 border-t border-white/5 pt-6 sm:justify-between"
+        >
+          <div class={controller.step === 1 ? 'hidden sm:invisible sm:block' : ''}>
+            <Button
+              type="button"
+              variant="ghost"
+              onclick={prevStep}
+              class="group pl-2.5 text-muted-foreground hover:bg-white/10 hover:text-white"
+            >
+              <ChevronLeft class="mr-1 size-4 transition-transform group-hover:-translate-x-1" />
+              Back
+            </Button>
           </div>
 
-          {#if controller.step < controller.steps.length}
-            <Button type="button" onclick={nextStep}>Next</Button>
-          {:else}
-            <Button
-              type="submit"
-              disabled={$submitting}
-              class="bg-purple-600/80 text-white hover:bg-purple-700/80"
-            >
-              {$submitting ? 'Submitting...' : 'Submit'}
-            </Button>
-          {/if}
+          <div class="w-full sm:w-auto">
+            {#if controller.step < controller.steps.length}
+              <Button
+                type="button"
+                onclick={nextStep}
+                class="group relative w-full overflow-hidden bg-purple-600 text-white shadow-[0_0_20px_-5px_rgba(147,51,234,0.5)] transition-all hover:bg-purple-500 hover:shadow-[0_0_25px_-5px_rgba(168,85,247,0.6)] sm:w-auto"
+              >
+                Next
+                <ChevronRight class="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            {:else}
+              <Button
+                type="submit"
+                disabled={$submitting}
+                class="group w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:shadow-purple-500/25 disabled:opacity-70 sm:w-auto"
+              >
+                {#if $submitting}
+                  <LoaderCircle class="mr-2 size-4 animate-spin" />
+                  Submitting...
+                {:else}
+                  Submit
+                {/if}
+              </Button>
+            {/if}
+          </div>
         </div>
       </form>
     </GlassCard>
