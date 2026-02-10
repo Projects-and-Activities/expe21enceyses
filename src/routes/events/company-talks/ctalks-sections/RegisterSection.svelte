@@ -10,13 +10,19 @@
 </script>
 
 <section class="relative mt-20 mb-10 flex w-full max-w-[1184px] flex-col items-center">
-  <Star class="absolute -right-40 bottom-20 w-28 rotate-12 opacity-50 dark:opacity-90" />
-  <Star class="absolute -right-14 bottom-10 w-15 -rotate-0 opacity-35 dark:opacity-70" />
+  <Star
+    class="absolute -right-3 -bottom-1 w-8 rotate-250 opacity-50 lg:-right-40 lg:bottom-20 lg:w-28 lg:rotate-12 dark:opacity-90"
+  />
+  <Star
+    class="absolute -right-10 bottom-13 w-10 rotate-250 opacity-35 lg:-right-14 lg:bottom-10 lg:w-15 lg:-rotate-0 dark:opacity-70"
+  />
   <Star class="absolute bottom-40 -left-40 w-28 rotate-0 opacity-50 dark:opacity-90" />
-  <Star class="absolute bottom-30 -left-14 w-15 -rotate-0 opacity-35 dark:opacity-70" />
+  <Star
+    class="absolute bottom-5 left-2 w-15 rotate-250 opacity-35 lg:bottom-30 lg:-left-14 lg:-rotate-0 dark:opacity-70"
+  />
 
   <ScrollReveal>
-    <div class="mb-12 text-center">
+    <div class="mb-10 text-center">
       <h2 class="text-2xl leading-relaxed font-semibold lg:text-4xl">Register for Company Talks</h2>
       <p class="mt-1 px-4 text-center text-sm leading-relaxed italic lg:mt-2 lg:text-lg">
         Take your first step toward learning from industry professionals and gaining real-world
@@ -26,10 +32,10 @@
   </ScrollReveal>
 
   <div
-    class="mx-auto mt-3 grid h-auto w-full max-w-[1184px] grid-cols-1 gap-8 md:grid-cols-[1fr_1fr] lg:h-[540px] lg:gap-12"
+    class="mx-auto grid h-auto w-full max-w-[1184px] grid-cols-1 gap-8 md:grid-cols-[1fr_1fr] lg:h-[540px] lg:gap-12"
   >
     <div
-      class="order-1 flex h-[450px] w-full items-center justify-center md:h-full md:w-full"
+      class="order-1 flex h-[240px] w-full items-center justify-center md:mt-5 md:h-full md:w-full lg:h-[499px]"
       use:viewport={{
         onEnter: () => (isSceneVisible = true),
         threshold: 0.2
@@ -42,8 +48,8 @@
       {/if}
     </div>
 
-    <div class="order-2 flex flex-col text-center md:p-0">
-      <div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-8 text-justify">
+    <div class="order-2 flex flex-col px-3 text-center md:p-0 md:px-0 lg:px-0">
+      <div class="grid grid-cols-[auto_1fr] gap-x-8 gap-y-8 text-justify">
         {#each registrationSteps as step, i (step.title)}
           {@const { Icon, title, description } = step}
 
@@ -66,7 +72,7 @@
       </div>
 
       <ScrollReveal delay="600ms">
-        <div class="relative z-10 mt-7 ml-2 flex justify-center">
+        <div class="relative z-10 mt-10 ml-2 flex justify-center lg:mt-7">
           <div
             class="flex h-[58px] w-[230px] items-center justify-center rounded-[3.75rem] p-[0.135rem]"
             style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"

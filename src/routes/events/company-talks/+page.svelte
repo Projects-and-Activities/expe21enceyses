@@ -11,10 +11,6 @@
   import Group from '@lucide/svelte/icons/users';
   import Lightbulb from '@lucide/svelte/icons/lightbulb';
 
-  import dane1 from '$lib/assets/dane1.JPG';
-  import dane2 from '$lib/assets/dane2.JPG';
-  import dane3 from '$lib/assets/dane3.JPG';
-
   // Section Components
   import BackgroundBlobs from './ctalks-sections/BackgroundBlobs.svelte';
   import HeroSection from './ctalks-sections/HeroSection.svelte';
@@ -22,7 +18,6 @@
   import SessionSection from './ctalks-sections/SessionSection.svelte';
   import SpeakerSection from './ctalks-sections/SpeakerSection.svelte';
   import RegisterSection from './ctalks-sections/RegisterSection.svelte';
-  import sessionPreview from '$lib/assets/SessionPreview.jpg';
 
   // --- Reactive States ---
   let isDark = $derived(mode.current === 'dark');
@@ -108,9 +103,9 @@
   ];
 
   const speakers = [
-    { name: 'Dane Garcia', company: 'Google', image: dane2 },
-    { name: 'Henrich Miguel', company: 'Microsoft', image: dane1 },
-    { name: 'Dane Henrich', company: 'Startup PH', image: dane3 }
+    { name: 'Speaker 1', company: 'Company 1', image: '' },
+    { name: 'Speaker 2', company: 'Company 2', image: '' },
+    { name: 'Speaker 3', company: 'Company 3', image: '' }
   ];
 
   const overview_description =
@@ -121,6 +116,8 @@
   const tagline = 'Inside the Tech Industry — From Professionals Themselves';
 
   const register_route = '';
+
+  const sessionPreview = '';
 </script>
 
 <BackgroundBlobs />

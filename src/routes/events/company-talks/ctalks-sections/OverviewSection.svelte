@@ -8,17 +8,25 @@
 <!-- ===================== OVERVIEW SECTION ===================== -->
 <section
   id="overview"
-  class=" relative mt-30 flex scroll-mt-36 flex-col gap-4 text-center md:scroll-mt-64 lg:mt-10"
+  class=" relative mt-60 flex scroll-mt-36 flex-col gap-4 text-center md:scroll-mt-64 lg:mt-10"
 >
   <Star
-    class="bottom-36 -left-30 h-[261px] w-[255px] rotate-44 opacity-40 blur-[1px] dark:opacity-70"
+    class="-bottom-10 -left-4 w-[0px] rotate-44 opacity-40 blur-[1px] lg:bottom-36 lg:-left-30 lg:h-[261px] lg:w-[255px] dark:opacity-70"
   />
   <Star class="bottom-30 -left-35 w-18 rotate-250 opacity-20 blur-[1px] dark:opacity-40" />
-  <Star class="-bottom-30 -left-40 w-50 rotate-10 opacity-40 dark:opacity-80" />
-  <Star class="top-80 left-5 w-20 rotate-250 opacity-40 blur-[1px] dark:opacity-60" />
+  <Star
+    class="-bottom-30 -left-20 w-50 rotate-10  opacity-40 lg:-left-10 lg:-left-40 dark:opacity-80"
+  />
+  <Star
+    class="top-92 -left-6 w-20 rotate-250 opacity-40 blur-[1px] lg:top-80 lg:left-5 dark:opacity-60"
+  />
   <Star class="-top-26 -right-45 w-45 rotate-40 opacity-50 dark:opacity-60" />
-  <Star class="top-14 -right-27 w-20 rotate-250 opacity-20 blur-[1px] dark:opacity-40" />
-  <Star class="top-27 -right-45 w-80 rotate-44 opacity-40 dark:opacity-80" />
+  <Star
+    class="top-20 -right-8 w-10 rotate-250 opacity-20 blur-[1px] lg:top-14 lg:-right-27 lg:w-20 dark:opacity-40"
+  />
+  <Star
+    class="-top-20 -right-20 w-50 rotate-44 opacity-40 lg:top-27 lg:-right-45 lg:w-80 dark:opacity-80"
+  />
 
   <div
     class=" mx-5 max-w-[1216px] rounded-[1.5625rem] shadow-xl lg:mx-0"
