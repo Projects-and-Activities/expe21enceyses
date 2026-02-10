@@ -137,7 +137,8 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
     meta: {
       title: 'Practicum Fair and Job Fair',
       date: '<Date>',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      description:
+        'Take your first step toward securing your ideal internship and launching your professional career.'
     },
     schema: pfjfRegistrationSchema,
     skeleton: HackfestSkeleton,
