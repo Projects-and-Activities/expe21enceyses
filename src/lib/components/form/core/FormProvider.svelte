@@ -164,8 +164,10 @@
           </div>
         {/key}
 
-        <div class="mt-8 flex items-center justify-between gap-4 border-t border-white/5 pt-6">
-          <div class={controller.step === 1 ? 'invisible' : ''}>
+        <div
+          class="mt-8 flex items-center justify-center gap-4 border-t border-white/5 pt-6 sm:justify-between"
+        >
+          <div class={controller.step === 1 ? 'hidden sm:invisible sm:block' : ''}>
             <Button
               type="button"
               variant="ghost"
