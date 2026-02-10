@@ -33,10 +33,13 @@ const BRACKET_CONFIG = {
 
 function doGet() {
   try {
-    var spreadSheet = SpreadsheetApp.openById(SPREADSHEET_ID);
-    var regSheet = spreadSheet.getSheets()[1];
+    let bracket = formData.bracket || 'senior';
+    let bracketSheetIndex = 'junior' === bracket ? 0 : 1;
 
-    var cellAddress = "B1";
+    var spreadSheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    var regSheet = spreadSheet.getSheets()[bracketSheetIndex];
+
+    var cellAddress = "D1";
     var cellValue = regSheet.getRange(cellAddress).getValue();
 
     return ContentService.createTextOutput(JSON.stringify({ value: cellValue }))
