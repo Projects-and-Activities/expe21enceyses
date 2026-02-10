@@ -18,4 +18,25 @@ type PFJFRegistration = {
   purposeOfRegistration: 'internship' | 'jobOpportunity';
 };
 
-export type RegistrationData = CompanyTalksRegistration | PFJFRegistration;
+type members = {
+  name: string;
+  email: string;
+  gradeLevel?: string;
+  schoolName?: string;
+  facebookLink?: string;
+}
+
+type HackfestRegistration = {
+  teamName: string;
+  email: string;
+  contactNumber: string;
+  schoolName?: string;
+  coachName?: string;
+  coachFacebookLink?: string;
+  members: members[];
+  requirementsZip: File;
+  proofOfPayment: File;
+  bracket: 'junior' | 'senior';
+};
+
+export type RegistrationData = CompanyTalksRegistration | PFJFRegistration | HackfestRegistration;

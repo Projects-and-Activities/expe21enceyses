@@ -27,6 +27,23 @@ export async function submitRegistration(eventId: string, data: RegistrationData
     case EVENT_IDS.PFJF:
       script = GOOGLE_APPS_SCRIPT_URL_PFJF;
       break;
+    case EVENT_IDS.JUNIOR_HACKFEST:
+    case EVENT_IDS.SENIOR_HACKFEST:
+      script = GOOGLE_APPS_SCRIPT_URL_HACKFEST;
+
+      let hackfestData = data as RegistrationData & { requirementsZip: File; proofOfPayment: File };
+      const requirementsZipBase64 = await toBase64(hackfestData.requirementsZip);
+      const proofOfPaymentBase64 = await toBase64(hackfestData.proofOfPayment);
+
+      let hackfestPayload = {
+        ...hackfestData,
+        requirementsZip: requirementsZipBase64,
+        proofOfPayment: proofOfPaymentBase64
+      };
+
+      data = hackfestPayload as RegistrationData;
+
+      break;
     default:
       throw new Error('Invalid event ID');
   }
