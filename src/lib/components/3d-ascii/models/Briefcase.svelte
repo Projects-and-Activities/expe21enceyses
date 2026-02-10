@@ -11,7 +11,6 @@
 
   const briefcaseGltf = useGltf('/briefcase.glb');
   const { actions } = useGltfAnimations(briefcaseGltf);
-  console.log(actions);
 
   $effect(() => {
     const openAction = $actions['PlaneAction.001'];

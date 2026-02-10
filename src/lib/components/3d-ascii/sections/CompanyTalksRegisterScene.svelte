@@ -12,13 +12,13 @@
   let config = $derived.by(() => {
     if (innerWidth < 768) {
       return {
-        laptopPos: [0.6, -2.3, -0.2],
+        microphonePos: [0.6, -2.3, -0.2],
         starsPos: [0.6, -2, 0],
         scale: 0.8
       };
     }
     return {
-      laptopPos: [0.7, -3.0, -0.8],
+      microphonePos: [0.7, -3.0, -0.8],
       starsPos: [0.7, -3.8, -0.3],
       scale: 1
     };
@@ -35,7 +35,7 @@
 
 <AsciiCanvas fgColor="gray" lights={heroLights}>
   <Microphone
-    position={config.laptopPos as [number, number, number]}
+    position={config.microphonePos as [number, number, number]}
     rotation={[0.4, -0.3, 0]}
     scale={config.scale}
   />

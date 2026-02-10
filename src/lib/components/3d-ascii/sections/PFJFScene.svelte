@@ -1,13 +1,12 @@
 <script lang="ts">
   import { T } from '@threlte/core';
 
+  import DataUplink from '../effects/DataUplink.svelte';
   import Briefcase from '../models/Briefcase.svelte';
 
   import AsciiCanvas from '$lib/components/3d-ascii/containers/AsciiCanvas.svelte';
-  import MatrixRain from '$lib/components/3d-ascii/effects/MatrixRain.svelte';
   import Stars from '$lib/components/3d-ascii/models/Stars.svelte';
   import SimpleFloat from '$lib/components/3d-ascii/rig/SimpleFloat.svelte';
-  import DataUplink from '../effects/DataUplink.svelte';
 
   let innerWidth = $state(0);
 
@@ -15,13 +14,13 @@
   let config = $derived.by(() => {
     if (innerWidth < 768) {
       return {
-        laptopPos: [0.3, 0, -0.57],
-        starsPos: [0.4, 0.8, -0.3],
+        briefcasePos: [0.5, -1.8, -0.57],
+        starsPos: [0.4, 0.4, 1.8],
         scale: 0.8
       };
     }
     return {
-      laptopPos: [0.5, -3, -1],
+      briefcasePos: [0.5, -3, -1],
       starsPos: [0.5, 0.3, 1.7],
       scale: 1
     };
@@ -40,7 +39,7 @@
   <DataUplink color="#7F52BB" />
 
   <Briefcase
-    position={config.laptopPos as [number, number, number]}
+    position={config.briefcasePos as [number, number, number]}
     rotation={[0.4, -0.3, 0]}
     scale={config.scale}
   />

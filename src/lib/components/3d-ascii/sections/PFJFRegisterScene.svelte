@@ -11,13 +11,13 @@
   let config = $derived.by(() => {
     if (innerWidth < 768) {
       return {
-        laptopPos: [0.3, 0, -0.57],
-        starsPos: [0.4, 0.8, -0.3],
+        briefcasePos: [0.5, -3.3, 1],
+        starsPos: [0.4, 0, 3.3],
         scale: 0.8
       };
     }
     return {
-      laptopPos: [0.5, -3, 0.7],
+      briefcasePos: [0.5, -3, 0.7],
       starsPos: [0.5, 0, 3],
       scale: 1
     };
@@ -34,7 +34,7 @@
 
 <AsciiCanvas fgColor="gray" lights={registerLights}>
   <Briefcase
-    position={config.laptopPos as [number, number, number]}
+    position={config.briefcasePos as [number, number, number]}
     rotation={[0.3, -0.3, 0]}
     scale={1}
   />
