@@ -6,16 +6,9 @@ import {
 import { EVENT_IDS, type RegistrationData } from '../types/registration.types';
 
 async function toBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const dataUrl = reader.result as string;
-      const base64 = dataUrl.split(',')[1];
-      resolve(base64);
-    };
-    reader.onerror = () => reject(reader.error);
-    reader.readAsDataURL(file);
-  });
+  const arrayBuffer = await file.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+  return buffer.toString('base64');
 }
 
 export async function submitRegistration(eventId: string, data: RegistrationData) {
@@ -30,22 +23,31 @@ export async function submitRegistration(eventId: string, data: RegistrationData
     case EVENT_IDS.JUNIOR_HACKFEST:
     case EVENT_IDS.SENIOR_HACKFEST:
       script = GOOGLE_APPS_SCRIPT_URL_HACKFEST;
-
-      let hackfestData = data as RegistrationData & { requirementsZip: File; proofOfPayment: File };
-      const requirementsZipBase64 = await toBase64(hackfestData.requirementsZip);
-      const proofOfPaymentBase64 = await toBase64(hackfestData.proofOfPayment);
-
-      let hackfestPayload = {
-        ...hackfestData,
-        requirementsZip: requirementsZipBase64,
-        proofOfPayment: proofOfPaymentBase64
-      };
-
-      data = hackfestPayload as RegistrationData;
-
       break;
     default:
       throw new Error('Invalid event ID');
+  }
+
+  let transformedData = data;
+  
+  if (eventId === EVENT_IDS.JUNIOR_HACKFEST || eventId === EVENT_IDS.SENIOR_HACKFEST) {
+    const hackfestData = data as any;
+    
+    const requirementsBase64 = await toBase64(hackfestData.requirementsZip);
+    const paymentBase64 = await toBase64(hackfestData.proofOfPayment);
+    
+    transformedData = {
+      ...hackfestData,
+      requirements: requirementsBase64,
+      requirementsFileType: hackfestData.requirementsZip.type,
+      payment: paymentBase64,
+      paymentFileType: hackfestData.proofOfPayment.type,
+      requirementsZip: undefined,
+      proofOfPayment: undefined
+    };
+    
+    delete (transformedData as any).requirementsZip;
+    delete (transformedData as any).proofOfPayment;
   }
   
   const response = await fetch(
@@ -53,7 +55,7 @@ export async function submitRegistration(eventId: string, data: RegistrationData
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+      body: JSON.stringify(transformedData)
     }
   );
 
