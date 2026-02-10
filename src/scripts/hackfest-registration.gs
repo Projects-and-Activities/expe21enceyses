@@ -31,8 +31,9 @@ const BRACKET_CONFIG = {
   }
 };
 
-function doGet() {
+function doGet(e) {
   try {
+    var formData = JSON.parse(e.postData.contents);
     let bracket = formData.bracket || 'senior';
     let bracketSheetIndex = 'junior' === bracket ? 0 : 1;
 
@@ -79,7 +80,7 @@ function doPost(e) {
     let rowData = [
       formData.teamName,
       formData.email,
-      formData.contactNumber,
+      contactNumber,
     ]
 
     if (bracket === 'junior') {
