@@ -106,6 +106,7 @@ function doPost(e) {
       }
     }
 
+    if (formData.members.length === 3) rowData.push('N/A')
     rowData.push(reqUrl, paymentUrl);
     regSheet.appendRow(rowData);
 
