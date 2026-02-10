@@ -44,7 +44,7 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
     skeleton: HackfestSkeleton,
     steps: [
       {
-        label: 'Team Info',
+        label: 'Information',
         component: JuniorTeamInfo,
         keys: [
           'teamName',
@@ -87,7 +87,7 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
     skeleton: HackfestSkeleton,
     steps: [
       {
-        label: 'Team Info',
+        label: 'Information',
         component: SeniorTeamInfo,
         keys: ['teamName']
       },
@@ -123,7 +123,7 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
     skeleton: HackfestSkeleton,
     steps: [
       {
-        label: 'User Info',
+        label: 'Information',
         component: CompanyUserInfo,
         keys: ['firstName', 'lastName', 'email']
       }
@@ -143,7 +143,7 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
     skeleton: HackfestSkeleton,
     steps: [
       {
-        label: 'User Info',
+        label: 'Information',
         component: PfjfUserInfo,
         keys: ['firstName', 'lastName', 'email', 'purposeOfRegistration']
       }
