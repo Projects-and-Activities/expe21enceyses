@@ -8,7 +8,7 @@
   import invertedLogo from '$lib/assets/colored-logo-inverted.png?enhanced';
   import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
   import logo from '$lib/assets/logo21Light.png';
-  import logoDark from '$lib/assets/logoDark.png';
+  import logoDark from '$lib/assets/logo21Dark.png';
   import Facebook from '$lib/components/icons/Facebook.svelte';
   import Github from '$lib/components/icons/Github.svelte';
   import Instagram from '$lib/components/icons/Instagram.svelte';

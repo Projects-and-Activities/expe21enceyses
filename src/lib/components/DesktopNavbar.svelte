@@ -5,7 +5,7 @@
 
   import { page } from '$app/stores';
   import logo from '$lib/assets/logo21Light.png';
-  import logoDark from '$lib/assets/logoDark.png';
+  import logoDark from '$lib/assets/logo21Dark.png';
   import { Button } from '$lib/components/ui/button';
   import * as NavigationMenu from '$lib/components/ui/navigation-menu';
 
