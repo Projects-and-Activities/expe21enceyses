@@ -13,6 +13,7 @@
   interface NavItem {
     label: string;
     href: string;
+    target?: string;
   }
 
   interface Props {
@@ -90,6 +91,8 @@
                     {:else}
                       <NavigationMenu.Link
                         href={item.href}
+                        target={item.target}
+                        rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
                         class="min-h-[2.75rem] flex-row! items-center justify-center bg-transparent  px-3
 												   font-light transition-all
 												   duration-300 hover:scale-[1.02] hover:bg-transparent hover:text-primary
