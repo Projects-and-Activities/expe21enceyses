@@ -11,7 +11,7 @@
   import hackfestImg from '$lib/assets/hackfest.png?enhanced';
   import leftHandImg from '$lib/assets/hand_transparent_left.png?enhanced';
   import rightHandImg from '$lib/assets/hand_transparent_right.png?enhanced';
-  import logoDarkImg from '$lib/assets/LogoDark.png?enhanced';
+  import logoDarkImg from '$lib/assets/logoDark.png?enhanced';
   import logoLightImg from '$lib/assets/logoLight.png?enhanced';
   import pfjfImg from '$lib/assets/pfjf.png?enhanced';
   import LogoScene from '$lib/components/3d-ascii/sections/LogoScene.svelte';
