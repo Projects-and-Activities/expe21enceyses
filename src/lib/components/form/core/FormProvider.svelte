@@ -167,7 +167,7 @@
         <div
           class="mt-8 flex items-center justify-center gap-4 border-t border-white/5 pt-6 sm:justify-between"
         >
-          <div class={controller.step === 1 ? 'hidden sm:invisible sm:block' : ''}>
+          {#if controller.step < controller.steps.length}
             <Button
               type="button"
               variant="ghost"
@@ -177,33 +177,31 @@
               <ChevronLeft class="mr-1 size-4 transition-transform group-hover:-translate-x-1" />
               Back
             </Button>
-          </div>
+          {/if}
 
-          <div class="w-full sm:w-auto">
-            {#if controller.step < controller.steps.length}
-              <Button
-                type="button"
-                onclick={nextStep}
-                class="group relative w-full overflow-hidden bg-purple-600 text-white shadow-[0_0_20px_-5px_rgba(147,51,234,0.5)] transition-all hover:bg-purple-500 hover:shadow-[0_0_25px_-5px_rgba(168,85,247,0.6)] sm:w-auto"
-              >
-                Next
-                <ChevronRight class="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            {:else}
-              <Button
-                type="submit"
-                disabled={$submitting}
-                class="group w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:shadow-purple-500/25 disabled:opacity-70 sm:w-auto"
-              >
-                {#if $submitting}
-                  <LoaderCircle class="mr-2 size-4 animate-spin" />
-                  Submitting...
-                {:else}
-                  Submit
-                {/if}
-              </Button>
-            {/if}
-          </div>
+          {#if controller.step < controller.steps.length}
+            <Button
+              type="button"
+              onclick={nextStep}
+              class="group relative w-full overflow-hidden bg-purple-600 text-white shadow-[0_0_20px_-5px_rgba(147,51,234,0.5)] transition-all hover:bg-purple-500 hover:shadow-[0_0_25px_-5px_rgba(168,85,247,0.6)] sm:w-auto"
+            >
+              Next
+              <ChevronRight class="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+          {:else}
+            <Button
+              type="submit"
+              disabled={$submitting}
+              class="group w-full! bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:shadow-purple-500/25 disabled:opacity-70 "
+            >
+              {#if $submitting}
+                <LoaderCircle class="mr-2 size-4 animate-spin" />
+                Submitting...
+              {:else}
+                Submit
+              {/if}
+            </Button>
+          {/if}
         </div>
       </form>
     </GlassCard>

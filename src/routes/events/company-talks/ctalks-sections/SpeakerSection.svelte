@@ -1,7 +1,8 @@
 <script lang="ts">
-  import Star from '$lib/components/Star.svelte';
-  import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import { LiquidGlass } from 'liquid-glass-svelte';
+
+  import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+  import Star from '$lib/components/Star.svelte';
 
   let { speakers, isDark, GLASS_OPTIONS, BORDER_GRADIENT } = $props();
 </script>
@@ -45,7 +46,7 @@
       >
         <!-- Speakers Grid -->
         <div class="grid grid-cols-1 place-items-center gap-10 md:grid-cols-3">
-          {#each speakers as speaker}
+          {#each speakers as speaker (speaker.name)}
             <div class="group relative overflow-hidden">
               <img
                 src={speaker.image}

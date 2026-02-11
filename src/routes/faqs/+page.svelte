@@ -1,10 +1,10 @@
 <script lang="ts">
   import Plus from '@lucide/svelte/icons/plus';
   import { mode } from 'mode-watcher';
-  import { Spring } from 'svelte/motion';
   import { onMount } from 'svelte';
-  import starImage from '$lib/assets/star.png';
-  import GlassCard from '$lib/components/GlassCard.svelte';
+  import { Spring } from 'svelte/motion';
+
+  import starImage from '$lib/assets/star.png?enhanced';
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import * as Accordion from '$lib/components/ui/accordion';
 
@@ -327,7 +327,7 @@
 
   <ScrollReveal delay="100ms">
     <h1
-      class="text-center font-[Lexend] text-4xl font-medium tracking-normal text-foreground md:text-5xl lg:text-[64px] lg:leading-[100%] dark:[text-shadow:0_0_4px_rgba(253,253,252,0.5)]"
+      class="text-center text-4xl font-medium tracking-normal text-foreground md:text-5xl lg:text-[64px] lg:leading-[100%] dark:[text-shadow:0_0_4px_rgba(253,253,252,0.5)]"
     >
       Frequently Asked Questions
     </h1>
@@ -361,8 +361,8 @@
       {@const isOpen = openValue === faq.id}
       <ScrollReveal delay="{300 + i * 80}ms">
         <Accordion.Item value={faq.id} class="border-b-0">
-          <GlassCard
-            class="group relative overflow-hidden rounded-2xl border-2 transition-all duration-300
+          <div
+            class="group relative overflow-hidden rounded-2xl border-2 bg-background/40 backdrop-blur-sm transition-all duration-300
 						{isOpen
               ? 'border-purple-500/50 bg-muted/40 !shadow-[0_0_20px_rgba(127,82,187,0.15)]'
               : 'border-border/50 bg-background/40 hover:border-purple-500/30 hover:!bg-muted/20 hover:!shadow-lg hover:!shadow-purple-500/5'} 
@@ -434,7 +434,7 @@
                 </div>
               </Accordion.Content>
             </div>
-          </GlassCard>
+          </div>
         </Accordion.Item>
       </ScrollReveal>
     {/each}
@@ -465,7 +465,7 @@
   {@const delay = (Math.random() * -5).toFixed(2) + 's'}
 
   <div class="pointer-events-none absolute -z-10 select-none {className}">
-    <img
+    <enhanced:img
       src={starImage}
       alt=""
       style="animation-duration: {duration}; animation-delay: {delay};"

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { ArrowUpRight } from '@lucide/svelte';
   import { LiquidGlass } from 'liquid-glass-svelte';
 
   import ModeToggle from './ModeToggle.svelte';
@@ -23,14 +24,18 @@
     isActive: (href: string, currentPath: string) => boolean;
   }
 
-  let { navItems, eventItems, isDark, glassOptions, borderGradient, isActive }: Props = $props();
+  let { navItems, eventItems, isDark, glassOptions, isActive }: Props = $props();
 </script>
 
 <!-- Desktop Navbar -->
 <nav
-  class="fixed top-4 left-1/2 z-100 box-border hidden w-full max-w-300 -translate-x-1/2 place-items-center gap-2 px-4 md:flex md:px-5 lg:px-8"
+  class="fixed top-4 left-1/2 z-100 hidden w-full max-w-300 -translate-x-1/2 place-items-center gap-2 px-4 md:flex md:px-5 lg:px-8"
 >
-  <div class="relative w-full flex-1 rounded-2xl outline" style="background: {borderGradient};">
+  <div
+    class="relative w-full flex-1 rounded-3xl dark:shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
+    style:border-width="1px"
+    style:border-style="solid"
+  >
     {#key isDark}
       <LiquidGlass
         class="relative block h-14 w-full !overflow-visible rounded-sm"
@@ -72,7 +77,7 @@
                         <div
                           class="flex min-w-[17.5rem] flex-col gap-4 rounded-[1.5rem] border border-border bg-background p-8 shadow-2xl"
                         >
-                          {#each eventItems as event}
+                          {#each eventItems as event (event.label)}
                             <a
                               href={event.href}
                               class="font-light transition-colors hover:text-primary"
@@ -85,12 +90,15 @@
                     {:else}
                       <NavigationMenu.Link
                         href={item.href}
-                        class="flex min-h-[2.75rem] items-center justify-center bg-transparent px-3 font-['Lexend']
+                        class="min-h-[2.75rem] flex-row! items-center justify-center bg-transparent  px-3
 												   font-light transition-all
 												   duration-300 hover:scale-[1.02] hover:bg-transparent hover:text-primary
 												   {isActive(item.href, $page.url.pathname) ? 'text-primary drop-shadow-sm' : 'text-foreground'}"
                       >
                         {item.label}
+                        {#if item.label === 'YSES Online'}
+                          <ArrowUpRight />
+                        {/if}
                       </NavigationMenu.Link>
                     {/if}
                   </NavigationMenu.Item>
@@ -119,3 +127,14 @@
 
   <ModeToggle class="p-6 shadow-xl " />
 </nav>
+
+<style>
+  nav + div {
+    border-image: linear-gradient(
+      94deg,
+      rgba(73, 73, 73, 0.5) 8.4%,
+      rgba(255, 255, 255, 0.6) 49.75%,
+      rgba(73, 73, 73, 0.5) 92.72%
+    );
+  }
+</style>

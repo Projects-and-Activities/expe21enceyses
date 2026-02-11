@@ -1,23 +1,21 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { mode } from 'mode-watcher';
-
   // Icons & Assets
   import Bell from '@lucide/svelte/icons/bell';
-  import Mic from '@lucide/svelte/icons/mic';
-  import Globe from '@lucide/svelte/icons/globe';
   import Briefcase from '@lucide/svelte/icons/briefcase';
-  import Megaphone from '@lucide/svelte/icons/megaphone';
-  import Group from '@lucide/svelte/icons/users';
+  import Globe from '@lucide/svelte/icons/globe';
   import Lightbulb from '@lucide/svelte/icons/lightbulb';
+  import Megaphone from '@lucide/svelte/icons/megaphone';
+  import Mic from '@lucide/svelte/icons/mic';
+  import Group from '@lucide/svelte/icons/users';
+  import { mode } from 'mode-watcher';
 
   // Section Components
   import BackgroundBlobs from './ctalks-sections/BackgroundBlobs.svelte';
   import HeroSection from './ctalks-sections/HeroSection.svelte';
   import OverviewSection from './ctalks-sections/OverviewSection.svelte';
+  import RegisterSection from './ctalks-sections/RegisterSection.svelte';
   import SessionSection from './ctalks-sections/SessionSection.svelte';
   import SpeakerSection from './ctalks-sections/SpeakerSection.svelte';
-  import RegisterSection from './ctalks-sections/RegisterSection.svelte';
 
   // --- Reactive States ---
   let isDark = $derived(mode.current === 'dark');
@@ -115,7 +113,7 @@
 
   const tagline = 'Inside the Tech Industry — From Professionals Themselves';
 
-  const register_route = '';
+  const register_route = '/events/company-talks/register';
 
   const sessionPreview = '';
 </script>

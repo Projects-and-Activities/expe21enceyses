@@ -3,11 +3,19 @@
 
   import { cn } from '$lib/utils';
 
+  export type AnnotationColor = 'primary' | 'accent' | 'red' | 'green' | 'blue' | '';
+  export type AnnotationAlign =
+    | 'top-left'
+    | 'top-right'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'bottom-center';
+
   type Props = {
     class?: string;
     annotation: string;
-    annotationAlign: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'bottom-center';
-    color: 'primary' | 'accent' | 'red' | 'green';
+    annotationAlign: AnnotationAlign;
+    color: AnnotationColor;
     size: 'xs' | 'sm';
     children: Snippet;
   };
@@ -36,7 +44,7 @@
     const t = positionStyles[size].top;
     const b = positionStyles[size].bottom;
 
-    const lookup: Record<Props['annotationAlign'], string> = {
+    const lookup: Record<AnnotationAlign, string> = {
       'top-left': `${t} -left-px`,
       'top-right': `${t} -right-px`,
       'bottom-left': `${b} -left-px`,
@@ -52,11 +60,13 @@
     sm: 'text-xs'
   };
 
-  const backgroundStyle: Record<Props['color'], string> = {
+  const backgroundStyle: Record<AnnotationColor, string> = {
     primary: 'bg-primary border-primary',
     accent: 'bg-accent border-accent',
+    blue: 'bg-blue-900 border-blue-900',
     red: 'bg-red-900 border-red-900',
-    green: 'bg-green-900 border-green-900'
+    green: 'bg-green-900 border-green-900',
+    '': ''
   };
 </script>
 
@@ -66,7 +76,7 @@
   <div
     id="annotation"
     class={cn(
-      'absolute px-2 py-0.5 font-mono text-xs tracking-tight text-white uppercase',
+      'absolute px-2 py-0.5 font-mono text-xs tracking-tight text-white',
       backgroundStyle[color].split(' ')[0],
       alignStyle,
       sizeStyle[size]

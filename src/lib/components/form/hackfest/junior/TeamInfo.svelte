@@ -9,7 +9,7 @@
 </script>
 
 <div class="space-y-6">
-  <h2 class="text-2xl font-bold">About the Team</h2>
+  <div class="text-2xl font-bold">About the Team</div>
 
   <Form.Field {form} name="teamName">
     <Form.Control>

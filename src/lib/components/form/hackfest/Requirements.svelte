@@ -29,7 +29,7 @@
 </script>
 
 <div class="animate-in space-y-8 duration-500 fade-in slide-in-from-right-4">
-  <h2 class="text-2xl font-bold tracking-tight text-foreground">Requirements Upload</h2>
+  <div class="text-2xl font-bold tracking-tight text-foreground">Requirements Upload</div>
 
   <GlassCard
     class="rounded-lg border border-border p-6 text-sm backdrop-blur-sm dark:bg-zinc-900/50"

@@ -4,6 +4,8 @@
   import ChevronsDown from '@lucide/svelte/icons/chevrons-down';
   import microphone from '$lib/assets/ctalks.png';
   import CompanyTalksScene from '$lib/components/3d-ascii/sections/CompanyTalksScene.svelte';
+  import { resolve } from '$app/paths';
+  import { goto } from '$app/navigation';
 
   let { event_title, tagline, register_route } = $props();
   const titleParts = $derived(event_title.split(':'));
@@ -45,21 +47,7 @@
     <CompanyTalksScene />
   </div>
   <ScrollReveal delay="3000ms">
-    <div
-      class="relative z-10 mt-70 place-items-center rounded-[3.75rem] p-[0.135rem] lg:mt-0"
-      style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
-    >
-      <a href={register_route} class="block rounded-[3.75rem]">
-        <Button
-          variant="gradient"
-          size="xl"
-          class="register-btn relative isolate !h-10 overflow-hidden !bg-transparent !px-6 !text-sm shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)] md:!h-14 md:!px-10 md:!text-lg"
-        >
-          <span class="relative z-10 md:hidden">Learn More</span>
-          <span class="relative z-10 hidden md:inline">Register Now</span>
-        </Button>
-      </a>
-    </div>
+    <Button href={register_route} variant="gradient" size="xl">Register Now</Button>
   </ScrollReveal>
 
   <ScrollReveal delay="650ms">

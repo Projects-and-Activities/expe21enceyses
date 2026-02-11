@@ -23,7 +23,11 @@
     { component: Instagram, href: 'https://www.instagram.com/yses2005', label: 'Instagram' }
   ];
 
-  const darkBg = $derived(page.url.pathname === '/' ? 'dark:bg-primary/5' : 'bg-transparent');
+  const darkBg = $derived(
+    page.url.pathname === '/' || page.url.pathname.split('/').at(-1) === 'register'
+      ? 'dark:bg-primary/5 outline outline-primary/40'
+      : 'bg-transparent'
+  );
 </script>
 
 <footer class="bg-neutral-50 p-8 backdrop-blur-lg not-xs:pb-16 not-lg:px-0 {darkBg}">
@@ -56,7 +60,9 @@
       <h3 class="text-lg">Young Software Engineers' Society</h3>
       <div class="text-sm">University of the Philippines Los Baños</div>
     </div>
-    <div class="flex w-fit flex-col-reverse not-md:place-items-center not-md:gap-y-12 md:ml-auto">
+    <div
+      class="flex w-fit flex-col place-items-end not-md:place-items-center not-md:gap-y-12 md:ml-auto"
+    >
       <div class="flex gap-1 not-md:scale-120">
         {#each socials as social (social.label)}
           <a

@@ -12,7 +12,7 @@
   let { children } = $props();
 </script>
 
-<main class="mt-20 flex w-full items-center justify-center px-4 lg:py-12">
+<main class="my-20 flex w-full items-center justify-center px-4 lg:py-12">
   <div class="pointer-events-none fixed inset-0 -z-10 h-screen overflow-hidden">
     <div
       class="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"

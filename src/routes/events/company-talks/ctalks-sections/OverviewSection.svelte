@@ -1,6 +1,7 @@
 <script lang="ts">
-  import Star from '$lib/components/Star.svelte';
   import { LiquidGlass } from 'liquid-glass-svelte';
+
+  import Star from '$lib/components/Star.svelte';
 
   let { isDark, GLASS_OPTIONS, BORDER_GRADIENT, overview_description, event_title } = $props();
 </script>
@@ -33,14 +34,18 @@
     style={`background: ${BORDER_GRADIENT}`}
   >
     <LiquidGlass
-      class="relative block h-full w-full !overflow-visible rounded-[1.5rem] p-8 hover:border-purple-500/50 lg:p-12 "
+      class="relative block h-full w-full !overflow-visible rounded-[1.5rem] p-8 hover:border-purple-500/50! lg:p-12 "
       options={GLASS_OPTIONS}
       style={`border: 1px solid ${isDark ? 'rgba(255,255,255,0.15)' : 'rgba(150,150,150,0.5)'};`}
     >
-      <h2 class="text:text-2xl mb-4 font-semibold text-primary lg:text-3xl">Overview</h2>
-      <p class="text-justify leading-relaxed lg:mt-3 lg:text-center lg:text-xl">
+      <h2 class="mb-4 text-2xl font-semibold text-primary lg:text-3xl">Overview</h2>
+      <p
+        class="text-justify leading-relaxed text-balance text-foreground/90 lg:text-center lg:text-xl"
+      >
         <strong>{event_title}</strong>
-        {overview_description}
+        <span class="font-light">
+          {overview_description}
+        </span>
       </p>
     </LiquidGlass>
   </div>

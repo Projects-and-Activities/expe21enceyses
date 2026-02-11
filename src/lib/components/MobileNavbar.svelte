@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Menu, X as XIcon } from '@lucide/svelte';
+  import { ArrowUpRight, Menu, X as XIcon } from '@lucide/svelte';
   import { LiquidGlass } from 'liquid-glass-svelte';
 
   import ModeToggle from './ModeToggle.svelte';
@@ -7,8 +7,8 @@
   import { page } from '$app/stores';
   import invertedLogo from '$lib/assets/colored-logo-inverted.png?enhanced';
   import coloredLogo from '$lib/assets/colored-logo.png?enhanced';
-  import logo from '$lib/assets/logo21Light.png';
-  import logoDark from '$lib/assets/logo21Dark.png';
+  import logo from '$lib/assets/logo21Light.png?enhanced';
+  import logoDark from '$lib/assets/logoDark.png?enhanced';
   import Facebook from '$lib/components/icons/Facebook.svelte';
   import Github from '$lib/components/icons/Github.svelte';
   import Instagram from '$lib/components/icons/Instagram.svelte';
@@ -142,7 +142,7 @@
                           </span>
                           <!-- Event Sub-items -->
                           <div class="mt-4 ml-4 flex flex-col gap-4">
-                            {#each eventItems as event}
+                            {#each eventItems as event (event.label)}
                               <a
                                 href={event.href}
                                 onclick={() => (mobileMenuOpen = false)}
@@ -160,28 +160,24 @@
                           target="_blank"
                           rel="noopener noreferrer"
                           onclick={() => (mobileMenuOpen = false)}
-                          class="font-['Lexend'] text-xl font-medium text-foreground transition-colors hover:text-primary"
+                          class="mt-4 flex flex-row font-light text-foreground transition-colors hover:text-primary"
                         >
                           YSES Online
+                          <ArrowUpRight size="16" />
                         </a>
                       </nav>
 
                       <!-- Register Button -->
                       <div class="mt-8">
-                        <div
-                          class="w-fit rounded-[3.75rem] p-[0.125rem]"
-                          style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
+                        <Button
+                          variant="outline"
+                          size="register"
+                          class="relative isolate overflow-hidden bg-transparent! p-0 font-light dark:font-normal dark:shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
+                          href="/register"
+                          onclick={() => (mobileMenuOpen = false)}
                         >
-                          <Button
-                            variant="gradient"
-                            size="register"
-                            class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
-                            href="/register"
-                            onclick={() => (mobileMenuOpen = false)}
-                          >
-                            <span class="relative z-10">Register</span>
-                          </Button>
-                        </div>
+                          <span class="relative z-10">Register</span>
+                        </Button>
                       </div>
 
                       <!-- Spacer -->

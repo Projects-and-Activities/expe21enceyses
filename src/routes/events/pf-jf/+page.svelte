@@ -1,14 +1,15 @@
 <script lang="ts">
   import { ChevronsDown, Bell, CloudUpload, SquarePen } from '@lucide/svelte';
 
+  import { page } from '$app/state';
   import { viewport } from '$lib/actions/viewport';
-  import archives1 from '$lib/assets/archives-1.png';
-  import archives2 from '$lib/assets/archives-2.png';
-  import archives3 from '$lib/assets/archives-3.png';
-  import archives4 from '$lib/assets/archives-4.png';
-  import archives5 from '$lib/assets/archives-5.png';
-  import archives6 from '$lib/assets/archives-6.png';
-  import archives7 from '$lib/assets/archives-7.png';
+  import archives1 from '$lib/assets/archives-1.png?enhanced';
+  import archives2 from '$lib/assets/archives-2.png?enhanced';
+  import archives3 from '$lib/assets/archives-3.png?enhanced';
+  import archives4 from '$lib/assets/archives-4.png?enhanced';
+  import archives5 from '$lib/assets/archives-5.png?enhanced';
+  import archives6 from '$lib/assets/archives-6.png?enhanced';
+  import archives7 from '$lib/assets/archives-7.png?enhanced';
   import PFJFRegisterScene from '$lib/components/3d-ascii/sections/PFJFRegisterScene.svelte';
   import PFJFScene from '$lib/components/3d-ascii/sections/PFJFScene.svelte';
   import GlassCard from '$lib/components/GlassCard.svelte';
@@ -75,19 +76,9 @@
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
-    <div
-      class="mt-2 rounded-[3.75rem] p-[0.135rem]"
-      style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
-    >
-      <Button
-        variant="gradient"
-        size="xl"
-        class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
-        onclick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
-      >
-        <span class="relative z-10">Register Now</span>
-      </Button>
-    </div>
+    <Button variant="gradient" size="xl" href={`${page.url.pathname}/register`}>
+      Register Now
+    </Button>
   </ScrollReveal>
 
   <ScrollReveal delay="650ms">
@@ -101,10 +92,7 @@
   </ScrollReveal>
 </section>
 
-<section
-  id="overview"
-  class="relative flex scroll-mt-36 flex-col gap-4 text-center md:scroll-mt-64 lg:mt-[20rem]"
->
+<section id="overview" class="relative flex flex-col gap-4 text-center">
   <Star class="-right-40 -bottom-35 w-80 rotate-220 opacity-40 dark:opacity-80" />
   <Star class="-right-10 -bottom-50 w-30 rotate-140 opacity-40 blur-[1px] dark:opacity-60" />
   <Star class="-right-35 -bottom-25 w-23 rotate-75 opacity-40 blur-[2px] dark:opacity-30" />
@@ -116,8 +104,12 @@
     <GlassCard
       class="pf-jf-card border-2 border-border/50 p-10 transition-all duration-300 ease-in-out hover:border-purple-500/50"
     >
-      <div class="text-lexend mb-4 text-center text-3xl font-semibold text-primary">Overview</div>
-      <p class="text-lexend text-1xl text-center leading-relaxed text-foreground/90">
+      <div class="mb-4 text-justify text-3xl font-semibold text-primary md:text-center">
+        Overview
+      </div>
+      <p
+        class="text-justify leading-relaxed text-balance text-foreground/90 lg:text-center lg:text-xl"
+      >
         <span class="font-semibold"> EXPE21ENCE YSES: PF/JF </span>
         <span class="font-light">
           is a practicum and job fair that bridges the gap between the academe and industry,
@@ -138,56 +130,87 @@
   <Star class="bottom-45 -left-40 w-50 rotate-12 opacity-50 dark:opacity-90" />
 
   <ScrollReveal delay="150ms">
-    <div class="text-5xl font-semibold">The Archives</div>
+    <h2 class=" font-semibold">The Archives</h2>
   </ScrollReveal>
 
-  <div class="grid grid-cols-8 grid-rows-auto md:grid-cols-15 md:grid-rows-22 h-auto md:h-[130vh] w-full gap-4 md:gap-6" style="perspective: 1000px;">
-    <ScrollReveal delay="250ms" class="row-span-3 col-span-8 md:row-span-8 md:col-span-4 group">
-      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(5deg)_rotateY(-5deg)]">
-        <img src={archives1} alt="" class="h-full w-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
+  <div
+    class="grid-rows-auto grid h-auto w-full grid-cols-8 gap-4 md:h-[130vh] md:grid-cols-15 md:grid-rows-22 md:gap-6"
+    style="perspective: 1000px;"
+  >
+    <ScrollReveal delay="250ms" class="group col-span-8 row-span-3 md:col-span-4 md:row-span-8">
+      <div
+        class="relative h-full w-full overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-all duration-500 ease-out [transform-style:preserve-3d] hover:z-50 hover:scale-105 hover:[transform:rotateX(5deg)_rotateY(-5deg)]"
+      >
+        <enhanced:img src={archives1} alt="" class="h-full w-full object-cover" />
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+        ></div>
       </div>
     </ScrollReveal>
 
-    <ScrollReveal delay="300ms" class="row-span-2 col-span-4 md:row-span-5 md:col-span-6 group">
-      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(5deg)_rotateY(5deg)]">
-        <img src={archives2} alt="" class="h-full w-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <ScrollReveal delay="300ms" class="group col-span-4 row-span-2 md:col-span-6 md:row-span-5">
+      <div
+        class="relative h-full w-full overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-all duration-500 ease-out [transform-style:preserve-3d] hover:z-50 hover:scale-105 hover:[transform:rotateX(5deg)_rotateY(5deg)]"
+      >
+        <enhanced:img src={archives2} alt="" class="h-full w-full object-cover" />
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+        ></div>
       </div>
     </ScrollReveal>
 
-    <ScrollReveal delay="350ms" class="row-span-2 col-span-4 md:row-span-11 md:col-span-5 group">
-      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(2deg)_rotateY(8deg)]">
-        <img src={archives3} alt="" class="h-full w-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <ScrollReveal delay="350ms" class="group col-span-4 row-span-2 md:col-span-5 md:row-span-11">
+      <div
+        class="relative h-full w-full overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-all duration-500 ease-out [transform-style:preserve-3d] hover:z-50 hover:scale-105 hover:[transform:rotateX(2deg)_rotateY(8deg)]"
+      >
+        <enhanced:img src={archives3} alt="" class="h-full w-full object-cover" />
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+        ></div>
       </div>
     </ScrollReveal>
 
-    <ScrollReveal delay="400ms" class="row-span-4 col-span-5 md:row-span-8 md:col-span-6 group">
-      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(-5deg)_rotateY(-5deg)]">
-        <img src={archives5} alt="" class="h-full w-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <ScrollReveal delay="400ms" class="group col-span-5 row-span-4 md:col-span-6 md:row-span-8">
+      <div
+        class="relative h-full w-full overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-all duration-500 ease-out [transform-style:preserve-3d] hover:z-50 hover:scale-105 hover:[transform:rotateX(-5deg)_rotateY(-5deg)]"
+      >
+        <enhanced:img src={archives5} alt="" class="h-full w-full object-cover" />
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+        ></div>
       </div>
     </ScrollReveal>
 
-    <ScrollReveal delay="450ms" class="row-span-3 col-span-3 md:row-span-5 md:col-span-4 group">
-      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(-5deg)_rotateY(8deg)]">
-        <img src={archives4} alt="" class="h-full w-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <ScrollReveal delay="450ms" class="group col-span-3 row-span-3 md:col-span-4 md:row-span-5">
+      <div
+        class="relative h-full w-full overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-all duration-500 ease-out [transform-style:preserve-3d] hover:z-50 hover:scale-105 hover:[transform:rotateX(-5deg)_rotateY(8deg)]"
+      >
+        <enhanced:img src={archives4} alt="" class="h-full w-full object-cover" />
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+        ></div>
       </div>
     </ScrollReveal>
 
-    <ScrollReveal delay="500ms" class="row-span-1 col-span-3 md:row-span-8 md:col-span-5 group">
-      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(-8deg)_rotateY(5deg)]">
-        <img src={archives7} alt="" class="h-full w-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <ScrollReveal delay="500ms" class="group col-span-3 row-span-1 md:col-span-5 md:row-span-8">
+      <div
+        class="relative h-full w-full overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-all duration-500 ease-out [transform-style:preserve-3d] hover:z-50 hover:scale-105 hover:[transform:rotateX(-8deg)_rotateY(5deg)]"
+      >
+        <enhanced:img src={archives7} alt="" class="h-full w-full object-cover" />
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+        ></div>
       </div>
     </ScrollReveal>
 
-    <ScrollReveal delay="550ms" class="row-span-3 col-span-8 md:row-span-6 md:col-span-10 group">
-      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(-3deg)_rotateY(-3deg)]">
-        <img src={archives6} alt="" class="h-full w-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <ScrollReveal delay="550ms" class="group col-span-8 row-span-3 md:col-span-10 md:row-span-6">
+      <div
+        class="relative h-full w-full overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-all duration-500 ease-out [transform-style:preserve-3d] hover:z-50 hover:scale-105 hover:[transform:rotateX(-3deg)_rotateY(-3deg)]"
+      >
+        <enhanced:img src={archives6} alt="" class="h-full w-full object-cover" />
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+        ></div>
       </div>
     </ScrollReveal>
   </div>
@@ -200,7 +223,7 @@
   <Star class="top-10 -right-40 w-23 rotate-165 opacity-40 blur-[2px] dark:opacity-30" />
 
   <ScrollReveal delay="50ms">
-    <div class="text-center text-5xl font-semibold">Register for PF/JF</div>
+    <h2 class="text-center font-semibold">Register for PF/JF</h2>
   </ScrollReveal>
 
   <div class="mt-4 mb-8 flex flex-col gap-5 md:flex-row">
@@ -228,27 +251,15 @@
           </ScrollReveal>
           <ScrollReveal delay={`${300 + i * 50}ms`}>
             <div class="flex flex-col gap-1">
-              <span class="font-lexend text-2xl font-medium">{title}</span>
+              <span class="text-xl font-bold">{title}</span>
               <p class="font-lexend text-justify font-light">{description}</p>
             </div>
           </ScrollReveal>
         {/each}
       </div>
 
-      <ScrollReveal delay="500ms">
-        <div
-          class="my-8 ml-2 rounded-[3.75rem] p-[0.125rem]"
-          style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
-        >
-          <Button
-            href="pfjf/register"
-            variant="gradient"
-            size="xl"
-            class="register-btn relative isolate overflow-hidden !bg-transparent px-16 shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
-          >
-            <span class="relative z-10">Register</span>
-          </Button>
-        </div>
+      <ScrollReveal delay="500ms" class="mx-auto my-12 w-fit">
+        <Button variant="gradient" size="xl">Register</Button>
       </ScrollReveal>
     </div>
   </div>

@@ -1,21 +1,16 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import Star from '$lib/components/Star.svelte';
-  import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import { LiquidGlass } from 'liquid-glass-svelte';
+
+  import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+  import Star from '$lib/components/Star.svelte';
 
   let { keyDetails, sessionPreview, isDark, GLASS_OPTIONS, BORDER_GRADIENT } = $props();
   const CARD_WIDTH = 317;
   const SLIDE_GAP = 30;
   const SLIDE_WIDTH = CARD_WIDTH + SLIDE_GAP;
 
-  let isSceneVisible = $state(false);
   let activeSessionIndex = $state(0);
   let sessionContainer: HTMLDivElement | undefined = $state();
-
-  onMount(() => {
-    isSceneVisible = true;
-  });
 
   function handleSessionScroll() {
     if (!sessionContainer) return;
@@ -44,14 +39,14 @@
   <!-- ================= MOBILE VIEW ================= -->
   <div class="flex w-full flex-col items-center gap-8 lg:hidden">
     <ScrollReveal>
-      <h2 class="text-3xl leading-relaxed font-normal">
+      <h2 class="text-4xl leading-relaxed font-normal">
         <span class="font-semibold">Inside</span> the
         <span class="font-semibold italic">Sessions</span>
       </h2>
       <p class="leaning-relaxed mt-2 text-sm italic">Where theory meets practice.</p>
     </ScrollReveal>
 
-    <img
+    <enhanced:img
       style={`background: ${BORDER_GRADIENT}`}
       src={sessionPreview}
       alt="Session preview"

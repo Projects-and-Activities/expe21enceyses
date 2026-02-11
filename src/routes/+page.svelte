@@ -15,8 +15,10 @@
   import logoLightImg from '$lib/assets/logoLight.png?enhanced';
   import pfjfImg from '$lib/assets/pfjf.png?enhanced';
   import LogoScene from '$lib/components/3d-ascii/sections/LogoScene.svelte';
-  import AnnotatedBorderedContainer from '$lib/components/AnnotatedBorderedContainer.svelte';
-  import GlassCard from '$lib/components/GlassCard.svelte';
+  import AnnotatedBorderedContainer, {
+    type AnnotationColor,
+    type AnnotationAlign
+  } from '$lib/components/AnnotatedBorderedContainer.svelte';
   import ProgramSection from '$lib/components/ProgramSection.svelte';
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import Star from '$lib/components/Star.svelte';
@@ -81,28 +83,40 @@
       title: 'The Hackfest',
       subtitle: 'Engineer solutions that move communities forward.',
       bg: 'bg-primary/5 dark:bg-primary/15 backdrop-blur-sm',
-      img: hackfestImg
+      img: hackfestImg,
+      annotation: 'HackFest',
+      annotationColor: 'red',
+      annotationAlign: 'top-right'
     },
     {
       id: 'pf-jf',
       title: 'Practicum/Job Fair',
       subtitle: 'Land the opportunities that launch your career.',
       bg: 'bg-neutral-100 dark:bg-primary/10 backdrop-blur-md',
-      img: pfjfImg
+      img: pfjfImg,
+      annotation: 'PF/JF',
+      annotationColor: 'green',
+      annotationAlign: 'bottom-right'
     },
     {
       id: 'company-talks',
       title: 'Company Talks',
       subtitle: 'Unlock what it takes to thrive in tech.',
       bg: 'bg-neutral-50 dark:bg-primary/5  backdrop-blur-lg',
-      img: ctalksImg
+      img: ctalksImg,
+      annotation: 'CTALKS',
+      annotationColor: 'blue',
+      annotationAlign: 'bottom-right'
     },
     {
       id: '',
       title: '',
       subtitle: '',
       bg: '',
-      img: ''
+      img: '',
+      annotation: '',
+      annotationColor: '',
+      annotationAlign: ''
     }
   ];
 </script>
@@ -139,22 +153,22 @@
         color="red"
         size="xs"
       >
-        <div class="aspect-610/343 h-70 w-auto max-w-[calc(100dvw-0.25rem)] sm:w-132">
+        <div class="aspect-610/343 h-70 w-auto max-w-[calc(100dvw-0.25rem)] sm:w-132 2xl:w-144">
           <enhanced:img
             bind:this={leftHand}
             src={leftHandImg}
             fetchpriority="high"
             alt="Left Hand"
             class="
-					pointer-events-none
-					absolute
-					top-[22%]
-					-left-20
-					z-10
-					w-130
-					-translate-y-1/2
-						-rotate-15
-				"
+      pointer-events-none
+      absolute
+      top-[22%]
+      -left-20
+      z-10
+      w-[clamp(32.5rem,38vw,36rem)]
+      -translate-y-1/2
+      -rotate-15
+    "
           />
         </div>
       </AnnotatedBorderedContainer>
@@ -227,7 +241,9 @@
         color="green"
         size="xs"
       >
-        <div class="aspect-610/343 h-70 w-auto max-w-[calc(100dvw-0.25rem)] sm:w-132 lg:h-100">
+        <div
+          class="aspect-610/343 h-70 w-auto max-w-[calc(100dvw-0.25rem)] sm:w-132 lg:h-100 2xl:w-164"
+        >
           <enhanced:img
             bind:this={rightHand}
             src={rightHandImg}
@@ -239,8 +255,9 @@
 					top-0
 					-right-16
 					z-20
-					w-130
-					-rotate-[7deg]
+            w-[clamp(32.5rem,38vw,36rem)]
+
+      -rotate-[7deg]
 				"
           />
         </div>
@@ -298,8 +315,15 @@
     <Star class="-right-18 -bottom-8 z-auto! w-35 -rotate-15" />
     <Star class="right-8 -bottom-12 z-auto! w-15 rotate-50" />
     <section id="for-21" class="relative container mx-auto px-4 not-md:overflow-x-clip">
-      <GlassCard
-        class="relative z-20 grid place-content-center gap-20 px-16 py-12 lg:grid-cols-2 lg:justify-between xl:py-24"
+      <div
+        class="relative z-20 grid place-content-center gap-20 bg-background/40 px-16 py-12 backdrop-blur-sm lg:grid-cols-2 lg:justify-between xl:py-24"
+        style="
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25) inset; 
+    overflow: hidden; 
+    border-radius: 20px; 
+    outline: 0.5px #494949 solid; 
+    outline-offset: -1px;
+    "
       >
         <div
           class="z-0 my-auto flex h-fit flex-col gap-6 text-wrap not-lg:place-items-center xl:px-16 [&_p]:text-justify [&_p]:font-light md:[&_p]:text-lg"
@@ -335,10 +359,10 @@
             <LogoScene />
           </ScrollReveal>
         </div>
-      </GlassCard>
+      </div>
     </section>
   </div>
-  <section class="flex flex-col *:text-5xl xs:*:text-6xl md:pb-24">
+  <section class="flex flex-col *:text-5xl xs:*:text-6xl md:pb-24 xl:max-w-6xl!">
     <ScrollReveal delay="200ms">
       <div>
         Experience the <span
@@ -383,12 +407,19 @@
         class=" w-full rounded-t-4xl pb-20   xs:pb-12 {section.bg}  top-20 mb-100 h-[calc(100dvh-5rem)] last:pointer-events-none! last:mb-0 last:*:hidden! nth-last-2:mb-0! xs:top-20! xs:h-[min(1104px,calc(100dvh-5rem))]!"
         style="z-index: {i}; "
       >
-        <enhanced:img
-          src={section.img}
-          class="size-100 object-contain brightness-200"
-          width="600"
-          height="600"
-        />
+        <AnnotatedBorderedContainer
+          annotation={section.annotation}
+          size="sm"
+          color={section.annotationColor as AnnotationColor}
+          annotationAlign={section.annotationAlign as AnnotationAlign}
+        >
+          <enhanced:img
+            src={section.img}
+            class="size-100 object-contain brightness-200"
+            width="600"
+            height="600"
+          />
+        </AnnotatedBorderedContainer>
       </ProgramSection>
     {/each}
   </div>

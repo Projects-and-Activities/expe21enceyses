@@ -86,7 +86,7 @@
   const podium = [
     {
       rank: '1st Runner-Up',
-      amount: '₱XXXX',
+      amount: '₱5,000',
       Icon: Medal,
       height: 'h-48 md:h-80',
       cardStyle: 'bg-purple-900/70 dark:border-purple-500/50 text-white',
@@ -97,7 +97,7 @@
     },
     {
       rank: 'Champion',
-      amount: '₱XXXX',
+      amount: '₱8,000',
       Icon: Trophy,
       height: 'h-60 md:h-96',
       cardStyle:
@@ -110,7 +110,7 @@
     },
     {
       rank: '2nd Runner-Up',
-      amount: '₱XXXX',
+      amount: '₱3,000',
       Icon: CircleStar,
       height: 'h-40 md:h-64',
       cardStyle: 'bg-purple-900/50 dark:border-purple-500/30 text-white',
@@ -181,19 +181,7 @@
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
-    <div
-      class="mt-2 ml-2 rounded-[3.75rem] p-[0.135rem]"
-      style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
-    >
-      <Button
-        variant="gradient"
-        size="xl"
-        class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
-        onclick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
-      >
-        <span class="relative z-10">Register Now</span>
-      </Button>
-    </div>
+    <Button href="/register" variant="gradient" size="xl">Register Now</Button>
   </ScrollReveal>
 
   <ScrollReveal delay="650ms">
@@ -207,10 +195,7 @@
   </ScrollReveal>
 </section>
 
-<section
-  id="overview"
-  class="relative flex scroll-mt-36 flex-col gap-4 text-center md:scroll-mt-64 lg:mt-[20rem]"
->
+<section id="overview" class="relative flex flex-col gap-4 text-center">
   <Star class="bottom-12 -left-40 w-30 rotate-40 opacity-20 blur-[1px] dark:opacity-40" />
   <Star class="-bottom-30 -left-16 w-62 rotate-10 opacity-40 dark:opacity-80" />
   <Star class="top-50 -left-30 w-20 -rotate-50 opacity-30 blur-[4px] dark:opacity-60" />
@@ -218,22 +203,25 @@
   <Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
 
   <ScrollReveal delay="100ms">
-    <GlassCard
-      class="hackfest-card border-2 border-border/50 p-10 transition-all duration-300 ease-in-out hover:border-purple-500/50"
-    >
+    <GlassCard>
       <div class="mb-4 text-center text-2xl font-semibold text-primary">Overview</div>
-      <p class="text-center leading-relaxed text-foreground/90">
-        <span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span> is a bracketed hackathon for
-        high school and college students to ideate, design, and build AI‑driven software that addresses
-        real issues faced by Philippine communities and helps make them more sustainable, inclusive, and
-        resilient—focusing on livable cities and communities, from climate resilience and public health
-        to quality education, inclusive livelihoods, and good governance.
+      <p
+        class="text-justify leading-relaxed text-balance text-foreground/90 lg:text-center lg:text-xl"
+      >
+        <span class="font-semibold"> EXPE21ENCE YSES: The HackFest </span>
+        <span class="font-light">
+          is a bracketed hackathon for high school and college students to ideate, design, and build
+          AI‑driven software that addresses real issues faced by Philippine communities and helps
+          make them more sustainable, inclusive, and resilient—focusing on livable cities and
+          communities, from climate resilience and public health to quality education, inclusive
+          livelihoods, and good governance.
+        </span>
       </p>
     </GlassCard>
   </ScrollReveal>
 </section>
 
-<section class="relative flex flex-col items-center gap-10 text-center">
+<section class="relative mt-0! flex flex-col items-center gap-10 text-center">
   <Star class="top-50 -left-54 w-30 -rotate-50 opacity-30 blur-[4px] dark:opacity-60" />
 
   <ScrollReveal delay="200ms">
@@ -265,8 +253,8 @@
       class="top-50 -right-50 hidden w-28 -rotate-0 opacity-35 blur-[1px] md:block dark:opacity-70"
     />
 
-    <ScrollReveal delay="200ms">
-      <span class="text-3xl">Key Details</span>
+    <ScrollReveal delay="200ms" class="mt-12">
+      <h2 class="font-semibold">Key Details</h2>
     </ScrollReveal>
 
     <div class="mt-6 grid grid-cols-1 grid-rows-4 gap-5 md:grid-cols-2 md:grid-rows-2">
@@ -276,7 +264,7 @@
         {@const displayDescription =
           typeof description === 'string' ? description : description[selectedHackfest]}
 
-        <ScrollReveal delay={`${200 + i * 50}ms`}>
+        <ScrollReveal delay={`${200 + i * 50}ms`} class="h-full">
           {@render details(icon, title, displayDescription)}
         </ScrollReveal>
       {/each}
@@ -292,7 +280,7 @@
 
   <div class="container mx-auto px-4">
     <ScrollReveal>
-      <h2 class="mb-12 text-center text-4xl font-semibold tracking-tight">Prizes</h2>
+      <h2 class="mb-12 text-center font-semibold">Prizes</h2>
     </ScrollReveal>
 
     <div class="flex flex-row items-end justify-center gap-3 md:gap-8">
@@ -302,7 +290,7 @@
           class="{spot.order} flex w-1/3 max-w-[280px] flex-col items-center"
         >
           <div class="mb-3 text-center md:mb-4">
-            <span class="block text-lg font-bold tracking-tight md:text-3xl">
+            <span class="block text-lg font-bold tracking-tight md:text-4xl">
               {spot.amount}
             </span>
           </div>
@@ -344,7 +332,7 @@
   <Star class="-bottom-30 -left-46 w-32 rotate-10 opacity-40 blur-[6px] dark:opacity-80" />
 
   <ScrollReveal delay="200ms" class="flex flex-col items-center gap-5">
-    <div class="text-3xl font-semibold">Guidelines</div>
+    <h2 class="font-semibold">Guidelines</h2>
     <p class="text-center leading-relaxed text-foreground/90">
       Before joining, please review our guidelines to ensure a smooth and successful experience at
       EXPE21ENCE YSES: The HackFest. These guidelines cover everything you need to know about
@@ -352,19 +340,7 @@
       button below to open the full document.
     </p>
 
-    <div
-      class="mt-2 ml-2 rounded-[3.75rem] p-[0.125rem]"
-      style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
-    >
-      <Button
-        variant="gradient"
-        size="xl"
-        class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
-        onclick={() => console.log('Register clicked')}
-      >
-        <span class="relative z-10">See Guidelines</span>
-      </Button>
-    </div>
+    <Button variant="gradient" size="xl">See Guidelines</Button>
   </ScrollReveal>
 </section>
 
@@ -373,15 +349,15 @@
   <Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
 
   <ScrollReveal delay="50ms">
-    <div class="text-center text-3xl font-semibold">Register for The Hackfest</div>
+    <h2 class="text-center font-semibold">Register for The Hackfest</h2>
   </ScrollReveal>
   <ScrollReveal delay="100ms">
-    <p class="-mt-4 text-center leading-relaxed text-foreground/90">
+    <p class="-mt-4 text-center font-light text-foreground/90">
       Take your first step toward ideating, designing, and building for communities.
     </p>
   </ScrollReveal>
 
-  <div class="flex flex-col gap-5 md:flex-row">
+  <div class="mt-8 flex flex-col gap-5 md:flex-row">
     <div
       class="h-[300px] w-full shrink-0 md:w-[360px]"
       use:viewport={{
@@ -421,19 +397,8 @@
         {/each}
       </div>
 
-      <ScrollReveal delay="500ms">
-        <div
-          class="my-12 w-fit rounded-[3.75rem] p-[0.125rem] not-sm:mx-auto"
-          style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
-        >
-          <Button
-            variant="gradient"
-            size="xl"
-            class="register-btn relative isolate overflow-hidden !bg-transparent shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
-          >
-            <span class="relative z-10">Register Now</span>
-          </Button>
-        </div>
+      <ScrollReveal delay="500ms" class="mx-auto my-12 w-fit">
+        <Button href="/register" variant="gradient" size="xl">Register</Button>
       </ScrollReveal>
     </div>
   </div>
@@ -493,19 +458,17 @@
 {/snippet}
 
 {#snippet details(Icon: Component, title: string, description: string)}
-  <GlassCard
-    class="hackfest-card flex h-full flex-col items-center gap-4 border-2 border-border/50 p-14 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-purple-500/50"
-  >
-    <div class="">
-      <Icon class="size-7" />
-    </div>
+  <GlassCard class=" h-full ">
+    <div class="grid h-full place-content-center gap-4">
+      <Icon class="mx-auto size-7" />
 
-    <article class="space-y-2 text-center">
-      <h3 class="text-xl font-semibold tracking-tight">{title}</h3>
-      <p class="leading-relaxed text-muted-foreground">
-        {description}
-      </p>
-    </article>
+      <div class="space-y-2">
+        <h3 class="text-xl font-semibold tracking-tight">{title}</h3>
+        <p class="leading-relaxed text-muted-foreground">
+          {description}
+        </p>
+      </div>
+    </div>
   </GlassCard>
 {/snippet}
 
@@ -516,12 +479,3 @@
     ? 'Junior'
     : 'Senior'} Hackfest” to begin your registration.
 {/snippet}
-
-<style>
-  :global(.hackfest-card:hover) {
-    box-shadow:
-      0px 2px 10px rgba(0, 0, 0, 0.25) inset,
-      0 30px 40px -10px rgba(127, 82, 187, 0.15),
-      0 12px 15px -8px rgba(0, 0, 0, 0.2) !important;
-  }
-</style>

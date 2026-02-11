@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Star from '$lib/components/Star.svelte';
-  import ScrollReveal from '$lib/components/ScrollReveal.svelte';
-  import Button from '$lib/components/ui/button/button.svelte';
   import { viewport } from '$lib/actions/viewport';
   import CompanyTalksRegisterScene from '$lib/components/3d-ascii/sections/CompanyTalksRegisterScene.svelte';
+  import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+  import Star from '$lib/components/Star.svelte';
+  import Button from '$lib/components/ui/button/button.svelte';
 
   let { registrationSteps } = $props();
   let isSceneVisible = $state(false);
@@ -54,16 +54,14 @@
           {@const { Icon, title, description } = step}
 
           <ScrollReveal delay={`${300 + i * 50}ms`} class="place-self-center">
-            <div class="pt-1 text-primary">
-              <Icon class="size-14" />
-            </div>
+            <Icon class="size-12 text-primary" />
           </ScrollReveal>
 
           <ScrollReveal delay={`${300 + i * 50}ms`}>
             <div class="flex flex-col gap-2">
-              <span class="text-xl font-bold md:text-xl">{title}</span>
+              <span class="text-xl font-bold">{title}</span>
 
-              <p class="text-justify text-lg leading-relaxed">
+              <p class="text-justify leading-relaxed">
                 {description}
               </p>
             </div>
@@ -71,23 +69,10 @@
         {/each}
       </div>
 
-      <ScrollReveal delay="600ms">
-        <div class="relative z-10 mt-10 ml-2 flex justify-center lg:mt-7">
-          <div
-            class="flex h-[58px] w-[230px] items-center justify-center rounded-[3.75rem] p-[0.135rem]"
-            style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
-          >
-            <Button
-              href="company-talks/register"
-              variant="gradient"
-              class="register-btn relative isolate h-[53px] w-[225px] overflow-hidden rounded-[3.75rem] !bg-transparent
-               p-[0.135rem]
-               shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
-            >
-              <span class="relative z-10 text-lg">Register</span>
-            </Button>
-          </div>
-        </div>
+      <ScrollReveal delay="600ms" class="mx-auto my-12 w-fit">
+        <Button href="company-talks/register" variant="gradient" size="xl">
+          <span class="relative z-10">Register</span>
+        </Button>
       </ScrollReveal>
     </div>
   </div>
