@@ -9,8 +9,6 @@
   import archives5 from '$lib/assets/archives-5.png';
   import archives6 from '$lib/assets/archives-6.png';
   import archives7 from '$lib/assets/archives-7.png';
-  import { asciiState } from '$lib/components/3d-ascii/ascii.svelte';
-  import { ASCII_CHARS_FULL, ASCII_CHARS_SAFE } from '$lib/components/3d-ascii/constants';
   import PFJFRegisterScene from '$lib/components/3d-ascii/sections/PFJFRegisterScene.svelte';
   import PFJFScene from '$lib/components/3d-ascii/sections/PFJFScene.svelte';
   import GlassCard from '$lib/components/GlassCard.svelte';
@@ -78,7 +76,7 @@
 
   <ScrollReveal delay="600ms">
     <div
-      class="mt-2 ml-2 rounded-[3.75rem] p-[0.135rem]"
+      class="mt-2 rounded-[3.75rem] p-[0.135rem]"
       style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
     >
       <Button
@@ -133,7 +131,7 @@
   </ScrollReveal>
 </section>
 
-<section id="register" class="relative flex scroll-mt-30 flex-col items-center gap-10">
+<section id="archive" class="relative flex scroll-mt-30 flex-col items-center gap-10">
   <Star class="top-40 -left-35 w-60 rotate-230 opacity-40 dark:opacity-80" />
   <Star class="top-100 -left-22 w-25 -rotate-35 opacity-40 blur-[2px] dark:opacity-50" />
   <Star class="bottom-25 -left-20 w-28 rotate-20 opacity-50 dark:opacity-90" />
@@ -143,82 +141,56 @@
     <div class="text-5xl font-semibold">The Archives</div>
   </ScrollReveal>
 
-  <ScrollReveal delay="300ms">
-    <div
-      class="grid-rows-auto grid h-auto w-full grid-cols-8 gap-4 md:h-[130vh] md:grid-cols-15 md:grid-rows-22 md:gap-6"
-      style="perspective: 1000px;"
-    >
-      <div
-        class="hover:tilt-card relative col-span-8 row-span-3 overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-transform duration-500 ease-out md:col-span-4 md:row-span-8"
-        style="transform-style: preserve-3d;"
-      >
+  <div class="grid grid-cols-8 grid-rows-auto md:grid-cols-15 md:grid-rows-22 h-auto md:h-[130vh] w-full gap-4 md:gap-6" style="perspective: 1000px;">
+    <ScrollReveal delay="250ms" class="row-span-3 col-span-8 md:row-span-8 md:col-span-4 group">
+      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(5deg)_rotateY(-5deg)]">
         <img src={archives1} alt="" class="h-full w-full object-cover" />
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"
-        ></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
       </div>
+    </ScrollReveal>
 
-      <div
-        class="hover:tilt-card relative col-span-4 row-span-2 overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-transform duration-500 ease-out md:col-span-6 md:row-span-5"
-        style="transform-style: preserve-3d;"
-      >
+    <ScrollReveal delay="300ms" class="row-span-2 col-span-4 md:row-span-5 md:col-span-6 group">
+      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(5deg)_rotateY(5deg)]">
         <img src={archives2} alt="" class="h-full w-full object-cover" />
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"
-        ></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
       </div>
+    </ScrollReveal>
 
-      <div
-        class="hover:tilt-card relative col-span-4 row-span-2 overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-transform duration-500 ease-out md:col-span-5 md:row-span-11"
-        style="transform-style: preserve-3d;"
-      >
+    <ScrollReveal delay="350ms" class="row-span-2 col-span-4 md:row-span-11 md:col-span-5 group">
+      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(2deg)_rotateY(8deg)]">
         <img src={archives3} alt="" class="h-full w-full object-cover" />
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"
-        ></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
       </div>
+    </ScrollReveal>
 
-      <div
-        class="hover:tilt-card relative col-span-5 row-span-4 overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-transform duration-500 ease-out md:col-span-6 md:row-span-8"
-        style="transform-style: preserve-3d;"
-      >
+    <ScrollReveal delay="400ms" class="row-span-4 col-span-5 md:row-span-8 md:col-span-6 group">
+      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(-5deg)_rotateY(-5deg)]">
         <img src={archives5} alt="" class="h-full w-full object-cover" />
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"
-        ></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
       </div>
+    </ScrollReveal>
 
-      <div
-        class="hover:tilt-card relative col-span-3 row-span-3 overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-transform duration-500 ease-out md:col-span-4 md:row-span-5"
-        style="transform-style: preserve-3d;"
-      >
+    <ScrollReveal delay="450ms" class="row-span-3 col-span-3 md:row-span-5 md:col-span-4 group">
+      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(-5deg)_rotateY(8deg)]">
         <img src={archives4} alt="" class="h-full w-full object-cover" />
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"
-        ></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
       </div>
+    </ScrollReveal>
 
-      <div
-        class="hover:tilt-card relative col-span-3 row-span-1 overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-transform duration-500 ease-out md:col-span-5 md:row-span-8"
-        style="transform-style: preserve-3d;"
-      >
+    <ScrollReveal delay="500ms" class="row-span-1 col-span-3 md:row-span-8 md:col-span-5 group">
+      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(-8deg)_rotateY(5deg)]">
         <img src={archives7} alt="" class="h-full w-full object-cover" />
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"
-        ></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
       </div>
+    </ScrollReveal>
 
-      <div
-        class="hover:tilt-card relative col-span-8 row-span-3 overflow-hidden rounded-3xl bg-white/5 shadow-2xl backdrop-blur-sm transition-transform duration-500 ease-out md:col-span-10 md:row-span-6"
-        style="transform-style: preserve-3d;"
-      >
+    <ScrollReveal delay="550ms" class="row-span-3 col-span-8 md:row-span-6 md:col-span-10 group">
+      <div class="h-full w-full overflow-hidden rounded-3xl relative backdrop-blur-sm bg-white/5 shadow-2xl transition-all duration-500 ease-out [transform-style:preserve-3d] hover:scale-105 hover:z-50 hover:[transform:rotateX(-3deg)_rotateY(-3deg)]">
         <img src={archives6} alt="" class="h-full w-full object-cover" />
-        <div
-          class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"
-        ></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"></div>
       </div>
-    </div>
-  </ScrollReveal>
+    </ScrollReveal>
+  </div>
 </section>
 
 <section id="register" class="relative flex scroll-mt-30 flex-col items-center gap-5">
@@ -229,13 +201,6 @@
 
   <ScrollReveal delay="50ms">
     <div class="text-center text-5xl font-semibold">Register for PF/JF</div>
-  </ScrollReveal>
-  <ScrollReveal delay="100ms">
-    <p
-      class="font-inter -mt-4 text-center text-sm leading-relaxed font-light text-foreground/90 italic"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    </p>
   </ScrollReveal>
 
   <div class="mt-4 mb-8 flex flex-col gap-5 md:flex-row">
@@ -276,6 +241,7 @@
           style="background: linear-gradient(180deg, var(--muted-foreground) 0%, var(--background) 60%, var(--muted-foreground) 100%);"
         >
           <Button
+            href="pfjf/register"
             variant="gradient"
             size="xl"
             class="register-btn relative isolate overflow-hidden !bg-transparent px-16 shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
@@ -287,15 +253,3 @@
     </div>
   </div>
 </section>
-
-<style>
-  :global(.pf-jf-card:hover) {
-    box-shadow:
-      0px 2px 10px rgba(0, 0, 0, 0.25) inset,
-      0 30px 40px -10px rgba(127, 82, 187, 0.15),
-      0 12px 15px -8px rgba(0, 0, 0, 0.2) !important;
-  }
-  .hover\:tilt-card:hover {
-    transform: rotateX(-3deg) rotateY(-3deg) scale(1.02);
-  }
-</style>
