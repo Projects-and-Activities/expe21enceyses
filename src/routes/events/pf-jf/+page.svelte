@@ -12,11 +12,11 @@
   import archives7 from '$lib/assets/archives-7.png?enhanced';
   import PFJFRegisterScene from '$lib/components/3d-ascii/sections/PFJFRegisterScene.svelte';
   import PFJFScene from '$lib/components/3d-ascii/sections/PFJFScene.svelte';
+  import Blob from '$lib/components/BackgroundBlob.svelte';
   import GlassCard from '$lib/components/GlassCard.svelte';
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import Star from '$lib/components/Star.svelte';
   import Button from '$lib/components/ui/button/button.svelte';
-  import Blob from '$lib/components/BackgroundBlob.svelte';
 
   let isSceneVisible = $state(false);
 
@@ -41,6 +41,18 @@
   ];
 </script>
 
+<div class="pointer-events-none fixed inset-0 -z-10 h-screen overflow-hidden">
+  <div
+    class="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
+  ></div>
+  <div
+    class="absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
+  ></div>
+  <div
+    class="absolute top-1/2 left-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-400/10 blur-[100px]"
+  ></div>
+</div>
+
 <div class="pointer-events-none absolute inset-0 -z-10 h-full w-full overflow-hidden">
   <!-- Desktop -->
   <Blob
@@ -52,14 +64,14 @@
     gradient="#BA52A9, #BA52A9"
   />
   <Blob
-    position="hidden md:block top-[-10px] -right-[400px]" 
+    position="hidden md:block top-[-10px] -right-[400px]"
     size="h-[530px] w-[700px]"
     opacity="opacity-100"
     blur="blur-[140px]"
     gradient="#7F52BA, #7F52BA"
   />
   <Blob
-    position="hidden md:block top-[701px] left-[868px]" 
+    position="hidden md:block top-[701px] left-[868px]"
     size="h-[240px] w-[317px]"
     opacity="opacity-100"
     blur="blur-[180px]"
@@ -161,9 +173,7 @@
     <GlassCard
       class="pf-jf-card border-2 border-border/50 p-10 transition-all duration-300 ease-in-out hover:border-purple-500/50"
     >
-      <div class="mb-4 text-center text-3xl font-semibold text-primary">
-        Overview
-      </div>
+      <div class="mb-4 text-center text-3xl font-semibold text-primary">Overview</div>
       <p
         class="text-justify leading-relaxed text-balance text-foreground/90 lg:text-center lg:text-xl"
       >
@@ -185,8 +195,8 @@
   <Star class="top-100 -left-22 w-25 -rotate-35 opacity-40 blur-[2px] dark:opacity-50" />
   <Star class="bottom-25 -left-20 w-28 rotate-20 opacity-50 dark:opacity-90" />
   <Star class="bottom-45 -left-40 w-50 rotate-12 opacity-50 dark:opacity-90" />
-  <Star class="bottom-125 -right-35 w-70 rotate-180 opacity-50 dark:opacity-80" />
-  <Star class="bottom-100 -right-22 w-25 rotate-5 opacity-40 blur-[2px] dark:opacity-50" />
+  <Star class="-right-35 bottom-125 w-70 rotate-180 opacity-50 dark:opacity-80" />
+  <Star class="-right-22 bottom-100 w-25 rotate-5 opacity-40 blur-[2px] dark:opacity-50" />
 
   <ScrollReveal delay="150ms">
     <h2 class=" font-semibold">The Archives</h2>
