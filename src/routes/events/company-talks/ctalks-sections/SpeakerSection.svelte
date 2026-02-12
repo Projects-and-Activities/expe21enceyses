@@ -48,7 +48,7 @@
         <div class="grid grid-cols-1 place-items-center gap-10 md:grid-cols-3">
           {#each speakers as speaker (speaker.name)}
             <div class="group relative overflow-hidden">
-              <img
+              <enhanced:img
                 src={speaker.image}
                 alt={speaker.name}
                 class="mb-25 h-[244px] w-[244px]

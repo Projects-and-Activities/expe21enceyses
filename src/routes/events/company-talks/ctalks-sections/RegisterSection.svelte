@@ -62,7 +62,7 @@
               <span class="text-xl font-bold">{title}</span>
 
               <p class="text-justify leading-relaxed">
-                {description}
+                {@html description}
               </p>
             </div>
           </ScrollReveal>
@@ -70,7 +70,7 @@
       </div>
 
       <ScrollReveal delay="600ms" class="mx-auto my-12 w-fit">
-        <Button href="company-talks/register" variant="gradient" size="xl">
+        <Button href="company-talks/register" variant="gradient" size="xl" disabled>
           <span class="relative z-10">Register</span>
         </Button>
       </ScrollReveal>

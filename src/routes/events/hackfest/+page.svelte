@@ -181,7 +181,7 @@
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
-    <Button href="/register" variant="gradient" size="xl">Register Now</Button>
+    <Button href="/register" variant="gradient" size="xl" disabled>Register Now</Button>
   </ScrollReveal>
 
   <ScrollReveal delay="650ms">
@@ -272,60 +272,60 @@
   </div>
 </section>
 
-<section class="relative">
-  <Star class="top-60 -right-18 w-28 -rotate-0 opacity-35 dark:opacity-100" />
-  <Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
-  <Star class="top-1/2 -left-40 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
-  <Star class="top-0 -left-40 w-62 rotate-40 opacity-20 dark:opacity-100" />
-
-  <div class="container mx-auto px-4">
-    <ScrollReveal>
-      <h2 class="mb-12 text-center font-semibold">Prizes</h2>
-    </ScrollReveal>
-
-    <div class="flex flex-row items-end justify-center gap-3 md:gap-8">
-      {#each podium as spot (spot.rank)}
-        <ScrollReveal
-          delay={spot.delay}
-          class="{spot.order} flex w-1/3 max-w-[280px] flex-col items-center"
-        >
-          <div class="mb-3 text-center md:mb-4">
-            <span class="block text-lg font-bold tracking-tight md:text-4xl">
-              {spot.amount}
-            </span>
-          </div>
-
-          <div
-            class="relative w-full rounded-2xl border shadow-lg backdrop-blur-md transition-all duration-500 hover:-translate-y-2 md:rounded-3xl {spot.height} {spot.cardStyle}"
-          >
-            <div
-              class="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/20 to-transparent md:rounded-3xl dark:from-white/10"
-            ></div>
-
-            <div class="absolute top-4 left-1/2 w-full -translate-x-1/2 px-2 text-center md:top-6">
-              <span
-                class="inline-block rounded-full px-2 py-1 text-[8px] font-semibold tracking-wider whitespace-nowrap md:px-4 md:py-1.5 md:text-base {spot.pillStyle}"
-              >
-                {spot.rank}
-              </span>
-            </div>
-
-            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-6 {spot.iconStyle}">
-              <spot.Icon class="size-8 md:size-12" />
-            </div>
-          </div>
-        </ScrollReveal>
-      {/each}
-    </div>
-
-    <ScrollReveal delay="800ms" class="mt-16 text-center md:mt-20">
-      <h3 class="mb-2 text-xl font-semibold md:text-2xl">Special Awards</h3>
-      <p class="text-sm text-purple-900/80 md:text-lg dark:text-purple-200/80">
-        Most Innovative Idea, Best Presentation, People's Choice
-      </p>
-    </ScrollReveal>
-  </div>
-</section>
+<!-- <section class="relative"> -->
+<!--   <Star class="top-60 -right-18 w-28 -rotate-0 opacity-35 dark:opacity-100" /> -->
+<!--   <Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" /> -->
+<!--   <Star class="top-1/2 -left-40 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" /> -->
+<!--   <Star class="top-0 -left-40 w-62 rotate-40 opacity-20 dark:opacity-100" /> -->
+<!---->
+<!--   <div class="container mx-auto px-4"> -->
+<!--     <ScrollReveal> -->
+<!--       <h2 class="mb-12 text-center font-semibold">Prizes</h2> -->
+<!--     </ScrollReveal> -->
+<!---->
+<!--     <div class="flex flex-row items-end justify-center gap-3 md:gap-8"> -->
+<!--       {#each podium as spot (spot.rank)} -->
+<!--         <ScrollReveal -->
+<!--           delay={spot.delay} -->
+<!--           class="{spot.order} flex w-1/3 max-w-[280px] flex-col items-center" -->
+<!--         > -->
+<!--           <div class="mb-3 text-center md:mb-4"> -->
+<!--             <span class="block text-lg font-bold tracking-tight md:text-4xl"> -->
+<!--               {spot.amount} -->
+<!--             </span> -->
+<!--           </div> -->
+<!---->
+<!--           <div -->
+<!--             class="relative w-full rounded-2xl border shadow-lg backdrop-blur-md transition-all duration-500 hover:-translate-y-2 md:rounded-3xl {spot.height} {spot.cardStyle}" -->
+<!--           > -->
+<!--             <div -->
+<!--               class="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/20 to-transparent md:rounded-3xl dark:from-white/10" -->
+<!--             ></div> -->
+<!---->
+<!--             <div class="absolute top-4 left-1/2 w-full -translate-x-1/2 px-2 text-center md:top-6"> -->
+<!--               <span -->
+<!--                 class="inline-block rounded-full px-2 py-1 text-[8px] font-semibold tracking-wider whitespace-nowrap md:px-4 md:py-1.5 md:text-base {spot.pillStyle}" -->
+<!--               > -->
+<!--                 {spot.rank} -->
+<!--               </span> -->
+<!--             </div> -->
+<!---->
+<!--             <div class="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-6 {spot.iconStyle}"> -->
+<!--               <spot.Icon class="size-8 md:size-12" /> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </ScrollReveal> -->
+<!--       {/each} -->
+<!--     </div> -->
+<!---->
+<!--     <ScrollReveal delay="800ms" class="mt-16 text-center md:mt-20"> -->
+<!--       <h3 class="mb-2 text-xl font-semibold md:text-2xl">Special Awards</h3> -->
+<!--       <p class="text-sm text-purple-900/80 md:text-lg dark:text-purple-200/80"> -->
+<!--         Most Innovative Idea, Best Presentation, People's Choice -->
+<!--       </p> -->
+<!--     </ScrollReveal> -->
+<!--   </div> -->
+<!-- </section> -->
 
 <section class="relative">
   <Star class="bottom-12 -left-40 w-62 rotate-40 opacity-20 dark:opacity-40" />
@@ -340,7 +340,13 @@
       button below to open the full document.
     </p>
 
-    <Button variant="gradient" size="xl">See Guidelines</Button>
+    <Button
+      href="https://www.canva.com/design/DAHAK8Ynb8k/avmHeoWV4bdo4x6sB9odHA/edit?utm_content=DAHAK8Ynb8k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+      variant="gradient"
+      target="_blank"
+      rel="noopener noreferrer"
+      size="xl">See Guidelines</Button
+    >
   </ScrollReveal>
 </section>
 
@@ -398,7 +404,7 @@
       </div>
 
       <ScrollReveal delay="500ms" class="mx-auto my-12 w-fit">
-        <Button href="/register" variant="gradient" size="xl">Register</Button>
+        <Button href="/register" variant="gradient" size="xl" disabled>Register</Button>
       </ScrollReveal>
     </div>
   </div>
@@ -474,8 +480,9 @@
 
 {#snippet registerStepContent()}
   Go to
-  <a href="/register" class="text-primary hover:underline">register</a>
-  and under the Hackfest registration page, choose “{selectedHackfest === 'junior'
+  <a class="text-primary hover:underline" aria-disabled="true" role="link" tabindex="-1">register</a
+  >
+  and under the Hackfest registration page, choose "{selectedHackfest === 'junior'
     ? 'Junior'
-    : 'Senior'} Hackfest” to begin your registration.
+    : 'Senior'} Hackfest" to begin your registration.
 {/snippet}

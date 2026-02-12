@@ -24,7 +24,8 @@
     {
       Icon: SquarePen,
       title: 'Register',
-      description: 'Go to [link] and choose “Practicum & Job Fair” to begin your registration.'
+      description:
+        'Go to <a class="text-primary hover:underline" aria-disabled="true" role="link" tabindex="-1">register</a> and choose “Practicum & Job Fair” to begin your registration.'
     },
     {
       Icon: CloudUpload,
@@ -145,7 +146,7 @@
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
-    <Button variant="gradient" size="xl" href={`${page.url.pathname}/register`}>
+    <Button variant="gradient" size="xl" href={`${page.url.pathname}/register`} disabled>
       Register Now
     </Button>
   </ScrollReveal>
@@ -321,14 +322,14 @@
           <ScrollReveal delay={`${300 + i * 50}ms`}>
             <div class="flex flex-col gap-1">
               <span class="text-xl font-bold">{title}</span>
-              <p class="font-lexend text-justify font-light">{description}</p>
+              <p class="font-lexend text-justify font-light">{@html description}</p>
             </div>
           </ScrollReveal>
         {/each}
       </div>
 
       <ScrollReveal delay="500ms" class="mx-auto my-12 w-fit">
-        <Button variant="gradient" size="xl">Register</Button>
+        <Button variant="gradient" size="xl" disabled>Register</Button>
       </ScrollReveal>
     </div>
   </div>
