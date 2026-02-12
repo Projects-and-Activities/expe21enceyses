@@ -33,8 +33,9 @@ const BRACKET_CONFIG = {
 
 function doGet(e) {
   try {
-    var formData = JSON.parse(e.postData.contents);
-    let bracket = formData.bracket || 'senior';
+    // For GET requests in Google Apps Script, parameters are passed via e.parameter, not e.postData.
+    var bracketParam = (e && e.parameter && e.parameter.bracket) ? String(e.parameter.bracket) : '';
+    let bracket = bracketParam ? bracketParam.toLowerCase() : 'senior';
     let bracketSheetIndex = 'junior' === bracket ? 0 : 1;
 
     var spreadSheet = SpreadsheetApp.openById(SPREADSHEET_ID);
