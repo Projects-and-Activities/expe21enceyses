@@ -4,6 +4,7 @@ import {
   GOOGLE_APPS_SCRIPT_URL_HACKFEST
 } from '$env/static/private';
 import { EVENT_IDS, type RegistrationData } from '../types/registration.types';
+import { uploadToCloudinary } from './cloudinary';
 
 async function toBase64(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer();
@@ -32,6 +33,12 @@ export async function submitRegistration(eventId: string, data: RegistrationData
   
   if (eventId === EVENT_IDS.JUNIOR_HACKFEST || eventId === EVENT_IDS.SENIOR_HACKFEST) {
     const hackfestData = data as any;
+
+    // Backup
+    await Promise.all([
+      uploadToCloudinary(hackfestData.requirementsZip, hackfestData.teamName, 'requirements'),
+      uploadToCloudinary(hackfestData.proofOfPayment, hackfestData.teamName, 'payment')
+    ]);
     
     const requirementsBase64 = await toBase64(hackfestData.requirementsZip);
     const paymentBase64 = await toBase64(hackfestData.proofOfPayment);
