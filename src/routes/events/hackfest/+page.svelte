@@ -341,7 +341,7 @@
     </p>
 
     <Button
-      href="https://www.canva.com/design/DAHAK8Ynb8k/avmHeoWV4bdo4x6sB9odHA/edit?utm_content=DAHAK8Ynb8k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+      href="https://www.canva.com/design/DAHAK8Ynb8k/ErmEbungfLCbjSSKvdhcMw/view?utm_content=DAHAK8Ynb8k&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h39dd491aff"
       variant="gradient"
       target="_blank"
       rel="noopener noreferrer"
