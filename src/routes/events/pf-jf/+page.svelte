@@ -16,6 +16,7 @@
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import Star from '$lib/components/Star.svelte';
   import Button from '$lib/components/ui/button/button.svelte';
+  import Blob from '$lib/components/BackgroundBlob.svelte';
 
   let isSceneVisible = $state(false);
 
@@ -40,16 +41,72 @@
   ];
 </script>
 
-<div class="pointer-events-none fixed inset-0 -z-10 h-screen overflow-hidden">
-  <div
-    class="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
-  ></div>
-  <div
-    class="absolute -right-[10%] -bottom-[10%] h-[40%] w-[40%] rounded-full bg-purple-400/20 mix-blend-multiply blur-[120px]"
-  ></div>
-  <div
-    class="absolute top-1/2 left-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-400/10 blur-[100px]"
-  ></div>
+<div class="pointer-events-none absolute inset-0 -z-10 h-full w-full overflow-hidden">
+  <!-- Desktop -->
+  <Blob
+    position="hidden md:block top-[435px] -left-[416px]"
+    size="h-[487px] w-[601px]"
+    opacity="opacity-100"
+    mixBlend="mix-blend-overlay"
+    blur="blur-[180px]"
+    gradient="#BA52A9, #BA52A9"
+  />
+  <Blob
+    position="hidden md:block top-[-10px] -right-[400px]" 
+    size="h-[530px] w-[700px]"
+    opacity="opacity-100"
+    blur="blur-[140px]"
+    gradient="#7F52BA, #7F52BA"
+  />
+  <Blob
+    position="hidden md:block top-[701px] left-[868px]" 
+    size="h-[240px] w-[317px]"
+    opacity="opacity-100"
+    blur="blur-[180px]"
+    gradient="#5268BA, #5268BA"
+  />
+
+  <!-- Mobile -->
+  <Blob
+    position="block md:hidden top-[105px] -left-[269px]"
+    size="h-[323px] w-[427px]"
+    opacity="opacity-80"
+    mixBlend="mix-blend-overlay"
+    blur="blur-[145px]"
+    gradient="#A152BA, #A152BA"
+  />
+  <Blob
+    position="block md:hidden top-[562px] left-[254px]"
+    size="h-[323px] w-[427px]"
+    opacity="opacity-80"
+    mixBlend="mix-blend-overlay"
+    blur="blur-[145px]"
+    gradient="#7F52BA, #7F52BA"
+  />
+  <Blob
+    position="block md:hidden top-[1586px] -left-[170px]"
+    size="h-[256px] w-[339px]"
+    opacity="opacity-80"
+    mixBlend="mix-blend-overlay"
+    blur="blur-[145px]"
+    gradient="#A152BA, #A152BA"
+  />
+  <Blob
+    position="block md:hidden top-[2827px] -left-[170px]"
+    size="h-[256px] w-[339px]"
+    opacity="opacity-80"
+    mixBlend="mix-blend-overlay"
+    blur="blur-[145px]"
+    gradient="#BA52A9, #BA52A9"
+  />
+  <Blob
+    position="block md:hidden top-[3455px] left-[227px]"
+    size="h-[256px] w-[339px]"
+    opacity="opacity-80"
+    mixBlend="mix-blend-overlay"
+    blur="blur-[145px]"
+    gradient="#A152BA, #A152BA"
+  />
 </div>
 
 <section
@@ -104,7 +161,7 @@
     <GlassCard
       class="pf-jf-card border-2 border-border/50 p-10 transition-all duration-300 ease-in-out hover:border-purple-500/50"
     >
-      <div class="mb-4 text-justify text-3xl font-semibold text-primary md:text-center">
+      <div class="mb-4 text-center text-3xl font-semibold text-primary">
         Overview
       </div>
       <p
@@ -128,6 +185,8 @@
   <Star class="top-100 -left-22 w-25 -rotate-35 opacity-40 blur-[2px] dark:opacity-50" />
   <Star class="bottom-25 -left-20 w-28 rotate-20 opacity-50 dark:opacity-90" />
   <Star class="bottom-45 -left-40 w-50 rotate-12 opacity-50 dark:opacity-90" />
+  <Star class="bottom-125 -right-35 w-70 rotate-180 opacity-50 dark:opacity-80" />
+  <Star class="bottom-100 -right-22 w-25 rotate-5 opacity-40 blur-[2px] dark:opacity-50" />
 
   <ScrollReveal delay="150ms">
     <h2 class=" font-semibold">The Archives</h2>
