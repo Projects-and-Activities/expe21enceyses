@@ -162,8 +162,8 @@
             class="
       pointer-events-none
       absolute
-      top-[22%]
-      -left-20
+      top-2/5 -left-10
+      sm:top-[12%] sm:-left-20
       z-10
       w-[clamp(32.5rem,38vw,36rem)]
       -translate-y-1/2
@@ -398,14 +398,17 @@
     </ScrollReveal>
   </section>
 
-  <div class="w-full px-0!">
-    {#each programSections as section, i (section.title)}
+  <div class="relative w-full px-0!">
+    {#each programSections.filter(s => s.title !== '') as section, i}
       <ProgramSection
         id={section.id}
         title={section.title}
         subtitle={section.subtitle}
-        class=" w-full rounded-t-4xl pb-20   xs:pb-12 {section.bg}  top-20 mb-100 h-[calc(100dvh-5rem)] last:pointer-events-none! last:mb-0 last:*:hidden! nth-last-2:mb-0! xs:top-20! xs:h-[min(1104px,calc(100dvh-5rem))]!"
-        style="z-index: {i}; "
+        class="sticky w-full rounded-t-4xl pb-20 {section.bg} h-[calc(100dvh-5rem)]"
+        style="
+          z-index: {i}; 
+          top: 5rem; 
+        "
       >
         <AnnotatedBorderedContainer
           annotation={section.annotation}
