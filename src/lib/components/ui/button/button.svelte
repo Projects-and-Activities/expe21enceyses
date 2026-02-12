@@ -17,7 +17,7 @@
         ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
         gradient:
-          'relative isolate rounded-full! border-[0.1rem] border-transparent [background:linear-gradient(to_bottom,var(--primary-light),var(--primary))_padding-box,radial-gradient(circle_at_50%_40%,var(--muted-foreground)_0%,var(--background)_60%,var(--muted-foreground)_100%)_border-box] dark:[background:linear-gradient(to_bottom,var(--primary-light),var(--primary))_padding-box,radial-gradient(circle_at_50%_40%,var(--color-white)_0%,var(--muted)_80%,var(--muted-foreground)_100%)_border-box] text-white shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]'
+          'relative isolate rounded-full! border-[0.135rem] border-transparent [background:linear-gradient(to_bottom,var(--primary-light),var(--primary))_padding-box,radial-gradient(circle_at_50%_40%,var(--muted-foreground)_0%,var(--background)_60%,var(--muted-foreground)_100%)_border-box] dark:[background:linear-gradient(to_bottom,var(--primary-light),var(--primary))_padding-box,radial-gradient(circle_at_50%_40%,var(--color-white)_0%,var(--background)_10%,var(--muted-foreground)_100%)_border-box] text-white shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]'
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
