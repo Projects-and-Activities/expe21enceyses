@@ -82,7 +82,7 @@
       id: 'hackfest',
       title: 'The Hackfest',
       subtitle: 'Engineer solutions that move communities forward.',
-      bg: 'bg-primary/5 dark:bg-primary/15 backdrop-blur-sm',
+      bg: 'bg-primary/5 dark:bg-primary/5 backdrop-blur-sm',
       img: hackfestImg,
       annotation: 'HackFest',
       annotationColor: 'red',
@@ -92,7 +92,7 @@
       id: 'pf-jf',
       title: 'Practicum/Job Fair',
       subtitle: 'Land the opportunities that launch your career.',
-      bg: 'bg-neutral-100 dark:bg-primary/10 backdrop-blur-md',
+      bg: 'bg-neutral-100 dark:bg-primary/5 backdrop-blur-md',
       img: pfjfImg,
       annotation: 'PF/JF',
       annotationColor: 'green',
@@ -107,16 +107,6 @@
       annotation: 'CTALKS',
       annotationColor: 'blue',
       annotationAlign: 'bottom-right'
-    },
-    {
-      id: '',
-      title: '',
-      subtitle: '',
-      bg: '',
-      img: '',
-      annotation: '',
-      annotationColor: '',
-      annotationAlign: ''
     }
   ];
 </script>
@@ -163,11 +153,11 @@
       pointer-events-none
       absolute
       top-2/5 -left-10
-      sm:top-[12%] sm:-left-20
-      z-10
-      w-[clamp(32.5rem,38vw,36rem)]
+      z-10 w-[clamp(32.5rem,38vw,36rem)]
       -translate-y-1/2
       -rotate-15
+      sm:top-[12%]
+      sm:-left-20
     "
           />
         </div>
@@ -399,7 +389,7 @@
   </section>
 
   <div class="relative w-full px-0!">
-    {#each programSections.filter(s => s.title !== '') as section, i}
+    {#each programSections as section, i (section.title)}
       <ProgramSection
         id={section.id}
         title={section.title}

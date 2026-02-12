@@ -25,7 +25,7 @@
 
   const darkBg = $derived(
     page.url.pathname === '/' || page.url.pathname.split('/').at(-1) === 'register'
-      ? 'dark:bg-primary/5 outline outline-primary/40'
+      ? 'dark:bg-primary/5 border-t border-primary/40'
       : 'bg-transparent'
   );
 </script>

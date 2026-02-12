@@ -3,7 +3,7 @@
 
   import { cn } from '$lib/utils';
 
-  export type AnnotationColor = 'primary' | 'accent' | 'red' | 'green' | 'blue' | '';
+  export type AnnotationColor = 'primary' | 'accent' | 'red' | 'green' | 'blue';
   export type AnnotationAlign =
     | 'top-left'
     | 'top-right'
