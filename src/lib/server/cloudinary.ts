@@ -24,8 +24,12 @@ export async function uploadToCloudinary(file: File, teamName: string, fileType:
       if (error) {
         console.error('Cloudinary upload error:', error);
         reject(error);
+      } else if (result && result.secure_url) {
+        resolve(result.secure_url);
       } else {
-        resolve(result?.secure_url || '');
+        const missingUrlError = new Error('Cloudinary upload did not return a secure_url');
+        console.error('Cloudinary upload error:', missingUrlError, 'Result:', result);
+        reject(missingUrlError);
       }
     });
   });
