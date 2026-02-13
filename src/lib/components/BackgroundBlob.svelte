@@ -4,19 +4,11 @@
     size = 'h-[300px] w-[300px]',
     gradient = 'from-[#7410FF] to-[#55059B]',
     blur = 'blur-[130px]',
-    opacity = 'opacity-50',
     lightOpacity = 'opacity-30',
+    darkOpacity = 'dark:opacity-50',
     mixBlend = 'mix-blend-multiply',
-    desktop = '' // Optional desktop overrides like 'lg:top-[5%]'
+    desktop = ''
   } = $props();
-
-  // Build dark-mode opacity by prefixing the caller's opacity with `dark:`
-  const darkOpacity = $derived(
-    opacity
-      .split(' ')
-      .map((cls: string) => (cls.startsWith('opacity-') ? `dark:${cls}` : cls))
-      .join(' ')
-  );
 </script>
 
 <div
