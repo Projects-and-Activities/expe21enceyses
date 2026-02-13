@@ -16,7 +16,7 @@
 </div>
 
 <section
-  class="relative mt-50 flex flex-col place-content-center place-items-center gap-2 lg:mt-27 lg:h-screen lg:gap-9"
+  class="relative mt-50 flex flex-col place-content-center place-items-center gap-2 lg:mt-28 lg:h-screen lg:gap-9"
 >
   <h1
     class="relative z-10 grid place-content-center text-center font-[Lexend] font-semibold tracking-normal *:leading-12 xs:*:leading-18"
@@ -35,7 +35,7 @@
   </h1>
 
   <ScrollReveal delay="1900ms">
-    <div class="relative z-10 px-4 text-center text-[14px] lg:px-0 lg:text-xl">
+    <div class="relative z-10 px-4 text-center text-lg lg:px-0 lg:text-xl">
       {tagline}
     </div>
   </ScrollReveal>

@@ -130,7 +130,7 @@
 </div>
 
 <section
-  class="mt-30 flex max-w-none! flex-col place-content-center place-items-center gap-9 md:mt-35 lg:grid lg:h-screen"
+  class="mt-50 flex max-w-none! flex-col place-content-center place-items-center gap-9 lg:mt-28 lg:grid lg:h-screen"
 >
   <div
     class="absolute inset-0 -z-10 h-screen w-full [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] md:block"
@@ -149,7 +149,9 @@
     </ScrollReveal>
   </h1>
   <ScrollReveal delay="500ms">
-    <div class="text-xl">Land the opportunities that launch your career.</div>
+    <div class="text-center text-balance md:text-xl">
+      Land the opportunities that launch your career.
+    </div>
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
