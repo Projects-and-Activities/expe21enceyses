@@ -168,7 +168,7 @@
     </div>
 
     <AnnotatedBorderedContainer
-      annotation="XX/2026"
+      annotation="03/2026"
       annotationAlign="bottom-center"
       color="primary"
       size="sm"
