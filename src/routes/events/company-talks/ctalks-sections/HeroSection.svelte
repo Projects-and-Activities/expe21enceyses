@@ -1,18 +1,16 @@
 <script lang="ts">
+  import ChevronsDown from '@lucide/svelte/icons/chevrons-down';
+
+  import CompanyTalksScene from '$lib/components/3d-ascii/sections/CompanyTalksScene.svelte';
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import Button from '$lib/components/ui/button/button.svelte';
-  import ChevronsDown from '@lucide/svelte/icons/chevrons-down';
-  import microphone from '$lib/assets/ctalks.png';
-  import CompanyTalksScene from '$lib/components/3d-ascii/sections/CompanyTalksScene.svelte';
-  import { resolve } from '$app/paths';
-  import { goto } from '$app/navigation';
 
   let { event_title, tagline, register_route } = $props();
   const titleParts = $derived(event_title.split(':'));
 </script>
 
 <div
-  class="absolute inset-0 -z-10 hidden h-screen w-full [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] lg:block"
+  class="absolute inset-0 -z-10 h-screen w-full [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
 >
   <CompanyTalksScene />
 </div>
@@ -41,11 +39,6 @@
       {tagline}
     </div>
   </ScrollReveal>
-  <div
-    class="absolute inset-0 -z-10 h-screen w-full [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)] lg:hidden"
-  >
-    <CompanyTalksScene />
-  </div>
   <ScrollReveal delay="3000ms">
     <Button
       onclick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}

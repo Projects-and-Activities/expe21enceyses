@@ -50,7 +50,7 @@
       style={`background: ${BORDER_GRADIENT}`}
       src={sessionPreview}
       alt="Session preview"
-      class="mt-5 mb-5 h-[294px] w-[267px] rounded-xl border border-white/30
+      class="mt-5 mb-5 h-[294px] w-[267px] rounded-xl border border-white/30 object-cover
            shadow-2xl ring-1 ring-white/10 backdrop-blur-sm ring-inset"
     />
 
@@ -59,7 +59,7 @@
       <div
         bind:this={sessionContainer}
         onscroll={handleSessionScroll}
-        class="scrollbar-hide flex touch-pan-x snap-x snap-mandatory overflow-x-auto overscroll-x-contain pb-6"
+        class="scrollbar-hide flex touch-pan-x snap-x snap-mandatory overflow-x-auto overscroll-x-contain mask-x-from-10% pb-6"
         style="
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -67,7 +67,7 @@
         padding-inline: calc(50% - {CARD_WIDTH / 2}px);
       "
       >
-        {#each keyDetails as detail, i}
+        {#each keyDetails as detail, i (i)}
           <div
             class="shrink-0 snap-center transition-all duration-500 ease-out
           {i === activeSessionIndex ? 'scale-100 opacity-100' : 'scale-90 opacity-40'}"
@@ -82,7 +82,7 @@
 
       <!-- DOTS -->
       <div class="mt-4 flex justify-center gap-1">
-        {#each keyDetails as _, i}
+        {#each keyDetails as _, i (i)}
           <button
             onclick={() => {
               if (!sessionContainer) return;
@@ -102,7 +102,7 @@
     </div>
   </div>
   <!-- ================= DESKTOP VIEW ================= -->
-  <div class="hidden grid-cols-1 gap-16 lg:grid lg:grid-cols-[1fr_1.4fr_1fr]">
+  <div class="hidden grid-cols-1 gap-16 lg:grid lg:grid-cols-[1fr_1fr_1fr]">
     <!-- LEFT COLUMN -->
     <div class="mt-10 flex flex-col items-center gap-50">
       <div class="rounded-[1.5625rem]" style={`background: ${BORDER_GRADIENT}`}>
@@ -116,17 +116,17 @@
     <!-- CENTER COLUMN -->
     <div class="flex flex-col items-center lg:gap-15">
       <ScrollReveal class="mb-15">
-        <h2 class="text-4xl leading-relaxed font-normal">
+        <h2 class="leading-relaxed font-normal text-nowrap">
           <span class="font-semibold">Inside</span> the
           <span class="font-semibold italic">Sessions</span>
         </h2>
         <p class="text-xl leading-relaxed italic">Where theory meets practice.</p>
       </ScrollReveal>
 
-      <img
+      <enhanced:img
         src={sessionPreview}
         alt="Session preview"
-        class="h-[294px] w-[257px] rounded-[1.5625rem] border border-white/30 shadow-2xl
+        class="h-[294px] w-[257px] rounded-[1.5625rem] border border-white/30 object-cover shadow-2xl
              ring-1 ring-white/10 backdrop-blur-sm ring-inset lg:h-[467px] lg:w-[425px]"
       />
 

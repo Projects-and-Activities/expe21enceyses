@@ -14,13 +14,13 @@
   let config = $derived.by(() => {
     if (innerWidth < 768) {
       return {
-        laptopPos: [0.17, -0.7, -0.5],
-        starsPos: [0.15, -1.1, 0],
-        scale: 0.5
+        micPos: [0.3, -2.5, -0.5],
+        starsPos: [0.3, -3, 0],
+        scale: 0.8
       };
     }
     return {
-      laptopPos: [1, -6.0, -0.8],
+      micPos: [1, -6.0, -0.8],
       starsPos: [1.0, -6.6, 0],
       scale: 1.5
     };
@@ -40,7 +40,7 @@
 
   <SimpleFloat speed={5} amplitude={0.2} enabled={true}>
     <Microphone
-      position={config.laptopPos as [number, number, number]}
+      position={config.micPos as [number, number, number]}
       rotation={[-0.22, -0.4, -0.2]}
       scale={config.scale}
     />

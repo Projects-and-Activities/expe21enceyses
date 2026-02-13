@@ -1,7 +1,6 @@
 <script lang="ts">
   import { ChevronsDown, Bell, CloudUpload, SquarePen } from '@lucide/svelte';
 
-  import { page } from '$app/state';
   import { viewport } from '$lib/actions/viewport';
   import archives1 from '$lib/assets/archives-1.png?enhanced';
   import archives2 from '$lib/assets/archives-2.png?enhanced';

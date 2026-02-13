@@ -15,7 +15,8 @@
   import OverviewSection from './ctalks-sections/OverviewSection.svelte';
   import RegisterSection from './ctalks-sections/RegisterSection.svelte';
   import SessionSection from './ctalks-sections/SessionSection.svelte';
-  import SpeakerSection from './ctalks-sections/SpeakerSection.svelte';
+
+  import sessionPreview from '$lib/assets/ctalks-preview.jpg?enhanced';
 
   // --- Reactive States ---
   let isDark = $derived(mode.current === 'dark');
@@ -101,12 +102,6 @@
     }
   ];
 
-  const speakers = [
-    { name: 'Speaker 1', company: 'Company 1', image: '' },
-    { name: 'Speaker 2', company: 'Company 2', image: '' },
-    { name: 'Speaker 3', company: 'Company 3', image: '' }
-  ];
-
   const overview_description =
     "is a curated series of talks and interactive Q&A sessions where industry professionals share real-world perspectives on working in the tech industry today. As part of EXPE21ENCE YSES, it reinforces the organization's 21-year mission of bridging the gap between the academe and the industry—helping the students understand how their skills, values, and education translate into real impact. ";
 
@@ -115,26 +110,16 @@
   const tagline = 'Inside the Tech Industry — From Professionals Themselves';
 
   const register_route = '/events/company-talks/register';
-
-  const sessionPreview = '';
 </script>
 
 <BackgroundBlobs />
 
-<div class="flex flex-col items-center">
-  <HeroSection {event_title} {tagline} {register_route} />
+<HeroSection {event_title} {tagline} {register_route} />
 
-  <OverviewSection
-    {isDark}
-    {GLASS_OPTIONS}
-    {BORDER_GRADIENT}
-    {overview_description}
-    {event_title}
-  />
+<OverviewSection {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} {overview_description} {event_title} />
 
-  <SessionSection {keyDetails} {sessionPreview} {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} />
+<SessionSection {keyDetails} {sessionPreview} {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} />
 
-  <SpeakerSection {speakers} {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} />
+<!-- <SpeakerSection {speakers} {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} /> -->
 
-  <RegisterSection {registrationSteps} />
-</div>
+<RegisterSection {registrationSteps} />
