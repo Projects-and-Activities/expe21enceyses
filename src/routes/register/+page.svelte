@@ -13,7 +13,7 @@
       id: 'pfjf',
       name: 'PF/JF',
       image: pfjfImage,
-      links: [{ label: 'Register', href: '/events/pfjf/register' }]
+      links: [{ label: 'Register', href: '/events/pf-jf/register' }]
     },
     {
       id: 'hackfest',
