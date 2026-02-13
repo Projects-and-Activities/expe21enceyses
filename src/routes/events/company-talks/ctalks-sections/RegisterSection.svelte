@@ -9,7 +9,10 @@
   let isSceneVisible = $state(false);
 </script>
 
-<section class="relative mt-20 mb-10 flex w-full max-w-[1184px] flex-col items-center">
+<section
+  id="register"
+  class="relative mt-20 mb-10 flex w-full max-w-[1184px] scroll-mt-30 flex-col items-center"
+>
   <Star
     class="absolute -right-3 -bottom-1 w-8 rotate-250 opacity-50 lg:-right-40 lg:bottom-20 lg:w-28 lg:rotate-12 dark:opacity-90"
   />

@@ -47,7 +47,11 @@
     <CompanyTalksScene />
   </div>
   <ScrollReveal delay="3000ms">
-    <Button href={register_route} variant="gradient" size="xl">Register Now</Button>
+    <Button
+      onclick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
+      variant="gradient"
+      size="xl">Register Now</Button
+    >
   </ScrollReveal>
 
   <ScrollReveal delay="650ms">

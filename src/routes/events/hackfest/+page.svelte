@@ -181,7 +181,11 @@
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
-    <Button href="/register" variant="gradient" size="xl" disabled>Register Now</Button>
+    <Button
+      onclick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
+      variant="gradient"
+      size="xl">Register Now</Button
+    >
   </ScrollReveal>
 
   <ScrollReveal delay="650ms">
@@ -379,19 +383,18 @@
     </div>
 
     <div class="place-items-center">
-      <div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-8 p-10 lg:p-0">
+      <div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-8 px-4">
         {#each registrationSteps as step, i (step.title)}
           {@const { Icon, title } = step}
 
           <ScrollReveal delay={`${300 + i * 50}ms`} class="place-self-center">
-            <div class="pt-1 text-primary">
-              <Icon class="size-8" />
-            </div>
+            <Icon class="size-12 text-primary" />
           </ScrollReveal>
+
           <ScrollReveal delay={`${300 + i * 50}ms`}>
             <div class="flex flex-col gap-1">
-              <span class="text-lg font-bold">{title}</span>
-              <p class="text-justify leading-relaxed text-muted-foreground">
+              <span class="text-xl font-bold">{title}</span>
+              <p class="font-lexend text-justify font-light">
                 {#if step.id === 'register'}
                   {@render registerStepContent()}
                 {:else}

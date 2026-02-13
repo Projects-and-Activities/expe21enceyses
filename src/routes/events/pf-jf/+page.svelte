@@ -146,7 +146,11 @@
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
-    <Button variant="gradient" size="xl" href={`${page.url.pathname}/register`} disabled>
+    <Button
+      onclick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
+      variant="gradient"
+      size="xl"
+    >
       Register Now
     </Button>
   </ScrollReveal>
