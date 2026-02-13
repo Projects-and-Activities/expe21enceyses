@@ -10,7 +10,7 @@
 
   // Replace nalang icon with the actual asset
   const ALL_EVENTS = [
-    { id: 'pfjf', title: 'PF/JF', icon: Briefcase, link: '/events/pfjf/register' },
+    { id: 'pf-jf', title: 'PF/JF', icon: Briefcase, link: '/events/pf-jf/register' },
     {
       id: 'company-talks',
       title: 'Company Talks',
@@ -83,66 +83,74 @@
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {#if showHackfestCard}
         <GlassCard
-          class="group relative flex flex-col items-center gap-6 border border-zinc-200 bg-white/50 p-8 transition-all hover:border-purple-500/30 hover:bg-purple-50/50 dark:border-white/5 dark:bg-transparent dark:hover:bg-zinc-900/60"
+          class="group relative border border-zinc-200 bg-white/50 transition-all hover:border-purple-500/30 hover:bg-purple-50/50 dark:border-white/5 dark:bg-transparent dark:hover:bg-zinc-900/60"
         >
-          <div class="relative">
-            <div
-              class="absolute inset-0 -z-10 animate-pulse bg-purple-500/20 blur-xl transition-all group-hover:bg-purple-500/30"
-            ></div>
-            <Code
-              class="size-12 text-zinc-400 transition-colors group-hover:text-purple-600 dark:text-zinc-300 dark:group-hover:text-purple-300"
-            />
-          </div>
+          <div class="flex flex-col items-center justify-between gap-6 text-center">
+            <div class="flex w-full flex-col items-center gap-4">
+              <div class="relative">
+                <div
+                  class="absolute inset-0 -z-10 animate-pulse bg-purple-500/20 blur-xl transition-all group-hover:bg-purple-500/30"
+                ></div>
+                <Code
+                  class="size-12 text-zinc-400 transition-colors group-hover:text-purple-600 dark:text-zinc-300 dark:group-hover:text-purple-300"
+                />
+              </div>
 
-          <span
-            class="text-lg font-bold tracking-tight text-zinc-900 group-hover:text-purple-700 dark:text-white dark:group-hover:text-purple-200"
-          >
-            Hackfest
-          </span>
+              <span
+                class="text-lg font-bold tracking-tight text-zinc-900 group-hover:text-purple-700 dark:text-white dark:group-hover:text-purple-200"
+              >
+                Hackfest
+              </span>
+            </div>
 
-          <div class="grid w-full grid-cols-2 gap-2">
-            <Button
-              class="w-full bg-purple-600 text-white shadow-lg shadow-purple-900/10 hover:bg-purple-700 dark:bg-purple-600/80 dark:shadow-purple-900/20 dark:hover:bg-purple-600"
-              onclick={() => goto('/events/junior-hackfest/register')}
-            >
-              Junior
-            </Button>
-            <Button
-              variant="outline"
-              class="w-full border-purple-200 text-purple-900 hover:bg-purple-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800"
-              onclick={() => goto('/events/senior-hackfest/register')}
-            >
-              Senior
-            </Button>
+            <div class="mt-auto grid w-full grid-cols-2 gap-2">
+              <Button
+                class="w-full bg-purple-600 text-white shadow-lg shadow-purple-900/10 hover:bg-purple-700 dark:bg-purple-600/80 dark:shadow-purple-900/20 dark:hover:bg-purple-600"
+                onclick={() => goto('/events/junior-hackfest/register')}
+              >
+                Junior
+              </Button>
+              <Button
+                variant="outline"
+                class="w-full border-purple-200 text-purple-900 hover:bg-purple-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800"
+                onclick={() => goto('/events/senior-hackfest/register')}
+              >
+                Senior
+              </Button>
+            </div>
           </div>
         </GlassCard>
       {/if}
 
       {#each otherEvents as event (event.id)}
         <GlassCard
-          class="group relative flex flex-col items-center gap-6 border border-zinc-200 bg-white/50 p-8 transition-all hover:border-purple-500/30 hover:bg-purple-50/50 dark:border-white/5 dark:bg-transparent dark:hover:bg-zinc-900/60"
+          class="group relative border border-zinc-200 bg-white/50 transition-all hover:border-purple-500/30 hover:bg-purple-50/50 dark:border-white/5 dark:bg-transparent dark:hover:bg-zinc-900/60"
         >
-          <div class="relative">
-            <div
-              class="absolute inset-0 -z-10 animate-pulse bg-purple-500/20 blur-xl transition-all group-hover:bg-purple-500/30"
-            ></div>
-            <event.icon
-              class="size-12 text-zinc-400 transition-colors group-hover:text-purple-600 dark:text-zinc-300 dark:group-hover:text-purple-300"
-            />
+          <div class="flex flex-col items-center justify-between gap-6 text-center">
+            <div class="flex w-full flex-col items-center gap-4">
+              <div class="relative">
+                <div
+                  class="absolute inset-0 -z-10 animate-pulse bg-purple-500/20 blur-xl transition-all group-hover:bg-purple-500/30"
+                ></div>
+                <event.icon
+                  class="size-12 text-zinc-400 transition-colors group-hover:text-purple-600 dark:text-zinc-300 dark:group-hover:text-purple-300"
+                />
+              </div>
+
+              <span
+                class="text-lg font-bold tracking-tight text-zinc-900 group-hover:text-purple-700 dark:text-white dark:group-hover:text-purple-200"
+              >
+                {event.title}
+              </span>
+            </div>
+
+            <Button
+              class="w-full bg-purple-600 text-white shadow-lg shadow-purple-900/10 hover:bg-purple-700 dark:bg-purple-600/80 dark:shadow-purple-900/20 dark:hover:bg-purple-600"
+              onclick={() => goto(event.link)}
+            >
+              Register <span class="ml-1 opacity-70">→</span>
+            </Button>
           </div>
-
-          <span
-            class="text-lg font-bold tracking-tight text-zinc-900 group-hover:text-purple-700 dark:text-white dark:group-hover:text-purple-200"
-          >
-            {event.title}
-          </span>
-
-          <Button
-            class="w-full bg-purple-600 text-white shadow-lg shadow-purple-900/10 hover:bg-purple-700 dark:bg-purple-600/80 dark:shadow-purple-900/20 dark:hover:bg-purple-600"
-            onclick={() => goto(event.link)}
-          >
-            Register <span class="ml-1 opacity-70">→</span>
-          </Button>
         </GlassCard>
       {/each}
     </div>

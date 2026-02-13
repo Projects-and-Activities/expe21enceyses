@@ -47,7 +47,7 @@
 
 <div class="space-y-8">
   <div class="text-center">
-    <h2 class="text-2xl font-bold tracking-tight text-foreground">Team Members</h2>
+    <div class="text-2xl font-bold tracking-tight text-foreground">Team Members</div>
     <p class="text-muted-foreground">
       Teams must have at least 3 members. A 4th member is optional.
     </p>

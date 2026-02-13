@@ -3,12 +3,13 @@
 
   import DesktopNavbar from './DesktopNavbar.svelte';
   import MobileNavbar from './MobileNavbar.svelte';
+  import { Target } from '@lucide/svelte';
 
   // Navigation items
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Events', href: '/events' },
-    { label: 'YSES Online', href: 'https://www.yses.org/' }
+    { label: 'YSES Online', href: 'https://www.yses.org/', target: '_blank' }
   ];
 
   // Event sub-items

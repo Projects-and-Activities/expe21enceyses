@@ -9,10 +9,19 @@
 @font-face {
   font-family: 'Master Modern';
   font-style: normal;
-  src: url('/fonts/master-modern.otf'); /* IE9 Compat Modes */
+  src: url('/fonts/master-modern.otf');
   src:
     local(''),
     url('/fonts/master-modern.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Eurostile';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    local('Eurostile'),
+    url('/fonts/eurostile.woff') format('woff');
 }
 
 :root {
@@ -87,6 +96,7 @@
 }
 
 @theme inline {
+  --font-mono: 'Eurostile', mono;
   --font-sans: 'Lexend', 'Inter', sans-serif;
   --font-serif: 'Master Modern', serif;
   --radius-sm: calc(var(--radius) - 4px);
@@ -100,6 +110,7 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -140,7 +151,12 @@
   }
   h2,
   .cg-h2 {
-    font-size: clamp(2.25rem, calc(1.705rem + 2.727vw), 3.75rem);
+    font-size: clamp(1.875rem, calc(1.5rem + 1.25vw), 3rem);
+  }
+
+  .dark h2,
+  .dark .cg-h2 {
+    text-shadow: 0 0 4px var(--primary);
   }
 }
 
@@ -167,13 +183,12 @@
 }
 
 .no-scrollbar::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 .no-scrollbar {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
 
 /* Register Button Gradient Transition (pseudo-elements only - base styles are inline Tailwind) */
 .register-btn::before {

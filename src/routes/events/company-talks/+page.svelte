@@ -1,28 +1,22 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { mode } from 'mode-watcher';
-
   // Icons & Assets
   import Bell from '@lucide/svelte/icons/bell';
-  import Mic from '@lucide/svelte/icons/mic';
-  import Globe from '@lucide/svelte/icons/globe';
   import Briefcase from '@lucide/svelte/icons/briefcase';
-  import Megaphone from '@lucide/svelte/icons/megaphone';
-  import Group from '@lucide/svelte/icons/users';
+  import Globe from '@lucide/svelte/icons/globe';
   import Lightbulb from '@lucide/svelte/icons/lightbulb';
-
-  import dane1 from '$lib/assets/dane1.JPG';
-  import dane2 from '$lib/assets/dane2.JPG';
-  import dane3 from '$lib/assets/dane3.JPG';
+  import Megaphone from '@lucide/svelte/icons/megaphone';
+  import Mic from '@lucide/svelte/icons/mic';
+  import Group from '@lucide/svelte/icons/users';
+  import { mode } from 'mode-watcher';
 
   // Section Components
   import BackgroundBlobs from './ctalks-sections/BackgroundBlobs.svelte';
   import HeroSection from './ctalks-sections/HeroSection.svelte';
   import OverviewSection from './ctalks-sections/OverviewSection.svelte';
-  import SessionSection from './ctalks-sections/SessionSection.svelte';
-  import SpeakerSection from './ctalks-sections/SpeakerSection.svelte';
   import RegisterSection from './ctalks-sections/RegisterSection.svelte';
-  import sessionPreview from '$lib/assets/SessionPreview.jpg';
+  import SessionSection from './ctalks-sections/SessionSection.svelte';
+
+  import sessionPreview from '$lib/assets/ctalks-preview.jpg?enhanced';
 
   // --- Reactive States ---
   let isDark = $derived(mode.current === 'dark');
@@ -91,7 +85,8 @@
     {
       Icon: Bell,
       title: 'Register',
-      description: 'Go to [link] and choose "Company Talks" to begin your registration.'
+      description:
+        'Go to <a class="text-primary hover:underline" aria-disabled="true" role="link" tabindex="-1">register</a> and choose "Company Talks" to begin your registration.'
     },
     {
       Icon: Mic,
@@ -107,12 +102,6 @@
     }
   ];
 
-  const speakers = [
-    { name: 'Dane Garcia', company: 'Google', image: dane2 },
-    { name: 'Henrich Miguel', company: 'Microsoft', image: dane1 },
-    { name: 'Dane Henrich', company: 'Startup PH', image: dane3 }
-  ];
-
   const overview_description =
     "is a curated series of talks and interactive Q&A sessions where industry professionals share real-world perspectives on working in the tech industry today. As part of EXPE21ENCE YSES, it reinforces the organization's 21-year mission of bridging the gap between the academe and the industry—helping the students understand how their skills, values, and education translate into real impact. ";
 
@@ -120,25 +109,17 @@
 
   const tagline = 'Inside the Tech Industry — From Professionals Themselves';
 
-  const register_route = '';
+  const register_route = '/events/company-talks/register';
 </script>
 
 <BackgroundBlobs />
 
-<div class="flex flex-col items-center">
-  <HeroSection {event_title} {tagline} {register_route} />
+<HeroSection {event_title} {tagline} {register_route} />
 
-  <OverviewSection
-    {isDark}
-    {GLASS_OPTIONS}
-    {BORDER_GRADIENT}
-    {overview_description}
-    {event_title}
-  />
+<OverviewSection {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} {overview_description} {event_title} />
 
-  <SessionSection {keyDetails} {sessionPreview} {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} />
+<SessionSection {keyDetails} {sessionPreview} {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} />
 
-  <SpeakerSection {speakers} {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} />
+<!-- <SpeakerSection {speakers} {isDark} {GLASS_OPTIONS} {BORDER_GRADIENT} /> -->
 
-  <RegisterSection {registrationSteps} />
-</div>
+<RegisterSection {registrationSteps} />
