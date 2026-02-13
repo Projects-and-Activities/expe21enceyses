@@ -3,7 +3,6 @@
 
   import Microphone from '../models/Microphone.svelte';
   import Stars1 from '../models/Stars1.svelte';
-  import SimpleFloat from '$lib/components/3d-ascii/rig/SimpleFloat.svelte';
 
   import AsciiCanvas from '$lib/components/3d-ascii/containers/AsciiCanvas.svelte';
 
@@ -34,20 +33,16 @@
   <T.PointLight position={[0.5, 1, 4]} intensity={1} color="#FFEDCC" distance={10} />
 {/snippet}
 
-<AsciiCanvas lights={heroLights}>
-  <SimpleFloat speed={5} amplitude={0.2} enabled={true}>
-    <Microphone
-      position={config.laptopPos as [number, number, number]}
-      rotation={[-0.2, 0.1, 0]}
-      scale={config.scale}
-    />
-  </SimpleFloat>
-  <SimpleFloat speed={5} amplitude={0.2} enabled={true}>
-    <Stars1
-      position={config.starsPos as [number, number, number]}
-      rotation={[-0.2, 0.1, 0]}
-      scale={config.scale}
-      delay={3000}
-    />
-  </SimpleFloat>
+<AsciiCanvas fgColor="gray" lights={heroLights}>
+  <Microphone
+    position={config.laptopPos as [number, number, number]}
+    rotation={[-0.2, 0.1, 0]}
+    scale={config.scale}
+  />
+  <Stars1
+    position={config.starsPos as [number, number, number]}
+    rotation={[-0.2, 0.1, 0]}
+    scale={config.scale}
+    delay={3000}
+  />
 </AsciiCanvas>

@@ -20,8 +20,8 @@
       };
     }
     return {
-      briefcasePos: [0.5, -3, -1],
-      starsPos: [0.5, 0.3, 1.7],
+      briefcasePos: [1, -3, -1],
+      starsPos: [0.8, 0.3, 1.7],
       scale: 1
     };
   });
