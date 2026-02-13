@@ -68,7 +68,7 @@
       <p
         class="mx-auto max-w-2xl font-['Lexend'] text-lg leading-relaxed font-light text-muted-foreground md:text-xl"
       >
-        Choose an event below to begin your registration journey with YSES.
+        ...begin your registration journey with YSES.
       </p>
     </ScrollReveal>
   </section>

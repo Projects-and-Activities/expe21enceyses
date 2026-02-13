@@ -1,15 +1,15 @@
 <script lang="ts">
   import { X } from '@lucide/svelte';
   import { onMount } from 'svelte';
-  import { fly } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
+  import { fly } from 'svelte/transition';
 
   let visible = $state(false);
 
   onMount(() => {
     const timer = setTimeout(() => {
       visible = true;
-    }, 2000);
+    }, 4000);
 
     return () => clearTimeout(timer);
   });
