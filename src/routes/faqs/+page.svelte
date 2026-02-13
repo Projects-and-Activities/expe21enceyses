@@ -69,12 +69,7 @@
     {
       id: 'faq-5',
       question: 'Is there a registration fee?',
-      intro: 'Yes, but it varies by event:',
-      bullets: [
-        'HackFest — ₱350 per team (3-4 members)',
-        'PF/JF — Free (pre-registration encouraged)',
-        'Company Talks — Free (pre-registration encouraged)'
-      ]
+      intro: 'TBA'
     },
     {
       id: 'faq-6',
@@ -421,7 +416,7 @@
                     {/if}
                     {#if faq.bullets}
                       <ul class="list-none space-y-2">
-                        {#each faq.bullets as bullet}
+                        {#each faq.bullets as bullet, i (i)}
                           <li class="flex items-start gap-2">
                             <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-purple-500"
                             ></span>
