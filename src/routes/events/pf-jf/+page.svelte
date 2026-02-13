@@ -58,7 +58,8 @@
   <Blob
     position="hidden md:block top-[435px] -left-[416px]"
     size="h-[487px] w-[601px]"
-    opacity="opacity-100"
+    lightOpacity="opacity-40"
+    darkOpacity="dark:opacity-100"
     mixBlend="mix-blend-overlay"
     blur="blur-[180px]"
     gradient="#BA52A9, #BA52A9"
@@ -66,14 +67,16 @@
   <Blob
     position="hidden md:block top-[-10px] -right-[400px]"
     size="h-[530px] w-[700px]"
-    opacity="opacity-100"
+    lightOpacity="opacity-40"
+    darkOpacity="dark:opacity-100"
     blur="blur-[140px]"
     gradient="#7F52BA, #7F52BA"
   />
   <Blob
     position="hidden md:block top-[701px] left-[868px]"
     size="h-[240px] w-[317px]"
-    opacity="opacity-100"
+    lightOpacity="opacity-40"
+    darkOpacity="dark:opacity-100"
     blur="blur-[180px]"
     gradient="#5268BA, #5268BA"
   />
@@ -82,7 +85,8 @@
   <Blob
     position="block md:hidden top-[105px] -left-[269px]"
     size="h-[323px] w-[427px]"
-    opacity="opacity-80"
+    lightOpacity="opacity-30"
+    darkOpacity="dark:opacity-80"
     mixBlend="mix-blend-overlay"
     blur="blur-[145px]"
     gradient="#A152BA, #A152BA"
@@ -90,7 +94,8 @@
   <Blob
     position="block md:hidden top-[562px] left-[254px]"
     size="h-[323px] w-[427px]"
-    opacity="opacity-80"
+    lightOpacity="opacity-30"
+    darkOpacity="dark:opacity-80"
     mixBlend="mix-blend-overlay"
     blur="blur-[145px]"
     gradient="#7F52BA, #7F52BA"
@@ -98,7 +103,8 @@
   <Blob
     position="block md:hidden top-[1586px] -left-[170px]"
     size="h-[256px] w-[339px]"
-    opacity="opacity-80"
+    lightOpacity="opacity-30"
+    darkOpacity="dark:opacity-80"
     mixBlend="mix-blend-overlay"
     blur="blur-[145px]"
     gradient="#A152BA, #A152BA"
@@ -106,7 +112,8 @@
   <Blob
     position="block md:hidden top-[2827px] -left-[170px]"
     size="h-[256px] w-[339px]"
-    opacity="opacity-80"
+    lightOpacity="opacity-30"
+    darkOpacity="dark:opacity-80"
     mixBlend="mix-blend-overlay"
     blur="blur-[145px]"
     gradient="#BA52A9, #BA52A9"
@@ -114,7 +121,8 @@
   <Blob
     position="block md:hidden top-[3455px] left-[227px]"
     size="h-[256px] w-[339px]"
-    opacity="opacity-80"
+    lightOpacity="opacity-30"
+    darkOpacity="dark:opacity-80"
     mixBlend="mix-blend-overlay"
     blur="blur-[145px]"
     gradient="#A152BA, #A152BA"
