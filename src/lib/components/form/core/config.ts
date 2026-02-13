@@ -133,7 +133,7 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
     }
   },
 
-  pfjf: {
+  'pf-jf': {
     meta: {
       title: 'Practicum Fair and Job Fair',
       date: '<Date>',
