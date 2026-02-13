@@ -32,7 +32,7 @@
     };
   });
 
-  let selectedHackfest = $state<'junior' | 'senior'>('junior');
+  let selectedHackfest = $state<'junior' | 'collegiate'>('junior');
   let isSceneVisible = $state(false);
 
   const content = {
@@ -40,8 +40,8 @@
       highlight: 'Junior HackFest',
       text: 'introduces high school students to software engineering by guiding through the end‑to‑end design and development of FlutterFlow applications. Teams will identify community problems, translate them into user‑centered app ideas, and build working prototypes that responsibly integrate AI to support more sustainable, inclusive, and resilient local communities.'
     },
-    senior: {
-      highlight: 'Senior HackFest',
+    collegiate: {
+      highlight: 'Collegiate HackFest',
       text: 'challenges college students to engineer full software solutions—web or mobile—that leverage AI and open‑source practices to respond to the needs of Philippine communities. Participants will experience the full software development lifecycle, from ideation and UI/UX design to implementation, deployment, and pitching projects that contribute to more sustainable, inclusive, and resilient local communities.'
     }
   };
@@ -49,7 +49,7 @@
   type HackfestDetail = {
     icon: Component;
     title: string;
-    description: string | { junior: string; senior: string };
+    description: string | { junior: string; collegiate: string };
   };
 
   const keyDetails: HackfestDetail[] = [
@@ -59,7 +59,7 @@
       description: {
         junior:
           'Maximum of three teams per school, with 3–4 students from Grades 7–12 and 1 team coach per team.',
-        senior: 'College students, teams of 3–4 members'
+        collegiate: 'College students, teams of 3–4 members'
       }
     },
     {
@@ -67,7 +67,7 @@
       title: 'Platform',
       description: {
         junior: 'MIT App Inventor',
-        senior: 'Any technology stack'
+        collegiate: 'Any technology stack'
       }
     },
     {
@@ -231,17 +231,17 @@
   <ScrollReveal delay="200ms">
     <div class="flex flex-col gap-12">
       <div
-        class="flex justify-center gap-14 [&>button]:cursor-pointer [&>button]:text-3xl [&>button]:font-medium [&>button]:lg:text-5xl"
+        class="flex justify-center gap-14 [&>button]:cursor-pointer [&>button]:text-3xl [&>button]:font-medium [&>button]:lg:text-4xl"
       >
         {@render hackfestTab('junior', 'Junior')}
-        {@render hackfestTab('senior', 'Senior')}
+        {@render hackfestTab('collegiate', 'Collegiate')}
       </div>
 
       <div class="h-72 place-content-center md:h-30">
         <span class="font-bold">
-          {selectedHackfest === 'junior' ? content.junior.highlight : content.senior.highlight}
+          {selectedHackfest === 'junior' ? content.junior.highlight : content.collegiate.highlight}
         </span>
-        {selectedHackfest === 'junior' ? content.junior.text : content.senior.text}
+        {selectedHackfest === 'junior' ? content.junior.text : content.collegiate.text}
       </div>
     </div>
   </ScrollReveal>
@@ -413,7 +413,7 @@
   </div>
 </section>
 
-{#snippet hackfestTab(id: 'junior' | 'senior', label: string)}
+{#snippet hackfestTab(id: 'junior' | 'collegiate', label: string)}
   <button
     class="relative transition-colors duration-300 {selectedHackfest === id
       ? 'text-purple-600 dark:text-[#d8b4fe]'
@@ -487,5 +487,5 @@
   >
   and under the Hackfest registration page, choose "{selectedHackfest === 'junior'
     ? 'Junior'
-    : 'Senior'} Hackfest" to begin your registration.
+    : 'Collegiate'} Hackfest" to begin your registration.
 {/snippet}

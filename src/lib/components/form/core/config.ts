@@ -79,7 +79,7 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
 
   'senior-hackfest': {
     meta: {
-      title: 'Senior Hackfest',
+      title: 'Collegiate Hackfest',
       date: '<Date>',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },

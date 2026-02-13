@@ -7,7 +7,6 @@
   import { draw } from 'svelte/transition';
 
   import { viewport } from '$lib/actions/viewport';
-  import FaqToast from '$lib/components/FaqToast.svelte';
   import ctalksImg from '$lib/assets/ctalks.png?enhanced';
   import hackfestImg from '$lib/assets/hackfest.png?enhanced';
   import leftHandImg from '$lib/assets/hand_transparent_left.png?enhanced';
@@ -20,6 +19,7 @@
     type AnnotationColor,
     type AnnotationAlign
   } from '$lib/components/AnnotatedBorderedContainer.svelte';
+  import FaqToast from '$lib/components/FaqToast.svelte';
   import ProgramSection from '$lib/components/ProgramSection.svelte';
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import Star from '$lib/components/Star.svelte';
@@ -168,7 +168,7 @@
     </div>
 
     <AnnotatedBorderedContainer
-      annotation="XX/2026"
+      annotation="03/2026"
       annotationAlign="bottom-center"
       color="primary"
       size="sm"
@@ -222,7 +222,7 @@
 
     <ScrollReveal
       delay="1800ms"
-      class="anchored-bottom-left/bottom-hand -top-anchor-center-10 left-anchor-right-2 z-50 hidden max-w-50 leading-tight text-balance supports-[not(anchor-name:--a)]:hidden! md:anchored-bottom-right/bridge-anchor md:top-anchor-center-0 md:block"
+      class="anchored-bottom-left/bottom-hand -top-anchor-center-10 left-anchor-right-2  hidden max-w-50 leading-tight text-balance supports-[not(anchor-name:--a)]:hidden! md:anchored-bottom-right/bridge-anchor md:top-anchor-center-0 md:block"
     >
       <p>Bridging Future Software Engineers of the 21st Century</p>
     </ScrollReveal>
