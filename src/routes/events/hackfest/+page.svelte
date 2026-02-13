@@ -177,7 +177,9 @@
   </h1>
 
   <ScrollReveal delay="500ms">
-    <div class="text-xl">Engineer solutions that move communities forward.</div>
+    <div class="text-center text-balance md:text-xl">
+      Engineer solutions that move communities forward.
+    </div>
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
