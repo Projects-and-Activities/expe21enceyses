@@ -21,7 +21,7 @@
       image: hackfestImage,
       links: [
         { label: 'Junior Bracket', href: '/events/junior-hackfest/register' },
-        { label: 'Senior Bracket', href: '/events/senior-hackfest/register' }
+        { label: 'Collegiate Bracket', href: '/events/senior-hackfest/register' }
       ]
     },
     {
