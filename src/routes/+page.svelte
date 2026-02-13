@@ -7,6 +7,7 @@
   import { draw } from 'svelte/transition';
 
   import { viewport } from '$lib/actions/viewport';
+  import FaqToast from '$lib/components/FaqToast.svelte';
   import ctalksImg from '$lib/assets/ctalks.png?enhanced';
   import hackfestImg from '$lib/assets/hackfest.png?enhanced';
   import leftHandImg from '$lib/assets/hand_transparent_left.png?enhanced';
@@ -131,6 +132,8 @@
     class="absolute top-1/2 left-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-400/10 blur-[100px]"
   ></div>
 </div>
+
+<FaqToast />
 
 <main class="space-y-36 [&>section]:container [&>section]:mx-auto [&>section]:px-4">
   <section
