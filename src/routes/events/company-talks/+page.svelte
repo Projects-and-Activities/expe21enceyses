@@ -107,7 +107,7 @@
 
   const event_title = 'EXPE21ENCE YSES: Company Talks';
 
-  const tagline = 'Inside the Tech Industry — From Professionals Themselves';
+  const tagline = 'Unlock what it takes to thrive in tech.';
 
   const register_route = '/events/company-talks/register';
 </script>

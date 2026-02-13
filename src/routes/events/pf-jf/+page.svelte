@@ -141,7 +141,7 @@
     </ScrollReveal>
   </h1>
   <ScrollReveal delay="500ms">
-    <div class="text-xl">Future-Ready. Industry-Bound</div>
+    <div class="text-xl">Land the opportunities that launch your career.</div>
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
