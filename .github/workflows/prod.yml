@@ -1,4 +1,4 @@
-name: UAT Deployment
+name: PROD Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.PROD_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.PROD_PROJ_ID }}
