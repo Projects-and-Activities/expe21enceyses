@@ -115,7 +115,7 @@
                 class="w-full border-purple-200 text-purple-900 hover:bg-purple-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800"
                 onclick={() => goto('/events/senior-hackfest/register')}
               >
-                Senior
+                Collegiate
               </Button>
             </div>
           </div>
