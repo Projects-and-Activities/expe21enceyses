@@ -58,10 +58,12 @@
   "dependencies": {
     "@threlte/core": "^8.3.1",
     "@threlte/extras": "^9.7.1",
+    "@valibot/to-json-schema": "^1.5.0",
     "gsap": "^3.14.2",
     "liquid-glass-svelte": "^1.2.0",
     "mode-watcher": "^1.1.0",
     "svelte-motion": "^0.12.2",
-    "three": "^0.182.0"
+    "three": "^0.182.0",
+    "valibot": "^1.2.0"
   }
 }

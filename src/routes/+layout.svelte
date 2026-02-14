@@ -10,7 +10,7 @@
   let { children } = $props();
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /><title>Expe21ence YSES</title></svelte:head>
+<svelte:head><link rel="icon" href={favicon} /><title>EXPE21ENCE YSES</title></svelte:head>
 
 <Navbar />
 <ModeWatcher />
