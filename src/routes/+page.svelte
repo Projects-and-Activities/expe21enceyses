@@ -174,7 +174,7 @@
       size="sm"
       class="z-10 w-fit text-center anchor/bridge-anchor not-md:border-none not-md:[&_#annotation]:hidden"
     >
-      <div class="font-light md:hidden md:text-xl">XX/2026 - XX/2026</div>
+      <div class="font-light md:hidden md:text-xl">03/2026</div>
       <h1
         class="z-50 grid place-content-center text-center font-serif tracking-tight opacity-80 *:leading-12 xs:*:leading-20 lg:p-4"
       >
