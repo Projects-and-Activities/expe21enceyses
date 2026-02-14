@@ -15,22 +15,12 @@
   import { type Component } from 'svelte';
 
   import { viewport } from '$lib/actions/viewport';
-  import { asciiState } from '$lib/components/3d-ascii/ascii.svelte';
-  import { ASCII_CHARS_FULL, ASCII_CHARS_SAFE } from '$lib/components/3d-ascii/constants';
   import HackfestRegisterScene from '$lib/components/3d-ascii/sections/HackfestRegisterScene.svelte';
   import HackfestScene from '$lib/components/3d-ascii/sections/HackfestScene.svelte';
   import GlassCard from '$lib/components/GlassCard.svelte';
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import Star from '$lib/components/Star.svelte';
   import Button from '$lib/components/ui/button/button.svelte';
-
-  $effect(() => {
-    asciiState.currentChars = ASCII_CHARS_FULL;
-
-    return () => {
-      asciiState.currentChars = ASCII_CHARS_SAFE;
-    };
-  });
 
   let selectedHackfest = $state<'junior' | 'collegiate'>('junior');
   let isSceneVisible = $state(false);
@@ -163,6 +153,10 @@
     class="absolute inset-0 -z-10 h-screen w-full [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
   >
     <HackfestScene />
+
+    <div
+      class="absolute top-1/2 left-1/2 -z-10 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-600/20 mix-blend-screen blur-[190px]"
+    ></div>
   </div>
 
   <h1
