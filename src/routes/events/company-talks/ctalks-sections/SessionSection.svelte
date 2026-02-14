@@ -59,7 +59,7 @@
       <div
         bind:this={sessionContainer}
         onscroll={handleSessionScroll}
-        class="scrollbar-hide flex touch-pan-x snap-x snap-mandatory overflow-x-auto overscroll-x-contain mask-x-from-10% pb-6"
+        class="scrollbar-hide flex touch-pan-x snap-x snap-mandatory overflow-x-auto overscroll-x-contain pb-6"
         style="
         scrollbar-width: none;
         -ms-overflow-style: none;

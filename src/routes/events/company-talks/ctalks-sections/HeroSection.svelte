@@ -35,7 +35,7 @@
   </h1>
 
   <ScrollReveal delay="1900ms">
-    <div class="relative z-10 px-4 text-center text-lg lg:px-0 lg:text-xl">
+    <div class="relative z-10 px-4 text-center text-balance md:text-xl">
       {tagline}
     </div>
   </ScrollReveal>
