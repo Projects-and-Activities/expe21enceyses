@@ -1,7 +1,7 @@
 export const EVENT_IDS = {
   JUNIOR_HACKFEST: 'junior-hackfest',
   SENIOR_HACKFEST: 'senior-hackfest',
-  PFJF: 'pfjf',
+  PFJF: 'pf-jf',
   COMPANY_TALKS: 'company-talks',
 } as const;
 

@@ -35,8 +35,8 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
   'junior-hackfest': {
     meta: {
       title: 'Junior Hackfest',
-      date: '<Date>',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      date: 'March 7-28, 2026',
+      description: 'Engineer solutions that move communities forward.'
     },
     schema: juniorHackfestRegistrationSchema,
     skeleton: HackfestSkeleton,
@@ -75,8 +75,8 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
   'senior-hackfest': {
     meta: {
       title: 'Collegiate Hackfest',
-      date: '<Date>',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      date: 'March 7-28, 2026',
+      description: 'Engineer solutions that move communities forward.'
     },
     schema: seniorHackfestRegistrationSchema,
     skeleton: HackfestSkeleton,
@@ -108,8 +108,8 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
   'company-talks': {
     meta: {
       title: 'Company Talks',
-      date: '<Date>',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      date: 'March 19, 2026',
+      description: 'Unlock what it takes to thrive in tech.'
     },
     schema: companyTalksRegistrationSchema,
     skeleton: HackfestSkeleton,
@@ -125,7 +125,7 @@ export const EVENT_REGISTRY: Record<string, EventConfig> = {
   'pf-jf': {
     meta: {
       title: 'Practicum Fair and Job Fair',
-      date: '<Date>',
+      date: 'March 19, 2026',
       description:
         'Take your first step toward securing your ideal internship and launching your professional career.'
     },
