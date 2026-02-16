@@ -1,9 +1,10 @@
 <script lang="ts">
   import { useTask } from '@threlte/core';
+  import { onDestroy } from 'svelte';
   import { Mesh, MeshStandardMaterial, DoubleSide, type Object3D } from 'three';
 
   import { asciiState, resetAscii } from '../ascii.svelte';
-  import { ASCII_CHARS_FULL, SCENE_COLOR } from '../constants';
+  import { ASCII_CHARS_FULL, ASCII_CHARS_SAFE, SCENE_COLOR } from '../constants';
 
   let {
     object,
@@ -83,5 +84,9 @@
         }
       });
     }
+  });
+
+  onDestroy(() => {
+    asciiState.currentChars = ASCII_CHARS_SAFE;
   });
 </script>
