@@ -176,7 +176,7 @@
     >
       <div class="font-light md:hidden md:text-xl">03/2026</div>
       <h1
-        class="z-50 grid place-content-center text-center font-serif tracking-tight opacity-80 *:leading-12 xs:*:leading-20 lg:p-4"
+        class="z-50 grid place-content-center text-center font-serif tracking-tight opacity-80 *:leading-12 xs:*:leading-20 md:*:leading-24 lg:p-4"
       >
         <ScrollReveal delay="1000ms">
           <div>Expe21ence</div>
