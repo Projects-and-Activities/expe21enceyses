@@ -32,6 +32,24 @@ export async function submitRegistration(eventId: string, data: RegistrationData
   let transformedData = data;
   
   if (eventId === EVENT_IDS.JUNIOR_HACKFEST || eventId === EVENT_IDS.SENIOR_HACKFEST) {
+    const numberOfRegistrantsResponse = await fetch(
+      `${script}?bracket=${eventId === EVENT_IDS.JUNIOR_HACKFEST ? 'junior' : 'collegiate'}`,
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }
+    )
+
+    if (!numberOfRegistrantsResponse.ok) {
+      throw new Error(`Error fetching number of registrants: ${numberOfRegistrantsResponse.statusText}`);
+    }
+
+    const responseData = await numberOfRegistrantsResponse.json();
+    const numberOfRegistrants = responseData.value;
+    if (numberOfRegistrants >= 20) {
+      throw new Error('Registration is full. Please contact the prog@yses.org for more information.');
+    }
+
     const hackfestData = data as any;
 
     // Backup
