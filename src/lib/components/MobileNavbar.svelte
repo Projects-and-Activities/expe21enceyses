@@ -82,7 +82,7 @@
             <ModeToggle variant="ghost" class="ml-auto shadow-none" />
 
             <Sheet.Portal>
-              <Sheet.Overlay class="!bg-black/20 backdrop-blur-sm" />
+              <Sheet.Overlay class="bg-neutral-50 backdrop-blur-sm dark:!bg-black/20" />
               <Sheet.Content
                 side="right"
                 class="!w-full !max-w-full !border-none !bg-transparent p-0 sm:!max-w-full"

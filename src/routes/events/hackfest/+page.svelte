@@ -320,7 +320,7 @@
     <ScrollReveal delay="800ms" class="mt-16 text-center md:mt-20">
       <h3 class="mb-2 text-xl font-semibold md:text-2xl">Special Awards</h3>
       <p class="text-sm text-purple-900/80 md:text-lg dark:text-purple-200/80">
-        Most Innovative Idea <br /> Best Presentation <br /> People's Choice Award
+        Most Innovative Idea, Best Presentation, People's Choice
       </p>
     </ScrollReveal>
   </div>
