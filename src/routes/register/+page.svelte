@@ -1,9 +1,10 @@
 <script lang="ts">
   import { ArrowRight } from '@lucide/svelte';
 
-  import pfjfImage from '$lib/assets/pfjf.png?enhanced';
-  import hackfestImage from '$lib/assets/hackfest.png?enhanced';
+  import { goto } from '$app/navigation';
   import ctalksImage from '$lib/assets/ctalks.png?enhanced';
+  import hackfestImage from '$lib/assets/hackfest.png?enhanced';
+  import pfjfImage from '$lib/assets/pfjf.png?enhanced';
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import Star from '$lib/components/Star.svelte';
 
@@ -12,7 +13,7 @@
       id: 'pfjf',
       name: 'PF/JF',
       image: pfjfImage,
-      links: [{ label: 'Register', href: '/events/pfjf/register' }]
+      links: [{ label: 'Register', href: '/events/pf-jf/register' }]
     },
     {
       id: 'hackfest',
@@ -20,7 +21,7 @@
       image: hackfestImage,
       links: [
         { label: 'Junior Bracket', href: '/events/junior-hackfest/register' },
-        { label: 'Senior Bracket', href: '/events/senior-hackfest/register' }
+        { label: 'Collegiate Bracket', href: '/events/senior-hackfest/register' }
       ]
     },
     {
@@ -57,7 +58,7 @@
   <section class="mb-12 text-center md:mb-16">
     <ScrollReveal delay="100ms">
       <h1
-        class="mb-4 font-serif text-3xl leading-tight font-normal tracking-tight md:mb-6 md:text-5xl lg:text-8xl"
+        class="mb-4 font-serif text-4xl leading-tight font-normal tracking-tight md:mb-6 md:text-5xl lg:text-8xl"
       >
         Register for EXPE21ENCE
       </h1>
@@ -67,7 +68,7 @@
       <p
         class="mx-auto max-w-2xl font-['Lexend'] text-lg leading-relaxed font-light text-muted-foreground md:text-xl"
       >
-        Choose an event below to begin your registration journey with YSES.
+        ...begin your registration journey with YSES.
       </p>
     </ScrollReveal>
   </section>
@@ -75,7 +76,14 @@
   <section class="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
     {#each events as event, i (event.id)}
       <ScrollReveal delay={`${300 + i * 150}ms`}>
-        <div class="gradient-border-wrapper group card-entrance h-full" style="--card-index: {i}">
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <div
+          tabindex="-1"
+          role="button"
+          on:click={() => goto(event.links[0].href)}
+          class="gradient-border-wrapper group card-entrance h-full cursor-pointer"
+          style="--card-index: {i}"
+        >
           <div
             class="register-card flex h-full min-h-[350px] flex-col rounded-xl border border-border/30 bg-card/80 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 md:min-h-[420px] dark:bg-card/50"
           >
@@ -96,7 +104,7 @@
             <div class="mx-6 my-4 h-px bg-border/50"></div>
 
             <div class="mt-auto flex flex-col gap-3 px-6 pb-6">
-              {#each event.links as link}
+              {#each event.links as link (link.label)}
                 <a
                   href={link.href}
                   class="group/link flex items-center justify-center gap-2 rounded-lg py-2 font-['Lexend'] font-normal text-[#7F52BB] transition-all duration-200 hover:bg-purple-500/10"

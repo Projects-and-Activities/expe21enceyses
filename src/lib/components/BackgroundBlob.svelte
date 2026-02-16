@@ -4,13 +4,14 @@
     size = 'h-[300px] w-[300px]',
     gradient = 'from-[#7410FF] to-[#55059B]',
     blur = 'blur-[130px]',
-    opacity = 'opacity-50',
+    lightOpacity = 'opacity-30',
+    darkOpacity = 'dark:opacity-50',
     mixBlend = 'mix-blend-multiply',
-    desktop = '' // Optional desktop overrides like 'lg:top-[5%]'
+    desktop = ''
   } = $props();
 </script>
 
 <div
-  class="absolute rounded-full {position} {size} {opacity} {mixBlend} {blur} {desktop}"
+  class="absolute rounded-full {position} {size} {lightOpacity} {darkOpacity} {mixBlend} {blur} {desktop}"
   style="background: linear-gradient(135deg, {gradient});"
 ></div>

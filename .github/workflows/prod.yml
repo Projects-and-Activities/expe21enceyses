@@ -1,0 +1,41 @@
+name: PROD Deployment.
+env:
+  VERCEL_ORG_ID: ${{ secrets.PROD_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.PROD_PROJ_ID }}
+  VERCEL_TOKEN: ${{ secrets.PROD_TOKEN }}
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy-PROD:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy and Alias
+        run: |
+          DEPLOYMENT_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          echo "Unique Deployment URL: $DEPLOYMENT_URL"
+
+          vercel alias set "$DEPLOYMENT_URL" expe21ence.vercel.app --token=${{ secrets.VERCEL_TOKEN }}

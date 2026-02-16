@@ -1,7 +1,8 @@
 <script lang="ts">
-  import Star from '$lib/components/Star.svelte';
-  import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import { LiquidGlass } from 'liquid-glass-svelte';
+
+  import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+  import Star from '$lib/components/Star.svelte';
 
   let { speakers, isDark, GLASS_OPTIONS, BORDER_GRADIENT } = $props();
 </script>
@@ -10,17 +11,20 @@
   <!-- Decorative stars -->
   <Star class="-right-50 -bottom-10 w-40 -rotate-1 opacity-20 dark:opacity-80" />
   <Star class="top-0 -right-50 w-80 rotate-43 opacity-15 dark:opacity-70" />
-  <Star class="-right-25 bottom-44 w-24 rotate-250 opacity-20 dark:opacity-70" />
+  <Star
+    class="-right-10 bottom-100 w-24 rotate-250 opacity-20 lg:-right-25 lg:bottom-44 dark:opacity-70"
+  />
   <Star class="top-10 -left-40 w-70 opacity-20 dark:opacity-80" />
-  <Star class="bottom-35 -left-40 w-30 rotate-210 opacity-20 dark:opacity-70" />
+  <Star
+    class="top-140 -left-0 w-20 rotate-250 opacity-20 lg:bottom-35 lg:-left-40 lg:w-30 lg:rotate-210 dark:opacity-70"
+  />
   <Star class="-bottom-20 -left-24 w-50 rotate-50 opacity-20 dark:opacity-70" />
 
   <ScrollReveal>
     <!-- Header -->
     <div class="mb-7 text-center">
       <h2 class="text-3xl leading-relaxed font-normal lg:text-4xl">
-        <span class="font-semibold">Meet</span> the
-        <span class="font-semibold italic">Speakers</span>
+        <span class="font-semibold">Coming Soon</span>
       </h2>
       <p class=" px-5 text-sm leading-relaxed italic md:text-sm lg:text-lg">
         Insights from professionals working at the forefront of the tech industry.
@@ -42,9 +46,9 @@
       >
         <!-- Speakers Grid -->
         <div class="grid grid-cols-1 place-items-center gap-10 md:grid-cols-3">
-          {#each speakers as speaker}
+          {#each speakers as speaker (speaker.name)}
             <div class="group relative overflow-hidden">
-              <img
+              <enhanced:img
                 src={speaker.image}
                 alt={speaker.name}
                 class="mb-25 h-[244px] w-[244px]

@@ -10,7 +10,7 @@
 
 <div class="space-y-6">
   <div class="text-center">
-    <h2 class="text-2xl font-bold tracking-tight">About the Team</h2>
+    <div class="text-2xl font-bold tracking-tight">About the Team</div>
     <p class="dark:text-zinc-400">What should we call your group?</p>
   </div>
 

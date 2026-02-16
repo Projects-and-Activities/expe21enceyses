@@ -16,7 +16,8 @@
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-xs',
         ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
-        gradient: 'text-white font-normal text-center'
+        gradient:
+          'relative isolate rounded-full! border-[0.135rem] border-transparent [background:linear-gradient(to_bottom,var(--primary-light),var(--primary))_padding-box,radial-gradient(circle_at_50%_40%,var(--muted-foreground)_0%,var(--background)_60%,var(--muted-foreground)_100%)_border-box] dark:[background:linear-gradient(to_bottom,var(--primary-light),var(--primary))_padding-box,radial-gradient(circle_at_50%_40%,var(--color-white)_0%,var(--background)_10%,var(--muted-foreground)_100%)_border-box] text-white shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]'
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -25,7 +26,7 @@
         icon: 'size-9',
         'icon-sm': 'size-8',
         'icon-lg': 'size-10',
-        xl: 'px-8 py-2 rounded-[25px] font-light text-lg h-11',
+        xl: 'px-12 py-6.5 rounded-[25px] font-normal text-lg h-11',
         register: 'box-border flex flex-col justify-center items-center w-25 h-8 rounded-2xl'
       }
     },
