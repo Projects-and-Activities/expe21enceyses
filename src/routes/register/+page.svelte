@@ -13,7 +13,8 @@
       id: 'pfjf',
       name: 'PF/JF',
       image: pfjfImage,
-      links: [{ label: 'Register', href: '/events/pf-jf/register' }]
+      links: [{ label: 'Visit us on February, 18, 2026', href: '/events/pf-jf/register' }],
+      disabled: true
     },
     {
       id: 'hackfest',
@@ -22,13 +23,15 @@
       links: [
         { label: 'Junior Bracket', href: '/events/junior-hackfest/register' },
         { label: 'Collegiate Bracket', href: '/events/senior-hackfest/register' }
-      ]
+      ],
+      disabled: false
     },
     {
       id: 'ctalks',
       name: 'Company Talks',
       image: ctalksImage,
-      links: [{ label: 'Register', href: '/events/company-talks/register' }]
+      links: [{ label: 'Visit us on February, 18, 2026', href: '/events/company-talks/register' }],
+      disabled: true
     }
   ];
 </script>
@@ -80,12 +83,17 @@
         <div
           tabindex="-1"
           role="button"
-          on:click={() => goto(event.links[0].href)}
-          class="gradient-border-wrapper group card-entrance h-full cursor-pointer"
+          on:click={() => !event.disabled && goto(event.links[0].href)}
+          class="gradient-border-wrapper group card-entrance h-full cursor-pointer {event.disabled
+            ? 'disabled'
+            : ''} {event.disabled &&
+            'cursor-auto!  grayscale **:pointer-events-none **:opacity-70'}"
           style="--card-index: {i}"
         >
           <div
-            class="register-card flex h-full min-h-[350px] flex-col rounded-xl border border-border/30 bg-card/80 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 md:min-h-[420px] dark:bg-card/50"
+            class="register-card flex h-full min-h-[350px] flex-col rounded-xl border border-border/30 bg-card/80 backdrop-blur-sm transition-all duration-300 {event.disabled
+              ? 'bg-muted'
+              : 'group-hover:-translate-y-1'} md:min-h-[420px] dark:bg-card/50"
           >
             <div
               class="ascii-glitch-wrapper flex min-h-[200px] flex-1 items-center justify-center p-4"
@@ -93,7 +101,9 @@
               <enhanced:img
                 src={event.image}
                 alt={event.name}
-                class="ascii-art h-auto max-h-[280px] w-full object-contain brightness-200 transition-transform duration-300 group-hover:scale-105"
+                class="ascii-art h-auto max-h-[280px] w-full object-contain brightness-200 transition-transform duration-300 {event.disabled
+                  ? ''
+                  : 'group-hover:scale-105'}"
               />
             </div>
 
@@ -106,12 +116,16 @@
             <div class="mt-auto flex flex-col gap-3 px-6 pb-6">
               {#each event.links as link (link.label)}
                 <a
-                  href={link.href}
-                  class="group/link flex items-center justify-center gap-2 rounded-lg py-2 font-['Lexend'] font-normal text-[#7F52BB] transition-all duration-200 hover:bg-purple-500/10"
+                  href={!event.disabled ? link.href : ''}
+                  class="group/link flex items-center justify-center gap-2 rounded-lg py-2 font-['Lexend'] font-normal text-[#7F52BB] transition-all duration-200 {event.disabled
+                    ? ''
+                    : 'hover:bg-purple-500/10'}"
                 >
                   {link.label}
                   <ArrowRight
-                    class="size-5 transition-transform duration-200 group-hover/link:translate-x-1"
+                    class="size-5 transition-transform duration-200 {event.disabled
+                      ? ''
+                      : 'group-hover/link:translate-x-1'}"
                   />
                 </a>
               {/each}
@@ -157,7 +171,7 @@
     transition: opacity 0.3s ease;
   }
 
-  .gradient-border-wrapper:hover::before {
+  .gradient-border-wrapper:not(.disabled):hover::before {
     opacity: 1;
     animation: rotate-gradient 3s linear infinite;
   }
@@ -177,14 +191,14 @@
     inherits: false;
   }
 
-  .gradient-border-wrapper:hover .register-card {
+  .gradient-border-wrapper:not(.disabled):hover .register-card {
     box-shadow:
       0px 2px 10px rgba(0, 0, 0, 0.25) inset,
       0 30px 40px -10px rgba(127, 82, 187, 0.2),
       0 12px 15px -8px rgba(0, 0, 0, 0.2);
   }
 
-  .gradient-border-wrapper:hover .ascii-art {
+  .gradient-border-wrapper:not(.disabled):hover .ascii-art {
     animation: shake 0.5s ease-in-out;
   }
 

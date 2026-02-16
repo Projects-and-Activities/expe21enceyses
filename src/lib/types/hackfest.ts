@@ -73,14 +73,16 @@ export const juniorHackfestRegistrationSchema = commonHackfestSchema.extend({
   members: z
     .array(juniorMemberSchema)
     .min(3, 'A minimum of 3 members is required.')
-    .max(4, 'A maximum of 4 members is allowed.')
+    .max(4, 'A maximum of 4 members is allowed.'),
+  bracket: z.literal('junior')
 });
 
 export const seniorHackfestRegistrationSchema = commonHackfestSchema.extend({
   members: z
     .array(seniorMemberSchema)
     .min(3, 'A minimum of 3 members is required.')
-    .max(4, 'A maximum of 4 members is allowed.')
+    .max(4, 'A maximum of 4 members is allowed.'),
+  bracket: z.literal('senior')
 });
 
 export type JuniorHackfestRegistration = z.infer<typeof juniorHackfestRegistrationSchema>;

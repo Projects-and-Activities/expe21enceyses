@@ -82,7 +82,7 @@
             <ModeToggle variant="ghost" class="ml-auto shadow-none" />
 
             <Sheet.Portal>
-              <Sheet.Overlay class="!bg-black/20 backdrop-blur-sm" />
+              <Sheet.Overlay class="bg-neutral-50 backdrop-blur-sm dark:!bg-black/20" />
               <Sheet.Content
                 side="right"
                 class="!w-full !max-w-full !border-none !bg-transparent p-0 sm:!max-w-full"
@@ -175,7 +175,6 @@
                           class="relative isolate overflow-hidden bg-transparent! p-0 font-light dark:font-normal dark:shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
                           href="/register"
                           onclick={() => (mobileMenuOpen = false)}
-                          disabled
                         >
                           <span class="relative z-10">Register</span>
                         </Button>

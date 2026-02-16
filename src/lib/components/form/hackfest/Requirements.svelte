@@ -56,13 +56,38 @@
             </li>
           </ul>
         </div>
+
+        <div class="space-y-2">
+          <h3 class="font-bold text-foreground">
+            Please send the Registration fee of ₱149 per team member to the GCash Account below:
+          </h3>
+          <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
+            <li>GCash Number: 09302926834</li>
+            <li>GCash Name: ANGELINE CUBELO</li>
+            <li>
+              <i>After sending the full fee, please upload the proof of payment.</i>
+            </li>
+          </ul>
+        </div>
       </div>
     {:else}
-      <p class="font-medium text-foreground">
-        Compile all required documents (ID, proof of enrollment, etc.) of each member into a single <span
-          class="font-mono text-purple-600 dark:text-purple-400">.zip</span
-        > file for the entire team.
+      <p class="mb-4 font-medium text-foreground">
+        Compile all valid school ID or any official document serving as proof of enrollment of each
+        member into a single <span class="font-mono text-purple-600 dark:text-purple-400">.zip</span
+        > file .
       </p>
+      <div class="space-y-2">
+        <p class="font-medium text-foreground">
+          Please send the Registration fee of ₱149 per team member to the GCash Account below:
+        </p>
+        <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
+          <li>GCash Number: 09302926834</li>
+          <li>GCash Name: ANGELINE CUBELO</li>
+          <li>
+            <i>After sending the full fee, please upload the proof of payment.</i>
+          </li>
+        </ul>
+      </div>
     {/if}
   </GlassCard>
 

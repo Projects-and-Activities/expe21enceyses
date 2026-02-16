@@ -5,8 +5,8 @@
   import ModeToggle from './ModeToggle.svelte';
 
   import { page } from '$app/stores';
-  import logo from '$lib/assets/logo21Light.png';
   import logoDark from '$lib/assets/logo21Dark.png';
+  import logo from '$lib/assets/logo21Light.png';
   import { Button } from '$lib/components/ui/button';
   import * as NavigationMenu from '$lib/components/ui/navigation-menu';
 
@@ -118,7 +118,6 @@
                 size="register"
                 class="relative isolate overflow-hidden bg-transparent! p-0 font-light dark:font-normal dark:shadow-[0px_5px_20px_rgba(0,0,0,0.3),inset_0px_1px_0px_rgba(255,255,255,0.6)]"
                 href="/register"
-                disabled
               >
                 <span class="relative z-10">Register</span>
               </Button>
