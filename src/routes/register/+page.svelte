@@ -13,7 +13,7 @@
       id: 'pfjf',
       name: 'PF/JF',
       image: pfjfImage,
-      links: [{ label: 'Register', href: '/events/pf-jf/register' }],
+      links: [{ label: 'Visit us on February, 18, 2026', href: '/events/pf-jf/register' }],
       disabled: true
     },
     {
@@ -30,7 +30,7 @@
       id: 'ctalks',
       name: 'Company Talks',
       image: ctalksImage,
-      links: [{ label: 'Register', href: '/events/company-talks/register' }],
+      links: [{ label: 'Visit us on February, 18, 2026', href: '/events/company-talks/register' }],
       disabled: true
     }
   ];
