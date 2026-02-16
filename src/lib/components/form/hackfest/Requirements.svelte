@@ -40,15 +40,15 @@
           class="font-mono text-purple-600 dark:text-purple-400">.zip</span
         > file and upload them:
       </p>
-      <div class="grid gap-6">
+      <div class="l-4 grid gap-6">
         <div class="block space-y-2">
-          <h3 class="font-bold text-foreground">For each team member:</h3>
+          <h3 class="font-medium text-foreground">For each team member:</h3>
           <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
             <li>A valid school ID or any official document serving as proof of enrollment</li>
           </ul>
         </div>
         <div class="space-y-2">
-          <h3 class="font-bold text-foreground">For the team coach:</h3>
+          <h3 class="font-medium text-foreground">For the team coach:</h3>
           <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
             <li>
               Proof that the coach is a bona fide teacher at the same school as the team members
@@ -58,8 +58,17 @@
         </div>
 
         <div class="space-y-2">
-          <h3 class="font-bold text-foreground">
-            Please send the Registration fee of ₱149 per team member to the GCash Account below:
+          <h3 class="font-bold text-foreground">Registration fee (Team coach is excluded):</h3>
+          <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
+            <li><b> 𝗘𝗮𝗿𝗹𝘆 𝗕𝗶𝗿𝗱</b> (Until February 23): 𝗣𝗵𝗽 𝟭𝟰𝟵 / member</li>
+            <li><b>𝗥𝗲𝗴𝘂𝗹𝗮𝗿: </b>𝗣𝗵𝗽 𝟭𝟵𝟵 / member</li>
+          </ul>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-medium text-foreground">
+            To ensure a smooth verification process, please send the total registration fee for your
+            entire team in a single GCash transaction.
           </h3>
           <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
             <li>GCash Number: 09302926834</li>
@@ -76,9 +85,17 @@
         member into a single <span class="font-mono text-purple-600 dark:text-purple-400">.zip</span
         > file .
       </p>
+      <div class="mb-4 space-y-2">
+        <p class="font-medium text-foreground">Registration fee:</p>
+        <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
+          <li><b> 𝗘𝗮𝗿𝗹𝘆 𝗕𝗶𝗿𝗱</b> (Until February 23): 𝗣𝗵𝗽 𝟭𝟰𝟵 / member</li>
+          <li><b>𝗥𝗲𝗴𝘂𝗹𝗮𝗿: </b>𝗣𝗵𝗽 𝟭𝟵𝟵 / member</li>
+        </ul>
+      </div>
       <div class="space-y-2">
         <p class="font-medium text-foreground">
-          Please send the Registration fee of ₱149 per team member to the GCash Account below:
+          To ensure a smooth verification process, please send the total registration fee for your
+          entire team in a single GCash transaction.
         </p>
         <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
           <li>GCash Number: 09302926834</li>
