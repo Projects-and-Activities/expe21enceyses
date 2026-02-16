@@ -19,15 +19,15 @@ const BRACKET_CONFIG = {
     sheetIndex: 0,
     requirementsDriveFolder: '1ZIcjdpjESa81kea1Fb-CHwoXRApjoFFw',
     proofOfPaymentDriveFolder: '1baX0QzUepXUw7bgbmTD31niPQswNJvxy',
-    emailSubject: "You're In! EXPE21ENCE YSES: The HackFest - Junior Registration Confirmed",
+    emailSubject: "Registration Received! EXPE21ENCE YSES: The HackFest - Junior Bracket",
     categoryName: "Junior HackFest bracket"
   },
-  'senior': {
+  'collegiate': {
     sheetIndex: 1,
     requirementsDriveFolder: '17lr3nZ5mHYgItHQb-YYPql8mj6x94N_v',
     proofOfPaymentDriveFolder: '1Re2bT9lMPXuv--fj2tnuVsMsxox07sVH',
-    emailSubject: "You're In! EXPE21ENCE YSES: The HackFest - Senior Registration Confirmed", 
-    categoryName: "Senior HackFest bracket"
+    emailSubject: "Registration Received! EXPE21ENCE YSES: The HackFest - Collegiate Bracket", 
+    categoryName: "Collegiate HackFest bracket"
   }
 };
 
@@ -35,7 +35,7 @@ function doGet(e) {
   try {
     // For GET requests in Google Apps Script, parameters are passed via e.parameter, not e.postData.
     var bracketParam = (e && e.parameter && e.parameter.bracket) ? String(e.parameter.bracket) : '';
-    let bracket = bracketParam ? bracketParam.toLowerCase() : 'senior';
+    let bracket = bracketParam ? bracketParam.toLowerCase() : 'collegiate';
     let bracketSheetIndex = 'junior' === bracket ? 0 : 1;
 
     var spreadSheet = SpreadsheetApp.openById(SPREADSHEET_ID);
@@ -58,7 +58,7 @@ function doGet(e) {
 function doPost(e) {
   try {
     var formData = JSON.parse(e.postData.contents);
-    var bracket = formData.bracket || 'senior'; 
+    var bracket = formData.bracket || 'collegiate'; 
     var config = BRACKET_CONFIG[bracket];
 
     if (!config) throw new Error('Invalid bracket specified');
@@ -99,7 +99,7 @@ function doPost(e) {
         rowData.push(memberInfo);
       }
 
-    } else { // Senior bracket
+    } else { // Collegiate bracket
       for (let i = 0; i < formData.members.length; i++) {
         let member = formData.members[i];
         let memberInfo = `${member.name}\n${member.email}\n${member.schoolName}\n${member.universityLevel}\n${member.facebookLink}`;
