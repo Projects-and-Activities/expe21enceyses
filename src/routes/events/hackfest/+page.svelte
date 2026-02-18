@@ -351,7 +351,7 @@
   <Star class="top-1/2 -right-28 w-28 -rotate-0 opacity-35 blur-sm dark:opacity-70" />
 
   <ScrollReveal delay="50ms">
-    <h2 class="text-center font-semibold">Register for The Hackfest</h2>
+    <h2 class="text-center font-semibold">Register for The HackFest</h2>
   </ScrollReveal>
   <ScrollReveal delay="100ms">
     <p class="-mt-4 text-center font-light text-foreground/90">
@@ -476,7 +476,7 @@
 {#snippet registerStepContent()}
   Go to
   <a class="text-primary hover:underline" href="/register">register</a>
-  and under the Hackfest registration page, choose "{selectedHackfest === 'junior'
+  and under the HackFest registration page, choose "{selectedHackfest === 'junior'
     ? 'Junior'
     : 'Collegiate'} Hackfest" to begin your registration.
 {/snippet}

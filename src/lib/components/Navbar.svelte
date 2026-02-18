@@ -14,7 +14,7 @@
 
   // Event sub-items
   const eventItems = [
-    { label: 'The Hackfest', href: '/events/hackfest' },
+    { label: 'The HackFest', href: '/events/hackfest' },
     { label: 'Practicum/Job Fair', href: '/events/pf-jf' },
     { label: 'Company Talks', href: '/events/company-talks' }
   ];
