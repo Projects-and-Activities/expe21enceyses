@@ -1,6 +1,6 @@
 <script lang="ts">
   import ChevronsDown from '@lucide/svelte/icons/chevrons-down';
-
+  import { goto } from '$app/navigation';
   import CompanyTalksScene from '$lib/components/3d-ascii/sections/CompanyTalksScene.svelte';
   import ScrollReveal from '$lib/components/ScrollReveal.svelte';
   import Button from '$lib/components/ui/button/button.svelte';
@@ -40,11 +40,7 @@
     </div>
   </ScrollReveal>
   <ScrollReveal delay="3000ms">
-    <Button
-      onclick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
-      variant="gradient"
-      size="xl">Register Now</Button
-    >
+    <Button onclick={() => goto('/register')} variant="gradient" size="xl">Register Now</Button>
   </ScrollReveal>
 
   <ScrollReveal delay="650ms">

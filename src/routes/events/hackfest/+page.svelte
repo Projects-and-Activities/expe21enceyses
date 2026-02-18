@@ -13,6 +13,7 @@
     Trophy
   } from '@lucide/svelte';
   import { type Component } from 'svelte';
+  import { goto } from '$app/navigation';
 
   import { viewport } from '$lib/actions/viewport';
   import HackfestRegisterScene from '$lib/components/3d-ascii/sections/HackfestRegisterScene.svelte';
@@ -177,11 +178,7 @@
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
-    <Button
-      onclick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
-      variant="gradient"
-      size="xl">Register Now</Button
-    >
+    <Button onclick={() => goto('/register')} variant="gradient" size="xl">Register Now</Button>
   </ScrollReveal>
 
   <ScrollReveal delay="650ms">
