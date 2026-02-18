@@ -86,7 +86,7 @@
       Icon: Bell,
       title: 'Register',
       description:
-        'Go to <a class="text-primary hover:underline" aria-disabled="true" role="link" tabindex="-1">register</a> and choose "Company Talks" to begin your registration.'
+        'Go to <a class="text-primary hover:underline" href="/events/company-talks/register" tabindex="-1">register</a> and choose "Company Talks" to begin your registration.'
     },
     {
       Icon: Mic,

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { ChevronsDown, Bell, CloudUpload, SquarePen } from '@lucide/svelte';
+  import { goto } from '$app/navigation';
 
   import { viewport } from '$lib/actions/viewport';
   import archives1 from '$lib/assets/archives-1.png?enhanced';
@@ -24,7 +25,7 @@
       Icon: SquarePen,
       title: 'Register',
       description:
-        'Go to <a class="text-primary hover:underline" aria-disabled="true" role="link" tabindex="-1">register</a> and choose “Practicum & Job Fair” to begin your registration.'
+        'Go to <a class="text-primary hover:underline" href="/events/pf-jf/register" tabindex="-1">register</a> and choose “Practicum & Job Fair” to begin your registration.'
     },
     {
       Icon: CloudUpload,
@@ -155,13 +156,7 @@
   </ScrollReveal>
 
   <ScrollReveal delay="600ms">
-    <Button
-      onclick={() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })}
-      variant="gradient"
-      size="xl"
-    >
-      Register Now
-    </Button>
+    <Button onclick={() => goto('/register')} variant="gradient" size="xl">Register Now</Button>
   </ScrollReveal>
 
   <ScrollReveal delay="650ms">
@@ -342,7 +337,7 @@
       </div>
 
       <ScrollReveal delay="500ms" class="mx-auto my-12 w-fit">
-        <Button variant="gradient" size="xl" disabled>Register</Button>
+        <Button href="/events/pf-jf/register" variant="gradient" size="xl">Register</Button>
       </ScrollReveal>
     </div>
   </div>
