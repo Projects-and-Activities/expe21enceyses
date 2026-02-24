@@ -60,7 +60,7 @@
         <div class="space-y-2">
           <h3 class="font-bold text-foreground">Registration fee (Team coach is excluded):</h3>
           <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
-            <li><b> 𝗘𝗮𝗿𝗹𝘆 𝗕𝗶𝗿𝗱</b> (Until February 23): 𝗣𝗵𝗽 𝟭𝟰𝟵 / member</li>
+            <li><b> 𝗘𝗮𝗿𝗹𝘆 𝗕𝗶𝗿𝗱</b> (Until February 25): 𝗣𝗵𝗽 𝟭𝟰𝟵 / member</li>
             <li><b>𝗥𝗲𝗴𝘂𝗹𝗮𝗿: </b>𝗣𝗵𝗽 𝟭𝟵𝟵 / member</li>
           </ul>
         </div>
@@ -88,7 +88,7 @@
       <div class="mb-4 space-y-2">
         <p class="font-medium text-foreground">Registration fee:</p>
         <ul class="list-disc space-y-1 pl-5 text-muted-foreground">
-          <li><b> 𝗘𝗮𝗿𝗹𝘆 𝗕𝗶𝗿𝗱</b> (Until February 23): 𝗣𝗵𝗽 𝟭𝟰𝟵 / member</li>
+          <li><b> 𝗘𝗮𝗿𝗹𝘆 𝗕𝗶𝗿𝗱</b> (Until February 25): 𝗣𝗵𝗽 𝟭𝟰𝟵 / member</li>
           <li><b>𝗥𝗲𝗴𝘂𝗹𝗮𝗿: </b>𝗣𝗵𝗽 𝟭𝟵𝟵 / member</li>
         </ul>
       </div>

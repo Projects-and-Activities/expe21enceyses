@@ -71,8 +71,8 @@
       question: 'Is there a registration fee?',
       intro: 'For the Junior and Collegiate Hackfest, a registration fee will apply:',
       bullets: [
-        '₱149 per member for early bird registrants (February 16-23, 2026)',
-        '₱199 per member during the regular registration period (February 24 - March 2, 2026)'
+        '₱149 per member for early bird registrants (February 16-25, 2026)',
+        '₱199 per member during the regular registration period (February 26 - March 2, 2026)'
       ]
     },
     {
