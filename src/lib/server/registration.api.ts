@@ -32,8 +32,9 @@ export async function submitRegistration(eventId: string, data: RegistrationData
   let transformedData = data;
   
   if (eventId === EVENT_IDS.JUNIOR_HACKFEST || eventId === EVENT_IDS.SENIOR_HACKFEST) {
+    const bracket = eventId === EVENT_IDS.JUNIOR_HACKFEST ? 'junior' : 'collegiate';
     const numberOfRegistrantsResponse = await fetch(
-      `${script}?bracket=${eventId === EVENT_IDS.JUNIOR_HACKFEST ? 'junior' : 'collegiate'}`,
+      `${script}?bracket=${bracket}`,
       {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -63,6 +64,7 @@ export async function submitRegistration(eventId: string, data: RegistrationData
     
     transformedData = {
       ...hackfestData,
+      bracket: bracket,
       requirements: requirementsBase64,
       requirementsFileType: hackfestData.requirementsZip.type,
       payment: paymentBase64,
