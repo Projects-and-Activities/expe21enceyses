@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { emailSchema } from './common';
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILE_SIZE = 3 * 1024 * 1024; // 5MB
 const ACCEPTED_ZIP_TYPES = [
   'application/zip',
   'application/x-zip-compressed',
@@ -24,7 +24,7 @@ const mobileNumberSchema = z
 
 const zipFileSchema = z
   .instanceof(File, { message: 'Requirements .zip file is required' })
-  .refine((file) => file.size <= MAX_FILE_SIZE, 'Max file size is 5MB')
+  .refine((file) => file.size <= MAX_FILE_SIZE, 'Max file size is 3MB')
   .refine(
     (file) => ACCEPTED_ZIP_TYPES.includes(file.type) || file.name.endsWith('.zip'),
     'Only .zip files are accepted'
@@ -32,7 +32,7 @@ const zipFileSchema = z
 
 const proofFileSchema = z
   .instanceof(File, { message: 'Proof of payment is required' })
-  .refine((file) => file.size <= MAX_FILE_SIZE, 'Max file size is 5MB')
+  .refine((file) => file.size <= MAX_FILE_SIZE, 'Max file size is 3MB')
   .refine(
     (file) => ACCEPTED_IMAGE_TYPES.includes(file.type),
     'Only .jpg, .png, or .pdf files are accepted'
