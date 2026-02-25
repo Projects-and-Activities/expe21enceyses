@@ -38,6 +38,8 @@ type HackfestRegistration = {
   members: Member[];
   requirementsZip: File;
   proofOfPayment: File;
+  requirementsZipUrl: string;
+  proofOfPaymentUrl: string;
   bracket: 'junior' | 'senior';
 };
 

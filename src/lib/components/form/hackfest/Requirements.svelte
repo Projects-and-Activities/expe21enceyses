@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { CircleAlert, CircleCheck, ImageIcon, Paperclip } from '@lucide/svelte';
+  import { CircleAlert, CircleCheck, ImageIcon, Loader2, Paperclip } from '@lucide/svelte';
   import { fileProxy } from 'sveltekit-superforms';
 
+  import { uploadToCloudinary } from '$lib/cloudinary';
   import { useFormContext } from '$lib/components/form/core';
   import GlassCard from '$lib/components/GlassCard.svelte';
   import * as Form from '$lib/components/ui/form';
@@ -16,6 +17,10 @@
   const proofFile = fileProxy(form, 'proofOfPayment');
 
   let previewUrl = $state<string | null>(null);
+  let zipUploadState = $state<'idle' | 'uploading' | 'done' | 'error'>('idle');
+  let proofUploadState = $state<'idle' | 'uploading' | 'done' | 'error'>('idle');
+  let zipUploadError = $state<string | null>(null);
+  let proofUploadError = $state<string | null>(null);
 
   $effect(() => {
     const file = $formData.proofOfPayment;
@@ -26,6 +31,46 @@
     }
     previewUrl = null;
   });
+
+  function handleZipChange() {
+    const file = $formData.requirementsZip;
+    if (!file || !(file instanceof File) || file.size === 0) return;
+
+    const teamName = $formData.teamName || 'unknown';
+    zipUploadState = 'uploading';
+    zipUploadError = null;
+
+    uploadToCloudinary(file, teamName, 'requirements')
+      .then((url) => {
+        $formData.requirementsZipUrl = url;
+        zipUploadState = 'done';
+      })
+      .catch((err) => {
+        zipUploadState = 'error';
+        zipUploadError = err.message || 'Upload failed';
+        console.error('Requirements upload error:', err);
+      });
+  }
+
+  function handleProofChange() {
+    const file = $formData.proofOfPayment;
+    if (!file || !(file instanceof File) || file.size === 0) return;
+
+    const teamName = $formData.teamName || 'unknown';
+    proofUploadState = 'uploading';
+    proofUploadError = null;
+
+    uploadToCloudinary(file, teamName, 'payment')
+      .then((url) => {
+        $formData.proofOfPaymentUrl = url;
+        proofUploadState = 'done';
+      })
+      .catch((err) => {
+        proofUploadState = 'error';
+        proofUploadError = err.message || 'Upload failed';
+        console.error('Proof of payment upload error:', err);
+      });
+  }
 </script>
 
 <div class="animate-in space-y-8 duration-500 fade-in slide-in-from-right-4">
@@ -127,6 +172,7 @@
           >
             <input
               bind:files={$zipFile}
+              onchange={handleZipChange}
               {...props}
               type="file"
               accept=".zip,application/zip"
@@ -160,14 +206,24 @@
               {/if}
             </div>
 
-            {#if $formData.requirementsZip && !$errors.requirementsZip}
+            {#if zipUploadState === 'uploading'}
+              <Loader2 class="size-6 animate-spin text-purple-500" />
+            {:else if zipUploadState === 'done' && !$errors.requirementsZip}
               <CircleCheck class="size-6 text-green-500" />
-            {:else if $errors.requirementsZip}
+            {:else if zipUploadState === 'error' || $errors.requirementsZip}
               <CircleAlert class="size-6 text-red-500" />
+            {:else if $formData.requirementsZip && !$errors.requirementsZip}
+              <CircleCheck class="size-6 text-green-500" />
             {/if}
           </label>
 
-          {#if $errors.requirementsZip && $formData.requirementsZip}
+          {#if zipUploadState === 'uploading'}
+            <p class="ml-1 text-xs font-medium text-purple-500">Uploading...</p>
+          {:else if zipUploadState === 'error'}
+            <p class="ml-1 text-xs font-medium text-red-500">
+              {zipUploadError || 'Upload failed. Please try again.'}
+            </p>
+          {:else if $errors.requirementsZip && $formData.requirementsZip}
             <p class="ml-1 text-xs font-medium text-red-500">
               {$errors.requirementsZip}
             </p>
@@ -196,6 +252,7 @@
           >
             <input
               bind:files={$proofFile}
+              onchange={handleProofChange}
               {...props}
               type="file"
               accept="image/*,application/pdf"
@@ -230,10 +287,14 @@
                 {/if}
               </div>
 
-              {#if $formData.proofOfPayment && !$errors.proofOfPayment}
+              {#if proofUploadState === 'uploading'}
+                <Loader2 class="size-6 animate-spin text-purple-500" />
+              {:else if proofUploadState === 'done' && !$errors.proofOfPayment}
                 <CircleCheck class="size-6 text-green-500" />
-              {:else if $errors.proofOfPayment}
+              {:else if proofUploadState === 'error' || $errors.proofOfPayment}
                 <CircleAlert class="size-6 text-red-500" />
+              {:else if $formData.proofOfPayment && !$errors.proofOfPayment}
+                <CircleCheck class="size-6 text-green-500" />
               {/if}
             </div>
 
@@ -249,6 +310,18 @@
               </div>
             {/if}
           </label>
+
+          {#if proofUploadState === 'uploading'}
+            <p class="ml-1 text-xs font-medium text-purple-500">Uploading...</p>
+          {:else if proofUploadState === 'error'}
+            <p class="ml-1 text-xs font-medium text-red-500">
+              {proofUploadError || 'Upload failed. Please try again.'}
+            </p>
+          {:else if $errors.proofOfPayment && $formData.proofOfPayment}
+            <p class="ml-1 text-xs font-medium text-red-500">
+              {$errors.proofOfPayment}
+            </p>
+          {/if}
         </div>
       {/snippet}
     </Form.Control>

@@ -1,16 +1,9 @@
-import { 
+import {
   GOOGLE_APPS_SCRIPT_URL_COMPANY_TALKS,
   GOOGLE_APPS_SCRIPT_URL_PFJF,
   GOOGLE_APPS_SCRIPT_URL_HACKFEST
 } from '$env/static/private';
 import { EVENT_IDS, type RegistrationData } from '../types/registration.types';
-import { uploadToCloudinary } from './cloudinary';
-
-async function toBase64(file: File): Promise<string> {
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-  return buffer.toString('base64');
-}
 
 export async function submitRegistration(eventId: string, data: RegistrationData) {
   let script
@@ -30,7 +23,7 @@ export async function submitRegistration(eventId: string, data: RegistrationData
   }
 
   let transformedData = data;
-  
+
   if (eventId === EVENT_IDS.JUNIOR_HACKFEST || eventId === EVENT_IDS.SENIOR_HACKFEST) {
     const bracket = eventId === EVENT_IDS.JUNIOR_HACKFEST ? 'junior' : 'collegiate';
     const numberOfRegistrantsResponse = await fetch(
@@ -53,30 +46,25 @@ export async function submitRegistration(eventId: string, data: RegistrationData
 
     const hackfestData = data as any;
 
-    // Backup
-    await Promise.all([
-      uploadToCloudinary(hackfestData.requirementsZip, hackfestData.teamName, 'requirements'),
-      uploadToCloudinary(hackfestData.proofOfPayment, hackfestData.teamName, 'payment')
-    ]);
-    
-    const requirementsBase64 = await toBase64(hackfestData.requirementsZip);
-    const paymentBase64 = await toBase64(hackfestData.proofOfPayment);
-    
+    // Files are uploaded directly to Cloudinary from the frontend.
+    // Strip raw File objects and send the Cloudinary URLs to GAS.
     transformedData = {
       ...hackfestData,
       bracket: bracket,
-      requirements: requirementsBase64,
-      requirementsFileType: hackfestData.requirementsZip.type,
-      payment: paymentBase64,
-      paymentFileType: hackfestData.proofOfPayment.type,
+      requirementsUrl: hackfestData.requirementsZipUrl,
+      paymentUrl: hackfestData.proofOfPaymentUrl,
       requirementsZip: undefined,
-      proofOfPayment: undefined
+      proofOfPayment: undefined,
+      requirementsZipUrl: undefined,
+      proofOfPaymentUrl: undefined
     };
-    
+
     delete (transformedData as any).requirementsZip;
     delete (transformedData as any).proofOfPayment;
+    delete (transformedData as any).requirementsZipUrl;
+    delete (transformedData as any).proofOfPaymentUrl;
   }
-  
+
   const response = await fetch(
     script,
     {
