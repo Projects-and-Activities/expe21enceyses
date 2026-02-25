@@ -57,8 +57,8 @@ const commonHackfestSchema = z.object({
   teamName: z.string().min(2, 'Team name is required'),
   contactNumber: mobileNumberSchema,
   email: emailSchema,
-  requirementsZip: zipFileSchema,
-  proofOfPayment: proofFileSchema,
+  requirementsZip: zipFileSchema.optional(),
+  proofOfPayment: proofFileSchema.optional(),
   requirementsZipUrl: z.string().url('Requirements must be uploaded').default(''),
   proofOfPaymentUrl: z.string().url('Proof of payment must be uploaded').default('')
 });

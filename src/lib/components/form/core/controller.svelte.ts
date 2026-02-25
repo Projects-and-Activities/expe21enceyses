@@ -74,6 +74,15 @@ export class RegistrationController<T extends Record<string, any>> {
     this.form = superForm(untrack(getForm), {
       validators: zod4Client(schema),
       dataType: 'json',
+      onSubmit: ({ formData }) => {
+        // Files are uploaded directly to Cloudinary from the client.
+        // Strip raw file data to avoid Vercel's payload size limit.
+        for (const key of [...formData.keys()]) {
+          if (formData.get(key) instanceof File) {
+            formData.delete(key);
+          }
+        }
+      },
       onResult: ({ result }) => {
         if (result.type === 'error') {
           toast.error(result.error.message || 'An unexpected error occurred.');

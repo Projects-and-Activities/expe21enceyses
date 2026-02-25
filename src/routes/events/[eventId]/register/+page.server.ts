@@ -30,8 +30,14 @@ export const actions: Actions = {
     const form = await superValidate(request, zod4(config.schema));
 
     if (!form.valid) {
+      console.error(`Form validation failed for ${eventId}:`, JSON.stringify(form.errors));
       return fail(400, { form });
     }
+
+    console.log(`Form valid for ${eventId}. URL fields:`, {
+      requirementsZipUrl: (form.data as any).requirementsZipUrl,
+      proofOfPaymentUrl: (form.data as any).proofOfPaymentUrl,
+    });
 
     try {
       await submitRegistration(eventId, form.data as RegistrationData);
