@@ -22,6 +22,10 @@
   let zipUploadError = $state<string | null>(null);
   let proofUploadError = $state<string | null>(null);
 
+  // Track file metadata separately so we can clear File objects from formData after upload
+  let zipFileInfo = $state<{ name: string; size: number } | null>(null);
+  let proofFileInfo = $state<{ name: string; size: number } | null>(null);
+
   $effect(() => {
     const file = $formData.proofOfPayment;
     if (file && file instanceof File && file.type.startsWith('image/')) {
@@ -29,13 +33,17 @@
       previewUrl = objectUrl;
       return () => URL.revokeObjectURL(objectUrl);
     }
-    previewUrl = null;
+    // Keep preview if we already uploaded (file cleared from formData)
+    if (!file && proofUploadState !== 'done') {
+      previewUrl = null;
+    }
   });
 
   function handleZipChange() {
     const file = $formData.requirementsZip;
     if (!file || !(file instanceof File) || file.size === 0) return;
 
+    zipFileInfo = { name: file.name, size: file.size };
     const teamName = $formData.teamName || 'unknown';
     zipUploadState = 'uploading';
     zipUploadError = null;
@@ -43,6 +51,7 @@
     uploadToCloudinary(file, teamName, 'requirements')
       .then((url) => {
         $formData.requirementsZipUrl = url;
+        $formData.requirementsZip = undefined as any; // Clear File so it's not serialized on submit
         zipUploadState = 'done';
       })
       .catch((err) => {
@@ -56,6 +65,7 @@
     const file = $formData.proofOfPayment;
     if (!file || !(file instanceof File) || file.size === 0) return;
 
+    proofFileInfo = { name: file.name, size: file.size };
     const teamName = $formData.teamName || 'unknown';
     proofUploadState = 'uploading';
     proofUploadError = null;
@@ -63,6 +73,7 @@
     uploadToCloudinary(file, teamName, 'payment')
       .then((url) => {
         $formData.proofOfPaymentUrl = url;
+        $formData.proofOfPayment = undefined as any; // Clear File so it's not serialized on submit
         proofUploadState = 'done';
       })
       .catch((err) => {
@@ -159,7 +170,7 @@
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <span class="text-sm font-medium text-foreground">Requirements</span>
-            {#if $errors.requirementsZip && !$formData.requirementsZip}
+            {#if $errors.requirementsZipUrl && !zipFileInfo}
               <span class="animate-pulse text-xs font-medium text-red-500">Required *</span>
             {/if}
           </div>
@@ -188,12 +199,12 @@
             </div>
 
             <div class="flex-1">
-              {#if $formData.requirementsZip}
+              {#if zipFileInfo}
                 <p class="font-medium break-all text-foreground">
-                  {$formData.requirementsZip.name}
+                  {zipFileInfo.name}
                 </p>
                 <p class="text-xs text-muted-foreground">
-                  {($formData.requirementsZip.size / 1024 / 1024).toFixed(2)} MB
+                  {(zipFileInfo.size / 1024 / 1024).toFixed(2)} MB
                 </p>
               {:else}
                 <p
@@ -212,7 +223,7 @@
               <CircleCheck class="size-6 text-green-500" />
             {:else if zipUploadState === 'error' || $errors.requirementsZip}
               <CircleAlert class="size-6 text-red-500" />
-            {:else if $formData.requirementsZip && !$errors.requirementsZip}
+            {:else if zipFileInfo && !$errors.requirementsZip}
               <CircleCheck class="size-6 text-green-500" />
             {/if}
           </label>
@@ -223,7 +234,7 @@
             <p class="ml-1 text-xs font-medium text-red-500">
               {zipUploadError || 'Upload failed. Please try again.'}
             </p>
-          {:else if $errors.requirementsZip && $formData.requirementsZip}
+          {:else if $errors.requirementsZip && zipFileInfo}
             <p class="ml-1 text-xs font-medium text-red-500">
               {$errors.requirementsZip}
             </p>
@@ -239,7 +250,7 @@
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <span class="text-sm font-medium text-foreground">Proof of Payment</span>
-            {#if $errors.proofOfPayment && !$formData.proofOfPayment}
+            {#if $errors.proofOfPaymentUrl && !proofFileInfo}
               <span class="animate-pulse text-xs font-medium text-red-500">Required *</span>
             {/if}
           </div>
@@ -269,12 +280,12 @@
               </div>
 
               <div class="flex-1">
-                {#if $formData.proofOfPayment}
+                {#if proofFileInfo}
                   <p class="font-medium break-all text-foreground">
-                    {$formData.proofOfPayment.name}
+                    {proofFileInfo.name}
                   </p>
                   <p class="text-xs text-muted-foreground">
-                    {($formData.proofOfPayment.size / 1024 / 1024).toFixed(2)} MB
+                    {(proofFileInfo.size / 1024 / 1024).toFixed(2)} MB
                   </p>
                 {:else}
                   <p
@@ -293,12 +304,12 @@
                 <CircleCheck class="size-6 text-green-500" />
               {:else if proofUploadState === 'error' || $errors.proofOfPayment}
                 <CircleAlert class="size-6 text-red-500" />
-              {:else if $formData.proofOfPayment && !$errors.proofOfPayment}
+              {:else if proofFileInfo && !$errors.proofOfPayment}
                 <CircleCheck class="size-6 text-green-500" />
               {/if}
             </div>
 
-            {#if $formData.proofOfPayment && previewUrl}
+            {#if previewUrl}
               <div
                 class="relative mt-2 aspect-video w-full overflow-hidden rounded-lg border border-border bg-black/5 dark:bg-black/50"
               >
