@@ -3,7 +3,7 @@
   import { fileProxy } from 'sveltekit-superforms';
 
   import { uploadToCloudinary } from '$lib/cloudinary';
-  import { useFormContext } from '$lib/components/form/core';
+  import { useControllerContext, useFormContext } from '$lib/components/form/core';
   import GlassCard from '$lib/components/GlassCard.svelte';
   import * as Form from '$lib/components/ui/form';
   import type { AnyHackfestRegistration } from '$lib/types/hackfest';
@@ -11,6 +11,7 @@
   let { variant = 'junior' } = $props<{ variant?: 'junior' | 'senior' }>();
 
   const form = useFormContext<AnyHackfestRegistration>();
+  const controller = useControllerContext();
   const { form: formData, errors } = form;
 
   const zipFile = fileProxy(form, 'requirementsZip');
@@ -47,16 +48,19 @@
     const teamName = $formData.teamName || 'unknown';
     zipUploadState = 'uploading';
     zipUploadError = null;
+    controller.uploading = true;
 
     uploadToCloudinary(file, teamName, 'requirements')
       .then((url) => {
         $formData.requirementsZipUrl = url;
-        $formData.requirementsZip = undefined as any; // Clear File so it's not serialized on submit
+        $formData.requirementsZip = undefined; // Clear File so it's not serialized on submit
         zipUploadState = 'done';
+        controller.uploading = proofUploadState === 'uploading';
       })
       .catch((err) => {
         zipUploadState = 'error';
         zipUploadError = err.message || 'Upload failed';
+        controller.uploading = proofUploadState === 'uploading';
         console.error('Requirements upload error:', err);
       });
   }
@@ -69,16 +73,19 @@
     const teamName = $formData.teamName || 'unknown';
     proofUploadState = 'uploading';
     proofUploadError = null;
+    controller.uploading = true;
 
     uploadToCloudinary(file, teamName, 'payment')
       .then((url) => {
         $formData.proofOfPaymentUrl = url;
-        $formData.proofOfPayment = undefined as any; // Clear File so it's not serialized on submit
+        $formData.proofOfPayment = undefined; // Clear File so it's not serialized on submit
         proofUploadState = 'done';
+        controller.uploading = zipUploadState === 'uploading';
       })
       .catch((err) => {
         proofUploadState = 'error';
         proofUploadError = err.message || 'Upload failed';
+        controller.uploading = zipUploadState === 'uploading';
         console.error('Proof of payment upload error:', err);
       });
   }

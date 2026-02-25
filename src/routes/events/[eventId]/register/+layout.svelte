@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import TooltipProvider from '$lib/components/ui/tooltip/tooltip-provider.svelte';
 
   const meta = $derived(
     page.data.eventMeta || {
@@ -45,7 +46,9 @@
     </div>
 
     <div>
-      {@render children()}
+      <TooltipProvider>
+        {@render children()}
+      </TooltipProvider>
     </div>
   </div>
 </main>

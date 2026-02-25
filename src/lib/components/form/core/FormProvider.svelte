@@ -14,12 +14,13 @@
   import { ChevronLeft, ChevronRight, LoaderCircle } from '@lucide/svelte';
   import { onMount, untrack, type Component, type Snippet } from 'svelte';
 
-  import { setFormContext } from './context.ts';
+  import { setControllerContext, setFormContext } from './context.ts';
   import type { RegistrationController } from './controller.svelte';
 
   import Stepper from '$lib/components/form/Stepper.svelte';
   import GlassCard from '$lib/components/GlassCard.svelte';
   import { Button } from '$lib/components/ui/button';
+  import * as Tooltip from '$lib/components/ui/tooltip';
 
   type Props = {
     // The Brain (Single source of truth)
@@ -39,6 +40,7 @@
   // Pass the form instance down to all children inputs via Context.
   // This avoids prop-drilling 'errors' and 'constraints' through every component.
   setFormContext(untrack(() => controller.form));
+  setControllerContext(controller);
   // Extract methods for local use
   const { submit, form: formData, validate, submitting, enhance } = untrack(() => controller.form);
 
@@ -190,18 +192,28 @@
                 <ChevronRight class="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Button>
             {:else}
-              <Button
-                type="submit"
-                disabled={$submitting}
-                class="group w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:shadow-purple-500/25 disabled:opacity-70 sm:w-auto"
-              >
-                {#if $submitting}
-                  <LoaderCircle class="mr-2 size-4 animate-spin" />
-                  Submitting...
-                {:else}
-                  Submit
-                {/if}
-              </Button>
+              <Tooltip.Root delayDuration={100} disabled={!controller.uploading}>
+                <Tooltip.Trigger>
+                  {#snippet child({ props })}
+                    <Button
+                      {...props}
+                      type="submit"
+                      disabled={$submitting || controller.uploading}
+                      class="group w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:shadow-purple-500/25 disabled:pointer-events-auto! disabled:cursor-not-allowed disabled:from-zinc-600 disabled:to-zinc-600 disabled:shadow-none sm:w-auto"
+                    >
+                      {#if $submitting}
+                        <LoaderCircle class="mr-2 size-4 animate-spin" />
+                        Submitting...
+                      {:else}
+                        Submit
+                      {/if}
+                    </Button>
+                  {/snippet}
+                </Tooltip.Trigger>
+                <Tooltip.Portal>
+                  <Tooltip.Content>Files are still uploading, please wait.</Tooltip.Content>
+                </Tooltip.Portal>
+              </Tooltip.Root>
             {/if}
           </div>
         </div>
