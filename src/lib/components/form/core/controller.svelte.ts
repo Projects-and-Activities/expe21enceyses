@@ -74,21 +74,17 @@ export class RegistrationController<T extends Record<string, any>> {
     this.form = superForm(untrack(getForm), {
       validators: zod4Client(schema),
       dataType: 'json',
-      onSubmit: ({ formData }) => {
-        // Files are uploaded directly to Cloudinary from the client.
-        // Strip raw file data to avoid Vercel's payload size limit.
-        for (const key of [...formData.keys()]) {
-          if (formData.get(key) instanceof File) {
-            formData.delete(key);
-          }
-        }
+      onSubmit: () => {
+        toast.info('This may take a while, please wait...', { id: 'form-submit' });
       },
       onResult: ({ result }) => {
+        toast.dismiss('form-submit');
         if (result.type === 'error') {
           toast.error(result.error.message || 'An unexpected error occurred.');
         }
       },
       onUpdate: ({ form, result }) => {
+        toast.dismiss('form-submit');
         if (form.valid && result.type === 'success') {
           // Success: Clear the draft and lock the form
           localStorage.removeItem(this.storageKey);
