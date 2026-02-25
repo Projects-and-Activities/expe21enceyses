@@ -29,7 +29,7 @@
   const content = {
     junior: {
       highlight: 'Junior HackFest',
-      text: 'introduces high school students to software engineering by guiding through the end‑to‑end design and development of FlutterFlow applications. Teams will identify community problems, translate them into user‑centered app ideas, and build working prototypes that responsibly integrate AI to support more sustainable, inclusive, and resilient local communities.'
+      text: 'introduces high school students to software engineering by guiding through the end‑to‑end design and development of MIT App Inventor applications. Teams will identify community problems, translate them into user‑centered app ideas, and build working prototypes that responsibly integrate AI to support more sustainable, inclusive, and resilient local communities.'
     },
     collegiate: {
       highlight: 'Collegiate HackFest',
